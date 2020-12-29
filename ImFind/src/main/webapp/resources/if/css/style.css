@@ -8194,6 +8194,7 @@ h1, h2, h3, h4, h5,
 
 .wrapper {
   width: 100%; 
+  z-index: -2;
 }
 
 #sidebar {
@@ -8203,7 +8204,7 @@ h1, h2, h3, h4, h5,
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  position: relative;
+  position: relative; 
   z-index: 0; }
   #sidebar:after {
     position: absolute;
@@ -8339,7 +8340,8 @@ a[data-toggle="collapse"] {
   min-height: 100vh;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
-  transition: all 0.3s; }
+  transition: all 0.3s;
+  z-index: -1; }
 
 .btn.btn-primary {
   background: #2f89fc;
@@ -8351,6 +8353,7 @@ a[data-toggle="collapse"] {
 .nav-content{
 	border : 1px solid dodgerblue;
 	height: 600px;
+	
 }
 .footer p {
   color: rgba(255, 255, 255, 0.8); }
