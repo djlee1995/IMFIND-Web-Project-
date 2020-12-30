@@ -20,21 +20,54 @@ public class LostServiceImpl implements LostService {
 	 * memberMapper.getMembers(); return member_list; }
 	 */
 	@Override
-	public List<LostVO> place() {
-		List<LostVO> place = null;
+	public List<PoliceVO> police() {
+		List<PoliceVO> place = null;
 		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
-		place = lostMapper.place();
+		place = lostMapper.police();
 		return place;
 	}
 	
 	@Override
-	public List<LostVO> lostlist(String placeid) {
-		List<LostVO> lostlist = null;
+	public List<PoliceVO> p_lostlist(String placeid) {
+		List<PoliceVO> p_lostlist = null;
 		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
-		lostlist = lostMapper.lostlist(placeid);
-		return lostlist;
+		p_lostlist = lostMapper.p_lostlist(placeid);
+		return p_lostlist;
 	}
 
+	@Override
+	public List<PoliceVO> p_info(String code) {
+		List<PoliceVO> p_info = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		p_info = lostMapper.p_info(code);
+		return p_info;
+	}
+
+	@Override
+	public List<EtcVO> etc() {
+		List<EtcVO> etc = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		etc = lostMapper.etc();
+		return etc;
+	}
+
+	@Override
+	public List<EtcVO> s_lostlist(String tel) {
+		List<EtcVO> s_lostlist = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		s_lostlist = lostMapper.s_lostlist(tel);
+		return s_lostlist;
+	}
+
+	@Override
+	public List<EtcVO> s_info(String code) {
+		List<EtcVO> s_info = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		s_info = lostMapper.s_info(code);
+		return s_info;
+	}
+	
+	
 
 
 

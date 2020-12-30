@@ -18,25 +18,60 @@ public class IfController {
 	private LostService lostService;
 	
 	@RequestMapping(value = "/index.if", method = RequestMethod.GET)
-	public String home() {
+	public String index() {
 		return "if/index";
 	}
-
-	@RequestMapping(value = "/place.if", produces="application/json; charset=utf-8")
-	@ResponseBody
-	public List<LostVO> place() {
-		System.out.println("AAAAAAAAAAA");
-		List<LostVO> place = lostService.place();
-		System.out.println("place="+place.size());
-		return place;
+	@RequestMapping(value = "/etc_index.if", method = RequestMethod.GET)
+	public String etc_index() {
+		return "if/etc";
 	}
-	@RequestMapping(value = "/lostlist.if", produces="application/json; charset=utf-8")
+	@RequestMapping(value = "/police.if", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public List<LostVO> lostlist(@RequestParam(value = "placeid" , required = false)String placeid) {
+	public List<PoliceVO> police() {
+		System.out.println("AAAAAAAAAAA");
+		List<PoliceVO> police = lostService.police();
+		System.out.println("place="+police.size());
+		return police;
+	}
+	@RequestMapping(value = "/p_lostlist.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<PoliceVO> p_lostlist(@RequestParam(value = "placeid" , required = false)String placeid) {
 		System.out.println("BBBBBBBBBB");
-		List<LostVO> lostlist = lostService.lostlist(placeid);
-		System.out.println("lostlist="+lostlist.size());
-		return lostlist;
+		List<PoliceVO> p_lostlist = lostService.p_lostlist(placeid);
+		System.out.println("lostlist="+p_lostlist.size());
+		return p_lostlist;
+	}
+	@RequestMapping(value = "/p_info.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<PoliceVO> infodata(@RequestParam(value = "code" , required = false)String code) {
+		System.out.println("BBBBBBBBBB");
+		List<PoliceVO> p_info = lostService.p_info(code);
+		System.out.println("lostlist="+p_info.size());
+		return p_info;
+	}
+	@RequestMapping(value = "/etc.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<EtcVO> etc() {
+		System.out.println("AAAAAAAAAAA");
+		List<EtcVO> et = lostService.etc();
+		System.out.println("place="+et.size());
+		return et;
+	}
+	@RequestMapping(value = "/s_lostlist.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<EtcVO> s_lostlist(@RequestParam(value = "tel" , required = false)String tel) {
+		System.out.println("BBBBBBBBBB");
+		List<EtcVO> s_lostlist = lostService.s_lostlist(tel);
+		System.out.println("lostlist="+s_lostlist.size());
+		return s_lostlist;
+	}
+	@RequestMapping(value = "/s_info.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<EtcVO> s_infodata(@RequestParam(value = "code" , required = false)String code) {
+		System.out.println("BBBBBBBBBB");
+		List<EtcVO> s_info = lostService.s_info(code);
+		System.out.println("lostlist="+s_info.size());
+		return s_info;
 	}
 	
 }

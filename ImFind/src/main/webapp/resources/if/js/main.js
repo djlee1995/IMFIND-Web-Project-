@@ -13,7 +13,6 @@
 	fullHeight();
 
 	$('#sidebarCollapse').on('click', function () {
-		map.relayout();
       $('#sidebar').toggleClass('active');
       
   });

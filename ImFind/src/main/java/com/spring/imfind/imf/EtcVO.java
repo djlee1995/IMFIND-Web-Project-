@@ -4,8 +4,9 @@ import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class LostVO {
-	private String placeid;
+public class EtcVO {
+
+	private String code;
 	private String city;
 	private String gu;
 	private String dong;
@@ -14,17 +15,19 @@ public class LostVO {
 	private String tel;
 	private String x;
 	private String y;
+	private String state;
+	private String com;
 	@JsonFormat(pattern = "YYYY-MM-dd")
 	private Date lost_date;
 	private String kind;
 	private String item;
 	private String info;
-	private String photo;
-	public String getPlaceid() {
-		return placeid;
+	
+	public String getCode() {
+		return code;
 	}
-	public void setPlaceid(String placeid) {
-		this.placeid = placeid;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getCity() {
 		return city;
@@ -74,6 +77,18 @@ public class LostVO {
 	public void setY(String y) {
 		this.y = y;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCom() {
+		return com;
+	}
+	public void setCom(String com) {
+		this.com = com;
+	}
 	public Date getLost_date() {
 		return lost_date;
 	}
@@ -98,14 +113,6 @@ public class LostVO {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-	
-	
-	
+
 
 }
