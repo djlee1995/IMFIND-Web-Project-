@@ -186,6 +186,9 @@
                         </li> 
                         <li><a href="login" class="login-panel"><i class="fa fa-user"></i>로그인</a></li>
                    		<li><a href="register" class="register-panel"><i class="fa fa-user"></i>회원가입</a></li>   
+                   		<!-- 마이페이지 추가 addsoo(202012311047) -->
+                   		<li><a href="mypage" class="mypage-panel"><i class="fa fa-user"></i>마이페이지</a></li>  
+                   		
                         <!-- <li><a href="blog">Blog</a></li>
                         <li><a href="contact">Contact</a></li>
                         <li><a href="#">Pages</a>
