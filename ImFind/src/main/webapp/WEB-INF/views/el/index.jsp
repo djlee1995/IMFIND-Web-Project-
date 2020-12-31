@@ -180,7 +180,7 @@
                         </li>
                         <li><a href="#">분실물조회</a>
                        		 <ul class="dropdown">
-                                <li><a href="#">물건</a></li>
+                                <li><a href="item">물건</a></li> <!-- 변수로 넘겨준다(lecturename) -->
                                 <li><a href="#">반려동물</a></li>
                             </ul>
                         </li> 

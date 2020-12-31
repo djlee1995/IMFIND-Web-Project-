@@ -78,4 +78,12 @@ public class ElController {
 		
 		return "el/register";
 	}
+	
+	@RequestMapping("/item")
+	public String item() {
+		
+		return "el/item";
+	}
+	
+
 }
