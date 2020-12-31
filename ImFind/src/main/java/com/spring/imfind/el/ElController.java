@@ -19,11 +19,28 @@ public class ElController {
 		return "el/login";
 	}
 	
-	@RequestMapping("/shop")
+	/*
+	
+	 은지 - 게시판 등록
+	
+	 */
+	@RequestMapping("/itemboard")
 	public String shop() {
 		
-		return "el/shop";
+		return "el/EJ/itemboard";
 	}
+	
+	@RequestMapping("/map.html")
+	public String map() {
+
+		return "map";
+	}
+	
+	/*
+	
+	 은지 - 게시판 등록
+	
+	 */
 	
 	@RequestMapping("/collection")
 	public String collection() {
@@ -78,4 +95,6 @@ public class ElController {
 		
 		return "el/register";
 	}
+	
+	
 }

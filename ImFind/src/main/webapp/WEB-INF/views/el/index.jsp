@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>I'm Find</title>
-
+	
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
@@ -174,7 +174,7 @@
                             </ul> -->
                         <li><a href="#">분실물등록</a>
                             <ul class="dropdown">
-                                <li><a href="#">물건</a></li>
+                                <li><a href="itemboard">물건</a></li>
                                 <li><a href="#">반려동물</a></li>
                             </ul>
                         </li>
