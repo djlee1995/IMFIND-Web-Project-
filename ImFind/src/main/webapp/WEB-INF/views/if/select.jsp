@@ -52,9 +52,12 @@
 						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
 					</li>
 				</ul>
-				<div class="police">
 				
-				</div>
+				<div>
+    				<select name="sido1" id="sido1"></select>
+					<select name="gugun1" id="gugun1"></select>
+ 				</div>
+				
 				<!-- 조회 리스트 뿌려줄 공간 -->
 				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
 				<div class="nav-content">
@@ -72,14 +75,15 @@
 		<div id="content" >
 			<!-- 지도 -->
 			<div id="map" style="width:100%; height:100%;">
-
 			</div>
 		</div>
 	</div>
+		
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/etc.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/if/js/select.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/if/js/area.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/if/js/main.js"></script>

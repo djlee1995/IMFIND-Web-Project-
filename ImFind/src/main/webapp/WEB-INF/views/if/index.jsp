@@ -48,6 +48,9 @@
 					<li>
 						<a href="etc_index.if"><span class="fa fa-map mr-3"></span>etc</a>
 					</li>
+					<li>
+						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
+					</li>
 				</ul>
 				<div class="police">
 				

@@ -25,6 +25,10 @@ public class IfController {
 	public String etc_index() {
 		return "if/etc";
 	}
+	@RequestMapping(value = "/select.if", method = RequestMethod.GET)
+	public String select() {
+		return "if/select";
+	}
 	@RequestMapping(value = "/police.if", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public List<PoliceVO> police() {

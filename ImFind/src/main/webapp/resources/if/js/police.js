@@ -154,7 +154,7 @@ function police() {
 						$('.police').empty();
 						$('#output').empty();
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
-						var place ='<br><p style="font-size: xx-large; font-weight:bold;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+data[0].placeid+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: large;">'+data[0].addr+'<button class="snip1535" onclick=window.open('+link+')>길찾기</button ><br>'+data[0].tel+'</p>';
+						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+data[0].placeid+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'<button onclick=window.open('+link+')>길찾기</button ><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
 							var output = '';
@@ -179,137 +179,6 @@ function police() {
 			 });
 			 
 			 $(document).on('click', '.p_info_data', function(event){
-					
-					$.ajax({
-						url : $(this).attr("href"),
-						//type : 'POST',
-						data : {'code': $(this).attr("id")},
-						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-						//dataType:'json',
-						success: function(data){
-							$('#output').empty();
-							
-							$.each(data, function(index,item){
-								var output = '';
-								output +='<tr style="font-size: large;"><td>'+ item.lost_date + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
-								output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo + '"></td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.info.substring(2) + '</td></tr>';
-								console.log(item.photo);
-								$('#output').append(output);
-					
-							});
-							},
-							
-						error : function() {
-
-							alert("ajax통신 실패2")
-
-						}
-					
-				
-				});
-					//기본 이벤트 제거
-					event.preventDefault();
-				 });
-			 
-			
-}
-
-//대중교통
-function subway() {
-
-	$.ajax({
-		url: '/imfind/etc.if',
-		//type: 'POST',
-		//dataType : 'json',
-		async:false,  
-		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		success : function(data){
-			console.log(data.length)		    
-		 for(var i=0; i<data.length; i++){
-			 var marker = new kakao.maps.Marker({
-				 	image: markerImage,
-	                position : new kakao.maps.LatLng(data[i].y, data[i].x),
-	                title: data[i].depplace,
-	                clickable: true,
-	             
-	            });
-			 marker.name=data[i].depplace
-			 marker.id= data[i].tel;
-			 markers.push(marker)
-			
-			
-			 var infowindow = new kakao.maps.InfoWindow({
-			        content:'<div style="width:150px;text-align:center;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+marker.id+'>'+marker.name+'</a></div>', 
-			        removable : true
-			 }); 
-			 
-			  kakao.maps.event.addListener(marker, 'click', clickListener(map, marker, infowindow));
-			// kakao.maps.event.addListener(map, 'click', clickOutListener(infowindow)); 
-			}
-			
-			function clickListener(map, marker, infowindow) {
-			    return function() {
-			        infowindow.open(map, marker);
-			    };
-			}
-			// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-			function clickOutListener(infowindow) {
-			    return function() {
-			        infowindow.close();
-			    };
-			}
-			        // 클러스터러에 마커들을 추가합니다
-			    clusterer.addMarkers(markers);
-			    						       
-		},
-		error : function() {
-
-			alert("ajax통신 실패2")
-
-		}
-			
-
-	});
-			
-			 $(document).on('click', '.s_lostlist_data', function(event){
-				
-				$.ajax({
-					url : $(this).attr("href"),
-					//type : 'POST',
-					data : {'tel': $(this).attr("id")},
-					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-					//dataType:'json',
-					success: function(data){
-						$('.police').empty();
-						$('#output').empty();
-						var place ='<br><p style="font-size: xx-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=p_lostlist_data id='+data[0].tel+'>'+data[0].depplace+'</a></p> <p style="font-size: large;">'+data[0].addr+'<br>'+data[0].tel+'</p>';
-						$('.police').append(place);
-						$.each(data, function(index,item){
-							var output = '';
-							output +='<tr style="font-size: large; font-weight:bold;"><td><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
-							output +='<tr><td><img width="150px"; height="150px"; src="'+ item.photo + '"></td></tr>';
-							console.log(item.photo);
-							$('#output').append(output);
-				
-						});
-						},
-						
-					error : function() {
-
-						alert("ajax통신 실패2")
-
-					}
-				
-			
-			});
-				//기본 이벤트 제거
-				event.preventDefault();
-			 });
-			 
-			 $(document).on('click', '.s_info_data', function(event){
 					
 					$.ajax({
 						url : $(this).attr("href"),
