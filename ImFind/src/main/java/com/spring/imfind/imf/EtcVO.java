@@ -22,7 +22,16 @@ public class EtcVO {
 	private String kind;
 	private String item;
 	private String info;
+	private String photo;
 	
+	
+	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public String getCode() {
 		return code;
 	}

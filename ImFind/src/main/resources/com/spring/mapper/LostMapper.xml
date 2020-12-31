@@ -11,7 +11,7 @@
 		SELECT * FROM p_place
 	</select>
 	<select id="p_lostlist" resultType="PoliceVO">
-select l.code,l.lost_date,l.kind,l.item,l.info,p.placeid,p.depplace,p.addr,p.tel,l.photo from p_lost l, p_place p where p.placeid=l.placeid and p.placeid=#{placeid}	
+select l.code,l.lost_date,l.kind,l.item,l.info,p.placeid,p.depplace,p.addr,p.tel,l.photo,p.x,p.y from p_lost l, p_place p where p.placeid=l.placeid and p.placeid=#{placeid}	
 </select>
 	<select id="p_info" resultType="PoliceVO">
 select lost_date,kind,item,info,photo from p_lost where code=#{code}	
@@ -20,7 +20,7 @@ select lost_date,kind,item,info,photo from p_lost where code=#{code}
 		SELECT * FROM s_place
 	</select>
 	<select id="s_lostlist" resultType="EtcVO">
-select l.photo, l.state, l.code,l.lost_date,l.kind,l.item,l.info,p.depplace,p.addr,p.tel from s_lost l, s_place p where p.tel=l.tel and p.tel=#{placeid}	
+select l.photo, l.state, l.code,l.lost_date,l.kind,l.item,l.info,p.depplace,p.addr,p.tel,p.x,p.y from s_lost l, s_place p where p.tel=l.tel and p.tel=#{tel}	
 </select>
 	<select id="s_info" resultType="EtcVO">
 select * from s_lost where code=#{code}	

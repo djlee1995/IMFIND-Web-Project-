@@ -68,13 +68,12 @@ var markers=[];
             position: locPosition
         }); 
         
-        var iwContent = message, // 인포윈도우에 표시할 내용
-            iwRemoveable = true;
+        var iwContent = message;
 
         // 인포윈도우를 생성합니다
         var infowindow = new kakao.maps.InfoWindow({
             content : iwContent,
-            removable : iwRemoveable
+            
         });
         
         // 인포윈도우를 마커위에 표시합니다 
@@ -84,6 +83,7 @@ var markers=[];
             
     }
 
+    
 
 
 //대중교통
@@ -111,8 +111,7 @@ function etc() {
 			
 			
 			 var infowindow = new kakao.maps.InfoWindow({
-			        content:'<div style="width:150px;text-align:center;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+marker.tel+'>'+marker.name+'</a></div>', 
-			        removable : true
+			        content:'<div style="width:150px;text-align:center;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+marker.tel+'>'+marker.name+'</a></div>'
 			 }); 
 			 
 			  kakao.maps.event.addListener(marker, 'click', clickListener(map, marker, infowindow));
@@ -152,16 +151,17 @@ function etc() {
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 					//dataType:'json',
 					success: function(data){
-						console.log(data[0])
+						console.log(data[0].depplace.replace(/(\s*)/g, "")+data[0].x+data[0].y)
 						$('.police').empty();
 						$('#output').empty();
-						var place ='<br><p style="font-size: xx-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+data[0].depplace+'</a></p> <p style="font-size: large;">'+data[0].addr+'<br>'+data[0].tel+'</p>';
+						
+						var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
+						var place ='<br><p style="font-size: xx-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+data[0].depplace+'</a></p> <p style="font-size: large;">'+data[0].addr+'<button class="snip1535" onclick=window.open('+link+')>길찾기</button ><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
 							var output = '';
 							output +='<tr style="font-size: large; font-weight:bold;"><td><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></td>';
 							output +='<td>'+item.state+'</td></tr>';
-							output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo +'"></td></tr>';
 							$('#output').append(output);
 				
 						});
@@ -196,7 +196,6 @@ function etc() {
 								output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.state +'</td></tr>';
-								output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo + '"></td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.info + '</td></tr>';
 								console.log(item.photo);
 								$('#output').append(output);

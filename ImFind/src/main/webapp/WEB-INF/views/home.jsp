@@ -5,9 +5,7 @@
 	<title>Home</title>
 </head>
 <body>
-
 <a href="index.if">if</a>
 <a href="index">else</a>
-
 </body>
 </html>
