@@ -3,29 +3,46 @@
 <!DOCTYPE html>
 <html lang="kr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fashi Template">
-    <meta name="keywords" content="Fashi, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>I'm Find</title>
+<!-- 유희 css -->
+<style>
+	col-lg-6.offset-lg-3{
+		
+	}
+	.group-input.label{
+		margin-left:10px
+	}
+	input[id="tel"]{
+		width:70px !important;
+	}
+	.site-btn.certification-api{
+		width : 85px;
+		height: 49px;
+		padding : 0;
+		padding-top : 14px;
+		margin-left : 10px;
+		text-align : center;
+		border-radius : 3px;
+	}  
+	.group-input.box.tel{
+		display: flex;
+		align-items: center;
+		flex-wrap:wrap;
+	}
+	.site-btn.policy{
+		margin : 0 auto;
+		display : block;
+	}
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+ 	.grid-form{
+		display : grid;
+		grid-template-columns: 0.5fr 1fr;
+		grid-template-rows : 80px 150px 80px 80px 150px 80px 80px;
+	} 
+	button[class ~= "register-btn"]{
+		grid-column: auto / span 2;
+	}
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
-</head>
-
+</style>
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -33,198 +50,62 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div>
-                <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <div class="logo">
-                            <a href="./index">
-                                <img src="${pageContext.request.contextPath}/resources/el/img/logo.png" alt="">
-                            </a>
-                        </div>    
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
-                            <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon"><a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
-                            </li>
-                            <li class="cart-icon"><a href="#">
-                                <i class="icon_bag_alt"></i>
-                                <span>3</span>
-                            </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-1.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-2.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>$120.00</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                </div>
-                            </div>
-                        </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
-                    <ul>
-                        <li><a href="./index">Home</a></li>
-                        <li><a href="./shop">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog">Blog</a></li>
-                        <li><a href="./contact">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details">Blog Details</a></li>
-                                <li><a href="./shopping-cart">Shopping Cart</a></li>
-                                <li><a href="./check-out">Checkout</a></li>
-                                <li><a href="./faq">Faq</a></li>
-                                <li><a href="./register">Register</a></li>
-                                <li><a href="./login">Login</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
     <!-- Header End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Register</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Form Section Begin -->
 
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
         <div class="container">
-            <div class="row">
+             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
-                        <h2>Register</h2>
-                        <form action="#">
-                            <div class="group-input">
-                                <label for="username">Username or email address *</label>
+                        <h2>회원가입</h2>
+                        <form action="#" class="grid-form">
+                            <div class="group-input label">
+                                <label for="username">ID *</label>
+                            </div>
+                            <div class="group-input box">
                                 <input type="text" id="username">
                             </div>
-                            <div class="group-input">
+                            <div class="group-input label">
                                 <label for="pass">Password *</label>
-                                <input type="text" id="pass">
                             </div>
-                            <div class="group-input">
-                                <label for="con-pass">Confirm Password *</label>
-                                <input type="text" id="con-pass">
+                            <div class="group-input box">
+                                <input type="password" id="pass" placeholder="비밀번호를 입력해주세요">
+                                <input type="password" id="pass2" placeholder="비밀번호 확인을 위해 다시 한 번 입력해주세요">
+                                <span style="font-size:0.7rem;">최소 8자리 이상 : 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
+                            </div>
+                            <div class="group-input label">
+                                <label for="name">이름 *</label>
+                            </div>
+                            <div class="group-input box">
+                                <input type="text" id="email">
+                            </div>
+                            <div class="group-input label">
+                                <label for="email">이메일 *</label>
+                            </div>
+                            <div class="group-input box">
+                                <input type="text" id="name">
+                            </div>
+                            <div class="group-input label">
+                                <label for="account">계좌인증 *</label>
+                            </div>
+                            <div class="group-input box">
+                                <input type="text" id="account">
+                                <div class="site-btn certification-api account" >인증</div>
+                            </div>
+                            <div class="group-input label">
+                                <label for="tel">휴대전화 *</label>
+                            </div>
+                            <div class="group-input box tel" width="100%">
+                                <input type="text" id="tel"  readonly="readonly" value="010">-<input type="text" id="tel">-<input type="text" id="tel">
+                                <div class="site-btn certification-api" >인증</div>
+                            </div>
+                            <div class="group-input label">
+                                <label for="policy">개인정보 제공동의 *</label>
+                            </div>
+                            <div class="group-input box" >
+                                <button type="" class="site-btn policy" >동의하기</button>
                             </div>
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
                         </form>
@@ -233,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+			 </div>
         </div>
     </div>
     <!-- Register Form Section End -->
@@ -271,8 +152,25 @@
         </div>
     </div>
     <!-- Partner Logo Section End -->
+<script>
 
-    <!-- Footer Section Begin -->
+	document.addEventListener('DOMContentLoaded', function(){
+		     
+		const accountElem = document.querySelector('.certification-api.account');
+		accountElem.addEventListener('click', function(){
+			alert('inin');
+			
+			$.ajax({
+				url : './getOpenBankingCode',
+				type : 'POST'
+			})
+		});
+	});
+	
+</script>
+
+
+<%--     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="row">
@@ -344,20 +242,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --%>
     <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
 </body>
 
 </html>

@@ -8,6 +8,6 @@
 
 <a href="index.if">if</a>
 <a href="index">else</a>
-asddasd
+
 </body>
 </html>

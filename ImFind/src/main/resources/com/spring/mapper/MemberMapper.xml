@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+	 
+<mapper namespace="com.spring.mapper.YH.MemberMapper">
+	<!-- id는 Mapper.java( 여기선 MemberMapper.java )에 동일하게 사용해야 된다. -->
+	<select id="loginCheck" parameterType="map" resultType="int">
+		Select count(*) from member where id = #{id} and pw = #{pw}
+	</select> 
+	
+	<select id="kakaoLoginCheck" parameterType="String" resultType="int">
+		Select count(*) from member where id = #{id}
+	</select> 
+
+</mapper>
