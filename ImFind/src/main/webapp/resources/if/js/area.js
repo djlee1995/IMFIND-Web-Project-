@@ -3,7 +3,7 @@ $('document').ready(function() {
   var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
    var area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
    var area3 = ["대덕구","동구","서구","유성구","중구"];
-   var area4 = ["광산구","남구","동구",     "북구","서구"];
+   var area4 = ["광산구","남구","동구","북구","서구"];
    var area5 = ["남구","달서구","동구","북구","서구","수성구","중구","달성군"];
    var area6 = ["남구","동구","북구","중구","울주군"];
    var area7 = ["강서구","금정구","남구","동구","동래구","부산진구","북구","사상구","사하구","서구","수영구","연제구","영도구","중구","해운대구","기장군"];
@@ -16,12 +16,13 @@ $('document').ready(function() {
    var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
    var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
    var area16 = ["서귀포시","제주시","남제주군","북제주군"];
+   var kind =["가방","귀금속","기타물품","도서용품","서류","쇼핑백","스포츠용품","악기","유가증권","의류","자동차","전자기기","증명서","지갑","카드","컴퓨터","현금","휴대폰"];
 
  
 
  // 시/도 선택 박스 초기화
 
- $("select[name^=sido]").each(function() {
+ $('#sido1').each(function() {
   $selsido = $(this);
   $.each(eval(area0), function() {
    $selsido.append("<option value='"+this+"'>"+this+"</option>");
@@ -33,7 +34,7 @@ $('document').ready(function() {
 
  // 시/도 선택시 구/군 설정
 
- $("select[name^=sido]").change(function() {
+ $('#sido1').change(function() {
   var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
   var $gugun = $(this).next(); // 선택영역 군구 객체
   $("option",$gugun).remove(); // 구군 초기화
@@ -45,6 +46,18 @@ $('document').ready(function() {
     $gugun.append("<option value='"+this+"'>"+this+"</option>");
    });
   }
+ });
+ 
+ var $select = $('#kind');
+ $select.each(function(){
+     var $me = $(this), option= "";
+     for( idx in kind ){
+         option += '<option value="' + kind[idx] +'">' + kind[idx] + '</option>';
+     }
+     if( option ) {
+         option = '<option value="">분실물 종류</option>' + option;
+         $me.html(option);
+     }
  });
 
 

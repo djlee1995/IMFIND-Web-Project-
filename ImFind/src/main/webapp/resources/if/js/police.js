@@ -104,6 +104,7 @@ function police() {
 	            });
 			 marker.name=data[i].depplace
 			 marker.id= data[i].placeid;
+			 marker.len= data[i].size;
 			 markers.push(marker)
 			
 			
@@ -126,7 +127,8 @@ function police() {
 			    return function() {
 			        infowindow.close();
 			    };
-			}
+			}			
+				console.log(marker)
 			        // 클러스터러에 마커들을 추가합니다
 			    clusterer.addMarkers(markers);
 			    						       

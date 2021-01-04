@@ -15,8 +15,72 @@ var clusterer = new kakao.maps.MarkerClusterer({
     minLevel: 7 // 클러스터 할 최소 지도 레벨 
 });
 
-});
 
+});
+var select=[];
+function search() {
+		
+	$("select[name=data]").each(function(){
+		sel= $(this).val();
+		select.push(sel);
+	});
+	console.log(select)
+	
+	/*$.ajax({
+		url: '/imfind/police.if',
+		//type: 'POST',
+		//dataType : 'json',
+		async:false,  
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		success : function(data){
+			console.log(data.length)		    
+		 for(var i=0; i<data.length; i++){
+			 var marker = new kakao.maps.Marker({
+				 	image: markerImage,
+	                position : new kakao.maps.LatLng(data[i].y, data[i].x),
+	                title: data[i].depplace,
+	                clickable: true,
+	             
+	            });
+			 marker.name=data[i].depplace
+			 marker.id= data[i].placeid;
+			 marker.len= data[i].size;
+			 markers.push(marker)
+			
+			
+			 var infowindow = new kakao.maps.InfoWindow({
+			        content:'<div style="width:150px;text-align:center;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+marker.id+'>'+marker.name+'</a></div>', 
+			       
+			 }); 
+			 
+			  kakao.maps.event.addListener(marker, 'click', clickListener(map, marker, infowindow));
+			  kakao.maps.event.addListener(map, 'click', clickOutListener(infowindow)); 
+			}
+			
+			function clickListener(map, marker, infowindow) {
+			    return function() {
+			        infowindow.open(map, marker);
+			    };
+			}
+			// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+			function clickOutListener(infowindow) {
+			    return function() {
+			        infowindow.close();
+			    };
+			}			
+				console.log(marker)
+			        // 클러스터러에 마커들을 추가합니다
+			    clusterer.addMarkers(markers);
+			    						       
+		},
+		error : function() {
+
+			alert("ajax통신 실패2")
+
+		}*/
+			
+
+}
     
 
 
