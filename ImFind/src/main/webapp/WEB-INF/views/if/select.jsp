@@ -57,7 +57,8 @@
     				<select name="data" id="sido1"></select>
 					<select name="data" id="gugun1"></select>
 					 <select name="data" id="kind"></select>
-					 <button onclick="search();" >검색</button>
+					 <button id="dataBtn">검색</button>
+					 
  				</div>
 				
 				<!-- 조회 리스트 뿌려줄 공간 -->

@@ -3,6 +3,8 @@ package com.spring.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.imfind.imf.*;;;
 
 
@@ -14,5 +16,10 @@ public interface LostMapper {
 	List<EtcVO> etc();
 	List<EtcVO> s_lostlist(String tel);
 	List<EtcVO> s_info(String code);
+	List<PoliceVO> p_select(@Param("city")String city,@Param("gu")String gu,@Param("kind") String kind);
+	List<EtcVO> s_select(@Param("city")String city,@Param("gu")String gu,@Param("kind") String kind);
+	List<PoliceVO> p_select_place(@Param("city")String city,@Param("gu")String gu);
+	List<EtcVO> s_select_place(@Param("city")String city,@Param("gu")String gu);
+
 
 }

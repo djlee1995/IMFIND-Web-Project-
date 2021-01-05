@@ -66,9 +66,35 @@ public class LostServiceImpl implements LostService {
 		s_info = lostMapper.s_info(code);
 		return s_info;
 	}
-	
-	
 
-
+	@Override
+	public List<PoliceVO> p_select(String city, String gu, String kind) {
+		List<PoliceVO> p_select = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		p_select = lostMapper.p_select(city, gu, kind);
+		return p_select;
+	}
+	
+	@Override
+	public List<EtcVO> s_select(String city, String gu, String kind) {
+		List<EtcVO> s_select = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		s_select = lostMapper.s_select(city, gu, kind);
+		return s_select;
+	}
+	@Override
+	public List<PoliceVO> p_select_place(String city, String gu) {
+		List<PoliceVO> p_select_place = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		p_select_place = lostMapper.p_select_place(city, gu);
+		return p_select_place;
+	}
+	@Override
+	public List<EtcVO> s_select_place(String city, String gu) {
+		List<EtcVO> s_select_place = null;
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		s_select_place = lostMapper.s_select_place(city, gu);
+		return s_select_place;
+	}
 
 }

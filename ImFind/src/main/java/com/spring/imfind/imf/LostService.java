@@ -12,4 +12,11 @@ public interface LostService {
 	public List<EtcVO> etc();
 	public List<EtcVO> s_lostlist(String tel);
 	public List<EtcVO> s_info(String code);
+	
+	public List<PoliceVO> p_select(String city,String gu, String kind);
+	public List<EtcVO> s_select(String city,String gu, String kind);
+
+	public List<PoliceVO> p_select_place(String city,String gu);
+	public List<EtcVO> s_select_place(String city,String gu);
+
 }

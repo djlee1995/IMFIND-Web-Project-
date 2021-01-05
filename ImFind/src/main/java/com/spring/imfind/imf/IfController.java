@@ -37,6 +37,28 @@ public class IfController {
 		System.out.println("place="+police.size());
 		return police;
 	}
+	@RequestMapping(value = "/p_select_place.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<PoliceVO> p_select_place(@RequestParam(value = "city" , required = false)String city,@RequestParam(value = "gu" , required = false)String gu) {
+		System.out.println("fffffff");
+		System.out.println("city"+city);
+		System.out.println("gu"+gu);
+		
+		List<PoliceVO> p_select_place = lostService.p_select_place(city, gu);
+		System.out.println("lostlist="+p_select_place.size());
+		return p_select_place;
+	}
+	@RequestMapping(value = "/s_select_place.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<EtcVO> s_select_place(@RequestParam(value = "city" , required = false)String city,@RequestParam(value = "gu" , required = false)String gu) {
+		System.out.println("fffffff");
+		System.out.println("city"+city);
+		System.out.println("gu"+gu);
+		
+		List<EtcVO> s_select_place = lostService.s_select_place(city, gu);
+		System.out.println("lostlist="+s_select_place.size());
+		return s_select_place;
+	}
 	@RequestMapping(value = "/p_lostlist.if", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public List<PoliceVO> p_lostlist(@RequestParam(value = "placeid" , required = false)String placeid) {
@@ -45,6 +67,7 @@ public class IfController {
 		System.out.println("lostlist="+p_lostlist.size());
 		return p_lostlist;
 	}
+	
 	@RequestMapping(value = "/p_info.if", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public List<PoliceVO> infodata(@RequestParam(value = "code" , required = false)String code) {
@@ -76,6 +99,31 @@ public class IfController {
 		List<EtcVO> s_info = lostService.s_info(code);
 		System.out.println("lostlist="+s_info.size());
 		return s_info;
+	}
+	
+	@RequestMapping(value = "/p_select.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<PoliceVO> p_select(@RequestParam(value = "city" , required = false)String city,@RequestParam(value = "gu" , required = false)String gu,
+			@RequestParam(value = "kind" , required = false)String kind) {
+		System.out.println("CCCCCCCCCC");
+		System.out.println("city"+city);
+		System.out.println("gu"+gu);
+		System.out.println("kind"+kind);
+		List<PoliceVO> p_select = lostService.p_select(city, gu, kind);
+		System.out.println("lostlist="+p_select.size());
+		return p_select;
+	}
+	@RequestMapping(value = "/s_select.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<EtcVO> s_select(@RequestParam(value = "city" , required = false)String city,@RequestParam(value = "gu" , required = false)String gu,
+			@RequestParam(value = "kind" , required = false)String kind) {
+		System.out.println("DDDDDDD");
+		System.out.println("city"+city);
+		System.out.println("gu"+gu);
+		System.out.println("kind"+kind);
+		List<EtcVO> s_select = lostService.s_select(city, gu, kind);
+		System.out.println("lostlist="+s_select.size());
+		return s_select;
 	}
 	
 }
