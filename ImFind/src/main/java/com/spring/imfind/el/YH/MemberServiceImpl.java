@@ -37,6 +37,32 @@ public class MemberServiceImpl implements MemberService{
 		int count = memberMapper.kakaoLoginCheck(id);
 		return count;
 	}
+
+	@Override
+	public int CheckID(String id) {
+		
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int count = memberMapper.checkID(id);
+		int state = 0;
+		
+		if(count == 0) {
+			state = 1;
+		}
+		else {
+			state = -1;
+		}
+		
+		return state;
+	}
+
+	@Override
+	public int insertMember(MemberVO vo) {
+			
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int state = memberMapper.insertMember(vo);
+		
+		return state;
+	}
 	
 	
 

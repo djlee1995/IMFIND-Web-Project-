@@ -3,11 +3,11 @@ package com.spring.imfind.el;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.spring.imfind.el.YH.KakaoController;
 import com.spring.imfind.el.YH.MemberService;
+import com.spring.imfind.el.YH.MemberVO;
+import com.spring.imfind.el.YH.OpenBanking;
 
 @Controller
 @SessionAttributes({"kakao_id", "id"})
@@ -23,6 +25,8 @@ public class ElController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+
 	
 	@RequestMapping("/index")
 	public String index2() {
@@ -106,7 +110,7 @@ public class ElController {
 		System.out.println("code : " + code);
 		
 		KakaoController kakao = new KakaoController();
-		
+	
 		String access_token = kakao.getAccessToken(code);
 		
 		Map<String, Object> userInfo = kakao.getUserInfo(access_token);
@@ -124,21 +128,77 @@ public class ElController {
         }
         else {
         	// db에 아이디가 없으면 추가 정보 입력을 위해 회원가입 페이지로 이동.
-        	return "redirect:/login";
+        	return "/register";
         }
 	}
-	// 금융감독원 오픈뱅킹 code
-	@RequestMapping(value="/getOpenBankingCode")
-	public String openBanking() {
+	// 금융감독원 오픈뱅킹 get code
+	@RequestMapping(value="/getAuthorize")
+	public @ResponseBody String openBanking() {
 		System.out.println("오픈뱅킹 in");
+		 
+		OpenBanking bank = new OpenBanking();
+		String reqUrl = bank.getAuthorize();
+		System.out.println(reqUrl);
 		
-		return "";
+		return reqUrl;
+	}
+	// 금융감독원 3-legged 인증 get code
+	@RequestMapping(value="/getOpenBankingToken")
+	public String getOpenBankingToken(String code, String access_token) throws Exception{
+		
+		System.out.println("account : " + code);
+		System.out.println("오픈뱅킹 token in");
+
+		OpenBanking bank = new OpenBanking();
+		bank.getToken(code);
+		
+		return "forward:/register";
+	}
+	// 금융감독원 2 legged get code
+	@RequestMapping(value="/getToken")
+	public @ResponseBody String getToken(@RequestBody Map<String, String> map) throws Exception{
+
+		System.out.println("오픈뱅킹 계좌실명조회 in");
+		
+		String account = map.get("account");
+		String birth = map.get("birth");
+		
+		
+		OpenBanking bank = new OpenBanking();
+		String access_token = bank.leggedToken();
+		
+		bank.getAccountInfo(map, access_token);
+		
+		return "register";
 	}
 	
+	@RequestMapping("/chkID")
+	public @ResponseBody String chkID(@RequestParam String id) {
+		
+		System.out.println(id);
+		int state = memberService.CheckID(id);
+		
+		if(state == 1) {
+			return "ok";
+		}
+		else {
+			return "id exists";
+		}
+	}
+	
+	
+	@RequestMapping("/processJoin")
+	public String processJoin(MemberVO vo) {
+		
+		System.out.println(vo.toString());
+		vo.setContact(vo.getContact().replaceAll("=", ""));
+		memberService.insertMember(vo);
+		return "el/index";
+	}
 	@RequestMapping("/shop")
 	public String shop() {
 		
-		return "el/shop";
+		return "el/shop"; 
 	}
 	
 	@RequestMapping("/collection")

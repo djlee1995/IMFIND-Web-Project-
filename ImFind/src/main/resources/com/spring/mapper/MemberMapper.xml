@@ -11,5 +11,35 @@
 	<select id="kakaoLoginCheck" parameterType="String" resultType="int">
 		Select count(*) from member where id = #{id}
 	</select> 
-
+	
+	<select id="checkID" parameterType="String" resultType="int">
+		Select count(*) from member where id = #{id}
+	</select> 
+	
+	<select id="insertMember" parameterType="com.spring.imfind.el.YH.MemberVO" resultType="int">
+		INSERT INTO member
+		(
+			id, 
+			pw, 
+			name, 
+			contact, 
+			email, 
+			account_num, 
+			bank,
+			account_holer,
+			join_date
+		)
+		VALUES
+		( 	#{id},
+			{pw},
+			{name}, 
+			#{contact},
+			#{email}, 
+			#{account_num}, 
+			#{bank},
+			#{account_holder},
+			sysdate
+		)
+	</select> 
+	
 </mapper>
