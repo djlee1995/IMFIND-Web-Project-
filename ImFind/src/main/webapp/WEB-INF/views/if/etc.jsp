@@ -65,7 +65,10 @@
 				
 				
 			</div>
-
+			<div align="center" style=" border-top-width: 50px; margin-top: 80px;">
+				<img onclick="window.open('https://www.lost112.go.kr/')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
+				<img onclick="window.open('https://www.seoul.go.kr/main/index.jsp')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
+			</div>
 		</nav>
 
 		<!-- Page Content  -->

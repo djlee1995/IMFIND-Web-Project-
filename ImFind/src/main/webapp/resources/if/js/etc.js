@@ -158,7 +158,7 @@ function etc() {
 						$('#output').empty();
 						
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
-						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'<button class="snip1535" onclick=window.open('+link+')>길찾기</button ><br>'+data[0].tel+'</p>';
+						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
 							var output = '';

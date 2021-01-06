@@ -52,8 +52,10 @@
 						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
 					</li>
 				</ul>
+				<div class="police">
 				
-				<div>
+				</div>
+				<div class="datadiv">
     				<select name="data" id="sido1"></select>
 					<select name="data" id="gugun1"></select>
 					 <select name="data" id="kind"></select>
@@ -67,10 +69,14 @@
 					
 					<table id="output"></table>
 				</div>
-
 				
 				
 			</div>
+			<div align="center" style=" border-top-width: 50px; margin-top: 80px;">
+				<img onclick="window.open('https://www.lost112.go.kr/')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
+				<img onclick="window.open('https://www.seoul.go.kr/main/index.jsp')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
+			</div>
+				
 
 		</nav>
 
@@ -84,7 +90,7 @@
 		
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer,services"></script>
 	<script src="${pageContext.request.contextPath}/resources/if/js/select.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/if/js/area.js"></script>
 	<script

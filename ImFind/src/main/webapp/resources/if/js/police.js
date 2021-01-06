@@ -156,7 +156,7 @@ function police() {
 						$('.police').empty();
 						$('#output').empty();
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
-						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+data[0].placeid+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'<button onclick=window.open('+link+')>길찾기</button ><br>'+data[0].tel+'</p>';
+						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+data[0].placeid+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
 							var output = '';

@@ -39,6 +39,7 @@
 *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
+  
 
 html {
   font-family: sans-serif;
@@ -8353,17 +8354,22 @@ a[data-toggle="collapse"] {
 	padding: 0px 10px 10px 30px;
     height: 190px;
 }
+.datadiv{
+	padding: 0px 10px 10px 30px;
+   
+}
 .nav-content{
 	padding: 10px 30px;
 	color: black;
 	background-color: white;
-	border : 1px solid dodgerblue;
+	border : 1px solid black;
 	height: 400px;
 	font-weight:bold;
 	overflow: auto;
 }
 .police a { color: white; }
 .nav-content a{ color: black;}
+.nav-content a:hover{ color: blue;}
 .footer p {
   color: rgba(255, 255, 255, 0.8); }
 

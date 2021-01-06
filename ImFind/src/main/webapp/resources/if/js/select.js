@@ -2,7 +2,7 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	mapOption = { 
 	    center: new kakao.maps.LatLng(37.56656, 126.97817), // 지도의 중심좌표
-	    level: 3// 지도의 확대 레벨
+	    level: 5// 지도의 확대 레벨
 	};
 
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -29,6 +29,14 @@
 	 var img = '<image width=44px; height=49px; src="./resources/if/images/police.png">';
 	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	    
+	    var imageSrc3 ="./resources/if/images/subway.png", // 마커이미지의 주소입니다    
+	    imageSize3 = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
+	    imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	 var img2 = '<image width=44px; height=49px; src="./resources/if/images/subway.png">';
+
+	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	    var markerImage3 = new kakao.maps.MarkerImage(imageSrc3, imageSize3, imageOption3);
 	 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 	    if (navigator.geolocation) {
 	        
@@ -77,6 +85,11 @@
 	        map.setCenter(locPosition);
 	            
 	    }
+	    
+	    
+	    
+	    
+	     
 
 $('#dataBtn').click(function(){
 	clusterer.clear();
@@ -87,7 +100,19 @@ $('#dataBtn').click(function(){
 		select.push(sel);
 	});
 	 var allData = { "city":select[0], "gu":select[1] ,"kind":select[2]};
+	 var geocoder = new kakao.maps.services.Geocoder();
+	
+	 // 주소로 좌표를 검색합니다
+	 geocoder.addressSearch(select[0]+select[1], function(result, status) {
 
+	     // 정상적으로 검색이 완료됐으면 
+	      if (status === kakao.maps.services.Status.OK) {
+
+	         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	         map.setCenter(coords);
+	     } 
+	 });
 	 $.ajax({
 		url: '/imfind/p_select.if',
 		data : allData,
@@ -96,12 +121,10 @@ $('#dataBtn').click(function(){
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
-			/*map.panTo(new kakao.maps.LatLng(data[1].y, data[1].x));*/
-
 			$('#output').empty();
 			$.each(data, function(index,item){
 				var output = '';
-				output +='<tr style="font-size: large; font-weight:bold;"><td>'+item.depplace +'</td>';
+				output +='<tr style="font-size: large; font-weight:bold;"><td width="150px">'+item.depplace +'</td>';
 				output +='<td><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
 				$('#output').append(output);
 	
@@ -154,7 +177,7 @@ $('#dataBtn').click(function(){
 				 for(var i=0; i<data.length; i++){
 					
 					 var marker = new kakao.maps.Marker({
-						 	
+						 	image: markerImage,
 			                position : new kakao.maps.LatLng(data[i].y, data[i].x),
 			                title: data[i].depplace,
 			                clickable: true,
@@ -201,7 +224,7 @@ $('#dataBtn').click(function(){
 				 for(var i=0; i<data.length; i++){
 					
 					 var marker = new kakao.maps.Marker({
-						 	
+						 	image: markerImage3,
 			                position : new kakao.maps.LatLng(data[i].x, data[i].y),
 			                title: data[i].depplace,
 			                clickable: true,
@@ -253,6 +276,10 @@ $(document).on('click', '.p_info_data', function(event){
 		//dataType:'json',
 		success: function(data){
 			$('#output').empty();
+			$('.police').empty();
+			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
+			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
+			$('.police').append(place);
 			console.log(data)
 			map.setCenter(new kakao.maps.LatLng(data[0].y, data[0].x));
 			map.setLevel(level = 2);
@@ -289,8 +316,11 @@ $(document).on('click', '.s_info_data', function(event){
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
+			$('.police').empty();
 			$('#output').empty();
-			console.log(data)
+			var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
+			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img2+data[0].depplace+img2+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
+			$('.police').append(place);
 			map.setCenter(new kakao.maps.LatLng(data[0].x, data[0].y));
 			map.setLevel(level = 2);
 			$.each(data, function(index,item){
