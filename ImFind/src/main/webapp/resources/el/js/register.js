@@ -103,6 +103,7 @@
 		
 		const inputElem = document.querySelector('input[name="bank"]');
 		inputElem.value = bankName;
+		inputElem.innerText = bankName;
 	}
 	function optionStyle(e){
 		
@@ -157,7 +158,6 @@
 				if(data == 'ok'){
 					e.target.style = "border: 1px solid #A5FA52;";
 					e.target.nextElementSibling.innerText = '사용가능한 아이디 입니다.'
-
 				}
 				else{
 					e.target.style = "border: 1px solid #F59991;";
@@ -172,6 +172,13 @@
 		})
 	}
 	
+/*	function getPhone(e){
+		var phone = e.target.value;
+		const phoneElem = document.querySelector('input[name="contact"]');
+		phoneElem.value = phone.replaceAll('-', '');
+		console.log(e.target.value)
+	}
+	*/
 
 	
 /* 	// 계좌인증

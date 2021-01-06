@@ -24,7 +24,28 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean> 
+
 	<!-- mybatis mapper 설정관련(사용 시 Namespace 탭에서 mybatis-spring 추가하기) -->
 	<!-- mapper 관련 인터페이스 (ex: MamberMapper.java)를 찾기 위한 패키지 경로 설정함 -->
 	<mybatis-spring:scan base-package="com.spring.mapper"/>	
+
+	
+	  <!-- naver mail  : smtp 사용가능하도록 설정확인 할것 -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name ="host" value="smtp.naver.com"></property>
+	  	<property name="port" value="465"></property>
+	  	<property name="username" value="3bnm1128@naver.com"></property>
+	  	<property name="password" value="sntmfpt123123!"></property>
+	    <property name="javaMailProperties">
+		    <props>	
+		      <prop key="mail.smtp.starttls.enable">true</prop>
+		      <prop key="mail.smtp.auth">true</prop>
+		      <prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+		      <prop key="mail.smtps.ssl.trust">*</prop>
+		      <prop key="mail.debug">true</prop>
+		      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		    </props>
+	    </property>
+	  </bean>
+	
 </beans>

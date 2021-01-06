@@ -1,19 +1,26 @@
 package com.spring.imfind.el;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.spring.imfind.el.YH.EmailSend;
 import com.spring.imfind.el.YH.KakaoController;
 import com.spring.imfind.el.YH.MemberService;
 import com.spring.imfind.el.YH.MemberVO;
@@ -25,9 +32,7 @@ public class ElController {
 	
 	@Autowired
 	private MemberService memberService;
-	
 
-	
 	@RequestMapping("/index")
 	public String index2() {
 		
@@ -54,9 +59,12 @@ public class ElController {
 		System.out.println("logout call");
 		
 		status.setComplete(); // session 만료시키기
+		status.toString();
 		
 		if(status.isComplete()) {
 			System.out.println("세션 삭제 성공");
+
+			return "redirect:/index";
 		}
 		else {
 			System.out.println("세션 삭제 실패");
@@ -78,7 +86,7 @@ public class ElController {
 		int state = memberService.loginCheck(id, pw);
 		
 		if(state == 1) {
-			model.addAttribute("id", id);
+			model.addAttribute("id", id); // id 세션 저장
 			return "pass";
 		}
 		else {
@@ -89,7 +97,7 @@ public class ElController {
 	// 카카오 로그인창 호출
 	@RequestMapping(value = "/el/getKakaoAuthUrl")
 	public @ResponseBody String getKakaoAuthUrl(HttpServletRequest request) throws Exception{
-		
+
 		final String K_CLIENT_ID = "d5e7c97eeecbba70fa5f4e5f4bc57517";
 		final String K_REDIRECT_URI = "http://localhost:8080/imfind/login/oauth_kakao";
 
@@ -105,7 +113,7 @@ public class ElController {
 	
 	// 카카오에서 준 access_token
 	@RequestMapping(value="/login/oauth_kakao")
-	public String oauthKakao(HttpServletRequest request,  Model model, String code) throws Exception{
+	public String oauthKakao(HttpSession session,  Model model, String code) throws Exception{
 		
 		System.out.println("code : " + code);
 		
@@ -128,10 +136,10 @@ public class ElController {
         }
         else {
         	// db에 아이디가 없으면 추가 정보 입력을 위해 회원가입 페이지로 이동.
-        	return "/register";
+        	return "el/kakaoJoin";
         }
 	}
-	// 금융감독원 오픈뱅킹 get code
+	// 금융감독원 오픈뱅킹 인증 url
 	@RequestMapping(value="/getAuthorize")
 	public @ResponseBody String openBanking() {
 		System.out.println("오픈뱅킹 in");
@@ -191,10 +199,35 @@ public class ElController {
 	public String processJoin(MemberVO vo) {
 		
 		System.out.println(vo.toString());
-		vo.setContact(vo.getContact().replaceAll("=", ""));
+		vo.setAccount_holder(vo.getName());
 		memberService.insertMember(vo);
+		
 		return "el/index";
 	}
+	
+	@RequestMapping(value="/findIDAuth", method = RequestMethod.POST)
+	public @ResponseBody Map<String, String>  emailAuth(HttpServletRequest request, HttpServletResponse response, 
+																				@RequestBody Map<String, String> map) throws IOException {
+		
+		Map<String, String> resJson = new HashMap<String, String>();
+		
+		System.out.println("find id auth in ");
+		
+		int res = memberService.findID(map.get("name"), map.get("email"));
+		
+		if(res == 1) {
+			resJson.put("res", "ok");
+			
+			EmailSend email = new EmailSend();
+			int authCode = email.addressEmail(map.get("email"));
+			resJson.put("code", Integer.toString(authCode));
+		}
+		else {
+			resJson.put("res", "fail");
+		}
+		return resJson;
+	}
+	
 	@RequestMapping("/shop")
 	public String shop() {
 		

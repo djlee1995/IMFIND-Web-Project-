@@ -116,7 +116,6 @@
                             </div>
                             <div class="group-input box">
                                 <input type="text" id="name" name="name" required>
-                                <input type="hidden" name="account_holder">
                             </div>
                             <div class="group-input label">
                                 <label for="email">이메일 *</label>
@@ -137,14 +136,15 @@
 								</div>
 								
                             	<div class="input-group mb-1" style="width:100%; margin-bottom:0;"">
-								  <div class="input-group-prepend">
-								    <label class="input-group-text" for="inputGroupSelect01" style="margin:0; height:38px;">은행명 </label>
-								  </div>
-								  <select class="custom-select" id="inputGroupSelect01" style="height:38px; width:140px;" required onchange="getBank();">
-								    <option selected id="defaultOption" disabled selected>Choose...</option>
-								  </select>
-								  <input type="hidden" name="bank"/>
+									  <div class="input-group-prepend">
+									    <label class="input-group-text" for="inputGroupSelect01" style="margin:0; height:38px;">은행명</label>
+									  </div>
+									  <select class="custom-select" id="inputGroupSelect01" style="height:38px; width:140px;" required onchange="getBank();">
+									    <option selected id="defaultOption" disabled selected>Choose...</option>
+									  </select>
+								 	  <input type="hidden" name="bank"/>
 								</div>
+								
                                 <input type="number" id="account" name="account_num" placeholder="계좌번호를 입력하세요" required>
                                 <div class="site-btn certification-api account">인증</div>
                             </div>
@@ -173,7 +173,7 @@
 			 </div>
         </div>
     </div>
-    <!-- 3-legged -->
+<!-- 3-legged  -->
 <form id="authorizeFrm" name="authorizeFrm" method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" target="_authForm">
 	    <input type="hidden" name="client_id" value="1245365a-f9f6-4ad8-b86d-fb42f8a9deb8"/>
 	    <input type="hidden" name="scope" value="login inquiry transfer"/>
@@ -182,13 +182,6 @@
 	    <input type="hidden" name="response_type" value="code"/>
 	    <input type="hidden" name="state" value="12345678901234567890123456789012"/>
 </form>
-<!-- <form id="authorizeFrm" name="authorizeFrm" method="post" action="https://testapi.openbanking.or.kr/oauth/2.0/token" target="_authForm">
-	    <input type="hidden" name="client_id" value="1245365a-f9f6-4ad8-b86d-fb42f8a9deb8"/>
-	    <input type="hidden" name="client_secret" value="efa082ac-cad6-41ab-a97d-7e15a5734622"/>
-	    <input type="hidden" name="scope" value="oob"/>
-	    <input type="hidden" name="grant_type" value="client_credentials"/>
-</form> -->
-
 
     <!-- Register Form Section End -->
     
@@ -227,11 +220,10 @@
     <!-- Partner Logo Section End -->
     
      <script src="${pageContext.request.contextPath}/resources/el/js/register.js"></script>
-     
      <script>
 		document.addEventListener('DOMContentLoaded', function(){
 			
-			// 클릭 이벤트
+			// click 이벤트
 			 document.addEventListener('click', function(event){
 				 //console.log(event);
 				 if(event.target.classList.contains('certification-api')){
@@ -252,11 +244,12 @@
 				//console.log(event.target.id)
 			})
 			
-			// input focusout 이벤트
+			// focusout 이벤트
 			document.addEventListener('focusout', function(e){
 				
 				if(e.target.id == 'pass'){
-					//chkPW();
+					// 테스트를 위해 주석처리함.
+					//chkPW(); 
 				}
 				if(e.target.id == 'pass2'){
 				    chkEqualpw();
@@ -264,10 +257,11 @@
 				if(e.target.id == 'username'){
 					chkID(e);
 				}
-				if(e.target.id == "name"){
+				if(e.target.id == 'name'){
 					getName(e);
 				}
-				event.target.style.background = 'rgb(255, 255, 255)';
+	
+				//event.target.style.background = 'rgb(255, 255, 255)';
 		});
 	});
 	 </script>	

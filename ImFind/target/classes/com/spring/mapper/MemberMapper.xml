@@ -16,7 +16,13 @@
 		Select count(*) from member where id = #{id}
 	</select> 
 	
-	<select id="insertMember" parameterType="com.spring.imfind.el.YH.MemberVO" resultType="int">
+	<select id="findID" parameterType="String" resultType="int">
+		SELECT count(*) from member 
+		where 
+		name= #{name} and email = #{email}
+	</select>
+	
+	<insert id="insertMember" parameterType="com.spring.imfind.el.YH.MemberVO" >
 		INSERT INTO member
 		(
 			id, 
@@ -26,13 +32,13 @@
 			email, 
 			account_num, 
 			bank,
-			account_holer,
+			account_holder,
 			join_date
 		)
 		VALUES
 		( 	#{id},
-			{pw},
-			{name}, 
+			#{pw},
+			#{name}, 
 			#{contact},
 			#{email}, 
 			#{account_num}, 
@@ -40,6 +46,7 @@
 			#{account_holder},
 			sysdate
 		)
-	</select> 
+	</insert> 
+	
 	
 </mapper>

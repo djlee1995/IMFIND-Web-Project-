@@ -19,6 +19,8 @@
     </style>
 	<!-- 유희 로그인 session 처리 코드 -->
     <script>
+    	function logoutStyle(){}
+
     	document.addEventListener("DOMContentLoaded", function() {
     		
        		var kakao_id = '<%= request.getAttribute("kakao_id")%>';
@@ -45,8 +47,7 @@
     			
     			if(loginPanel.innerText == '로그아웃'){
     				event.preventDefault();
-    				
-    				//sessionStorage.clear();
+
     				window.location.href = "logout";
     			}
     			else{

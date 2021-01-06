@@ -9,5 +9,6 @@ public interface MemberService {
 	public int kakaoLoginCheck(String id);
 	public int CheckID(String id);
 	public int insertMember(MemberVO vo);
+	public int findID(String name, String email);
 	
 }

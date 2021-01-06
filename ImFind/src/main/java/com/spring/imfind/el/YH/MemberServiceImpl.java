@@ -59,8 +59,16 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMember(MemberVO vo) {
 			
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		int state = memberMapper.insertMember(vo);
-		
+		Integer state = memberMapper.insertMember(vo);
+		System.out.println(state);
+		System.out.println(vo.toString());
+		return 0;
+	}
+
+	@Override
+	public int findID(String name, String email) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		Integer state = memberMapper.findID(name, email);
 		return state;
 	}
 	
