@@ -121,6 +121,7 @@ $('#dataBtn').click(function(){
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
+			$('.police').empty();
 			$('#output').empty();
 			$.each(data, function(index,item){
 				var output = '';
