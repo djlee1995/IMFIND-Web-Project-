@@ -2,29 +2,38 @@
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.mapper.BoardMapper">
+<mapper namespace="com.spring.mapper.EJ.BoardMapper">
 
-	<insert id = "boardInsert" >
-	<!-- insert into lostpost(lost_postnum, lost_title, lost_content, lost_re_date, lost_re_count, lost_or_file, lost_up_file, lost_pay, lost_loc, lost_date, id, contact) values
-	 	(#{lost_postnum},#{lost_title},#{lost_content},#{lost_re_date},#{lost_re_count},#{lost_or_file},#{lost_up_file},#{lost_pay},#{lost_loc}, sysdate ,#{id},#{contact})
- -->
-
-	 insert into lostpost
-		(lost_postnum, lost_title, lost_content, lost_re_date, 
-		lost_re_count, lost_or_file, lost_up_file, lost_pay, lost_item, lost_loc, lost_date, id, contact) 
-	values
-		(#{lost_postnum, jdbcType=INTEGER},
-		#{lost_title, jdbcType=VARCHAR},
-		#{lost_content, jdbcType=VARCHAR},
+	<insert id = "itemInsert" >
+	insert into LostPost 
+	(Lost_Title, Lost_Content, Lost_Item, Lost_Re_Date, Lost_Date, Lost_Loc, Lost_Pay)values 
+	(#{Lost_Title}, #{Lost_Content}, #{Lost_Item}, sysdate, #{Lost_Date}, #{Lost_Loc}, #{Lost_Pay})
+	
+	<!-- 
+	 insert into LostPost
+		(Lost_Title, Lost_Content, Lost_Re_Date, 
+		Lost_Re_Count, Lost_Or_File, Lost_Up_File, Lost_Pay, Lost_Item, Lost_Loc, Lost_Date, Id, Contact) 
+	 values
+		(#{Lost_Title, jdbcType=VARCHAR},
+		#{Lost_Content, jdbcType=VARCHAR},
 		sysdate,
-		#{lost_re_count, jdbcType=INTEGER},
-		#{lost_or_file, jdbcType=VARCHAR},
-		#{lost_up_file, jdbcType=VARCHAR},
-		#{lost_pay, jdbcType=INTEGER},
-		#{lost_item, jdbcType=VARCHAR},
-		#{lost_loc, jdbcType=VARCHAR},
+		#{Lost_Re_Count, jdbcType=INTEGER},
+		#{Lost_Or_File, jdbcType=VARCHAR},
+		#{Lost_Up_File, jdbcType=VARCHAR},
+		#{Lost_Pay, jdbcType=INTEGER},
+		#{Lost_Item, jdbcType=VARCHAR},
+		#{Lost_Loc, jdbcType=VARCHAR},
 		sysdate, 
-		#{id, jdbcType=VARCHAR},
-		#{contact,jdbcType=VARCHAR})
+		#{Id, jdbcType=VARCHAR},
+		#{Contact,jdbcType=VARCHAR})
 	</insert>
+	-->
+
+ 
+	 <!-- insert into LostPost values 
+	 (#{Lost_PostNum, jdbcType=INTEGER},#{Lost_Title},#{Lost_Content}, sysdate,#{Lost_Re_Count, jdbcType=INTEGER},#{Lost_Or_File, jdbcType=VARCHAR},
+	#{Lost_Up_File, jdbcType=VARCHAR},#{Lost_Pay, jdbcType=INTEGER},#{Lost_Item, jdbcType=VARCHAR},#{Lost_Loc, jdbcType=VARCHAR},sysdate, #{Id, jdbcType=VARCHAR}, #{Contact, jdbcType=VARCHAR})
+	 -->
+	</insert>
+	 
 </mapper> 

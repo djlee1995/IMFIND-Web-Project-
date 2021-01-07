@@ -1,11 +1,18 @@
 package com.spring.imfind.el;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.spring.imfind.el.EJ.BoardService;
+import com.spring.imfind.el.EJ.BoardVO;
 
 @Controller
 public class ElController {
 	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping("/index")
 	public String index2() {
@@ -30,18 +37,39 @@ public class ElController {
 		return "el/EJ/itemboard";
 	}
 	
+	
+	@RequestMapping("/itemInsert")
+	public String itemInsert(BoardVO vo){
+		System.out.println("in");
+		boardService.itemInsert(vo);
+		System.out.println(vo.toString());
+		
+		
+		return "el/index";
+	}
+	
+	
+	
+	/*
 	@RequestMapping("/map.html")
 	public String map() {
 
 		return "map";
 	}
-	
+	*/
 	/*
 	
 	 은지 - 게시판 등록
 	
 	 */
 	
+	// header include 
+    @RequestMapping("/header")
+    public String header() {
+
+        return "el/header";
+    }
+    
 	@RequestMapping("/collection")
 	public String collection() {
 		
