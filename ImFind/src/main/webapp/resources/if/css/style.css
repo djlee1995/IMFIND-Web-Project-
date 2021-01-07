@@ -8223,7 +8223,7 @@ h1, h2, h3, h4, h5,
     background: -ms-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
     background: -webkit-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
     background: -o-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
-    background: black;
+    background: #258FFF;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f89fc', endColorstr='#5effc9', GradientType=1 );
     opacity: .7;
     z-index: -1; }
@@ -8351,25 +8351,34 @@ a[data-toggle="collapse"] {
     background: #2f89fc !important;
     border-color: #2f89fc !important; }
 .police{
+	color:black;
+	background:white;
 	padding: 0px 10px 10px 30px;
-    height: 190px;
+    height: 170px;
 }
 .datadiv{
-	padding: 0px 10px 10px 30px;
+	
+	padding: 10px 10px 10px 30px;
    
 }
 .nav-content{
+	border-top :1px solid black;
 	padding: 10px 30px;
 	color: black;
 	background-color: white;
-	border : 1px solid black;
-	height: 400px;
+	height: 500px;
 	font-weight:bold;
 	overflow: auto;
 }
-.police a { color: white; }
+.footer{
+	text-align:center;
+	border-top-width: 50px;
+    margin-top: 25px;
+}
+/* .police a { color: black; }
 .nav-content a{ color: black;}
-.nav-content a:hover{ color: blue;}
+ */a{color: black;}
+ a:hover{ color: #258FFF;}
 .footer p {
   color: rgba(255, 255, 255, 0.8); }
 

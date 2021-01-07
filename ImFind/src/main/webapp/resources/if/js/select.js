@@ -278,7 +278,7 @@ $(document).on('click', '.p_info_data', function(event){
 			$('#output').empty();
 			$('.police').empty();
 			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
-			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
+			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
 			console.log(data)
 			map.setCenter(new kakao.maps.LatLng(data[0].y, data[0].x));
@@ -319,7 +319,7 @@ $(document).on('click', '.s_info_data', function(event){
 			$('.police').empty();
 			$('#output').empty();
 			var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
-			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img2+data[0].depplace+img2+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<button type="button"><img width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')></button><br>'+data[0].tel+'</p>';
+			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img2+data[0].depplace+img2+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
 			map.setCenter(new kakao.maps.LatLng(data[0].x, data[0].y));
 			map.setLevel(level = 2);

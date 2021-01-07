@@ -52,9 +52,7 @@
 						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
 					</li>
 				</ul>
-				<div class="police">
 				
-				</div>
 				<div class="datadiv">
     				<select name="data" id="sido1"></select>
 					<select name="data" id="gugun1"></select>
@@ -62,6 +60,9 @@
 					 <button id="dataBtn">검색</button>
 					 
  				</div>
+ 				<div class="police">
+				
+				</div>
 				
 				<!-- 조회 리스트 뿌려줄 공간 -->
 				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
@@ -72,7 +73,7 @@
 				
 				
 			</div>
-			<div align="center" style=" border-top-width: 50px; margin-top: 80px;">
+			<div class="footer">
 				<img onclick="window.open('https://www.lost112.go.kr/')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
 				<img onclick="window.open('https://www.seoul.go.kr/main/index.jsp')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
 			</div>
