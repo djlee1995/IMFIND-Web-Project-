@@ -76,7 +76,7 @@
 
 	        // 인포윈도우를 생성합니다
 	        var infowindows = new kakao.maps.InfoWindow({
-	            content : '<span style="text-align:center;">내 위치</span>'
+	            content : '<span style="width:100px;padding-left:50px;font-weight:bold;">내 위치</span>'
 	        });
 	        
 	        // 인포윈도우를 마커위에 표시합니다 
@@ -279,7 +279,7 @@ $(document).on('click', '.p_info_data', function(event){
 		success: function(data){
 			$('#output').empty();
 			$('.police').empty();
-			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
+			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'",""';
 			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
 			map.setCenter(new kakao.maps.LatLng(data[0].y, data[0].x));

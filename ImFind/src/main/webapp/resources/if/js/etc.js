@@ -45,7 +45,7 @@ var markers=[];
                 lon = position.coords.longitude; // 경도
             
             var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                message = '<div style="width:100px;text-align:center;font-weight:bold;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
+                message = '<div style="width:100px;padding-left:50px;font-weight:bold;">내 위치</div>'; // 인포윈도우에 표시될 내용입니다
             
             // 마커와 인포윈도우를 표시합니다
             displayMarker(locPosition, message);
@@ -155,7 +155,7 @@ function etc() {
 						$('.police').empty();
 						$('#output').empty();
 						
-						var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
+						var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'",""';
 						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){

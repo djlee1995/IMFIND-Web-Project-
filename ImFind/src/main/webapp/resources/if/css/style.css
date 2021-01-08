@@ -8198,10 +8198,12 @@ h1, h2, h3, h4, h5,
 .wrapper {
   width: 100%; 
 }
-
+.movie{
+	margin-top: 60px;
+}
 #sidebar {
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 520px;
+  max-width: 520px;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;

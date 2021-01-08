@@ -51,6 +51,9 @@
 					<li>
 						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
 					</li>
+					<li>
+						<a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')"><span class="fa fa-phone mr-3"></span>핸드폰</a>
+					</li>
 				</ul>
 				<div class="police">
 				
@@ -68,8 +71,8 @@
 				
 			</div>
 			<div class="footer">
-				<img onclick="window.open('https://www.lost112.go.kr/')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
-				<img onclick="window.open('https://www.seoul.go.kr/main/index.jsp')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
+				<img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
+				<img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
 			</div>
 		</nav>
 
