@@ -39,6 +39,8 @@
 			<div class="">
 				<h1>
 					<a href="#" class="logo">IF <span>분실물 조회</span></a>
+					<!-- <img style="cursor:pointer;" onclick="location.href='index'" width="30px" height="30px" src="./resources/if/images/find.jpg"> -->
+					
 				</h1>
 				<ul class="list-unstyled components mb-5">
 				<!-- 메뉴 버튼 추가시 li 태그 추가하면 됨. -->
