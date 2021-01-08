@@ -121,6 +121,7 @@ $('#dataBtn').click(function(){
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
+			$('.movie').empty();
 			$('.police').empty();
 			$('#output').empty();
 			$.each(data, function(index,item){
@@ -281,7 +282,6 @@ $(document).on('click', '.p_info_data', function(event){
 			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
 			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
-			console.log(data)
 			map.setCenter(new kakao.maps.LatLng(data[0].y, data[0].x));
 			map.setLevel(level = 2);
 			$.each(data, function(index,item){

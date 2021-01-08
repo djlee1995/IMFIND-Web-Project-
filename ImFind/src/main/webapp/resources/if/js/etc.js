@@ -98,7 +98,6 @@ function etc() {
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
-			console.log(data.length)		    
 		 for(var i=0; i<data.length; i++){
 			 var marker = new kakao.maps.Marker({
 				 	image: markerImage,
@@ -145,7 +144,6 @@ function etc() {
 	});
 			
 			 $(document).on('click', '.s_lostlist_data', function(event){
-				console.log($(this).attr("id"))
 				$.ajax({
 					url : $(this).attr("href"),
 					//type : 'POST',
@@ -153,7 +151,7 @@ function etc() {
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 					//dataType:'json',
 					success: function(data){
-						console.log(data[0].depplace.replace(/(\s*)/g, "")+data[0].x+data[0].y)
+						$('.movie').empty();					
 						$('.police').empty();
 						$('#output').empty();
 						
@@ -199,7 +197,6 @@ function etc() {
 								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.state +'</td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.info + '</td></tr>';
-								console.log(item.photo);
 								$('#output').append(output);
 					
 							});

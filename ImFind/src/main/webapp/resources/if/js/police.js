@@ -93,7 +93,6 @@ function police() {
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
-			console.log(data.length)		    
 		 for(var i=0; i<data.length; i++){
 			 var marker = new kakao.maps.Marker({
 				 	image: markerImage,
@@ -128,7 +127,6 @@ function police() {
 			        infowindow.close();
 			    };
 			}			
-				console.log(marker)
 			        // 클러스터러에 마커들을 추가합니다
 			    clusterer.addMarkers(markers);
 			    						       
@@ -143,8 +141,6 @@ function police() {
 	});
 			
 			 $(document).on('click', '.p_lostlist_data', function(event){
-				 console.log($(this).attr("id"))
-				 
 				$.ajax({
 					url : $(this).attr("href"),
 					//type : 'POST',
@@ -152,7 +148,7 @@ function police() {
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 					//dataType:'json',
 					success: function(data){
-						console.log(data[0].x)
+						$('.movie').empty();
 						$('.police').empty();
 						$('#output').empty();
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'","","toolbar=no,menubar=no"';
@@ -162,7 +158,6 @@ function police() {
 							var output = '';
 							output +='<tr style="font-size: large; font-weight:bold;"><td><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
 							output +='<tr><td><img width="150px"; height="150px"; src="'+ item.photo + '"></td></tr>';
-							console.log(item.photo);
 							$('#output').append(output);
 				
 						});
@@ -198,7 +193,6 @@ function police() {
 								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
 								output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo + '"></td></tr>';
 								output +='<tr style="font-size: large;"><td>'+ item.info.substring(2) + '</td></tr>';
-								console.log(item.photo);
 								$('#output').append(output);
 					
 							});

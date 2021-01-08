@@ -57,9 +57,11 @@
 				</div>
 				<!-- 조회 리스트 뿌려줄 공간 -->
 				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
-				<div class="nav-content">
-					
-					<table id="output"></table>
+				<div class="nav-content" style="height:550px;">
+					<div class="movie"><iframe width="450" height="315" src="https://www.youtube.com/embed/PMPuMtoV2_Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					<table id="output">
+					</table>
 				</div>
 
 				
