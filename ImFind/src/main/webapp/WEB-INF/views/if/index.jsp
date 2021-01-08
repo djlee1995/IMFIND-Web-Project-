@@ -57,6 +57,14 @@
 				</ul>
 				<div class="police">
 				
+				<div class="manual">
+				<h4>이용방법</h4>
+				<li>마커이미지를 클릭하시면 공공기관 이름이 나와요!!</li>
+				<li>공공기관명을 클릭하면 해당 공공기관의 정보와 분실물이 나와요!!</li>
+				<li>주소 옆 이미지를 누르면 쉽게 길을 찾을 수  있어요!!</li>
+				<li>분실물을 누르면 해당 분실물의 상세 정보를 알 수 있어요!!</li>
+				</div>
+				
 				</div>
 				<!-- 조회 리스트 뿌려줄 공간 -->
 				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
@@ -85,6 +93,26 @@
 			</div>
 		</div>
 	</div>
+	<!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content" style="width:30%">
+      			<p><br /></p>
+                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">빠르게 물건을 찾고싶나요?</span></b></span></p>
+                <p style="text-align: center; line-height: 1.5;"> <img style="cursor:pointer;" onclick="location.href='index'" width="300px" height="300px" src="./resources/if/images/find.jpg"> <br /></p>
+                <p style="text-align: center; line-height: 1.5;"><span style="font-size: 14pt;"></span></p>
+                <p style="text-align: center; line-height: 1.5;"><b><span style="color: rgb(255, 0, 0); font-size: 14pt;">찾고싶으면 이미지를 클릭하세요!!</span></b></p>
+            <div class="pop_btn" onClick="close_pop();">
+                <span class="pop_bt"  style="font-size: 13pt; color:black;" >
+                     닫기
+                </span>
+            </div>
+      </div>
+ 
+    </div>
+        <!--End Modal-->
+
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
