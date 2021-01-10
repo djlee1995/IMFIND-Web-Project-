@@ -1,47 +1,77 @@
 package com.spring.imfind.el.YH;
 
-import java.util.Random;
-
-import javax.mail.internet.MimeMessage;
-
+import java.io.UnsupportedEncodingException;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmailSend {
 	
 	@Autowired
 	JavaMailSender mailSender;
 
 	
-	public int addressEmail(String email) {
+	public int sendFindIDCode(String email) throws MessagingException, UnsupportedEncodingException {
+
+		int code = new Tempkey().getNumCode();
+        MailHandler sendMail = new MailHandler(mailSender);
+        sendMail.setSubject("[ Imfind 이메일 인증]");
+        sendMail.setText(new StringBuffer().append("<h3>아이디 찾기 인증 번호</h3>")
+                .append("아이디 찾기를 위한 인증번호 입니다.<br>")
+                .append("인증번호 [ <b>" + code + "<b> ] <br>")
+                .append("인증코드를 입력해주세요.")
+                .toString());
+        sendMail.setFrom("szexdr@naver.com", "ImFind");
+        sendMail.setTo(email);
+        sendMail.send();
+        
+        return code;
+    }
+	
+	public int sendFindPWCode(String email) throws MessagingException, UnsupportedEncodingException {
 		
-		Random r = new Random(); // 난수생성
-		int num = r.nextInt(999999);
+		int code = new Tempkey().getNumCode();
+        MailHandler sendMail = new MailHandler(mailSender);
+        sendMail.setSubject("[ Imfind 이메일 인증]");
+        sendMail.setText(new StringBuffer().append("<h3>비밀번호 찾기 인증 번호</h3>")
+                .append("비밀번호 찾기를 위한 인증번호 입니다.<br>")
+                .append("인증번호 [ <b>" + code + "<b> ] <br>")
+                .append("인증코드를 입력해주세요.")
+                .toString());
+        sendMail.setFrom("szexdr@naver.com", "ImFind");
+        sendMail.setTo(email);
+        sendMail.send();
+        
+        return code;
+	}
+	
+	public void sendUserID(String email, String id) throws MessagingException, UnsupportedEncodingException {
 		
-		String setfrom = "3bnm1128@naver.com";
-		String tomail = email;
+	    MailHandler sendMail = new MailHandler(mailSender);
+ 
+        sendMail.setSubject("[ Imfind 아이디 찾기 결과]");
+        sendMail.setText(new StringBuffer().append("<h3>회원님의 아이디</h3>")
+                .append("회원님의 아이디는 [ <b>" + id + "<b> ] 입니다. <br>")
+                .append("<a target='http://localhost:8080/imfind/login'>Imfind 로그인 화면 이동 </a>")
+                .toString());
+        sendMail.setFrom("szexdr@naver.com", "ImFind");
+        sendMail.setTo(email);
+        sendMail.send();
+	}
+	
+	public void sendUserPW(String email, String tempPW) throws MessagingException, UnsupportedEncodingException {
 		
-		String title = "ImFind 인증번호 입니다.";
-		String content = System.getProperty("line.separator") + "아이디 찾기를 위한 인증번호 입니다. " + 
-						System.getProperty("line.separator") + "인증번호 [ " + num + " ]" + 
-						System.getProperty("line.separator") + "사이트로 돌아가 인증번호를 입력해주세요";
-			
-		try {
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			
-			messageHelper.setFrom(setfrom);
-			messageHelper.setTo(tomail);
-			messageHelper.setSubject(title);
-			messageHelper.setText(content);
-			mailSender.send(message);
-			
-		}
-		catch(Exception e) {
-			System.out.println("mainSending error");
-			System.out.println(e);
-		}
-		return num;
+		MailHandler sendMail = new MailHandler(mailSender);
+
+    	sendMail.setSubject("[ Imfind 임시 비밀번호]");
+    	sendMail.setText(new StringBuffer().append("<h3>임시 비밀번호 발급</h3>")
+    			.append("회원님의 임시비밀번호는 [ <b>" + tempPW + "<b> ] 입니다. <br>")
+    			.append("<a target='http://localhost:8080/imfind/login'>Imfind 로그인 화면 이동 </a>")
+    			.toString());
+    	sendMail.setFrom("szexdr@naver.com", "ImFind");
+    	sendMail.setTo(email);
+    	sendMail.send();
 	}
 }

@@ -16,11 +16,23 @@
 		Select count(*) from member where id = #{id}
 	</select> 
 	
-	<select id="findID" parameterType="String" resultType="int">
-		SELECT count(*) from member 
-		where 
-		name= #{name} and email = #{email}
+	<select id="findID" parameterType="String" resultType="String">
+		SELECT id from member 
+			where 
+			name= #{name} and email = #{email}
 	</select>
+	
+	<select id="findPW" parameterType="String" resultType="MemberVO">
+		SELECT pw, id from member 
+			where 
+			id= #{id} and email = #{email}
+	</select>
+	
+	<update id="alterTempPW" parameterType="String">
+		UPDATE member 
+			SET pw = #{pw}
+			WHERE id = #{id}
+	</update>
 	
 	<insert id="insertMember" parameterType="com.spring.imfind.el.YH.MemberVO" >
 		INSERT INTO member

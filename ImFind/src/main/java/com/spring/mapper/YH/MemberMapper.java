@@ -11,5 +11,7 @@ public interface MemberMapper {
 	public int kakaoLoginCheck(String id);
 	public int checkID(String id);
 	public Integer insertMember(MemberVO vo);
-	public int findID(@Param("name") String name, @Param("email") String email);
+	public String findID(@Param("name") String name, @Param("email") String email);
+	public MemberVO findPW(@Param("id") String id, @Param("email") String email);
+	public int alterTempPW(@Param("id") String id, @Param("pw") String pw);
 }

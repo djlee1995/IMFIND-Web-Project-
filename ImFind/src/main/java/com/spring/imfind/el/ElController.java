@@ -2,14 +2,18 @@ package com.spring.imfind.el;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,33 +29,37 @@ import com.spring.imfind.el.YH.KakaoController;
 import com.spring.imfind.el.YH.MemberService;
 import com.spring.imfind.el.YH.MemberVO;
 import com.spring.imfind.el.YH.OpenBanking;
+import com.spring.imfind.el.YH.Tempkey;
 
 @Controller
 @SessionAttributes({"kakao_id", "id"})
 public class ElController {
 	
 	@Autowired
-	private MemberService memberService;
-
-	@RequestMapping("/index")
-	public String index2() {
-		
-		return "el/index";
-	}
+	JavaMailSender mailSender;
 	
-	// header include 
+	@Autowired
+	EmailSend mailSend;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	// - 유희
+	@RequestMapping("/index")
+	public String index2() { return "el/index"; }
+	
+	// header include - 유희
 	@RequestMapping("el/header")
-	public String header() {
-		
-		return "el/header";
-	}
+	public String header() { return "el/header"; }
+	
+	// 회원가입 유희
+	@RequestMapping("/register")
+	public String register() { return "el/register"; }
 	
 	// login - 유희
 	@RequestMapping("/login")
-	public String login() {
-		
-		return "el/login";
-	}
+	public String login() { return "el/login"; }
+	
 	// logout - 유희
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status) {
@@ -206,27 +214,74 @@ public class ElController {
 	}
 	
 	@RequestMapping(value="/findIDAuth", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String>  emailAuth(HttpServletRequest request, HttpServletResponse response, 
-																				@RequestBody Map<String, String> map) throws IOException {
+	public @ResponseBody Map<String, String>  emailAuth(Model model, @RequestBody Map<String, String> map) throws IOException, MessagingException {
+		
+		String res = memberService.findID(map.get("name"), map.get("email"));
 		
 		Map<String, String> resJson = new HashMap<String, String>();
 		
-		System.out.println("find id auth in ");
-		
-		int res = memberService.findID(map.get("name"), map.get("email"));
-		
-		if(res == 1) {
+		if(res != null) {
 			resJson.put("res", "ok");
 			
-			EmailSend email = new EmailSend();
-			int authCode = email.addressEmail(map.get("email"));
-			resJson.put("code", Integer.toString(authCode));
+			final int CODE = mailSend.sendFindIDCode(map.get("email"));
+
+			resJson.put("code", Integer.toString(CODE));
+			resJson.put("findID", res);
+			resJson.put("email", map.get("email"));
 		}
 		else {
 			resJson.put("res", "fail");
 		}
 		return resJson;
 	}
+	
+	@RequestMapping(value="/findPWAuth", method = RequestMethod.POST)
+	public @ResponseBody Map<String, String>  findPWAuth(HttpServletRequest request, HttpServletResponse response, 
+			@RequestBody Map<String, String> map) throws IOException, MessagingException {
+		
+		MemberVO vo = memberService.findPW(map.get("id"), map.get("email"));
+		
+		Map<String, String> resJson = new HashMap<String, String>();
+		if(vo != null) {
+			resJson.put("res", "ok");
+
+			final int CODE = mailSend.sendFindPWCode(map.get("email"));
+			resJson.put("code", Integer.toString(CODE));
+			resJson.put("email", map.get("email"));
+			resJson.put("id", vo.getId());
+		}
+		else {
+			resJson.put("res", "fail");
+		}
+		return resJson;
+	}
+	
+	@RequestMapping(value="/sendUserPW", method = RequestMethod.POST)
+	public @ResponseBody String sendUserPW(@RequestParam("email") String email, @RequestParam("id") String id) throws UnsupportedEncodingException, MessagingException {
+		
+		System.out.println("샌드유저 비밀번오 + " + email);
+		System.out.println("샌드 유저 아이디" + id);
+	    final String tempPW = new Tempkey().getKey(8, false); 
+	    
+	    int res = memberService.alterTempPW(id, tempPW);
+	    if(res == 1) {
+	    	System.out.println("가가가가각가가가가가가가가가가가가가가가각ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ " + tempPW);
+	    	mailSend.sendUserPW(email, tempPW);
+	    	return "ok";
+	    }
+	    return "fail"; 
+	}
+	
+	
+	@RequestMapping(value="/sendUserID", method = RequestMethod.POST)
+	public @ResponseBody String sendUserID(@RequestParam("email") String email, @RequestParam("id") String id) throws UnsupportedEncodingException, MessagingException {
+		System.out.println(email);
+		
+		mailSend.sendUserID(email, id);
+		
+		return "";
+	}
+	
 	
 	@RequestMapping("/shop")
 	public String shop() {
@@ -281,12 +336,7 @@ public class ElController {
 		
 		return "el/faq";
 	}
-	
-	@RequestMapping("/register")
-	public String register() {
-		
-		return "el/register";
-	}
+
 	
 
 	

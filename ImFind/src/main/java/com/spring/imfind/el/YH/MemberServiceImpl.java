@@ -66,12 +66,26 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int findID(String name, String email) {
+	public String findID(String name, String email) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		Integer state = memberMapper.findID(name, email);
+		String state = memberMapper.findID(name, email);
 		return state;
 	}
-	
+	@Override
+	public MemberVO findPW(String id, String email) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		MemberVO vo = memberMapper.findPW(id, email);
+		return vo;
+	}
+
+	@Override
+	public int alterTempPW(String id, String pw) {
+		int state = -1;
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		state = memberMapper.alterTempPW(id, pw);
+		System.out.println("stat¿‘¥œ¥Ÿ " + state);
+		return state;
+	}
 	
 
 }

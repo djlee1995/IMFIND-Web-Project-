@@ -22,91 +22,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css?after" type="text/css">
 
+    <!-- 유희 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/login.css?after" type="text/css">
 </head>
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
 <style>
-.modal_overlay{
-	display : flex;
-	justify-content : center;
-	align-items: center;
-	position: fixed;
-	left : 0;
-	right : 0;
-	top : 0;
-	bottom : 0;
-	z-index : 10000;
-	height : 100vh;
-	background : rgba(0, 0, 0, 0.6); 
-}
-.modal_box{
-	width : 30vw;
-	height : 60vh;
-	padding : 1em;
-	border-radius : 0.2em;
-	background : white;
-	padding: 16px 0;
-}
-.hidden{
-	display : none;
-}
-.forget-pass:hover{
-	cursor : pointer;
-}
-.modal_box > .container{
-	height : 100%;
-	display : flex;
-	flex-direction : column;
-}
-.modal_box > .container section{
-	flex-basis : 90%;
-	padding : auto 5px;
-	font-size : 14px;
-}
-.modal_box > .container header{
-	align-self : center;
-}
-.find-id > .group-input.label{
-	display : flex;
-	flex-direction : column;
-	width : 22%;
-	margin-right:23px;
-}
-.find-id > .group-input.input{
-	display : flex;
-	flex-direction : column;
-	width : 70%;
-}
-.find-id > .group-input input, label{
-	margin-bottom: 9px;
-}
-.find-id > .group-input input{
-	border : 1px solid #ebebeb;
-}
-.find-id{
-	display : flex;
-	width: 100%;
-	margin-top : 1rem;
-	flex-wrap : wrap;
-}
-.find-btn{
-	background : #ebebeb;
-	border : none;
-	color : gray;
-	padding : 5px;
-	margin : 0 auto;
-	display : block;
-	font-size : 11px;
-}
-.find-btn:hover{
-	background : gray;
-	color : #ebebeb;
-}
-.input-code {
-	display : none;
-}
+
 </style>
 
 <body>
@@ -119,54 +43,82 @@
    	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
     <!-- Header End -->
 	
-	<!-- 모달창 -->
-	<div class="modal_overlay hidden">
-		<div class="modal_box">
-			<div class="container">
-				<header>
-					<p>아이디/비밀번호 찾기</p>
-				</header>
-				<section>
-						아이디 찾기
-					<form action="" method="POST" id="getID">
-						<div class="find-id">
-							<div class="group-input label">
-				                <label for="irum">이름 *</label>
-				                <label for="pw">E-mail *</label>
-				                <label for="code-id " class="input-code hidden">인증번호 *</label>
-				            </div>
-							<div class="group-input input">
-				                <input type="text" id="irum" >
-				                <input type="email" id="pw">
-				                <input type="text" id="code-id " class="input-code hidden" placeholder="인증번호를 입력하세요"/>
-				            </div>
-				            <button class="find-btn id" class="input-code hidden">인증번호 발송</button>
-						</div>
-					</form>
-						비밀번호 찾기
-					<form action="" id="getPW">
-						<div class="find-id pass">
-							<div class="group-input label">
-				                <label for="id-find">아이디 *</label>
-				                <label for="pw-find">E-mail *</label>
-				                <label for="code-pw" class="input-code">인증번호 *</label>
-				            </div>
-							<div class="group-input input">
-				                <input type="text" id="id-find">
-				                <input type="email" id="pw-find"> 
-				                <input type="text" id="code-pw " class="input-code hidden" placeholder="인증번호를 입력하세요"/>
-				           
-				            </div>
-				            <button class="find-btn pw">인증번호 발송</button>
-						</div>
-					</form>
-				</section>
-				<footer>
-		            <button class="close">닫기</button>
-				</footer>
+	<!-- 아이디 찾기, 비밀번호 찾기 선택 모달창 -->
+	<div class="modal_overlay-1 hidden">
+		<div class="modal_box-1">
+			<div class="container-1">
+		     	<div class="fas-con 1"><i class="fas fa-times close" id="close"></i></div>
+				<div class="give-me id">아이디 찾기</div>
+				<div class="give-me pw">비밀번호 찾기</div>
 			</div>
 		</div>
 	</div>
+	<!-- 아이디 찾기 모달창 -->
+	<div class="modal_overlay-2 hidden">
+		<div class="modal_box-1" style="width:24vw;">
+			<div class="container-1">
+				<div class="modal-header">
+					<i class="fas fa-chevron-left"></i>
+					<span name="head">아이디 찾기</span>
+			     	<div class="fas-con"><i class="fas fa-times close" id="close"></i></div>
+				</div>
+				<form action="" method="POST" id="getID">
+					<div class="find-id">
+						<div class="group-input label">
+			                <label for="irum">이름 *</label>
+			                <label for="pw">E-mail *</label>
+			                <label for="code-id" class="input-code-id first">인증번호 *</label>
+			            </div>
+						<div class="group-input input">
+			                <input type="text" id="irum" >
+			                <input type="email" placeholder="회원가입시 입력한 이메일">
+			                <input type="text" id="code-id" class="input-code-id first" placeholder="인증번호를 입력하세요"/>
+			                <div id="code-id-inputfield" class="input-code-id first timer"></div>
+			            </div>
+			            <div class="find-btn-container">
+				            <button type="button" class="find-btn id" >인증번호 발송</button>
+				            <button type="button" class="input-code-id find-btn" id="submit-btn-1" >인증하기</button>
+			            </div>
+					</div>
+		            <div class="link-tag find-pw">비밀번호 찾기</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 비밀번호 찾기 모달창 -->
+	<div class="modal_overlay-3 hidden">
+		<div class="modal_box-1" style="width:24vw;">
+			<div class="container-1">
+				<div class="modal-header">
+					<i class="fas fa-chevron-left 2"></i>
+					<span name="head-pw">비밀번호 찾기</span>
+			     	<div class="fas-con"><i class="fas fa-times close" id="close"></i></div>
+				</div>
+				<form action="" method="POST" id="getPW">
+					<div class="find-id pw">
+						<div class="group-input label">
+			                <label for="user-id">아이디 *</label>
+			                <label for="pw">E-mail *</label>
+			                <label for="code-pw" class="input-code-pw first">인증번호 *</label>
+			            </div>
+						<div class="group-input input">
+			                <input type="text" id="user-id" >
+			                <input type="email" id="pw">
+			                <input type="text" id="code-pw" class="input-code-pw first" placeholder="인증번호를 입력하세요"/>
+			                <div id="code-pw-inputfield" class="input-code-pw first timer"></div>
+			            </div>
+			            <div class="find-btn-container">
+				            <button type="button" class="find-btn pw" >인증번호 발송</button>
+				            <button type="button" class="input-code-pw find-btn" id="submit-btn-2" >인증하기</button>
+			            </div>
+					</div>
+		            <div class="link-tag find-id">아이디 찾기</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 
   <!-- Register Section Begin -->
   <div class="register-login-section spad">
@@ -212,7 +164,7 @@
 
 </body>
     <!-- YH -->
-    <script src="${pageContext.request.contextPath}/resources/el/js/login.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/el/js/login.js?after"></script>
 
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
   <!-- Js Plugins -->

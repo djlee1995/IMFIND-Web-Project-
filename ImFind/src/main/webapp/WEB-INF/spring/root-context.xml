@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -34,8 +36,8 @@
 	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	  	<property name ="host" value="smtp.naver.com"></property>
 	  	<property name="port" value="465"></property>
-	  	<property name="username" value="3bnm1128@naver.com"></property>
-	  	<property name="password" value="sntmfpt123123!"></property>
+	  	<property name="username" value="szexdr@naver.com"></property>
+	  	<property name="password" value="qhahzhwhshxh1"></property>
 	    <property name="javaMailProperties">
 		    <props>	
 		      <prop key="mail.smtp.starttls.enable">true</prop>
@@ -47,5 +49,5 @@
 		    </props>
 	    </property>
 	  </bean>
-	
+	<context:component-scan base-package="com.spring.imfind" />
 </beans>
