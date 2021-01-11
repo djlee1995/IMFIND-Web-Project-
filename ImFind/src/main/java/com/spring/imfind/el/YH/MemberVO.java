@@ -10,8 +10,20 @@ public class MemberVO {
 	private String bank;
 	private String join_date;
 	private String name;
+	private String savePass;
 	
-	
+	public String getSavePass() {
+		return savePass;
+	}
+
+
+
+	public void setSavePass(String savePass) {
+		this.savePass = savePass;
+	}
+
+
+
 	public String getId() {
 		return id;
 	}

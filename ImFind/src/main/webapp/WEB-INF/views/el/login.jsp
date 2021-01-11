@@ -141,7 +141,7 @@
                               <div class="gi-more">
                                   <label for="save-pass">
                                       Save Password
-                                      <input type="checkbox" id="save-pass">
+                                      <input type="checkbox" id="savePass" name="savePass">
                                       <span class="checkmark"></span>
                                   </label>
                                   <!-- 아이디, 비밀번호 찾기 -->

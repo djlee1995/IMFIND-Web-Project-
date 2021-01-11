@@ -32,11 +32,19 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    
-    <!-- Header Section Begin -->
-   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
-    <!-- Header End -->
 
+    <%
+    	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+    %>
+		   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
+	<%
+    	} else{
+    %>
+		   	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>		
+	<%
+    	}
+	%>
+	
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
@@ -44,8 +52,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
+                            <span> ${kakaoLoginUser} </span>
+                            <h1>    ${loginUser} </h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore</p>
                             <a href="#" class="primary-btn">Shop Now</a>

@@ -9,7 +9,7 @@
 	</select> 
 	
 	<select id="kakaoLoginCheck" parameterType="String" resultType="int">
-		Select count(*) from member where id = #{id}
+		Select count(*) from member where id = #{id} 
 	</select> 
 	
 	<select id="checkID" parameterType="String" resultType="int">
@@ -48,7 +48,8 @@
 			join_date
 		)
 		VALUES
-		( 	#{id},
+		( 	
+			#{id},
 			#{pw},
 			#{name}, 
 			#{contact},

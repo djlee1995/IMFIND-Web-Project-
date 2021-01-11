@@ -34,8 +34,8 @@
                 </div>
                 <div class="ht-right">
 	                <i class="far fa-bell fa-lg" style="width:30px;"></i>
-                    <a href="login" class="login-panel"><i class="fas fa-sign-in-alt fa-lg"></i>로그인</a>
-                    <a href="register" class="join-panel"><i class="fa fa-user fa-lg"></i>회원가입</a>                	
+                    <a href="./logout" class="login-panel"><i class="fas fa-sign-out-alt fa-lg"></i>로그아웃</a>
+                    <a href="./mypage" class="join-panel"><i class="fas fa-user-circle fa-lg"></i>마이페이지</a>                	
                 </div>
             </div>
         </div>

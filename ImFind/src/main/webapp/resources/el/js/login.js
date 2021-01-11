@@ -127,7 +127,7 @@ function kakaoLogin(){
 	
 	$.ajax({
 		url : "./el/getKakaoAuthUrl",
-		type : "GET",
+		type : "POST",
 		success : function(data){
 			console.log(data);
 			location.href = data;
