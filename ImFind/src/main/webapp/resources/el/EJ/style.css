@@ -32,28 +32,63 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
 /* 분실 날짜 */
 .item5 {
 	display: flex;
-	justify-content: space-between;
+	padding: 10px 0 10px 10px;
+	/* justify-content: space-between; */
 	border-bottom: 1px solid black;
-	padding-top: 10px;
-	padding-bottom: 10px;
 }
+
+
 /* 분실 위치 */
-h6 {
-	padding: 10px 0 10px 60px;
+.item6 {
+	padding: 10px 0 10px 10px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center; 
-	/* border-bottom: 1px solid black; */
+	/* align-items: center; */ 
+	/* border-bottom: 1px solid black; */ 
 	display: block;
 }
 
+/*
 .container-fluid {
-	border-bottom: 1px solid black;
-	
+	display: grid;	
+    border : 1px dashed red;
+    grid-template-rows: 150px 150px;
+    row-gap: 10px;
+    column-gap: 20px;
+   /*  grid-template-columns: 100px 200px; 
+
+ }
+ */
+ /*
+.collapse {
+    
+    display: grid;
+    grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+ 
+  }
+ */ 
+/* #Loc1 {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
+
+#Loc2 {
+	border-bottom: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+ */
 
 
 #test {
@@ -73,17 +108,21 @@ h6 {
 .item7 {
 	display: flex;
 	justify-content: space-between;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	
 }
 
 /* 글 제목 */
 .item7_box{
 	display: flex;
-	/*border-top: 1px solid black;*/
+	/* border-top: 1px solid black; */
 	border-bottom: 1px solid black;
-	padding-top: 20px;
+	/* padding-top: 20px;
 	padding-bottom: 20px;
-	justify-content: space-between;
-}
+	justify-content: space-between; */
+} 
+
 /* 글 내용 */
 .item8 {
 	display: flex;
@@ -96,26 +135,30 @@ h6 {
 .item8_1 {
 	border-bottozm: 1px solid black;
 }
-/* 파일 첨부 */
-.item9 {
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid black;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
+
 /* 사례금 */
+/*
 .item10 {
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 4px solid black;
+	border-top: 1px solid black;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+*/
+.item10_1 {
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid black;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
 /* 등록 취소 버튼 */
 .btn {
 	display: flex;
 	justify-content: center;
+	/*border-top: 4px solid black;*/
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -125,3 +168,4 @@ h6 {
 .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
  #centerAddr {display:block;margin-top:2px;font-weight: normal;}
 .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+

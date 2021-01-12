@@ -6,34 +6,56 @@
 
 	<insert id = "itemInsert" >
 	insert into LostPost 
-	(Lost_Title, Lost_Content, Lost_Item, Lost_Re_Date, Lost_Date, Lost_Loc, Lost_Pay)values 
-	(#{Lost_Title}, #{Lost_Content}, #{Lost_Item}, sysdate, #{Lost_Date}, #{Lost_Loc}, #{Lost_Pay})
-	
-	<!-- 
-	 insert into LostPost
-		(Lost_Title, Lost_Content, Lost_Re_Date, 
-		Lost_Re_Count, Lost_Or_File, Lost_Up_File, Lost_Pay, Lost_Item, Lost_Loc, Lost_Date, Id, Contact) 
-	 values
-		(#{Lost_Title, jdbcType=VARCHAR},
-		#{Lost_Content, jdbcType=VARCHAR},
-		sysdate,
-		#{Lost_Re_Count, jdbcType=INTEGER},
-		#{Lost_Or_File, jdbcType=VARCHAR},
-		#{Lost_Up_File, jdbcType=VARCHAR},
-		#{Lost_Pay, jdbcType=INTEGER},
-		#{Lost_Item, jdbcType=VARCHAR},
-		#{Lost_Loc, jdbcType=VARCHAR},
-		sysdate, 
-		#{Id, jdbcType=VARCHAR},
-		#{Contact,jdbcType=VARCHAR})
-	</insert>
-	-->
-
- 
-	 <!-- insert into LostPost values 
-	 (#{Lost_PostNum, jdbcType=INTEGER},#{Lost_Title},#{Lost_Content}, sysdate,#{Lost_Re_Count, jdbcType=INTEGER},#{Lost_Or_File, jdbcType=VARCHAR},
-	#{Lost_Up_File, jdbcType=VARCHAR},#{Lost_Pay, jdbcType=INTEGER},#{Lost_Item, jdbcType=VARCHAR},#{Lost_Loc, jdbcType=VARCHAR},sysdate, #{Id, jdbcType=VARCHAR}, #{Contact, jdbcType=VARCHAR})
-	 -->
+	(Lost_Title, 
+	Lost_Content, 
+	Lost_Item, 
+	Lost_Re_Date, 
+	Lost_Date, 
+	Lost_Loc, 
+	Lost_Pay)values 
+	(#{Lost_Title}, 
+	#{Lost_Content}, 
+	#{Lost_Item}, 
+	sysdate, 
+	#{Lost_Date}, 
+	#{Lost_Loc}, 
+	#{Lost_Pay})
 	</insert>
 	 
+	 <select id="getPayMember" resultType="com.spring.imfind.el.EJ.MemberVO">
+	 SELECT id, Name, Contact, Email from Member 
+	 WHERE id=#{id}
+	 </select>
+	 
+	 <insert id = "insertPay" >
+	 insert into Pay 
+	 (PayCode, 
+	 Pay_Amount, 
+	 Pay_Way, 
+	 Pay_State, 
+	 Pay_Date)values 
+	 (#{PayCode}, 
+	 #{Pay_Amount}, 
+	 #{Pay_Way}, 
+	 #{Pay_State},
+	 #{Pay_Date})
+	 </insert>
+	
+ 	 <insert id = "petInsert" >
+	 insert into PatPost 
+	 (Pat_Title, 
+	 Pat_Content, 
+	 Pat_Name, 
+	 Pat_Re_Date, 
+	 Pat_LostDate, 
+	 Pat_Loc, 
+	 Pat_Pay)values 
+	 (#{Pat_Title}, 
+	 #{Pat_Content}, 
+	 #{Pat_Name}, 
+	 sysdate, 
+	 #{Pat_LostDate}, 
+	 #{Pat_Loc}, 
+	 #{Pat_Pay})
+	 </insert>
 </mapper> 

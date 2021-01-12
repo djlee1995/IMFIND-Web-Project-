@@ -123,7 +123,7 @@
                         <li><a href="#">분실물등록</a>
                             <ul class="dropdown">
                                 <li><a href="itemboard">물건</a></li>
-                                <li><a href="#">반려동물</a></li>
+                                <li><a href="petboard">반려동물</a></li>
                             </ul>
                         </li>
                         <li><a href="./shopping-cart">분실물조회</a>

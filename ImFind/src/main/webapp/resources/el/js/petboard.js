@@ -345,13 +345,12 @@ function getFormatDate(date){
 }
 	
 function pay(){
-	var lostpay = $("input[name=Lost_Pay]:checked").val();
+	var lostpay = $("input[name=Pat_Pay]:checked").val();
 	
 	if (lostpay == 'direct'){
 		lostpay = $("#paybox").val();
 		lostpay = lostpay.replace("direct","");
-		lostpay = lostpay.replace("," , "");
-		
+		lostpay = lostpay.replace("," , "");	
 	}
 	
 	console.log(lostpay)
@@ -429,18 +428,18 @@ function pay(){
 } // pay
 
 function addboard(){
-	boardform.submit();
+	p_boardform.submit();
 }
 
 function inputcheck(){
-	var lostitem = $("input[name=Lost_Item]:checked").val();
-	var lostdate = $("input[name=Lost_Date]").val();
-	var losttitle = $("input[name=Lost_Title]").val();
+	var lostpet = $("input[name=Pat_Name]:checked").val();
+	var lostdate = $("input[name=Pat_LostDate]").val();
+	var losttitle = $("input[name=Pat_Title]").val();
 	
-	if (lostitem == "etc"){
-		var lostitem =$("#textbox").val();
-		if (lostitem == ""){
-			alert('분실물품을 입력해주세요.')
+	if (lostpet == "있음"){
+		var lostpet =$("#p_textbox").val();
+		if (lostpet == ""){
+			alert('동물이름을 입력해주세요.')
 			return false;
 		}
 	}
