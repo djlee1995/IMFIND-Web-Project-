@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 
-<head>
+<%-- <head>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
     <meta name="keywords" content="Fashi, unica, creative, html">
@@ -24,15 +24,19 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
-</head>
+</head> --%>
 
 <body>
-    <!-- Page Preloder -->
+<!--     Page Preloder
     <div id="preloder">
         <div class="loader"></div>
-    </div>
-
+    </div> -->
+    
     <!-- Header Section Begin -->
+   	<jsp:include page="${request.contextPath}/header"></jsp:include>
+    <!-- Header End -->
+
+  <%--   <!-- Header Section Begin -->
     <header class="header-section">
         <div class="header-top">
             <div class="container">
@@ -189,9 +193,9 @@
             </div>
         </div>
     </header>
-    <!-- Header End -->
+    <!-- Header End --> --%>
 
-    <!-- Breadcrumb Section Begin -->
+<!--     Breadcrumb Section Begin
     <div class="breacrumb-section">
         <div class="container">
             <div class="row">
@@ -205,7 +209,7 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb Section Begin -->
+    Breadcrumb Section Begin -->
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
@@ -415,7 +419,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
+<%--     <!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
@@ -425,7 +429,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script> --%>
 </body>
 
 </html>

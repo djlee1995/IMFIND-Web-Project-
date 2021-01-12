@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
+<%
+
+	String id = (String)request.getAttribute("kakaoLoginUser");
+
+%>
+
  <!-- 모든 페이지에 적용되는 head 설정 -->
 <head>
     <meta charset="UTF-8">
@@ -61,7 +67,7 @@
  	.grid-form{
 		display : grid;
 		grid-template-columns: 0.5fr 1fr;
-		grid-template-rows : 80px 150px 80px 80px 240px 100px 100px;
+		grid-template-rows : 126px 72px 72px 196px 92px 67px;
 	} 
 	.register-form form .group-input label, .login-form form .group-input label{
 		font-size : 14px;
@@ -93,16 +99,10 @@
              <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
-                        <h2 style="font-size:1.5rem;">회원가입</h2>
+                        <h2 style="font-size:1.5rem;">회원 정보 등록</h2>
                         
                         <form action="./processJoin" class="grid-form" method="post">
-                            <div class="group-input label">
-                                <label for="username">ID *</label>
-                            </div>
-                            <div class="group-input box">
-                                <input type="text" id="username" name="id" required>
-        						<span id="warn_id" style="font-size : 0.5rem;"></span>
-                            </div>
+                           	<input type="hidden" name="id" value="${kakaoLoginUser}"/>
                             <div class="group-input label">
                                 <label for="pass" >Password *</label>
                             </div>
@@ -265,7 +265,6 @@
 		});
 	});
 	 </script>	
-
 </body>
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
   <!-- Js Plugins -->
