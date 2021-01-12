@@ -45,7 +45,7 @@
 					<li class="active">
 						<a href="index.if"><span class="fa fa-map mr-3"></span>경찰청</a>
 					</li>
-					<li>
+					<li>                         
 						<a href="etc_index.if"><span class="fa fa-map mr-3"></span>etc</a>
 					</li>
 					<li>
