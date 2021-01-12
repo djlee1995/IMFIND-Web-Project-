@@ -4,8 +4,10 @@
 <head>
 	<title>Home</title>
 </head>
-<body>
+<style>
 
+</style>
+<body>
 <a href="index.if">if</a>
 <a href="index">else</a>
 
