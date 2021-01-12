@@ -4,12 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements SessionName {
+		
+	private static final Logger logger = LoggerFactory.getLogger(KakaoLoginInterceptor.class);
 	
 	@Autowired
 	private MemberService memberService;
@@ -18,6 +22,8 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+	    logger.info("KakaoLoginInterceptor - {}", "호출완료");
+		  
 		HttpSession session = request.getSession();
 		Object kakaoUser = session.getAttribute(KAKAO_LOGIN);
 		
@@ -34,6 +40,8 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
+	    logger.info("KakaoLoginInterceptor - {}", "호출완료");
+	    
 		HttpSession session = request.getSession();
 		Object kakaoLoginUser =  request.getSession().getAttribute(KAKAO_LOGIN);
 		

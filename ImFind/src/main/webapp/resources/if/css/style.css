@@ -39,6 +39,7 @@
 *::after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
+  
 
 html {
   font-family: sans-serif;
@@ -148,6 +149,41 @@ a:not([href]):not([tabindex]) {
     text-decoration: none; }
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
+.manual{
+	 padding-top: 20px; 
+}
+  /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 50%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+        .pop_btn{
+        cursor:pointer;
+        background-color:#DDDDDD;
+        text-align: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        }
+        .pop_btn:hover{
+        	background: #258FFF;
+        }
 
 pre,
 code,
@@ -2538,7 +2574,9 @@ input[type="button"].btn-block {
     border-left: 0.3em solid transparent; }
   .dropdown-toggle:empty::after {
     margin-left: 0; }
-
+	.map_btn{
+	z-index: 1000;
+	}
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -8195,16 +8233,18 @@ h1, h2, h3, h4, h5,
 .wrapper {
   width: 100%; 
 }
-
+.movie{
+	margin-top: 60px;
+}
 #sidebar {
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 520px;
+  max-width: 520px;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
   position: relative;
-  z-index: 0; }
+  z-index: 2; }
   #sidebar:after {
     position: absolute;
     top: 0;
@@ -8220,7 +8260,7 @@ h1, h2, h3, h4, h5,
     background: -ms-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
     background: -webkit-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
     background: -o-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
-    background: linear-gradient(135deg, #2f89fc 0%, #5effc9 100%);
+    background: #258FFF;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f89fc', endColorstr='#5effc9', GradientType=1 );
     opacity: .7;
     z-index: -1; }
@@ -8347,11 +8387,35 @@ a[data-toggle="collapse"] {
   .btn.btn-primary:hover, .btn.btn-primary:focus {
     background: #2f89fc !important;
     border-color: #2f89fc !important; }
-    
-.nav-content{
-	border : 1px solid dodgerblue;
-	height: 600px;
+.police{
+	color:black;
+	background:white;
+	padding: 0px 10px 10px 30px;
+    height: 170px;
 }
+.datadiv{
+	
+	padding: 10px 10px 10px 30px;
+   
+}
+.nav-content{
+	border-top :1px solid black;
+	padding: 10px 30px;
+	color: black;
+	background-color: white;
+	height: 500px;
+	font-weight:bold;
+	overflow: auto;
+}
+.footer{
+	text-align:center;
+	border-top-width: 50px;
+    margin-top: 25px;
+}
+/* .police a { color: black; }
+.nav-content a{ color: black;}
+ */a{color: black;}
+ a:hover{ color: #258FFF;}
 .footer p {
   color: rgba(255, 255, 255, 0.8); }
 
@@ -8381,3 +8445,5 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   background: #fff; }
+  
+ 
