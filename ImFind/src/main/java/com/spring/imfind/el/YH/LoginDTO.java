@@ -1,12 +1,12 @@
 package com.spring.imfind.el.YH;
 
-public class MemberVO {
+public class LoginDTO {
 	private String id;
 	private String pw;
 	private String contact;
 	private String email;
-	private String account_num; // °èÁÂ¹øÈ£
-	private String account_holder; // °èÁÂÁÖ
+	private String account_num; // ï¿½ï¿½ï¿½Â¹ï¿½È£
+	private String account_holder; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String bank;
 	private String join_date;
 	private String name;
