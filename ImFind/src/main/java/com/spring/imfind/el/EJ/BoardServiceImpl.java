@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper = 
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.itemInsert(boardvo);
-		System.out.println("물품ServiceImpl = " + res);
+		//System.out.println("물품ServiceImpl = " + res);
 		
 		return res;
 	}
@@ -29,19 +29,18 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 		List<MemberVO> list = boardMapper.getPayMember(id);
-		System.out.println("list"+ list);
+		//System.out.println("list"+ list);
 		
 		return list;
 	}
 	
 	@Override
 	public int insertPay(PayVO payVO) {
-		System.out.println("왔니");
+		//System.out.println("왔니");
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.insertPay(payVO);
-		
-		System.out.println("res1111111 = " + res);
+		//System.out.println("res1111111 = " + res);
 		
 		return res;
 	}
@@ -52,7 +51,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper = 
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.petInsert(petvo);
-		System.out.println("동물ServiceImpl = " + res);
+		//System.out.println("동물ServiceImpl = " + res);
 		
 		return res;
 	}
