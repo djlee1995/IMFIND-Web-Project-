@@ -187,7 +187,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
-<<<<<<< HEAD
+
 <!--파일업로드 끝-->
 
 	<!-- 이메일 인증 관련정보 추가 시작 -->
@@ -210,7 +210,7 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4</version>
 		</dependency>
-=======
+
 		<!--파일업로드 끝-->
 		
 		<!-- 아임포트 결제를 위해 필요한 설정 시작 -->
@@ -247,7 +247,7 @@
 		</dependency>
 		
 		
->>>>>>> main_dev
+
 		
 	</dependencies>
     <build>

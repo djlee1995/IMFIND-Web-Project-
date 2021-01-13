@@ -1,6 +1,5 @@
 package com.spring.imfind.el;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-=======
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
@@ -29,22 +28,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
->>>>>>> main_dev
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-<<<<<<< HEAD
+
 import org.springframework.web.util.WebUtils;
 
 import com.spring.imfind.el.YH.EmailSend;
 import com.spring.imfind.el.YH.KakaoController;
 import com.spring.imfind.el.YH.MemberService;
-import com.spring.imfind.el.YH.MemberVO;
+import com.spring.imfind.el.YH.LoginDTO;
 import com.spring.imfind.el.YH.OpenBanking;
 import com.spring.imfind.el.YH.Tempkey;
-=======
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.imfind.el.EJ.BoardService;
@@ -52,14 +50,13 @@ import com.spring.imfind.el.EJ.BoardVO;
 import com.spring.imfind.el.EJ.MemberVO;
 import com.spring.imfind.el.EJ.PayVO;
 import com.spring.imfind.el.EJ.PetVO;
->>>>>>> main_dev
+
 
 @Controller
-//@SessionAttributes({"kakao_id", "id"})
 public class ElController {
 	
 	@Autowired
-<<<<<<< HEAD
+
 	JavaMailSender mailSender;
 	
 	@Autowired
@@ -68,33 +65,31 @@ public class ElController {
 	@Autowired
 	private MemberService memberService;
 
-	// - À¯Èñ
-=======
+	// - ï¿½ï¿½ï¿½ï¿½
 	private BoardService boardService;
 
->>>>>>> main_dev
 	@RequestMapping("/index")
 	public String index2() { return "el/index"; }
 	
 	@RequestMapping("/home2")
 	public String index3() { return "home2"; }
 	
-	// header include - À¯Èñ
+	// header include - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("el/header")
 	public String header() { return "el/header"; }
-	// header include - À¯Èñ
+	// header include - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("el/afterLoginHeader")
 	public String afterLoginHeader() { return "el/afterLoginHeader"; }
 	
-	// È¸¿ø°¡ÀÔ À¯Èñ
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/register")
 	public String register() { return "el/register"; }
 	
-	// login - À¯Èñ
+	// login - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/login")
 	public String login() { return "el/login"; }
 	
-	// logout - À¯Èñ
+	// logout - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -123,7 +118,7 @@ public class ElController {
 		return "redirect:/index";
 	}
 	/*
-	 * ÀÏ¹İ ·Î±×ÀÎ id, pw Ã¼Å© - À¯Èñ
+	 * ï¿½Ï¹ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ id, pw Ã¼Å© - ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping("/loginCheck")
 	@ResponseBody
@@ -136,7 +131,7 @@ public class ElController {
 		
 		if(state == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", id); // id ¼¼¼Ç ÀúÀå
+			session.setAttribute("loginUser", id); //d
 			return "pass";
 		}
 		else {
@@ -144,7 +139,7 @@ public class ElController {
 		}
 	}
 	
-	// Ä«Ä«¿À ·Î±×ÀÎÃ¢ È£Ãâ
+	// Ä«Ä«ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã¢ È£ï¿½ï¿½
 	@RequestMapping(value = "/el/getKakaoAuthUrl", method = RequestMethod.POST)
 	public @ResponseBody String getKakaoAuthUrl(HttpServletRequest request, Model model) throws Exception{
 
@@ -160,7 +155,7 @@ public class ElController {
 		return kakaoUrl;
 	}
 	
-	// Ä«Ä«¿À¿¡¼­ ÁØ access_token
+	// Ä«Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ access_token
 	@RequestMapping(value="/login/oauth_kakao")
 	public String oauthKakao(HttpServletRequest request, String code) throws Exception{
 		
@@ -171,8 +166,8 @@ public class ElController {
 		String access_token = kakao.getAccessToken(code);
 		
 		Map<String, Object> userInfo = kakao.getUserInfo(access_token);
-        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); // ´Ğ³×ÀÓ, ÇÁ·ÎÇÊ »çÁø µé¾îÀÖÀ½        
-        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account"); // ÀÌ¸ŞÀÏ µé¾îÀÖÀ½
+        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); // ï¿½Ğ³ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½        
+        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account"); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
         String kakao_id = Integer.toString((int) userInfo.get("id"));
         
@@ -183,10 +178,10 @@ public class ElController {
         return "redirect:/index";
 	}
 	
-	// ±İÀ¶°¨µ¶¿ø ¿ÀÇÂ¹ğÅ· ÀÎÁõ url
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹ï¿½Å· ï¿½ï¿½ï¿½ï¿½ url
 	@RequestMapping(value="/getAuthorize")
 	public @ResponseBody String openBanking() {
-		System.out.println("¿ÀÇÂ¹ğÅ· in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· in");
 		 
 		OpenBanking bank = new OpenBanking();
 		String reqUrl = bank.getAuthorize();
@@ -194,23 +189,23 @@ public class ElController {
 		
 		return reqUrl;
 	}
-	// ±İÀ¶°¨µ¶¿ø 3-legged ÀÎÁõ get code
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3-legged ï¿½ï¿½ï¿½ï¿½ get code
 	@RequestMapping(value="/getOpenBankingToken")
 	public String getOpenBankingToken(String code, String access_token) throws Exception{
 		
 		System.out.println("account : " + code);
-		System.out.println("¿ÀÇÂ¹ğÅ· token in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· token in");
 
 		OpenBanking bank = new OpenBanking();
 		bank.getToken(code);
 		
 		return "forward:/register";
 	}
-	// ±İÀ¶°¨µ¶¿ø 2 legged get code
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2 legged get code
 	@RequestMapping(value="/getToken")
 	public @ResponseBody String getToken(@RequestBody Map<String, String> map) throws Exception{
 
-		System.out.println("¿ÀÇÂ¹ğÅ· °èÁÂ½Ç¸íÁ¶È¸ in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· ï¿½ï¿½ï¿½Â½Ç¸ï¿½ï¿½ï¿½È¸ in");
 		
 		String account = map.get("account");
 		String birth = map.get("birth");
@@ -242,7 +237,7 @@ public class ElController {
 	
 	
 	@RequestMapping("/processJoin")
-	public String processJoin(MemberVO vo) {
+	public String processJoin(LoginDTO vo) { // vo ì´ë¦„ ë³€ê²½
 		
 		System.out.println(vo.toString());
 		vo.setAccount_holder(vo.getName());
@@ -277,7 +272,7 @@ public class ElController {
 	public @ResponseBody Map<String, String>  findPWAuth(HttpServletRequest request, HttpServletResponse response, 
 			@RequestBody Map<String, String> map) throws IOException, MessagingException {
 		
-		MemberVO vo = memberService.findPW(map.get("id"), map.get("email"));
+		LoginDTO vo = memberService.findPW(map.get("id"), map.get("email")); // vo ì´ë¦„ ë³€ê²½
 		
 		Map<String, String> resJson = new HashMap<String, String>();
 		if(vo != null) {
@@ -297,13 +292,13 @@ public class ElController {
 	@RequestMapping(value="/sendUserPW", method = RequestMethod.POST)
 	public @ResponseBody String sendUserPW(@RequestParam("email") String email, @RequestParam("id") String id) throws UnsupportedEncodingException, MessagingException {
 		
-		System.out.println("»÷µåÀ¯Àú ºñ¹Ğ¹ø¿À + " + email);
-		System.out.println("»÷µå À¯Àú ¾ÆÀÌµğ" + id);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½ï¿½ï¿½ + " + email);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½" + id);
 	    final String tempPW = new Tempkey().getKey(8, false); 
 	    
 	    int res = memberService.alterTempPW(id, tempPW);
 	    if(res == 1) {
-	    	System.out.println("°¡°¡°¡°¡°¢°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¢¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡ " + tempPW);
+	    	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + tempPW);
 	    	mailSend.sendUserPW(email, tempPW);
 	    	return "ok";
 	    }
@@ -320,13 +315,12 @@ public class ElController {
 		return "";
 	}
 	
-<<<<<<< HEAD
 	
 	@RequestMapping("/shop")
 	public String shop() {
 		
-		return "el/shop"; 
-=======
+		return "el/shop"; }
+
 	/*
 	
 	 ì€ì§€ - ê²Œì‹œíŒ ë“±ë¡
@@ -407,7 +401,7 @@ public class ElController {
 	public String petboard() {
 		
 		return "el/EJ/petboard";
->>>>>>> main_dev
+
 	}
 	
 	@RequestMapping("/petInsert")
@@ -424,12 +418,7 @@ public class ElController {
 	 */
 	
 	// header include 
-    @RequestMapping("/header")
-    public String header() {
-
-        return "el/header";
-    }
-    
+  
 	@RequestMapping("/collection")
 	public String collection() {
 		
@@ -480,15 +469,5 @@ public class ElController {
 
 	
 
-	
-<<<<<<< HEAD
-=======
-	@RequestMapping("/register")
-	public String register() {
-		
-		return "el/register";
-	}
-	
-	
->>>>>>> main_dev
+
 }

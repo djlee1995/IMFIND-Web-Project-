@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int insertMember(MemberVO vo) {
+	public int insertMember(LoginDTO vo) {
 			
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		Integer state = memberMapper.insertMember(vo);
@@ -72,9 +72,9 @@ public class MemberServiceImpl implements MemberService{
 		return state;
 	}
 	@Override
-	public MemberVO findPW(String id, String email) {
+	public LoginDTO findPW(String id, String email) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		MemberVO vo = memberMapper.findPW(id, email);
+		LoginDTO vo = memberMapper.findPW(id, email);
 		return vo;
 	}
 
@@ -83,7 +83,7 @@ public class MemberServiceImpl implements MemberService{
 		int state = -1;
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		state = memberMapper.alterTempPW(id, pw);
-		System.out.println("stat�Դϴ� " + state);
+		System.out.println("stat�Դϴ� " + state);
 		return state;
 	}
 	

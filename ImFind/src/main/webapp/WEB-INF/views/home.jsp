@@ -25,29 +25,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css?after" type="text/css">
  
 </head>
-<style>
-	.row{
-		justify-content : center;
-	}
-	#mapIcon{
-		background: url("${pageContext.request.contextPath}/resources/el/img/mapicon.svg") no-repeat;
-		width : 300px;
-		height : 300px;
-		
-	}
-	#policeImg{
-		background: url("${pageContext.request.contextPath}/resources/el/img/police.png");
-	}
-	.banner-section{
-		padding: 186px 50px;
-	}
-	.col-lg-9{
-		display : flex;
-		justify-content : center;
-		align-items:center;
-		margin: 0 auto;
-	}
-</style>
+
 <body>
 
 

@@ -22,7 +22,7 @@
 			name= #{name} and email = #{email}
 	</select>
 	
-	<select id="findPW" parameterType="String" resultType="MemberVO">
+	<select id="findPW" parameterType="String" resultType="LoginDTO">
 		SELECT pw, id from member 
 			where 
 			id= #{id} and email = #{email}
@@ -34,7 +34,7 @@
 			WHERE id = #{id}
 	</update>
 	
-	<insert id="insertMember" parameterType="com.spring.imfind.el.YH.MemberVO" >
+	<insert id="insertMember" parameterType="com.spring.imfind.el.YH.LoginDTO" >
 		INSERT INTO member
 		(
 			id, 
