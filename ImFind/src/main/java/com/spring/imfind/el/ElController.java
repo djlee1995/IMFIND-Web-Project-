@@ -68,7 +68,7 @@ public class ElController {
 	@Autowired
 	private MemberService memberService;
 
-	// - À¯Èñ
+	// - ï¿½ï¿½ï¿½ï¿½
 =======
 	private BoardService boardService;
 
@@ -79,22 +79,22 @@ public class ElController {
 	@RequestMapping("/home2")
 	public String index3() { return "home2"; }
 	
-	// header include - À¯Èñ
+	// header include - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("el/header")
 	public String header() { return "el/header"; }
-	// header include - À¯Èñ
+	// header include - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("el/afterLoginHeader")
 	public String afterLoginHeader() { return "el/afterLoginHeader"; }
 	
-	// È¸¿ø°¡ÀÔ À¯Èñ
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/register")
 	public String register() { return "el/register"; }
 	
-	// login - À¯Èñ
+	// login - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/login")
 	public String login() { return "el/login"; }
 	
-	// logout - À¯Èñ
+	// logout - ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -123,7 +123,7 @@ public class ElController {
 		return "redirect:/index";
 	}
 	/*
-	 * ÀÏ¹Ý ·Î±×ÀÎ id, pw Ã¼Å© - À¯Èñ
+	 * ï¿½Ï¹ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ id, pw Ã¼Å© - ï¿½ï¿½ï¿½ï¿½
 	 * */
 	@RequestMapping("/loginCheck")
 	@ResponseBody
@@ -136,7 +136,7 @@ public class ElController {
 		
 		if(state == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", id); // id ¼¼¼Ç ÀúÀå
+			session.setAttribute("loginUser", id); // id ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return "pass";
 		}
 		else {
@@ -144,7 +144,7 @@ public class ElController {
 		}
 	}
 	
-	// Ä«Ä«¿À ·Î±×ÀÎÃ¢ È£Ãâ
+	// Ä«Ä«ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã¢ È£ï¿½ï¿½
 	@RequestMapping(value = "/el/getKakaoAuthUrl", method = RequestMethod.POST)
 	public @ResponseBody String getKakaoAuthUrl(HttpServletRequest request, Model model) throws Exception{
 
@@ -160,7 +160,7 @@ public class ElController {
 		return kakaoUrl;
 	}
 	
-	// Ä«Ä«¿À¿¡¼­ ÁØ access_token
+	// Ä«Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ access_token
 	@RequestMapping(value="/login/oauth_kakao")
 	public String oauthKakao(HttpServletRequest request, String code) throws Exception{
 		
@@ -171,8 +171,8 @@ public class ElController {
 		String access_token = kakao.getAccessToken(code);
 		
 		Map<String, Object> userInfo = kakao.getUserInfo(access_token);
-        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); // ´Ð³×ÀÓ, ÇÁ·ÎÇÊ »çÁø µé¾îÀÖÀ½        
-        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account"); // ÀÌ¸ÞÀÏ µé¾îÀÖÀ½
+        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); // ï¿½Ð³ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½        
+        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account"); // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
         String kakao_id = Integer.toString((int) userInfo.get("id"));
         
@@ -183,10 +183,10 @@ public class ElController {
         return "redirect:/index";
 	}
 	
-	// ±ÝÀ¶°¨µ¶¿ø ¿ÀÇÂ¹ðÅ· ÀÎÁõ url
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹ï¿½Å· ï¿½ï¿½ï¿½ï¿½ url
 	@RequestMapping(value="/getAuthorize")
 	public @ResponseBody String openBanking() {
-		System.out.println("¿ÀÇÂ¹ðÅ· in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· in");
 		 
 		OpenBanking bank = new OpenBanking();
 		String reqUrl = bank.getAuthorize();
@@ -194,23 +194,23 @@ public class ElController {
 		
 		return reqUrl;
 	}
-	// ±ÝÀ¶°¨µ¶¿ø 3-legged ÀÎÁõ get code
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3-legged ï¿½ï¿½ï¿½ï¿½ get code
 	@RequestMapping(value="/getOpenBankingToken")
 	public String getOpenBankingToken(String code, String access_token) throws Exception{
 		
 		System.out.println("account : " + code);
-		System.out.println("¿ÀÇÂ¹ðÅ· token in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· token in");
 
 		OpenBanking bank = new OpenBanking();
 		bank.getToken(code);
 		
 		return "forward:/register";
 	}
-	// ±ÝÀ¶°¨µ¶¿ø 2 legged get code
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2 legged get code
 	@RequestMapping(value="/getToken")
 	public @ResponseBody String getToken(@RequestBody Map<String, String> map) throws Exception{
 
-		System.out.println("¿ÀÇÂ¹ðÅ· °èÁÂ½Ç¸íÁ¶È¸ in");
+		System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· ï¿½ï¿½ï¿½Â½Ç¸ï¿½ï¿½ï¿½È¸ in");
 		
 		String account = map.get("account");
 		String birth = map.get("birth");
@@ -297,13 +297,13 @@ public class ElController {
 	@RequestMapping(value="/sendUserPW", method = RequestMethod.POST)
 	public @ResponseBody String sendUserPW(@RequestParam("email") String email, @RequestParam("id") String id) throws UnsupportedEncodingException, MessagingException {
 		
-		System.out.println("»÷µåÀ¯Àú ºñ¹Ð¹ø¿À + " + email);
-		System.out.println("»÷µå À¯Àú ¾ÆÀÌµð" + id);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ + " + email);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½" + id);
 	    final String tempPW = new Tempkey().getKey(8, false); 
 	    
 	    int res = memberService.alterTempPW(id, tempPW);
 	    if(res == 1) {
-	    	System.out.println("°¡°¡°¡°¡°¢°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¡°¢¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡¤¡ " + tempPW);
+	    	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + tempPW);
 	    	mailSend.sendUserPW(email, tempPW);
 	    	return "ok";
 	    }
