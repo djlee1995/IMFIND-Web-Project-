@@ -39,8 +39,6 @@
 			<div class="">
 				<h1>
 					<a href="#" class="logo">IF <span>분실물 조회</span></a>
-					<!-- <img style="cursor:pointer;" onclick="location.href='index'" width="30px" height="30px" src="./resources/if/images/find.jpg"> -->
-					
 				</h1>
 				<ul class="list-unstyled components mb-5">
 				<!-- 메뉴 버튼 추가시 li 태그 추가하면 됨. -->
@@ -57,8 +55,15 @@
 						<a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')"><span class="fa fa-phone mr-3"></span>핸드폰</a>
 					</li>
 				</ul>
-				<div class="police">
 				
+				<div class="datadiv">
+    				<select name="data" id="sido1"></select>
+					<select name="data" id="gugun1"></select>
+					 <select name="data" id="kind"></select>
+					 <button id="dataBtn">검색</button>
+					 
+ 				</div>
+ 				<div class="police">
 				<div class="manual">
 				<h4>이용방법</h4>
 				<li>마커이미지를 클릭하시면 공공기관 이름이 나와요!!</li>
@@ -66,59 +71,39 @@
 				<li>주소 옆 이미지를 누르면 쉽게 길을 찾을 수  있어요!!</li>
 				<li>분실물을 누르면 해당 분실물의 상세 정보를 알 수 있어요!!</li>
 				</div>
-				
 				</div>
+				
 				<!-- 조회 리스트 뿌려줄 공간 -->
 				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
-				<div class="nav-content" style="height:550px;">
+				<div class="nav-content">
 					<div class="movie"><iframe width="450" height="315" src="https://www.youtube.com/embed/3XYyHq2JBn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					</table>
 					</div>
-					<table id="output">
-					</table>
+					<table id="output"></table>
 				</div>
-
 				
 				
 			</div>
 			<div class="footer">
-				<img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
-				<img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
+				<img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
+				<img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
 			</div>
+				
+
 		</nav>
 
 		<!-- Page Content  -->
 		<div id="content" >
 			<!-- 지도 -->
 			<div id="map" style="width:100%; height:100%;">
-			
-			
 			</div>
 		</div>
 	</div>
-	<!-- The Modal -->
-    <div id="myModal" class="modal">
- 
-      <!-- Modal content -->
-      <div class="modal-content" style="width:30%">
-      			<p><br /></p>
-                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">빠르게 물건을 찾고싶나요?</span></b></span></p>
-                <p style="text-align: center; line-height: 1.5;"> <img style="cursor:pointer;" onclick="location.href='index'" width="300px" height="300px" src="./resources/if/images/find.jpg"> <br /></p>
-                <p style="text-align: center; line-height: 1.5;"><span style="font-size: 14pt;"></span></p>
-                <p style="text-align: center; line-height: 1.5;"><b><span style="color: rgb(255, 0, 0); font-size: 14pt;">찾고싶으면 이미지를 클릭하세요!!</span></b></p>
-            <div class="pop_btn" onClick="close_pop();">
-                <span class="pop_bt"  style="font-size: 13pt; color:black;" >
-                     닫기
-                </span>
-            </div>
-      </div>
- 
-    </div>
-        <!--End Modal-->
-
+		
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js" ></script> 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer,services"></script>
+	<script src="${pageContext.request.contextPath}/resources/if/js/select.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/if/js/area.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/if/js/main.js"></script>
