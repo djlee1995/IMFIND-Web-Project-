@@ -48,7 +48,7 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="img/hero-1.jpg">
+            <div class="single-hero-items set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
+            <div class="single-hero-items set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
@@ -122,7 +122,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="img/products/women-large.jpg">
+                    <div class="product-large set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/products/women-large.jpg">
                         <h2>Women’s</h2>
                         <a href="#">Discover More</a>
                     </div>
@@ -235,7 +235,7 @@
     <!-- Women Banner Section End -->
 
     <!-- Deal Of The Week Section Begin-->
-    <section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
+    <section class="deal-of-week set-bg spad" data-setbg="${pageContext.request.contextPath}/resources/el/img/time-bg.jpg">
         <div class="container">
             <div class="col-lg-6 text-center">
                 <div class="section-title">
@@ -378,7 +378,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
+                    <div class="product-large set-bg m-large" data-setbg="${pageContext.request.contextPath}/resources/el/img/products/man-large.jpg">
                         <h2>Men’s</h2>
                         <a href="#">Discover More</a>
                     </div>
@@ -390,37 +390,37 @@
 
     <!-- Instagram Section Begin -->
     <div class="instagram-photo">
-        <div class="insta-item set-bg" data-setbg="img/insta-1.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-1.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>
             </div>
         </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-2.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-2.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>
             </div>
         </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-3.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-3.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>
             </div>
         </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-4.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-4.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>
             </div>
         </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-5.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-5.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>
             </div>
         </div>
-        <div class="insta-item set-bg" data-setbg="img/insta-6.jpg">
+        <div class="insta-item set-bg" data-setbg="${pageContext.request.contextPath}/resources/el/img/insta-6.jpg">
             <div class="inside-text">
                 <i class="ti-instagram"></i>
                 <h5><a href="#">colorlib_Collection</a></h5>

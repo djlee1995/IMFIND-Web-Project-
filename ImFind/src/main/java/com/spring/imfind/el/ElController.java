@@ -46,6 +46,9 @@ public class ElController {
 	@RequestMapping("/index")
 	public String index2() { return "el/index"; }
 	
+	@RequestMapping("/home2")
+	public String index3() { return "home2"; }
+	
 	// header include - À¯Èñ
 	@RequestMapping("el/header")
 	public String header() { return "el/header"; }
@@ -87,7 +90,7 @@ public class ElController {
 			response.addCookie(loginCookie);
 		}
 		
-		return "redirect:/";
+		return "redirect:/index";
 	}
 	/*
 	 * ÀÏ¹İ ·Î±×ÀÎ id, pw Ã¼Å© - À¯Èñ
@@ -147,7 +150,7 @@ public class ElController {
         
         String email = (String) kakao_account.get("email");
         session.setAttribute("kakaoLoginUser", kakao_id);
-        return "redirect:/";
+        return "redirect:/index";
 	}
 	
 	// ±İÀ¶°¨µ¶¿ø ¿ÀÇÂ¹ğÅ· ÀÎÁõ url
