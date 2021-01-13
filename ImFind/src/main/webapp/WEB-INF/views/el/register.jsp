@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="kr">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+ 
+ <!-- 모든 페이지에 적용되는 head 설정 -->
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Fashi Template">
@@ -26,206 +27,142 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
 </head>
 
-<body>
+<!-- 유희 css -->
+<style>
+	col-lg-6.offset-lg-3{
+		
+	}
+	.group-input.label{
+		margin-left:10px
+	}
+	input[id="tel"]{
+		width:80px !important;
+	}
+	.site-btn.certification-api{
+		width : 85px;
+		height: 49px;
+		padding : 0;
+		padding-top : 14px;
+		margin-left : 10px;
+		text-align : center;
+		border-radius : 3px;
+	}  
+	.group-input.box.tel{
+		display: flex;
+		align-items: center;
+		flex-wrap:wrap;
+
+	}
+	.site-btn.policy{
+		margin : 0 auto;
+		display : block;
+	}
+
+ 	.grid-form{
+		display : grid;
+		grid-template-columns: 0.5fr 1fr;
+		grid-template-rows : 80px 150px 80px 80px 240px 100px 100px;
+	} 
+	.register-form form .group-input label, .login-form form .group-input label{
+		font-size : 14px;
+/* 		//width : 80%; */
+	}
+	button[class ~= "register-btn"]{
+		grid-column: auto / span 2;
+	}
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
+</style>
+
+<body onload="bankList();">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div>
-                <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <div class="logo">
-                            <a href="./index">
-                                <img src="${pageContext.request.contextPath}/resources/el/img/logo.png" alt="">
-                            </a>
-                        </div>    
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
-                            <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon"><a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
-                            </li>
-                            <li class="cart-icon"><a href="#">
-                                <i class="icon_bag_alt"></i>
-                                <span>3</span>
-                            </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-1.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-2.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>$120.00</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                </div>
-                            </div>
-                        </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
-                    <ul>
-                        <li><a href="./index">Home</a></li>
-                        <li><a href="./shop">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog">Blog</a></li>
-                        <li><a href="./contact">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details">Blog Details</a></li>
-                                <li><a href="./shopping-cart">Shopping Cart</a></li>
-                                <li><a href="./check-out">Checkout</a></li>
-                                <li><a href="./faq">Faq</a></li>
-                                <li><a href="./register">Register</a></li>
-                                <li><a href="./login">Login</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
     <!-- Header End -->
-
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Register</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Form Section Begin -->
 
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
         <div class="container">
-            <div class="row">
+             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
-                        <h2>Register</h2>
-                        <form action="#">
-                            <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
+                        <h2 style="font-size:1.5rem;">회원가입</h2>
+                        
+                        <form action="./processJoin" class="grid-form" method="post">
+                            <div class="group-input label">
+                                <label for="username">ID *</label>
                             </div>
-                            <div class="group-input">
-                                <label for="pass">Password *</label>
-                                <input type="text" id="pass">
+                            <div class="group-input box">
+                                <input type="text" id="username" name="id" required>
+        						<span id="warn_id" style="font-size : 0.5rem;"></span>
                             </div>
-                            <div class="group-input">
-                                <label for="con-pass">Confirm Password *</label>
-                                <input type="text" id="con-pass">
+                            <div class="group-input label">
+                                <label for="pass" >Password *</label>
                             </div>
+                            <div class="group-input box">
+                                <input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required>
+                                <input type="password" id="pass2" placeholder="비밀번호 확인을 위해 다시 한 번 입력해주세요" autocomplete="false" required>
+                                <span style="font-size:0.7rem;">최소 8자리 이상 : 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
+                            </div>
+                            <div class="group-input label">
+                                <label for="name">이름 *</label>
+                            </div>
+                            <div class="group-input box">
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="group-input label">
+                                <label for="email">이메일 *</label>
+                            </div>
+                            <div class="group-input box">
+                                <input type="text" id="email" name="email" required>
+                            </div>
+                            <div class="group-input label">
+                                <label for="account">계좌인증 *</label>
+                            </div>
+                            <!-- 계좌정보 입력 -->
+                            <div class="group-input box account" style="padding:0;">
+	                            <div class="input-group mb-1" style="width:100%; margin-bottom:0;">
+	                            	 <div class="input-group-prepend">
+									    <label class="input-group-text" for="inputGroupBirth" style="margin:0; height:38px;">생년월일</label>
+									 </div>
+									 <input type="date" id="inputGroupBirth" style="height:38px; width:73%;"/>
+								</div>
+								
+                            	<div class="input-group mb-1" style="width:100%; margin-bottom:0;"">
+									  <div class="input-group-prepend">
+									    <label class="input-group-text" for="inputGroupSelect01" style="margin:0; height:38px;">은행명</label>
+									  </div>
+									  <select class="custom-select" id="inputGroupSelect01" style="height:38px; width:140px;" required onchange="getBank();">
+									    <option selected id="defaultOption" disabled selected>Choose...</option>
+									  </select>
+								 	  <input type="hidden" name="bank"/>
+								</div>
+								
+                                <input type="number" id="account" name="account_num" placeholder="계좌번호를 입력하세요" required>
+                                <div class="site-btn certification-api account">인증</div>
+                            </div>
+                            <!-- 계좌 정보 끝 -->
+                            <div class="group-input label">
+                                <label for="tel">휴대전화 *</label>
+                            </div>
+                            <div class="group-input box tel" >
+                              	 <input type="tel" id="phone" name="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
+  								 <small>형식: 010-1234-5678</small><br><br>
+                            </div>
+                            <div class="group-input label">
+                                <label for="policy">개인정보 제공동의 *</label>
+                            </div>
+                            <div class="group-input box" >
+                                <div class="site-btn policy" >동의하기</div>
+                            </div>
+                            <input type="hidden" name="join_date"/>
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
                         </form>
                         <div class="switch-login">
@@ -233,9 +170,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+			 </div>
         </div>
     </div>
+<!-- 3-legged  -->
+<form id="authorizeFrm" name="authorizeFrm" method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" target="_authForm">
+	    <input type="hidden" name="client_id" value="1245365a-f9f6-4ad8-b86d-fb42f8a9deb8"/>
+	    <input type="hidden" name="scope" value="login inquiry transfer"/>
+	    <input type="hidden" name="redirect_uri" value="http://localhost:8080/imfind/"/>
+	    <input type="hidden" name="auth_type" value="0"/>
+	    <input type="hidden" name="response_type" value="code"/>
+	    <input type="hidden" name="state" value="12345678901234567890123456789012"/>
+</form>
+
     <!-- Register Form Section End -->
     
     <!-- Partner Logo Section Begin -->
@@ -271,83 +218,58 @@
         </div>
     </div>
     <!-- Partner Logo Section End -->
+    
+     <script src="${pageContext.request.contextPath}/resources/el/js/register.js"></script>
+     <script>
+		document.addEventListener('DOMContentLoaded', function(){
+			
+			// click 이벤트
+			 document.addEventListener('click', function(event){
+				 //console.log(event);
+				 if(event.target.classList.contains('certification-api')){
+					 getBankToken(); 
+				 }
+			 });
+			
+			// input 이벤트 
+			document.addEventListener('input', function(event){
+				
+				if(event.target.id == 'inputGroupSelect01'){
+					optionStyle(event);
+				}
+				
+				if(event.target.id){
+					event.target.style.background = '#F2F7FB';
+				} 
+				//console.log(event.target.id)
+			})
+			
+			// focusout 이벤트
+			document.addEventListener('focusout', function(e){
+				
+				if(e.target.id == 'pass'){
+					// 테스트를 위해 주석처리함.
+					//chkPW(); 
+				}
+				if(e.target.id == 'pass2'){
+				    chkEqualpw();
+				}
+				if(e.target.id == 'username'){
+					chkID(e);
+				}
+				if(e.target.id == 'name'){
+					getName(e);
+				}
+	
+				//event.target.style.background = 'rgb(255, 255, 255)';
+		});
+	});
+	 </script>	
 
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="footer-left">
-                        <div class="footer-logo">
-                            <a href="#"><img src="${pageContext.request.contextPath}/resources/el/img/footer-logo.png" alt=""></a>
-                        </div>
-                        <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
-                        </ul>
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1">
-                    <div class="footer-widget">
-                        <h5>Information</h5>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Checkout</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Serivius</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="footer-widget">
-                        <h5>My Account</h5>
-                        <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Shopping Cart</a></li>
-                            <li><a href="#">Shop</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="newslatter-item">
-                        <h5>Join Our Newsletter Now</h5>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Enter Your Mail">
-                            <button type="button">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-reserved">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </div>
-                        <div class="payment-pic">
-                            <img src="${pageContext.request.contextPath}/resources/el/img/payment-method.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
+</body>
+  <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
+  <!-- Js Plugins -->
+   
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
@@ -358,6 +280,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
-</body>
 
 </html>
