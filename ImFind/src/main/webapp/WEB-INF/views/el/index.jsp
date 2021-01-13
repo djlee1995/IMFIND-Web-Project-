@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>I'm Find</title>
-
+	
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
@@ -28,11 +28,21 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<!-- Page Preloder -->
+=======
+
+	<!-- Header Section Begin -->
+       <jsp:include page="${request.contextPath}/header"></jsp:include>
+    <!-- Header End -->
+    
+    <!-- Page Preloder 
+>>>>>>> main_dev
     <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div>-->
 
+<<<<<<< HEAD
     <%
     	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
     %>
@@ -45,6 +55,9 @@
     	}
 	%>
 	
+=======
+
+>>>>>>> main_dev
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">

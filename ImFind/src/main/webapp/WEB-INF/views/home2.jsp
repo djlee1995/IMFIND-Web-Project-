@@ -125,8 +125,6 @@
 									<p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
 			   				</div>
 			   			</div>
-			   		</div>
-							   			
 		   				<div class="choose animate-box">
 							<div class="fh5co-heading">
 								<h2>Why Choose Us?</h2>
@@ -138,6 +136,8 @@
 								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove there live the blind texts far from the countries</li>
 							</ul>
 						</div>
+			   		</div>
+							   			
 		   		</div>
 		   	</li>
 		   	<li style="background-image: url(images/img_bg_2.jpg);">
@@ -148,9 +148,20 @@
 			   				<div class="slider-text-inner">
 			   					<h1>찾으시는 물건이 없나요?</h1>
 									<h2>ImFind가 분실물 실시간 알람과 위치 기반<a href="http://freehtml5.co/" target="_blank"></a></h2>
-									<p class="ct"><a href="/imfind/el/index">이동하기 <i class="icon-arrow-right"></i></a></p>
+									<p class="ct"><a href="/imfind/index">이동하기 <i class="icon-arrow-right"></i></a></p>
 			   				</div>
 			   			</div>
+		   				<div class="choose animate-box">
+							<div class="fh5co-heading">
+								<h2>Why Choose Us?</h2>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+							</div>
+							<ul class="list-nav">
+								<li><i class="icon-check2"></i>Far far away, behind the word mountains, far from the countries Vokalia</li>
+								<li><i class="icon-check2"></i>There live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts.</li>
+								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove there live the blind texts far from the countries</li>
+							</ul>
+						</div>
 			   		</div>
 		   		</div>
 		   	</li>
