@@ -1,4 +1,4 @@
-package com.spring.imfind.el;
+package com.spring.imfind.el.EJ;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -18,12 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.spring.imfind.el.EJ.BoardService;
-import com.spring.imfind.el.EJ.BoardVO;
-import com.spring.imfind.el.EJ.MemberVO;
-import com.spring.imfind.el.EJ.PayVO;
-import com.spring.imfind.el.EJ.PetVO;
 
 @Controller
 public class ElController {
