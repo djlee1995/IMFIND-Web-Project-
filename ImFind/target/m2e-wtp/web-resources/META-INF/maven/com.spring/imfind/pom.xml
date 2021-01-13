@@ -24,7 +24,6 @@
 	</repositories>
 	
 	<dependencies>
-	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -188,6 +187,30 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+<!--파일업로드 끝-->
+
+	<!-- 이메일 인증 관련정보 추가 시작 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4</version>
+		</dependency>
+
 		<!--파일업로드 끝-->
 		
 		<!-- 아임포트 결제를 위해 필요한 설정 시작 -->
@@ -224,6 +247,7 @@
 		</dependency>
 		
 		
+
 		
 	</dependencies>
     <build>
