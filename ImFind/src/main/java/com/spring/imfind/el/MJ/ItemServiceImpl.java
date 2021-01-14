@@ -21,8 +21,15 @@ public class ItemServiceImpl implements ItemService{
 		
 		
 		return List;
-	
-	
 	}
-
+	@Override
+	public List<ItemVO> getItemservice(String lost_Title){
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		List<ItemVO> List = mapper.getItemservice(lost_Title);
+		
+		
+		return List;
+		
+	}
 }
+ 

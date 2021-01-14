@@ -13,8 +13,19 @@
        -->
       <!-- WHERE <![CDATA[rnum >= #{1}]]> and <![CDATA[rnum <= #{12}]]> -->
       
-      </select>
-      
-      
+</select>
 
+
+<select id="getItemservice" resultType="ItemVO"> 
+	SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+
+<!-- 	<foreach 
+	collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
+	</select> -->                                                     
+	<!-- 
+	<foreach item="item" index="index" collection="array"
+      open="(" separator="," close=")">
+       lost_Title=#{item} -->
+ <!--  </foreach> -->
+  </select>
 </mapper>
