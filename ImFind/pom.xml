@@ -23,7 +23,6 @@
 	</repositories>
 	
 	<dependencies>
-	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -185,7 +184,69 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+
 <!--파일업로드 끝-->
+
+	<!-- 이메일 인증 관련정보 추가 시작 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4</version>
+		</dependency>
+
+		<!--파일업로드 끝-->
+		
+		<!-- 아임포트 결제를 위해 필요한 설정 시작 -->
+		<!-- jackson JSON Mapper 시작 -->
+		<!-- Jackson-core springframework 5.x.x에 사용 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.10.1</version>
+		</dependency> 
+		<!-- Jackson JSON Mapper 끝 -->
+		
+		<!-- 제이슨 파싱 -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency> 
+		
+		<!-- HttpCore : HTTP 프로토콜을 이용해서 데이터를 전송할 수 있는 로우 레벨의 기능을 제공 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.2</version>
+		</dependency>
+		<!-- 아임포트 결제를 위해 필요한 설정 끝 -->
+		
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.5</version>
+		</dependency>
+		
+		
+
+
 		
 	</dependencies>
     <build>
