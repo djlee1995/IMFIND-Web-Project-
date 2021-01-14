@@ -2,10 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- Root Context: defines shared resources visible to all other web components -->
 <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"  />
@@ -24,7 +26,28 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean> 
+
 	<!-- mybatis mapper 설정관련(사용 시 Namespace 탭에서 mybatis-spring 추가하기) -->
 	<!-- mapper 관련 인터페이스 (ex: MamberMapper.java)를 찾기 위한 패키지 경로 설정함 -->
 	<mybatis-spring:scan base-package="com.spring.mapper"/>	
+
+	
+	  <!-- naver mail  : smtp 사용가능하도록 설정확인 할것 -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name ="host" value="smtp.naver.com"></property>
+	  	<property name="port" value="465"></property>
+	  	<property name="username" value="szexdr@naver.com"></property>
+	  	<property name="password" value="qhahzhwhshxh1"></property>
+	    <property name="javaMailProperties">
+		    <props>	
+		      <prop key="mail.smtp.starttls.enable">true</prop>
+		      <prop key="mail.smtp.auth">true</prop>
+		      <prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+		      <prop key="mail.smtps.ssl.trust">*</prop>
+		      <prop key="mail.debug">true</prop>
+		      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		    </props>
+	    </property>
+	  </bean>
+	<context:component-scan base-package="com.spring.imfind" />
 </beans>
