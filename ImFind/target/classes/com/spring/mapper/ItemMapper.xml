@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.MJ.ItemMapper">
+<select id="getitem"   resultType="ItemVO">
+      
+      SELECT * FROM (
+          SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.lost_postnum ASC) AS RNUM
+          FROM lostpost p
+      )
+     <!--  WHERE RNUM BETWEEN ${Lost_PostNum} AND 10 
+       -->
+      <!-- WHERE <![CDATA[rnum >= #{1}]]> and <![CDATA[rnum <= #{12}]]> -->
+      
+</select>
+
+
+<select id="getItemservice" resultType="ItemVO"> 
+	SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+
+<!-- 	<foreach 
+	collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
+	</select> -->                                                     
+	<!-- 
+	<foreach item="item" index="index" collection="array"
+      open="(" separator="," close=")">
+       lost_Title=#{item} -->
+ <!--  </foreach> -->
+  </select>
+
+  
+</mapper>
