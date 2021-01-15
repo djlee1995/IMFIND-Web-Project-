@@ -41,5 +41,11 @@ public class ItemServiceImpl implements ItemService{
 		return List;
 		
 	}
+	@Override
+	public List<ItemVO> getdata_info(int lost_PostNum) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		List<ItemVO> List = mapper.getdata_info(lost_PostNum);
+		return List;
+	}
 }
  

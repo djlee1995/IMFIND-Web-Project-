@@ -28,6 +28,10 @@
        lost_Title=#{item} -->
  <!--  </foreach> -->
   </select>
+  <select id="getdata_info" resultType="ItemVO"> 
+	SELECT * from lostpost where lost_postnum = #{lost_PostNum}
+
+  </select>
 
   
 </mapper>

@@ -1,6 +1,5 @@
 
 <!-- 민정 조회페이지 -->
-
  		$(document).ready(function() {
 			$('#ajax-test-div').empty();
 			$.ajax({
@@ -14,7 +13,7 @@
 								card.className = "col-lg-4 col-md-6";
 							 	var singlelatestblog = document.createElement('div');
 								singlelatestblog.className = "single-latest-blog";
-								singlelatestblog.innerHTML = '<a href = "">,<img src="'+item.lost_Up_File+'" alt="">';
+								singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">,<img src="'+item.lost_Up_File+'" alt="">';
 								var cardbox = document.createElement('div');
 								var blog = document.createElement('div');
 								blog.className = "blog";
@@ -110,6 +109,8 @@
 		        data : { "lost_Title" : lost_Title },
 		        //type : 'POST',
 		        success : function(data){
+		        	console.log(data)
+		        	
 		        	
 	                alert("잠시만 기다려주세요!");
 	                $.each(data,function(index,item) {
@@ -153,6 +154,9 @@ function enterkey() {
 	        data : { "lost_Title" : lost_Title },
 	        //type : 'POST',
 	        success : function(data){
+	        	console.log(data)
+	        	
+	        	
                 alert("잠시만 기다려주세요!");
                 $.each(data,function(index,item) {
                 	console.log(item)
@@ -180,21 +184,3 @@ function enterkey() {
     
     }
 }
-		$.ajax({
-	        url : "/imfind/sido.do",
-	        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-	        //type : 'POST',
-	        success : function(data){
-                alert("aaaa");
-		//시/도 선택 박스 초기화
-              $('#sido').each(function() {
-			  $selsido = $(this);
-			  $.each(eval(data), function() {
-			   $selsido.append("<option value='"+this+"'>"+this+"</option>");
-			  });
-			  $selsido.next().append("<option value=''>시/도 선택</option>");
-			 });
-	        },
-	     });
-		 
-
