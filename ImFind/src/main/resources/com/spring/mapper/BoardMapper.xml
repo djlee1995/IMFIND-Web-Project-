@@ -58,4 +58,14 @@
 	 #{Pat_Loc}, 
 	 #{Pat_Pay})
 	 </insert>
+	 
+	 <!-- <insert id="commentInsert" parameterType="LostComVO">
+		<selectKey keyProperty=Lost_PostNum order="BEFORE" resultType="int">
+			select nvl(max(Lost_PostNum), 0)+1 from LostCom
+		</selectKey> 인서트 하기전 수행하라. 그 결과를 cno에 저장함. 
+	  insert into LostCom (Lost_PostNum, Com_Content, Com_Date)
+	  values(#{Lost_PostNum}, #{Com_Content}, sysdate)
+	</insert> -->
+	
+	 
 </mapper> 
