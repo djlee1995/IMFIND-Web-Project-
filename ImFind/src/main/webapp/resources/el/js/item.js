@@ -8,13 +8,13 @@
 						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 						success : function(data) {
 							$.each(data,function(index,item) {	
-								//console.log(item)
+								console.log(item)
 								var cardElem = document.querySelector('#ajax-test-div');
 								var card = document.createElement('div');
 								card.className = "col-lg-4 col-md-6";
 							 	var singlelatestblog = document.createElement('div');
 								singlelatestblog.className = "single-latest-blog";
-								singlelatestblog.innerHTML = '<a href = "">,<img src="'+item.lost_Up_File+'" alt="">';
+								singlelatestblog.innerHTML = '<a href = "/imfind/iteminfo?lost_PostNum='+item.lost_PostNum+'">,<img src="'+item.lost_Up_File+'" alt="">';
 								var cardbox = document.createElement('div');
 								var blog = document.createElement('div');
 								blog.className = "blog";

@@ -93,6 +93,11 @@ public class ElController {
 
 		return "el/MJ/item";
 	}
+	@RequestMapping("/iteminfo")
+	public String iteminfo() {
+
+		return "el/MJ/iteminfo";
+	}
 
 	/*
 	 * 
