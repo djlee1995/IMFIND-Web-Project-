@@ -22,7 +22,7 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-	    logger.info("KakaoLoginInterceptor - {}", "È£Ãâ¿Ï·á");
+	    logger.info("KakaoLoginInterceptor - {}", "kakao prehandle");
 		  
 		HttpSession session = request.getSession();
 		Object kakaoUser = session.getAttribute(KAKAO_LOGIN);
@@ -34,20 +34,20 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 	}
 
 	/*
-	 * È¸¿øÁ¤º¸°¡ ¾ø´Â Ä«Ä«¿À ·Î±×ÀÎ »ç¿ëÀÚ´Â register ÆäÀÌÁö·Î ÀÌµ¿ÇÑ´Ù.
+	 * ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ -  È¸ì— íšŒì›ì •ë³´ ì—†ìœ¼ë©´ register í™”ë©´ìœ¼ë¡œ ì´ë™í•œë‹¤. 
 	 * */
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-	    logger.info("KakaoLoginInterceptor - {}", "È£Ãâ¿Ï·á");
+	    logger.info("KakaoLoginInterceptor - {}", "kakao posthandle");
 	    
 		HttpSession session = request.getSession();
 		Object kakaoLoginUser =  request.getSession().getAttribute(KAKAO_LOGIN);
 		
 		if(kakaoLoginUser != null) {
 			
-			System.out.println("·Î±×ÀÎÇÑ À¯Àú : " + (String)kakaoLoginUser);
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + (String)kakaoLoginUser);
 			
 			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
 			if(res != 1) {

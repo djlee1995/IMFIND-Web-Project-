@@ -74,7 +74,7 @@ function loginValidate(loginBoxElem){
 				}
 			}
 			else{
-				window.location.href = "index";
+				window.location.href = "home.do";
 			}
 		},
 		error : function(){

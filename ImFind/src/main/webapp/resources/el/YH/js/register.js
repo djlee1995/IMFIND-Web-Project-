@@ -53,35 +53,6 @@
 				alert('통신dd 실패')
 			}
 		})   
-		
-		/* const accountInputElem = document.querySelector('.group-input.box.account').querySelectorAll('input');
-		
-		var birth = accountInputElem[0].value;
-		birth = birth.replaceAll('-','');
-		birth = birth.substr(2, 7);
-		
-		var account = accountInputElem[1].value;
-		const accountSelectElem = document.querySelector('.group-input.box.account').querySelector('select');
-		var index = accountSelectElem.options.selectedIndex;
-		var bankCode = accountSelectElem.options[index].value;
-		
-		params = {"bank_code_std" : bankCode, 
-				  "account_num" : account,
-				  "account_holder_info" : birth,
-				  "tran_dtime" : getTime()}
-		
- 		$.ajax({
-			url : './getToken',
-			type : 'POST',
-			contentType : 'application/json',
-			data : JSON.stringify(params),
-			success : function(data){
-				location.href = data;
-			}, 
-			error : function(){
-				alert('통신dd 실패')
-			}
-		})   */
 	}
 	function bankList(){
 		
@@ -151,9 +122,17 @@
 	function chkID(e){
 		var id = e.target.value;
 		console.log(e.target)
+		
 		$.ajax({
 			url : './chkID',
 			data : {'id' : id},
+			beforeSend : function(xhr){
+				if(e.target.value == ""){
+					e.target.style = "border: 1px solid #ebebeb";
+					e.target.nextElementSibling.innerText = '';
+					 xhr.abort();
+				}
+			},
 			success : function(data){
 				if(data == 'ok'){
 					e.target.style = "border: 1px solid #A5FA52;";

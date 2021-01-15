@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+<<<<<<< HEAD
 import com.spring.imfind.el.YH.EmailSend;
 import com.spring.imfind.el.YH.KakaoController;
 import com.spring.imfind.el.YH.LoginDTO;
@@ -97,6 +98,53 @@ public class EJController {
 	      PrintWriter out = response.getWriter();
 	      String originalFileExtension = file.getOriginalFilename(); 
 	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", ""); //+ originalFileExtension
+=======
+
+
+import com.spring.imfind.el.EJ.BoardService;
+
+@Controller
+public class EJController {
+	
+
+	@Autowired
+	private BoardService boardService;
+	
+
+
+	
+	@RequestMapping("/itemboard")
+	public String itemboard() {
+		
+		return "el/EJ/itemboard";
+	}
+	
+	
+	@RequestMapping("/itemInsert")
+	public String itemInsert(BoardVO boardvo){
+		System.out.println("in");
+		boardService.itemInsert(boardvo);
+		System.out.println(boardvo.toString());
+		
+		
+		return "el/index";
+	}
+	
+	   @ResponseBody
+	   @PostMapping("/profileImage")
+	   public void summer_image(MultipartFile file, HttpServletRequest request,
+	         HttpServletResponse response) throws Exception {
+		   
+		   System.out.println("ddddddd");
+	      response.setContentType("text/html;charset=utf-8");
+	      String uploadPath = "/Users/hongmac/Documents/upload/";
+	      //String uploadPath = "/Users/hongmac/Documents/WebProject/ImFind/src/main/webapp/resources/el/images/";
+	      
+	      
+	      PrintWriter out = response.getWriter();
+	      String originalFileExtension = file.getOriginalFilename(); 
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");// + originalFileExtension
+>>>>>>> branch 'EJ' of https://github.com/djlee1995/WebProject.git
 
 	      System.out.println("storedFileName : " + storedFileName);
 	      file.transferTo(new File(uploadPath+storedFileName));

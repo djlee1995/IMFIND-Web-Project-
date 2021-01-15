@@ -20,6 +20,8 @@ public interface LostMapper {
 	List<EtcVO> s_select(@Param("city")String city,@Param("gu")String gu,@Param("kind") String kind);
 	List<PoliceVO> p_select_place(@Param("city")String city,@Param("gu")String gu);
 	List<EtcVO> s_select_place(@Param("city")String city,@Param("gu")String gu);
-
+	
+	// 유희
+	List<PoliceVO> getSimpleList();
 
 }

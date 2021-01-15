@@ -18,5 +18,7 @@ public interface LostService {
 
 	public List<PoliceVO> p_select_place(String city,String gu);
 	public List<EtcVO> s_select_place(String city,String gu);
+	
+	public List<PoliceVO> getSimpleList();
 
 }

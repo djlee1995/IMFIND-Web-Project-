@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Sidebar 04</title>
+<title>분실물 조회</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,8 +18,6 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/if/css/style.css?after">
-
-
 </head>
 <body>
 

@@ -24,12 +24,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 			throws Exception {
 		
 
-        logger.info("LoginInterceptor - {}", "È£Ãâ¿Ï·á");
+        logger.info("LoginInterceptor - {}", "login preHandle");
         
 		HttpSession session = request.getSession();
 		Object user = session.getAttribute(LOGIN);
 		
-		if(session.getAttribute(LOGIN) != null) {
+		if(session.getAttribute(LOGIN) != null) { 
 			session.removeAttribute(LOGIN);
 		}
 		return true;
@@ -40,20 +40,20 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 			ModelAndView modelAndView) throws Exception {
 		
 
-        logger.info("LoginInterceptor - {}", "È£Ãâ¿Ï·á");
+        logger.info("LoginInterceptor - {}", "login preHandle");
         
 		HttpSession session = request.getSession();
 		Object loginUser =  request.getSession().getAttribute(LOGIN);
 		
 		if(loginUser != null) {
 
-			System.out.println("·Î±×ÀÎÇÑ À¯Àú : " + (String)loginUser);
+			System.out.println("login post Handle id : " + (String)loginUser);
 			
-			// ºñ¹Ğ¹øÈ£ ±â¾ï ¼±ÅÃ ½Ã ÄíÅ° »ı¼º
+			// ï¿½ï¿½Ğ¹ï¿½È£ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½
 			if(!(StringUtils.isEmpty(request.getParameter("savePass")))) {
 				Cookie loginCookie = new Cookie(LOGIN_COOKIE, session.getId());
 				loginCookie.setPath("/imfind");
-				loginCookie.setMaxAge(1 * 24 * 60 * 60); // 24½Ã°£ µ¿¾È ÄíÅ° À¯Áö
+				loginCookie.setMaxAge(7 * 24 * 60 * 60); // ì¿ í‚¤ 7ì¼ ì €ì¥
 				
 				response.addCookie(loginCookie);
 			}
