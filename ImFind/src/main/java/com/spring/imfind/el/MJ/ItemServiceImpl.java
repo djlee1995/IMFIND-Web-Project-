@@ -31,5 +31,15 @@ public class ItemServiceImpl implements ItemService{
 		return List;
 		
 	}
+	
+	@Override
+	public List<SelectVO> getSido(String sido,String gu, String dong){
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		List<SelectVO> List = mapper.getSido(sido,gu,dong);
+		
+		
+		return List;
+		
+	}
 }
  

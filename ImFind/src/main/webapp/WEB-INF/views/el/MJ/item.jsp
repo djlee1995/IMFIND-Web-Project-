@@ -236,26 +236,19 @@ z-index : 100;
 		</div>
 	</div>
 	<div class="dropdown">
-		<div class="dropdown-select">
-			<select>
-				<option value="">시 선택</option>
-				<option value="부천시">부천시</option>
-				<option value="의정부시">의정부시</option>
-				<option value=""></option>
-			</select> <select>
-				<option value="">구 선택</option>
-				<option value="원미구">원미구</option>
-				<option value="소사구">소사구</option>
-			</select> <select>
-				<option value="">동 선택</option>
-				<option value="중동">중동</option>
-				<option value="여월동">여월동</option>
-			</select> <i class="fa fa-caret-dow`n icon"></i>
-			<button type="submit" class="select-btn">검색</button>
+			<select id="sido" name="sido">
+			<option value="시/도를 선택하세요">시/도를 선택하세요</option>
+			</select>
+			<select id="sigu" name="sigu">
+			<option value="시/군/구를 선택하세요">시/군/구를 선택하세요</option>
+			</select>
+ 			<select id="umd" name="dong">
+ 			<option value="읍/면/동을 선택하세요">읍/면/동을 선택하세요</option>
+ 			</select>
+ 			 <i class="fa fa-caret-dow`n icon"></i>
+			<button type="submit" id="select-btn">검색</button>
 		</div>
-	</div>
 
-<h1 id="paging-head">df</h1>
 	<div class="card-list-con">
 		<div id="ajax-test-div" style="width: 70vw;">
 	</div>

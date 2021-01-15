@@ -110,8 +110,6 @@
 		        data : { "lost_Title" : lost_Title },
 		        //type : 'POST',
 		        success : function(data){
-		        	console.log(data)
-		        	
 		        	
 	                alert("잠시만 기다려주세요!");
 	                $.each(data,function(index,item) {
@@ -155,9 +153,6 @@ function enterkey() {
 	        data : { "lost_Title" : lost_Title },
 	        //type : 'POST',
 	        success : function(data){
-	        	console.log(data)
-	        	
-	        	
                 alert("잠시만 기다려주세요!");
                 $.each(data,function(index,item) {
                 	console.log(item)
@@ -185,3 +180,21 @@ function enterkey() {
     
     }
 }
+		$.ajax({
+	        url : "/imfind/sido.do",
+	        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+	        //type : 'POST',
+	        success : function(data){
+                alert("aaaa");
+		//시/도 선택 박스 초기화
+              $('#sido').each(function() {
+			  $selsido = $(this);
+			  $.each(eval(data), function() {
+			   $selsido.append("<option value='"+this+"'>"+this+"</option>");
+			  });
+			  $selsido.next().append("<option value=''>시/도 선택</option>");
+			 });
+	        },
+	     });
+		 
+
