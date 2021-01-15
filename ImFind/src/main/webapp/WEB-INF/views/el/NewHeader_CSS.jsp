@@ -43,7 +43,7 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/bootstrap.css"> 
 
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">

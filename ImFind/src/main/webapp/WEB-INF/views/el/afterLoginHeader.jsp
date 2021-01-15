@@ -7,7 +7,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-2">
-					<div id="fh5co-logo" ><a href="index.html">ImFind<span>.</span></a></div>
+					<div id="fh5co-logo" ><a href="./">ImFind<span>.</span></a></div>
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
@@ -17,13 +17,13 @@
 							<a href="./itemboard">분실물 등록 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
 								<li><a href="./itemboard">물건</a></li>
-								<li><a href="./petInsert">동물</a></li>
+								<li><a href="./petboard">동물</a></li>
 							</ul>
 						</li>
 						<li class="has-dropdown">
-							<a href="./list.do">분실물 조회 <i class="fas fa-sort-down"></i></a>
+							<a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<li><a href="./list.do">물건</a></li>
+								<li><a href="./item">물건</a></li>
 								<li><a href="#">동물</a></li>
 
 							</ul>

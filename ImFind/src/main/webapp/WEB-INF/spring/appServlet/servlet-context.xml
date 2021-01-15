@@ -34,6 +34,7 @@
 	<!-- 인터셉터 설정 유희-->
 	<beans:bean id="LoginInterceptor" class="com.spring.imfind.el.YH.LoginInterceptor"></beans:bean>
 	<beans:bean id="KakaoLoginInterceptor" class="com.spring.imfind.el.YH.KakaoLoginInterceptor"></beans:bean>
+	<beans:bean id="AuthInterceptor" class="com.spring.imfind.el.YH.AuthInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -46,15 +47,19 @@
 		</interceptor>
 	</interceptors>
 	
-	<interceptors>
-		<interceptor>
-			<mapping path="/el/getKakaoAuthUrl"></mapping>
-			<beans:ref bean="KakaoLoginInterceptor"/>
-		</interceptor>
+	<interceptors>		
 		<interceptor>
 			<mapping path="/login/oauth_kakao"></mapping>
 			<beans:ref bean="KakaoLoginInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/itemboard"></mapping>
+			<mapping path="/petboard"></mapping>
+			<mapping path="/mypage"></mapping>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
 	<!--인터셉터 설정 끝 유희 -->
 	

@@ -119,6 +119,7 @@
 		    -o-transition: 0.5s;
 		    transition: 0.5s;
 		}
+		
 	</style>
 	
 	<script>
@@ -153,15 +154,14 @@
 				success : function(data){
 					//호출 성공하면 작성할 내용
 		            if(data.documents.length != 0 ){ // 값이 있으면
-						console.log(data.documents[0].region_1depth_name)
-						console.log(data.documents[0].region_2depth_name)
+
 						var result = data.documents[0]
 						
-		            	
 						var item =  {'city' : result.region_1depth_name,
 		            	        'gu' : result.region_2depth_name,
 		            	        'x' : result.x,
 		            	        'y' : result.y}
+		            
 		            	console.log(item.city)
 		            	document.querySelector('#location').innerHTML =  '<i class="fas fa-street-view"></i> '+ item.city + ' ' + item.gu + ' 습득물'
 		            	return item;
@@ -176,7 +176,6 @@
 		
 		document.addEventListener('DOMContentLoaded', function(){
 			 var result = getXY(getUserLocation);
-			 console.log(result)
 		});
 	
 	
@@ -202,7 +201,6 @@
 	<%
     	}
 	%>
-
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
@@ -299,7 +297,7 @@
 
 
 	<div id="fh5co-services">
-		<h2 id="location" style="font-family: 'Noto Sans KR', sans-serif">dfdf</h2>
+		<h2 id="location" style="font-family: 'Noto Sans KR', sans-serif">위치 인식중...</h2>
 		<div class="container">
 			<h1>경찰청</h1>
 			<div class="row">
@@ -442,80 +440,6 @@
 		</div>
 	</div>
 
-	<%-- <div id="fh5co-about">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Our Co-League</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="member">
-					<div class="col-md-6 nopadding animate-box">
-						<div class="author" style="background-image: url(${pageContext.request.contextPath}/resources/home/mages/user-1.jpg);"></div>
-					</div>
-					<div class="col-md-6 nopadding animate-box">
-						<div class="desc">
-							<h3>John Doe</h3>
-							<span>CEO, Founder</span>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<p>
-								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="member">
-					<div class="col-md-6 nopadding col-md-push-6 animate-box">
-						<div class="author" style="background-image: url(${pageContext.request.contextPath}/resources/home/images/user-2.jpg);"></div>
-					</div>
-					<div class="col-md-6 nopadding col-md-pull-6 animate-box">
-						<div class="desc">
-							<h3>John Doe</h3>
-							<span>CEO, Founder</span>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<p>
-								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="member">
-					<div class="col-md-6 nopadding animate-box">
-						<div class="author" style="background-image: url(${pageContext.request.contextPath}/resources/home/images/user-3.jpg);"></div>
-					</div>
-					<div class="col-md-6 nopadding animate-box">
-						<div class="desc">
-							<h3>John Doe</h3>
-							<span>CEO, Founder</span>
-							<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci.</p>
-							<p>
-								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-twitter-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-facebook-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-linkedin-with-circle"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble-with-circle"></i></a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>
-
-
 	<div id="fh5co-blog">
 		<div class="container">
 			<div class="row animate-box">
@@ -552,8 +476,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
 
 	<div id="fh5co-started" style="background-image:url(${pageContext.request.contextPath}/resources/home/images/img_bg_2.jpg);">
 		<div class="overlay"></div>

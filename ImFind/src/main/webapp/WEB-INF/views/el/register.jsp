@@ -42,8 +42,8 @@
 	form{
 			font-family: 'Noto Sans KR', sans-serif;
 	}
-	col-lg-6.offset-lg-3{
-		
+	.col-lg-5{
+		margin : 0 auto;
 	}
 	.group-input.label{
 		margin-left:10px
@@ -231,43 +231,8 @@
 	    <input type="hidden" name="response_type" value="code"/>
 	    <input type="hidden" name="state" value="12345678901234567890123456789012"/>
 </form>
-
-    <!-- Register Form Section End -->
-    
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${pageContext.request.contextPath}/resources/el/img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${pageContext.request.contextPath}/resources/el/img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${pageContext.request.contextPath}/resources/el/img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${pageContext.request.contextPath}/resources/el/img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${pageContext.request.contextPath}/resources/el/img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
-    
+<!-- Register Form Section End -->
+  
     
      <script>
 		document.addEventListener('DOMContentLoaded', function(){
@@ -315,11 +280,10 @@
 	 </script>	
 
 </body>
-  <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
   <!-- Js Plugins -->
    <script src="${pageContext.request.contextPath}/resources/el/YH/js/register.js"></script>
-  <!-- Header Section Begin -->
-	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
-  <!-- Header End -->
+  <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
+   <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+
 
 </html>
