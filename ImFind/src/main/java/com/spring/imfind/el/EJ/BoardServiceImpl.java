@@ -55,4 +55,23 @@ public class BoardServiceImpl implements BoardService {
 		
 		return res;
 	}
+	
+	@Override
+	public int commentInsert(LostComVO lostcomvo) {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+		int res = boardMapper.commentInsert(lostcomvo);
+		
+		return res;
+	}
+	
+	@Override
+	public List<LostComVO> itemCommentList(int Lost_PostNum) {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+
+		List<LostComVO> list = boardMapper.itemCommentList(Lost_PostNum);
+		
+		return list;
+	}
 }

@@ -7,4 +7,7 @@ public interface BoardService {
 	public List<MemberVO> getPayMember(String id);
 	public int insertPay(PayVO payVO);
 	public int petInsert(PetVO petvo); // 애완동물 분실 등록
+	
+	public int commentInsert(LostComVO lostcomvo); // 댓글등록
+	public List<LostComVO> itemCommentList(int Lost_PostNum);
 }

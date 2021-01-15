@@ -1,16 +1,24 @@
 package com.spring.imfind.el.EJ;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,28 +26,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
+
+import com.spring.imfind.el.YH.EmailSend;
+import com.spring.imfind.el.YH.KakaoController;
+import com.spring.imfind.el.YH.LoginDTO;
+import com.spring.imfind.el.YH.MemberService;
+import com.spring.imfind.el.YH.OpenBanking;
+import com.spring.imfind.el.YH.Tempkey;
+
+import com.spring.imfind.el.EJ.BoardService;
 
 @Controller
 public class ElController {
 	
 	@Autowired
-	private BoardService boardService;
 
+	JavaMailSender mailSender;
+	
+	@Autowired
+	EmailSend mailSend;
+	
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private BoardService boardService;
+	
+
+	
 	@RequestMapping("/index")
-	public String index2() {
-		
-		return "el/index";
-	}
+	public String index2() { return "el/index"; }
 	
-	@RequestMapping("/login")
-	public String login() {
-		
-		return "el/login";
-	}
+	@RequestMapping("/home2")
+	public String index3() { return "home2"; }
 	
+
 	/*
-	
-	 은지 - 게시판 등록
+	 은지 - 게시판 등록 시작
 	
 	 */
 	@RequestMapping("/itemboard")
@@ -72,7 +96,7 @@ public class ElController {
 	      
 	      PrintWriter out = response.getWriter();
 	      String originalFileExtension = file.getOriginalFilename(); 
-	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");// + originalFileExtension
+	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", ""); //+ originalFileExtension
 
 	      System.out.println("storedFileName : " + storedFileName);
 	      file.transferTo(new File(uploadPath+storedFileName));
@@ -117,9 +141,10 @@ public class ElController {
 	public String petboard() {
 		
 		return "el/EJ/petboard";
+
 	}
 	
-	@RequestMapping("/petInsert")
+	@RequestMapping("el/petInsert")
 	public String petInsert(PetVO petvo){
 		System.out.println("in");
 		boardService.petInsert(petvo);
@@ -129,69 +154,43 @@ public class ElController {
 		return "el/index";
 	}
 	/*
-	 은지 - 게시판 등록
+	 은지 - 게시판 등록 끝
 	 */
 	
-	// header include 
-    @RequestMapping("/header")
-    public String header() {
+	/*
+	 은지 댓글 시작 
+	 */
+	
+	@RequestMapping("/comment")
+	public String comment() { 
+		
+		return "el/EJ/comment"; 
+	}
+	
+	@RequestMapping(value = "el/comInsert",
+			produces="application/json;charset=UTF-8")
+	public int commentInsert(LostComVO lostcomvo) {
+		
+		System.out.println("댓글 in");
+		System.out.println(lostcomvo.toString());
+		int res = boardService.commentInsert(lostcomvo);
+		
+		return res;
+	}
+	
+	@RequestMapping(value="el/commentlist",
+			produces="application/json;charset=UTF-8")
+	public List<LostComVO> itemCommentList(@RequestParam int Lost_PostNum){
+		List<LostComVO> comment_list = boardService.itemCommentList(Lost_PostNum);
+		
+		return comment_list;
+	}
+	
+	/* 
+	  은지 댓글 끝
+	 */
 
-        return "el/header";
-    }
-    
-	@RequestMapping("/collection")
-	public String collection() {
-		
-		return "el/collection";
-	}
-	
-	@RequestMapping("/blog")
-	public String blog() {
-		
-		return "el/blog";
-	}
-	
-	@RequestMapping("/contact")
-	public String contact() {
-		
-		return "el/contact";
-	}
-	
-	@RequestMapping("/shopping-cart")
-	public String shoppingcart() {
-		
-		return "el/shopping-cart";
-	}
-	
-	@RequestMapping("/main")
-	public String main() {
-		
-		return "el/main";
-	}
-	
-	@RequestMapping("/blog-details")
-	public String blogdetails() {
-		
-		return "el/blog-details";
-	}
-	
-	@RequestMapping("/chek-out")
-	public String chekout() {
-		
-		return "el/chek-out";
-	}
-	
-	@RequestMapping("/faq")
-	public String faq() {
-		
-		return "el/faq";
-	}
-	
-	@RequestMapping("/register")
-	public String register() {
-		
-		return "el/register";
-	}
-	
-	
+
+
+
 }

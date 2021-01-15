@@ -16,6 +16,17 @@
 	/*padding-bottom: 20px;*/
 	align-items: baseline;
 }
+
+.item2 {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid black;
+	font-size: small;
+	padding-top: 20px;
+	/*padding-bottom: 20px;*/
+	align-items: baseline;
+}
+
 /* 분실 물품 */
 .item3 {
 	display: flex;

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%
+	String id = "hongchii";	
+	//String id=(String)session.getAttribute("id"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
+%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -47,12 +52,19 @@
 	<!-- 분실물 등록 게시판 은지 -->
 	<div class="container">
 		<form name="boardform" action="./itemInsert" method="post" enctype="multipart/form-data">
+		
 			<!-- 타이틀  -->
 			<div class="item1">
 				<h8>분실글 등록하기(물품)</h8>
 				<h8>* 필수입력사항</h8>
 			</div>
-
+			
+			<div class="item2">
+				<h6>작성자</h6>
+				<input type="hidden" name="id" value="<%=id %>">
+				<h6><%=id %></h6>
+	
+			</div>
 			<!-- 필수입력사항   -->
 			<div class="item3">
 				<h6>* 분실 물품</h6>
