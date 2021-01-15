@@ -20,13 +20,45 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	
+	
 	<!-- 멀티파트(파일업로드) 관련 빈 설정 -->
 	<!-- Multipart 지원 기능을 사용하려면 먼저 MultipartResolver를 스프링 설정 파일에 등록 -->
 	<!--  DispatcherServlet은 이름이 "multipartResolver"인 빈을 사용하기 때문에 다른 이름(아이디)을  지정할 경우 MultipartResolver로 사용되지 않음.-->
 	 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
        <beans:property name="maxUploadSize" value="10000000"></beans:property>
    </beans:bean>
+
 	
+	<!-- 인터셉터 설정 유희-->
+	<beans:bean id="LoginInterceptor" class="com.spring.imfind.el.YH.LoginInterceptor"></beans:bean>
+	<beans:bean id="KakaoLoginInterceptor" class="com.spring.imfind.el.YH.KakaoLoginInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/loginCheck"></mapping>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/login"></mapping>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/el/getKakaoAuthUrl"></mapping>
+			<beans:ref bean="KakaoLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/login/oauth_kakao"></mapping>
+			<beans:ref bean="KakaoLoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	<!--인터셉터 설정 끝 유희 -->
+	
+
 	<context:component-scan base-package="com.spring.imfind" />
 	
 	
