@@ -246,6 +246,8 @@ h1, h2, h3, h4, h5, h6, figure {
   .fh5co-video {
     height: 450px;
   }
+
+  
 }
 .fh5co-video a {
   z-index: 1001;
@@ -388,6 +390,9 @@ h1, h2, h3, h4, h5, h6, figure {
     width: 100%;
   }
 }
+
+
+
 #fh5co-hero .flexslider .slider-text > .slider-text-inner,
 #fh5co-hero .flexslider .slider-text-bg > .slider-text-inner {
   display: table-cell;
@@ -609,6 +614,7 @@ h1, h2, h3, h4, h5, h6, figure {
   .services .icon {
     margin: 0 auto 30px auto;
   }
+
 }
 .services .icon i {
   display: table-cell;

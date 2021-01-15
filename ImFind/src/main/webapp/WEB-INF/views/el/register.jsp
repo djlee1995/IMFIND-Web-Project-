@@ -25,10 +25,23 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
+   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
+   	
+    
 </head>
 
 <!-- 유희 css -->
 <style>
+
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+	.notosanskr * { 
+			font-family: 'Noto Sans KR', sans-serif;
+	}
+	
+	form{
+			font-family: 'Noto Sans KR', sans-serif;
+	}
 	col-lg-6.offset-lg-3{
 		
 	}
@@ -47,7 +60,7 @@
 		text-align : center;
 		border-radius : 3px;
 	}  
-	.group-input.box.tel{
+	.group-input.tel{
 		display: flex;
 		align-items: center;
 		flex-wrap:wrap;
@@ -56,12 +69,13 @@
 	.site-btn.policy{
 		margin : 0 auto;
 		display : block;
+		background : #317AE1;
 	}
 
  	.grid-form{
 		display : grid;
 		grid-template-columns: 0.5fr 1fr;
-		grid-template-rows : 80px 150px 80px 80px 240px 100px 100px;
+		grid-template-rows : 80px 150px 80px 80px 205px 100px 100px;
 	} 
 	.register-form form .group-input label, .login-form form .group-input label{
 		font-size : 14px;
@@ -75,13 +89,48 @@
 	    -webkit-appearance: none;
 	    margin: 0;
 	}
+	.register-form form .group-input input, .login-form form .group-input input {
+	    border: 1px solid #ebebeb;
+	    height: 37px;
+	    width: 100%;
+	    padding-left: 20px;
+	    padding-right: 15px;
+	}
+	.col-lg-5{
+		padding-top: 35px;
+		border: 1px solid rgba(0, 0, 0, .2);
+		margin-top: 69px;
+		border-radius : 2px;
+	}
+	.col-lg-5 h2{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	div.site-btn:nth-child(4){
+		width: 100%;
+		position: relative;
+		left: -10px;
+		height: 19%;
+		top: 9px;
+		text-align: center;
+		background : #317AE1;
+	}
+	.site-btn.certification-api.account,
+	.site-btn.policy{
+		display : flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.site-btn.certification-api.account > div{
+		margin-bottom : 14px;
+	}
 </style>
 
 <body onload="bankList();">
+
     <!-- Page Preloder -->
-    <div id="preloder">
+<!--     <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Header Section Begin -->
    	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
@@ -91,7 +140,7 @@
     <div class="register-login-section spad">
         <div class="container">
              <div class="row">
-                <div class="col-lg-6 offset-lg-3">
+                <div class="col-lg-5 offset-lg-4">
                     <div class="register-form">
                         <h2 style="font-size:1.5rem;">회원가입</h2>
                         
@@ -99,35 +148,35 @@
                             <div class="group-input label">
                                 <label for="username">ID *</label>
                             </div>
-                            <div class="group-input box">
+                            <div class="group-input">
                                 <input type="text" id="username" name="id" required>
         						<span id="warn_id" style="font-size : 0.5rem;"></span>
                             </div>
-                            <div class="group-input label">
+                    		<div class="group-input label">
                                 <label for="pass" >Password *</label>
                             </div>
-                            <div class="group-input box">
+                            <div class="group-input">
                                 <input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required>
                                 <input type="password" id="pass2" placeholder="비밀번호 확인을 위해 다시 한 번 입력해주세요" autocomplete="false" required>
                                 <span style="font-size:0.7rem;">최소 8자리 이상 : 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
-                            </div>
+                            </div> 
                             <div class="group-input label">
                                 <label for="name">이름 *</label>
                             </div>
-                            <div class="group-input box">
+                            <div class="group-input">
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div class="group-input label">
                                 <label for="email">이메일 *</label>
                             </div>
-                            <div class="group-input box">
+                            <div class="group-input">
                                 <input type="text" id="email" name="email" required>
                             </div>
                             <div class="group-input label">
                                 <label for="account">계좌인증 *</label>
                             </div>
-                            <!-- 계좌정보 입력 -->
-                            <div class="group-input box account" style="padding:0;">
+                         
+                            <div class="group-input account" style="padding:0; margin-bottom : 0;">
 	                            <div class="input-group mb-1" style="width:100%; margin-bottom:0;">
 	                            	 <div class="input-group-prepend">
 									    <label class="input-group-text" for="inputGroupBirth" style="margin:0; height:38px;">생년월일</label>
@@ -146,21 +195,21 @@
 								</div>
 								
                                 <input type="number" id="account" name="account_num" placeholder="계좌번호를 입력하세요" required>
-                                <div class="site-btn certification-api account">인증</div>
+                                <div class="site-btn certification-api account"><div>인증</div></div>
                             </div>
-                            <!-- 계좌 정보 끝 -->
+                           
                             <div class="group-input label">
                                 <label for="tel">휴대전화 *</label>
                             </div>
-                            <div class="group-input box tel" >
+                            <div class="group-input tel" >
                               	 <input type="tel" id="phone" name="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
   								 <small>형식: 010-1234-5678</small><br><br>
                             </div>
                             <div class="group-input label">
                                 <label for="policy">개인정보 제공동의 *</label>
                             </div>
-                            <div class="group-input box" >
-                                <div class="site-btn policy" >동의하기</div>
+                            <div class="group-input" >
+                                <div class="site-btn policy" ><div>동의하기</div></div>
                             </div>
                             <input type="hidden" name="join_date"/>
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
@@ -219,7 +268,7 @@
     </div>
     <!-- Partner Logo Section End -->
     
-     <script src="${pageContext.request.contextPath}/resources/el/js/register.js"></script>
+    
      <script>
 		document.addEventListener('DOMContentLoaded', function(){
 			
@@ -260,7 +309,6 @@
 				if(e.target.id == 'name'){
 					getName(e);
 				}
-	
 				//event.target.style.background = 'rgb(255, 255, 255)';
 		});
 	});
@@ -269,16 +317,9 @@
 </body>
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
   <!-- Js Plugins -->
-   
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/el/YH/js/register.js"></script>
+  <!-- Header Section Begin -->
+	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+  <!-- Header End -->
 
 </html>

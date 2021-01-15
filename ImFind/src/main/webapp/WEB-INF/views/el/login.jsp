@@ -23,14 +23,37 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css?after" type="text/css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
+ 	    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
 
+	<!-- Modernizr JS -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
+	
+	
+	
     <!-- 유희 -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/login.css?after" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/YH/css/login.css?after" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css">
 </head>
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
 <style>
-
+ .row{
+ 
+ }
 </style>
 
 <body>
@@ -164,7 +187,7 @@
 
 </body>
     <!-- YH -->
-    <script src="${pageContext.request.contextPath}/resources/el/js/login.js?after"></script>
+    <script src="${pageContext.request.contextPath}/resources/el/YH/js/login.js?after"></script>
 
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
   <!-- Js Plugins -->
@@ -178,5 +201,17 @@
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
+    
+	<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
 
 </html>

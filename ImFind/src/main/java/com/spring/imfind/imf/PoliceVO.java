@@ -114,6 +114,12 @@ public class PoliceVO {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return "PoliceVO [placeid=" + placeid + ", city=" + city + ", gu=" + gu + ", dong=" + dong + ", depplace="
+				+ depplace + ", addr=" + addr + ", tel=" + tel + ", x=" + x + ", y=" + y + ", code=" + code
+				+ ", lost_date=" + lost_date + ", kind=" + kind + ", item=" + item + ", info=" + info + ", photo="
+				+ photo + "]";
+	}
 
 }

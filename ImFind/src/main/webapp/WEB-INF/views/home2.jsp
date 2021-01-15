@@ -1,146 +1,255 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "com.spring.imfind.imf.PoliceVO" %>
+<%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE HTML>
 <html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ImFind</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
-
-	<!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/bootstrap.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css">
-
-	<!-- Modernizr JS -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+    <!-- Header Section Begin -->
+   	<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+    <!-- Header End -->
 
 	<style>
-		.fh5co-nav ul li a{
-			font-size : 2rem !important;
+
+		.box{
+			/* border : 1px solid black; */
+			width: 50vw;
+			position: absolute;
+			left: 50%;
+			padding-top : 50px;
+			
+		}
+		.fh5co-hero{
+		
+		}
+ 		.flexslider.js-fullheight{
+			width : 50vw;
+			
+		}
+		.slides{
+			width : 200%;
+		} 
+		
+		@media screen and (max-width: 992px){
+		  .box{
+			 width: 100vw;
+			 left : 0;
+		  }
+		}
+		.li-group {
+			padding-left : 50px;
+
+		}
+		
+		.li-group > ul{
+			list-style : none;
+		}
+		.li-group > ul > li{
+		    min-height: 40px !important;
+		    border: none;
+		    font-family: 'Noto Sans KR', sans-serif;
+		    margin: 48px 33px 0 0;
+		    padding: 0 0 0 0;
+		    border: 0;
+		    float: left;
+		    font-size: 2.3rem;
+		}
+		.li-group > ul > li:hover{
+			transform : scale(1.2);
+			tarnsition : transform 1s;
+		}
+		
+		.li-group > ul > li > a{
+			color : black;
+			font-family: 'Noto Sans KR', sans-serif;
+			
+		}
+		.flex-active-slide > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > ul:nth-child(1) > li{
+			background : white;
+			
+		}
+		@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+		.notosanskr * { 
+			font-family: 'Noto Sans KR', sans-serif;
+		}
+
+		nav{
+			position: fixed;
+			top: 0;
+			width: 100vw;
+			left: 0;
+			z-index: 100;
+			padding-right : 35px;
+		}
+		aside{
+			padding-top : 6.76%;
+		}
+		.fh5co-nav #fh5co-logo{
+			font-size : 34px;
+		}
+		#fh5co-services{
+		    margin-top: 195px !important;
+		}
+		
+		.overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.2);
+			overflow: hidden;
+			width: 100%;
+			height: 0;
+			transition: .5s cubic-bezier(0.18, 0.85, 0.01, 1.21);
+		}
+		.services:hover .overlay {
+		  	height: 100%;
+		}
+
+		.title{
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 74px;	
+		}
+		.fh5co-nav ul li a {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weigth : bold;
+		    font-size: 15px;
+		    padding: 29px 15px;
+		    color: rgba(0, 0, 0, 0.7);
+		    -webkit-transition: 0.5s;
+		    -o-transition: 0.5s;
+		    transition: 0.5s;
 		}
 	</style>
-	</head>
-	<body>
-		
-	<div class="fh5co-loader"></div>
 	
-	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="top-menu">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo" ><a href="index.html">ImFind<span>.</span></a></div>
-					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li class="active"><a href="index.if">if</a></li>
-							<li><a href="product.html">ELSE</a></li>
-							<!-- <li class="has-dropdown">
-								<a href="blog.html">분실물 등록</a>
-								<ul class="dropdown">
-									<li><a href="#">물건</a></li>
-									<li><a href="#">동물</a></li>
+	<script>
+		
+		function getXY (getUserLocation){
+			
+			if('geolocation' in navigator) {
+				  /* 위치정보 사용 가능 */
+				  var options = {
+					  enableHighAccuracy: true,
+				  };
+				  navigator.geolocation.getCurrentPosition((position, options) => {
+					  var coords =  {'y' : position.coords.latitude, 'x' : position.coords.longitude };
+					  var result = getUserLocation(coords);
+					  console.log(result)
+					  return result;
+				  });
+				  
+			} else {
+				  /* 위치정보 사용 불가능 */
+			}
+		}
+		
+		function getUserLocation(coords){
 
-								</ul>
-							</li>
-								<li class="has-dropdown">
-								<a href="blog.html">분실물 조회</a>
-								<ul class="dropdown">
-									<li><a href="#">물건</a></li>
-									<li><a href="#">동물</a></li>
+		    //ajax 시작
+			$.ajax({
+				url : 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json',
+				headers : { 'Authorization' : 'KakaoAK d5e7c97eeecbba70fa5f4e5f4bc57517' },
+				type: 'GET',
+				data : { 'x' : coords.x, 'y' : coords.y },
+				success : function(data){
+					//호출 성공하면 작성할 내용
+		            if(data.documents.length != 0 ){ // 값이 있으면
+						console.log(data.documents[0].region_1depth_name)
+						console.log(data.documents[0].region_2depth_name)
+						var result = data.documents[0]
+						
+		            	
+						var item =  {'city' : result.region_1depth_name,
+		            	        'gu' : result.region_2depth_name,
+		            	        'x' : result.x,
+		            	        'y' : result.y}
+		            	console.log(item.city)
+		            	document.querySelector('#location').innerHTML =  '<i class="fas fa-street-view"></i> '+ item.city + ' ' + item.gu + ' 습득물'
+		            	return item;
+					}
+				}, 
+				error:function(request,status,error){
+				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			}).done(function(data){console.log(data);});	
 
-								</ul>
-							</li>
-							<li><a href="about.html">About</a></li>
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li> -->
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</nav>
+		}
+		
+		document.addEventListener('DOMContentLoaded', function(){
+			 var result = getXY(getUserLocation);
+			 console.log(result)
+		});
+	
+	
+	    
+	</script>
+</head>
+	
+	<body>
+	<%
+		// 경찰청 데이터
+		ArrayList<PoliceVO> list = (ArrayList<PoliceVO>)request.getAttribute("police");
+	%>
+
+	
+    <%
+    	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+    %>
+		   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
+	<%
+    	} else{
+    %>
+		   	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>		
+	<%
+    	}
+	%>
 
 	<aside id="fh5co-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
-		   	<li style="background-image: url(images/img_bg_1.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container-fluid">
-		   			<div class="row">
-			   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
-			   				<div class="slider-text-inner">
-			   					<h1>공공기관이 습득한 분실물 찾기</h1>
-									<h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
-									<p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
-			   				</div>
-			   			</div>
-		   				<div class="choose animate-box">
-							<div class="fh5co-heading">
-								<h2>Why Choose Us?</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-							</div>
-							<ul class="list-nav">
-								<li><i class="icon-check2"></i>Far far away, behind the word mountains, far from the countries Vokalia</li>
-								<li><i class="icon-check2"></i>There live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts.</li>
-								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove there live the blind texts far from the countries</li>
-							</ul>
-						</div>
+			   	<li>
+			   		<div class="overlay-gradient"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
+				   				<div class="slider-text-inner">
+				   					<h1>공공기관이 습득한 분실물<br> 찾기</h1>
+										<h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
+										<p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
+				   				</div>
+				   			</div> 
+				   		 	<div class="box">
+			   		 			<div id="fh5co-mission" style="padding-top: .2rem;">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
+												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회</h2>
+												<blockquote>
+													<p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
+												</blockquote>
+											</div>
+											<div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
+												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 등록 서비스</h2>
+												<blockquote>
+													<p style="font-family: 'Noto Sans KR', sans-serif;">분실자가 등록한 분실물 게시글을 위치 기반 서비스로 가까이에 위치한 사용자에게 알려드립니다.</p>
+												</blockquote>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="li-group">
+					   				<ul>
+					   					<li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
+					   					<li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
+					   					<li class=""><a href="./item"><span>분실물 조회</span></a></li> 
+					   					<li class=""><a href="#"><span>분실 동물 조회</span></a></li> 
+					   				</ul>
+								</div>
+						   
+				   		 	</div>		  
+				   		</div>
 			   		</div>
-							   			
-		   		</div>
-		   	</li>
-		   	<li style="background-image: url(images/img_bg_2.jpg);">
+			   	</li>
+		   <li style="background-image: url(images/img_bg_2.jpg);">
 		   		<div class="overlay-gradient"></div>
 		   		<div class="container-fluid">
 		   			<div class="row">
@@ -151,57 +260,79 @@
 									<p class="ct"><a href="/imfind/index">이동하기 <i class="icon-arrow-right"></i></a></p>
 			   				</div>
 			   			</div>
-		   				<div class="choose animate-box">
-							<div class="fh5co-heading">
-								<h2>Why Choose Us?</h2>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-							</div>
-							<ul class="list-nav">
-								<li><i class="icon-check2"></i>Far far away, behind the word mountains, far from the countries Vokalia</li>
-								<li><i class="icon-check2"></i>There live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts.</li>
-								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove there live the blind texts far from the countries</li>
-							</ul>
-						</div>
+				   		 	<div class="box" >
+			   		 			<div id="fh5co-mission" style="padding-top: .2rem;">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
+												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회</h2>
+												<blockquote>
+													<p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
+												</blockquote>
+											</div>
+											<div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
+												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 등록 서비스</h2>
+												<blockquote>
+													<p style="font-family: 'Noto Sans KR', sans-serif;">분실자가 등록한 분실물 게시글을 위치 기반 서비스로 가까이에 위치한 사용자에게 알려드립니다.</p>
+												</blockquote>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="li-group">
+					   				<ul>
+					   					<li class=""><a href="#"><span>분실물 등록</span></a></li> 
+					   					<li class=""><a href="#"><span>분실 동물 등록</span></a></li> 
+					   					<li class=""><a href="#"><span>분실물 조회</span></a></li> 
+					   					<li class=""><a href="#"><span>분실 동물 조회</span></a></li> 
+					   				</ul>
+								</div>
+						   
+				   		 	</div>				  
 			   		</div>
 		   		</div>
 		   	</li>
 		  	</ul>
 	  	</div>
+		 
 	</aside>
 
-	<div id="fh5co-content">
-		<div class="video fh5co-video" style="background-image: url(${pageContext.request.contextPath}/resources/home/images/video.jpg);">
-			<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
-			<div class="overlay"></div>
-		</div>
-		<div class="choose animate-box">
-			<div class="fh5co-heading">
-				<h2>Why Choose Us?</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-			</div>
-			<ul class="list-nav">
-				<li><i class="icon-check2"></i>Far far away, behind the word mountains, far from the countries Vokalia</li>
-				<li><i class="icon-check2"></i>There live the blind texts far from the countries Vokalia and Consonantia, there live the blind texts.</li>
-				<li><i class="icon-check2"></i>Separated they live in bookmarksgrove there live the blind texts far from the countries</li>
-			</ul>
-		</div>
-	</div>
-
-	<div id="fh5co-mission">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3 text-center animate-box">
-					<h2>Mission</h2>
-					<blockquote>
-						<p>Quos quia provident consequuntur culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita. Possimus itaque adipisci rem dolorem nesciunt perferendis quae amet deserunt eum labore quidem minima.</p>
-					</blockquote>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div id="fh5co-services">
+		<h2 id="location" style="font-family: 'Noto Sans KR', sans-serif">dfdf</h2>
 		<div class="container">
+			<h1>경찰청</h1>
+			<div class="row">
+		<% 
+			for(int i = 0; i < list.size(); i++)
+			{ 
+		%>
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<!-- <i class="icon-command"></i> -->
+							<img src="<%=list.get(i).getPhoto() %>" alt="에러"  style="width:100%;"/>
+						</span>
+						<div class="desc">
+							<h3><a href="#"><%=list.get(i).getItem() %></a></h3>
+							<p><%=list.get(i).getInfo() %></p>
+						</div>
+						  <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
+					</div>
+				</div>
+		<% } %>
+
+			</div>
+		</div>
+	</div>
+	
+		<div id="fh5co-services">
+		<div class="container">
+		<h1>분실 물건</h1>
 			<div class="row">
 				<div class="col-md-4 text-center animate-box">
 					<div class="services">
@@ -212,6 +343,11 @@
 							<h3><a href="#">Brand Identity</a></h3>
 							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 						</div>
+						  <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center animate-box">
@@ -223,6 +359,11 @@
 							<h3><a href="#">Web Design &amp; UI</a></h3>
 							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 						</div>
+						 <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
 					</div>
 				</div>
 				<div class="col-md-4 text-center animate-box">
@@ -234,13 +375,74 @@
 							<h3><a href="#">Web Development</a></h3>
 							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 						</div>
+						 <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<div id="fh5co-services">
+		<div class="container">
+			<h1>분실물 동물</h1>
+			<div class="row">
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<i class="icon-command"></i>
+						</span>
+						<div class="desc">
+							<h3><a href="#">Brand Identity</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+						  <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<i class="icon-drop2"></i>
+						</span>
+						<div class="desc">
+							<h3><a href="#">Web Design &amp; UI</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+						 <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
+					</div>
+				</div>
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span class="icon">
+							<i class="icon-anchor"></i>
+						</span>
+						<div class="desc">
+							<h3><a href="#">Web Development</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+						 <div class="overlay">
+						    <div class="text">
+						    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
+						    </div>
+						  </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="fh5co-about">
+	<%-- <div id="fh5co-about">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -311,7 +513,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 
 	<div id="fh5co-blog">
@@ -350,6 +552,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 
 	<div id="fh5co-started" style="background-image:url(${pageContext.request.contextPath}/resources/home/images/img_bg_2.jpg);">
 		<div class="overlay"></div>
@@ -413,27 +617,16 @@
 
 		</div>
 	</footer>
-	</div>
+	</div> 
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 	
-	<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+	
+    <!-- Header Section Begin -->
+   	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+    <!-- Header End -->
 
 	</body>
 </html>
