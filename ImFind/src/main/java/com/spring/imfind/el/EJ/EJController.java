@@ -38,7 +38,7 @@ import com.spring.imfind.el.YH.Tempkey;
 import com.spring.imfind.el.EJ.BoardService;
 
 @Controller
-public class ElController {
+public class EJController {
 	
 	@Autowired
 

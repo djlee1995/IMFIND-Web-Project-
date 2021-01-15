@@ -2,7 +2,8 @@
 //  ------ 달력 js 시작 ------
 $("#datepicker").datepicker({
 	language : 'ko',
-	maxDate : new Date()
+	maxDate : new Date(),
+
 });
 //  ------ 달력 js 끝 ------
 
@@ -12,6 +13,7 @@ $(document).ready(function() {
 	function sendFile(file){
 		var data = new FormData();	
 		data.append("file",file);
+		//alert(data);
 		$.ajax({
 			url: "./profileImage", //////여기 본인 주소! 
 			type: "POST",
