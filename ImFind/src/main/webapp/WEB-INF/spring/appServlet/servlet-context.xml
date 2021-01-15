@@ -38,6 +38,10 @@
 			<mapping path="/loginCheck"></mapping>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/login"></mapping>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	<interceptors>
