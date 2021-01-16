@@ -3,14 +3,17 @@ package com.spring.imfind.el.YH;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter implements SessionName {
 	
+	@Autowired
+	MemberService memberService;
+
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 	
 	private void saveDestination(HttpServletRequest req) {
@@ -42,10 +45,20 @@ public class AuthInterceptor extends HandlerInterceptorAdapter implements Sessio
 	    logger.info("AuthInterceptor - {}", "페이지 접근 권한 처리 pre Handle");
 
 		HttpSession session = request.getSession();
-        //System.out.println("session id 뭐냐 " + session.getAttribute(LOGIN));
 		
+		String kakaoUser = (String) session.getAttribute(KAKAO_LOGIN);
+		int res = 0;
+		if(kakaoUser != null) {
+			res = memberService.kakaoLoginCheck(kakaoUser);
+		}
+
+		if(kakaoUser != null && res != 1) {
 		
-	    if(session.getAttribute(LOGIN) == null) {
+		   logger.info("KakaoLoginInterceptor - {}", "DB에 회원정보 없는 카카오 로그인 사용자는 회원정보등록 페이지로 이동한다.");
+		   response.sendRedirect("./kakaoRegister");
+		   return false;
+		}
+		else if(session.getAttribute(LOGIN) == null) {
 	        
 	        logger.info("current user is not logined");
 	        

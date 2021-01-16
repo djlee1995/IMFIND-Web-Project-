@@ -58,20 +58,18 @@
 	</select>
 	
 	
+<!-- 		SELECT * FROM p_lost where <![CDATA[ rownum < 4 ]]> order by lost_date desc -->
 	<!-- 유희 -->
 	<select id="getSimpleList" resultType="PoliceVO">
-		SELECT * FROM p_lost where <![CDATA[ rownum < 4 ]]> order by lost_date asc
+		
+		  SELECT lost_date, item, info, photo, addr, tel, x, y, depplace
+		  FROM (select * from p_lost, p_place where p_lost.placeid = p_place.placeid),
+		       (SELECT #{x} v_x, #{y} v_y, 110979.309 r_x, 88907.949 r_y, 1000.000 v_z FROM dual)
+		  WHERE SQRT( POWER((v_x - x) * r_x, 2) +   POWER((v_y - y) * r_y, 2)) <![CDATA[ <= v_z and rownum < 50 ]]>
+			   AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
+			   AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
+		  ORDER BY lost_date desc 
 	</select>
 
-<!-- 	지우지 마시오 [유희]
-		<select id="getRadius" resultType="PoliceVO">
-				SELECT *, SQRT( POWER(( 37.4917910 - x) * 110979.309, 2) + POWER((127.4875970 - y) *  88907.949, 2)) z
-		  		FROM p_place, (SELECT     x = #{x} v_x, y = #{y} v_y, 110979.309 r_x,  88907.949 r_y, 1000.000 v_z FROM dual)
-		 WHERE SQRT( POWER((v_x - x) * r_x, 2)
-		           + POWER((v_y - y) * r_y, 2)
-		           ) <= v_z
-		   AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
-		   AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
-		 ORDER BY z
-	</select> -->
+
 </mapper>

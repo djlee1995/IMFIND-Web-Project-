@@ -100,11 +100,11 @@ public class LostServiceImpl implements LostService {
 	
 	// 유희
 	@Override
-	public List<PoliceVO> getSimpleList() {
+	public List<PoliceVO> getSimpleList(String x, String y) {
 		
 		List<PoliceVO> s_select_place = null;
 		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
-		s_select_place = lostMapper.getSimpleList();
+		s_select_place = lostMapper.getSimpleList(x, y);
 		return s_select_place;
 	}
 

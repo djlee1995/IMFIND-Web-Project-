@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	 
+
+<!--유희 : 로그인과 회원가입에 필요한 mapper 입니다.  -->	 
 	 
 <mapper namespace="com.spring.mapper.YH.MemberMapper">
 	<!-- id는 Mapper.java( 여기선 MemberMapper.java )에 동일하게 사용해야 된다. -->

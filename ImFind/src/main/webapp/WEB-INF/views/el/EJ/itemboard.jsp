@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String id = "hongchii";	
-	//String id=(String)session.getAttribute("id"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
+	//String id = "hongchii";	
+	String id=(String)session.getAttribute("loginUser"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
 %>
 
 <!DOCTYPE html>
