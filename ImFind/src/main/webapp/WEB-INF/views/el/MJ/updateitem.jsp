@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	
-	String id=(String)session.getAttribute("id"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
+String id=(String)session.getAttribute("loginUser"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
 %>
 
 <!DOCTYPE html>
@@ -176,8 +175,12 @@
 			
 		</form>
 	</div>
+		<script>
+			var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
+			console.log(lost_PostNum)
+		</script>
 		<!--게시글 등록 js 시작-은지 -->
-		<script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/el/js/update_item.js"></script>
 		<!--게시글 등록 js 끝-은지 -->
 		
 		<!-- -->

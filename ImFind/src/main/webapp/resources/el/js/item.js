@@ -6,6 +6,7 @@
 						url : '/imfind/list.do',
 						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 						success : function(data) {
+							console.log()
 							$.each(data,function(index,item) {	
 								//console.log(item)
 								var cardElem = document.querySelector('#ajax-test-div');

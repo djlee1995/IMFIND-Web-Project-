@@ -70,10 +70,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js" ></script> 
 <script>
-var lost_PostNum = <%= request.getParameter("lost_PostNum") %>
+var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
 console.log(lost_PostNum)
 var loginUser=<%=(String)session.getAttribute("loginUser")%>
-var kakaoLoginUser <%=(String)session.getAttribute("kakaoLoginUser")%>
+var kakaoLoginUser=<%=(String)session.getAttribute("kakaoLoginUser")%>
 
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=services"></script>

@@ -1,5 +1,7 @@
 
 $(document).ready(function() {
+	
+	console.log(lost_PostNum)
 	var loc;
 	$.ajax({
 		url :'datainfo.do',
@@ -20,7 +22,7 @@ $(document).ready(function() {
 				loc=data[0].lost_Loc
 				//$('#postnum').text(data[0].lost_PostNum);
 				$('#title').text(data[0].lost_Title);
-				$('#content').text(data[0].lost_Content);
+				$('#content').html(data[0].lost_Content);
 				//$('#postnum').text(data[0].lost_Re_Date);
 				//$('#postnum').text(data[0].lost_Re_Count);
 				$('#file').html('<img height="50%" width="70%" src="'+data[0].lost_Up_File+'">');
@@ -74,7 +76,8 @@ function placesSearchCB (data, status, pagination) {
 		 map.setBounds(bounds);
 	 }
 }
-	
-	
+$('.updateBtn').click(function(){
+	$(location).attr("href", "updatepage?lost_PostNum="+lost_PostNum+"");
+});
 	
 });

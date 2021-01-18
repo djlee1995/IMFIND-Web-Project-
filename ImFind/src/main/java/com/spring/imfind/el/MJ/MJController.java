@@ -27,7 +27,12 @@ public class MJController {
 
 		return "el/MJ/iteminfo";
 	}
+	
+	@RequestMapping("/updatepage")
+	public String updatepage() {
 
+		return "el/MJ/updateitem";
+	}
 	/*
 	 * 
 	 * 민정 - 게시판 조회
