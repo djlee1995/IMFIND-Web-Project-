@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 package com.spring.mapper;
 
@@ -25,3 +26,32 @@ public interface LostMapper {
 	List<PoliceVO> getSimpleList();
 
 }
+=======
+package com.spring.mapper;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.spring.imfind.imf.*;;;
+
+
+public interface LostMapper {
+	//List<LostVO> getMembers();
+	List<PoliceVO> police();
+	List<PoliceVO> p_lostlist(String placeid);
+	List<PoliceVO> p_info(String code);
+	List<EtcVO> etc();
+	List<EtcVO> s_lostlist(String tel);
+	List<EtcVO> s_info(String code);
+	List<PoliceVO> p_select(@Param("city")String city,@Param("gu")String gu,@Param("kind") String kind);
+	List<EtcVO> s_select(@Param("city")String city,@Param("gu")String gu,@Param("kind") String kind);
+	List<PoliceVO> p_select_place(@Param("city")String city,@Param("gu")String gu);
+	List<EtcVO> s_select_place(@Param("city")String city,@Param("gu")String gu);
+	
+	// 유희
+	List<PoliceVO> getSimpleList(@Param("x") String x, @Param("y") String y);
+
+}
+>>>>>>> dd989063f89186c6b2e1561ca33d1f1d7ef91ae8
