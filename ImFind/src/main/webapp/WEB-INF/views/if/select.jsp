@@ -9,8 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- <link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
- --><link
+<link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
 	rel="stylesheet">
 
@@ -27,7 +26,6 @@
 
 
 	<div class="wrapper d-flex align-items-stretch">
-		<!-- style="background-image: url(${pageContext.request.contextPath}/resources/if/images/bg_1.jpg); -->
 		
 		<nav id="sidebar" class="order-last" class="img">
 		

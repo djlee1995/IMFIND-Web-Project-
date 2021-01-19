@@ -80,13 +80,7 @@ z-index : 100;
 				<div class="ht-right">
 					<a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
 					<div class="lan-selector">
-						<!-- 이미지 못 찾는 영역  
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select> -->
+						
 					</div>
 					<div class="top-social">
 						<a href="#"><i class="ti-facebook"></i></a> <a href="#"><i

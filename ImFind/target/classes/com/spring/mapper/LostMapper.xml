@@ -4,9 +4,7 @@
 
 <mapper namespace="com.spring.mapper.LostMapper">
 
-	<!-- <select id="getMembers" resultType="EmpVO">
-		SELECT * FROM emp order by deptno
-	</select> -->
+
 	<select id="police" resultType="PoliceVO">
 		SELECT * FROM p_place 
 	</select>
@@ -63,15 +61,4 @@
 		SELECT * FROM p_lost where <![CDATA[ rownum < 4 ]]> order by lost_date asc
 	</select>
 
-<!-- 	지우지 마시오 [유희]
-		<select id="getRadius" resultType="PoliceVO">
-				SELECT *, SQRT( POWER(( 37.4917910 - x) * 110979.309, 2) + POWER((127.4875970 - y) *  88907.949, 2)) z
-		  		FROM p_place, (SELECT     x = #{x} v_x, y = #{y} v_y, 110979.309 r_x,  88907.949 r_y, 1000.000 v_z FROM dual)
-		 WHERE SQRT( POWER((v_x - x) * r_x, 2)
-		           + POWER((v_y - y) * r_y, 2)
-		           ) <= v_z
-		   AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
-		   AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
-		 ORDER BY z
-	</select> -->
 </mapper>

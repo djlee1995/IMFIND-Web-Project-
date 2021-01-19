@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%
-	
-	String id=(String)session.getAttribute("id"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
-%>
+
 
 <!DOCTYPE html>
 <html>
@@ -61,8 +58,8 @@
 			
 			<div class="item2">
 				<h6>작성자</h6>
-				<input type="hidden" name="id" value="<%=id %>">
-				<h6><%=id %></h6>
+				<input type="hidden" name="id" value="${loginUser}">
+				<h6>${loginUser}</h6>
 	
 			</div>
 			<!-- 필수입력사항   -->
@@ -101,11 +98,12 @@
 			
 				<div id="Loc1" style="margin: -15px 10px 10px 100px;">
 					<!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
-					<div id="Loc2"><input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
+					<div id="Loc2">
+					<input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
 							data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onKeypress="enter();" />
 					<button type="button" id="Loc2Btn" onclick="resizeMap(); relayout();" >위치 검색</button></div>
 					<!-- <button onclick="resizeMap(); relayout();" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">내위치에서 위치 찾기</button>  -->	
-					<input type="text" id="centerAddr" name="Lost_Loc" style="background-color: #e2e2e2;" readonly/>
+				<!-- 	<input type="text" id="centerAddr" name="Lost_Loc" style="background-color: #e2e2e2;" readonly/> -->
 				</div>
 						
 				<!-- collapse 대상 태그는 class를 collapse로 설정합니다. -->
@@ -151,7 +149,7 @@
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
-								<label><input type="radio" name="Lo0st_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
+								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value="direct"> 직접입력</label> <br>
 								<label><input type="text" name="Lost_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
@@ -171,11 +169,18 @@
 				<button type="submit">확인</button>
 				<!-- <a href="javascript:addboard()" >등록</a>&nbsp;&nbsp;  -->
 				<!-- <a href="#" onclick="pay()">일반 결제</a><br><br> -->
-				<a href="index">취소</a>
+				<a href="#" onclick="history.back();">취소</a>
 			</div>
 			
 		</form>
 	</div>
+	<script>
+var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
+console.log(lost_PostNum)
+var loginUser=<%=(String)session.getAttribute("loginUser")%>
+var kakaoLoginUser=<%=(String)session.getAttribute("kakaoLoginUser")%>
+
+</script>
 		<!--게시글 등록 js 시작-은지 -->
 		<script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script>
 		<!--게시글 등록 js 끝-은지 -->

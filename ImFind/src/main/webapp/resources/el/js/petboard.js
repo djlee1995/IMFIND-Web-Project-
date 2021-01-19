@@ -367,7 +367,6 @@ function pay(){
 				
 		var IMP = window.IMP;
 		var code = "imp13319491";
-		//var code = "imp55973725"; // 가맹점 식별코드 imp13319491
 		IMP.init(code);	
 		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
 		IMP.request_pay(
@@ -453,15 +452,7 @@ function inputcheck(){
 		
 		return false;
 	}	
-	/*
-	var editorContent = document.querySelector('.note-editable').innerText;
 	
-	if(editorContent == ""){
-		alert('내용을 입력해주세요.')
-		
-		return false;
-	}
-	*/
 	$(".item10").children('button').attr('data-toggle', 'modal')
 	$(".item10").children('button').attr('data-target', '#myModal')
 	//e.preventDefault();

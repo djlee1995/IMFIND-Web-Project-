@@ -8,18 +8,6 @@
 </head>
 <body>
 
-
-<!-- var postnum;
-	var title;
-	var content;
-	var redate;
-	var recount;
-	var file;
-	var pay;
-	var item;
-	var loc;
-	var lostdate;
-	var id; -->
 <table id="data_output" align="center">
   <tr id="update" align="right">
     

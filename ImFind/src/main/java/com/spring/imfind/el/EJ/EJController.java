@@ -56,7 +56,7 @@ public class EJController {
 		System.out.println(boardvo.toString());
 		
 		
-		return "el/index";
+		return "redirect:/item";
 	}
 	
 	   @ResponseBody
@@ -65,17 +65,19 @@ public class EJController {
 	         HttpServletResponse response) throws Exception {
 		   
 		   System.out.println("ddddddd");
+		   System.out.println(file);
 	      response.setContentType("text/html;charset=utf-8");
-	      String uploadPath = "/Users/hongmac/Documents/upload/";
+	      String uploadPath = "C:\\Project\\WebProject\\upload\\";
 	      //String uploadPath = "/Users/hongmac/Documents/WebProject/ImFind/src/main/webapp/resources/el/images/";
-	      
-	      
+	   
 	      PrintWriter out = response.getWriter();
 	      String originalFileExtension = file.getOriginalFilename(); 
+	      int a=originalFileExtension.lastIndexOf( "." );
+	      System.out.println();
 	      String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");// + originalFileExtension
 
-	      System.out.println("storedFileName : " + storedFileName);
-	      file.transferTo(new File(uploadPath+storedFileName));
+	      System.out.println("storedFileName : " + storedFileName+originalFileExtension.substring(a));
+		file.transferTo(new File(uploadPath + storedFileName/* +originalFileExtension.substring(a) */));
 	      out.println("/imfind/upload/"+storedFileName);
 	      out.close();
 
@@ -162,9 +164,7 @@ public class EJController {
 		return comment_list;
 	}
 	
-	/* 
-	  은지 댓글 끝
-	 */
+
 
 
 
