@@ -13,8 +13,12 @@
 	Lost_Re_Date, 
 	Lost_Date, 
 	Lost_Loc, 
+<<<<<<< HEAD
 	Lost_Pay,
 	Id)values 
+=======
+	Lost_Pay,id)values 
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
 	(#{Lost_Title}, 
 	#{Lost_Content}, 
 	#{Lost_Up_File},
@@ -22,8 +26,12 @@
 	sysdate, 
 	#{Lost_Date}, 
 	#{Lost_Loc}, 
+<<<<<<< HEAD
 	#{Lost_Pay},
 	#{Id})
+=======
+	#{Lost_Pay},#{id})
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
 	</insert>
 	 
 	 <select id="getPayMember" resultType="com.spring.imfind.el.EJ.MemberVO">
@@ -62,6 +70,7 @@
 	 #{Pat_Loc}, 
 	 #{Pat_Pay})
 	 </insert>
+<<<<<<< HEAD
 	 <!-- 여기서 동적쿼리문으로 조건문 처리  -->
 	 <insert id="commentInsert" parameterType="LostComVO">
         <selectKey keyProperty="Com_Num" order="BEFORE" resultType="int">
@@ -91,6 +100,10 @@
      <update id="boardReplyupdate" parameterType="LostComVO">
 	 	update Re_Comment set Re_Seq=Re_Seq+1 where Re_Lev = #{Re_Lev} and Re_Seq > #{Re_Seq}
 	 </update>
+=======
+
+	
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
 	 
 	 <insert id="commentReply" parameterType="LostComVO">
 	 	<!-- <selectKey>는 insert구문에만 사용 가능 -->

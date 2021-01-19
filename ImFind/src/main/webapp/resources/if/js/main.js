@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function($) {
 
 	"use strict";
@@ -31,3 +32,26 @@
 //	});
 //	
 //})();
+=======
+(function($) {
+
+	"use strict";
+
+	var fullHeight = function() {
+
+		$('.js-fullheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullheight').css('height', $(window).height());
+		});
+
+	};
+	fullHeight();
+
+	$('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      
+  });
+
+})(jQuery);
+
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper
@@ -24,4 +25,33 @@
   </select>
 
   
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.MJ.ItemMapper">
+<select id="getitem"   resultType="ItemVO">
+      
+      SELECT * FROM (
+          SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.lost_postnum ASC) AS RNUM
+          FROM lostpost p
+      )
+ 
+      
+</select>
+
+
+<select id="getItemservice" resultType="ItemVO"> 
+	SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+
+
+  </select>
+  <select id="getdata_info" resultType="ItemVO"> 
+	SELECT * from lostpost where lost_postnum = #{lost_PostNum}
+
+  </select>
+
+  
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
 </mapper>

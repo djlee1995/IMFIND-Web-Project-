@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -61,4 +62,69 @@
 		SELECT * FROM p_lost where <![CDATA[ rownum < 4 ]]> order by lost_date asc
 	</select>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.LostMapper">
+
+
+	<select id="police" resultType="PoliceVO">
+		SELECT * FROM p_place 
+	</select>
+	<select id="p_select_place" resultType="PoliceVO">
+		SELECT * FROM p_place 
+		where 
+		city=#{city} and gu=#{gu}
+	</select>
+	<select id="s_select_place" resultType="EtcVO">
+		SELECT * FROM s_place 
+		where 
+		city=#{city} and gu=#{gu}
+	</select>
+	<select id="p_lostlist" resultType="PoliceVO">
+		select l.code,l.lost_date,l.kind,l.item,l.info,p.placeid,p.depplace,p.addr,p.tel,l.photo,p.x,p.y 
+		from p_lost l, p_place p 
+		where 
+		p.placeid=l.placeid and p.placeid=#{placeid}	
+	</select>
+	<select id="p_info" resultType="PoliceVO">
+		select * from p_lost l,p_place p 
+		where 
+		p.placeid=l.placeid and code=#{code}	
+	</select>
+	<select id="p_select" resultType="PoliceVO">
+		select * from p_lost l, p_place p 
+		where 
+		p.placeid=l.placeid and p.city=#{city} and p.gu=#{gu} and l.kind=#{kind}
+	</select>
+	<select id="s_select" resultType="EtcVO">
+		select * from s_lost l, s_place p 
+		where 
+				p.tel=l.tel 
+			and 
+				p.city=#{city} 
+			and 
+				p.gu=#{gu} 
+			and 
+				l.kind=#{kind}
+	</select>
+	<select id="etc" resultType="EtcVO">
+		SELECT * FROM s_place
+	</select>
+	<select id="s_lostlist" resultType="EtcVO">
+		select l.photo, l.state, l.code,l.lost_date,l.kind,l.item,l.info,p.depplace,p.addr,p.tel,p.x,p.y from s_lost l, s_place p where p.tel=l.tel and p.tel=#{tel}	
+	</select>
+	<select id="s_info" resultType="EtcVO">
+		select * from s_lost l, s_place p where p.tel=l.tel and code=#{code}	
+	</select>
+	
+	
+	<!-- 유희 -->
+	<select id="getSimpleList" resultType="PoliceVO">
+		SELECT * FROM p_lost where <![CDATA[ rownum < 4 ]]> order by lost_date asc
+	</select>
+
+>>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
 </mapper>
