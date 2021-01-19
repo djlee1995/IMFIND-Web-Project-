@@ -379,8 +379,8 @@ function pay(){
 				alert("잠시만 기다려주세요!");
 				
 		var IMP = window.IMP;
-		var code = "imp13319491";
-		//var code = "imp55973725"; // 가맹점 식별코드 imp13319491
+		//var code = "imp13319491";
+		var code = "imp55973725"; // 가맹점 식별코드 imp13319491
 		IMP.init(code);	
 		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
 		IMP.request_pay(

@@ -105,39 +105,38 @@
 
 </head> 
 <body>
-
-    <div class="container">
-		<form name="commentInsertForm" method="post" enctype="multipart/form-data">
-	        <div class="comtitle"><h3>댓  글</h3>
-	        <input type="hidden" name="Lost_PostNum" value="<%= request.getParameter("lost_PostNum") %>"/></div>
-	        
+<article>
+	    <div class="container">
+			<form name="commentInsertForm" method="post" enctype="multipart/form-data">
+		        <div class="comtitle"><h3>댓  글</h3>
+		        <input type="hidden" name="Lost_PostNum" value="<%= request.getParameter("lost_PostNum") %>"/></div>
+		        
+				
+		        <div class="cominput">
+		        	<input type="hidden" name="Id" value="${loginUser}"/>
+		           <textarea class="commentbox" name="Com_Content" placeholder="댓글을 입력해주세요."></textarea>
+		           
+		           <div class="com2">
+		           
+		               <div class="com_btn">
+		              	  <button type="reset" class="button2">취소</button>
+		                  <!-- <button type="button" name="commentInsertBtn" class="button1" onclick="insertBtnClick()">등록</button> -->
+		                  <button type="button" class="button1" name="commentInsertBtn" >등록</button>
+		                  
+		                  <!-- <button type="button" class="button2">
+		                  <i class="fas fa-images fa-lg" ></i></button> -->
+		                  
+		                  <input type="checkbox" id="Secret_Com" name="Secret_Com">비밀댓글 
+		               </div>
+		               <span style="color:#aaa;" id="counter">(0 / 최대 200자)</span>
+		          		
+		           </div>  
+		        </div>
+			</form>
 			
-	        <div class="cominput">
-	        	<input type="hidden" name="Id" value="${loginUser}"/>
-	           <textarea class="commentbox" name="Com_Content" placeholder="댓글을 입력해주세요."></textarea>
-	           
-	           <div class="com2">
-	           
-	               <div class="com_btn">
-	              	  <button type="reset" class="button2">취소</button>
-	                  <!-- <button type="button" name="commentInsertBtn" class="button1" onclick="insertBtnClick()">등록</button> -->
-	                  <button type="button" class="button1" name="commentInsertBtn" >등록</button>
-	                  
-	                  <!-- <button type="button" class="button2">
-	                  <i class="fas fa-images fa-lg" ></i></button> -->
-	                  
-	                  <input type="checkbox" id="Secret_Com" name="Secret_Com">비밀댓글 
-	               </div>
-	               <span style="color:#aaa;" id="counter">(0 / 최대 200자)</span>
-	          		
-	           </div>  
-	        </div>
-		</form>
-		
-    </div> 
-    
-	        <div class="commentList"></div>
-   
+	    </div> 
+	   <div class="commentList"></div>
+ </article> 
     <script src="${pageContext.request.contextPath}/resources/el/js/comment.js"></script>  
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

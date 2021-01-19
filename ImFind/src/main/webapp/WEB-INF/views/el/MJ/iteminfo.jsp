@@ -6,8 +6,39 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    
+ <!-- Css Styles -->
+     <!-- Header Section Begin -->
+      <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+    <!-- Header End -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css" type="text/css">
+      
+    <style>
+    	section{
+		    position: relative;
+		    top: 134px;
+    	}
+    </style> 
 </head>
 <body>
+     
+   <%
+       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+   %>
+            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
+   <%
+       } else{
+   %>
+            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+   <%
+       }
+   %>
+    <!-- Header End -->
+   <section>
+   
 
 <table id="data_output" align="center">
   <tr id="update" align="right">
@@ -53,21 +84,24 @@
     <div id="map" style="width:500px; height:500px; margin-top:70px;"></div>
     </td>  
    </tr>
-  
 </table>
+		<jsp:include page="../EJ/comment.jsp" flush="true" />
+   </section>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js" ></script> 
 <script>
 var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
 console.log(lost_PostNum)
-var loginUser=<%=(String)session.getAttribute("loginUser")%>
-var kakaoLoginUser=<%=(String)session.getAttribute("kakaoLoginUser")%>
+var loginUser='<%=(String)session.getAttribute("loginUser")%>'
 
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=services"></script>
 <script src="${pageContext.request.contextPath}/resources/el/js/iteminfo.js"></script>
-<jsp:include page="../EJ/comment.jsp" flush="true" />
+
+ <!-- Header Section Begin -->
+ <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+   <!-- Header End -->
 
 </body>
 </html>

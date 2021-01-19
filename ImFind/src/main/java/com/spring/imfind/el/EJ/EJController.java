@@ -65,7 +65,7 @@ public class EJController {
 	         HttpServletResponse response) throws Exception {
 		 
 	      response.setContentType("text/html;charset=utf-8");
-	      String uploadPath = "/Users/hongmac/Documents/upload/";
+	      String uploadPath = "C:\\Project\\WebProject\\upload\\";
 	      PrintWriter out = response.getWriter();
           String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
           
@@ -87,14 +87,14 @@ public class EJController {
 	@RequestMapping(value="el/insertPay", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public int insertPay(@RequestBody Map<String, String> vo){
-
+		System.out.println("vo:" + vo.toString());
 		PayVO payVO = new PayVO();
 		payVO.setPayCode((vo.get("PayCode")));
 		payVO.setPay_Way((vo.get("Pay_Amount")));
 		payVO.setPay_Amount(Integer.parseInt(vo.get("Pay_Amount")));
 		payVO.setPay_State((vo.get("Pay_State")));
 		payVO.setPay_Date((vo.get("Pay_Date")));
-		
+		payVO.setId(vo.get("Id"));
 		int res = boardService.insertPay(payVO);
 		
 		return res;

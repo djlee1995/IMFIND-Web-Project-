@@ -38,12 +38,13 @@
 	 Pay_Amount, 
 	 Pay_Way, 
 	 Pay_State, 
-	 Pay_Date)values 
+	 Pay_Date,Id)values 
 	 (#{PayCode}, 
 	 #{Pay_Amount}, 
 	 #{Pay_Way}, 
 	 #{Pay_State},
-	 #{Pay_Date})
+	 #{Pay_Date},
+	 #{Id})
 	 </insert>
 	
  	 <insert id = "petInsert" >
@@ -54,14 +55,15 @@
 	 Pat_Re_Date, 
 	 Pat_LostDate, 
 	 Pat_Loc, 
-	 Pat_Pay)values 
+	 Pat_Pay,Id)values 
 	 (#{Pat_Title}, 
 	 #{Pat_Content}, 
 	 #{Pat_Name}, 
 	 sysdate, 
 	 #{Pat_LostDate}, 
 	 #{Pat_Loc}, 
-	 #{Pat_Pay})
+	 #{Pat_Pay},
+	 #{Id})
 	 </insert>
 	 <!-- 여기서 동적쿼리문으로 조건문 처리  -->
 	 <insert id="commentInsert" parameterType="LostComVO">

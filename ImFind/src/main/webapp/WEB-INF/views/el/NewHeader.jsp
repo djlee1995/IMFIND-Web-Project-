@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-   	 <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
-	<!-- Modernizr JS -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
-    
+   
     <!-- 폰트 어썸 -->
    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 	

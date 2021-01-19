@@ -57,17 +57,15 @@
 		select * from s_lost l, s_place p where p.tel=l.tel and code=#{code}	
 	</select>
 	
-	<!-- 유희 -->
-	<select id="getSimpleList" resultType="PoliceVO">
-		
-		  SELECT lost_date, item, info, photo, addr, tel, x, y, depplace
-		  FROM (select * from p_lost, p_place where p_lost.placeid = p_place.placeid),
-		       (SELECT #{x} v_x, #{y} v_y, 110979.309 r_x, 88907.949 r_y, 1500.000 v_z FROM dual)
-		  WHERE SQRT( POWER((v_x - x) * r_x, 2) +   POWER((v_y - y) * r_y, 2)) <![CDATA[ <= v_z and rownum < 50 ]]>
-			   AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
-			   AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
-		  ORDER BY lost_date desc 
-	</select>
-
+   <!-- 유희 -->
+   <select id="getSimpleList" resultType="PoliceVO">
+      
+        SELECT lost_date, item, info, photo, addr, tel, x, y, depplace
+        FROM (select * from p_lost, p_place where p_lost.placeid = p_place.placeid order by p_lost.lost_date desc),
+             (SELECT #{x} v_x, #{y} v_y, 110979.309 r_x, 88907.949 r_y, 1500.000 v_z FROM dual)
+        WHERE SQRT( POWER((v_x - x) * r_x, 2) +   POWER((v_y - y) * r_y, 2)) <![CDATA[ <= v_z and rownum < 50 ]]>
+            AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
+            AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
+   </select>
 
 </mapper>

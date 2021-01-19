@@ -13,16 +13,20 @@
 <!-- Google Font --
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <!-- Css Styles -->
+ <!-- Header Section Begin -->
+   <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+ <!-- Header End -->
+    
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css"
 	type="text/css">
-<link rel="stylesheet"
+<%-- <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css"
-	type="text/css">
+	type="text/css"> --%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css"
-	type="text/css">
-<link rel="stylesheet"
+	type="text/css"> <!-- 지우면 안됨 -->
+<%-- <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css"
 	type="text/css">
 <link rel="stylesheet"
@@ -39,7 +43,7 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/css/style.css"
-	type="text/css">
+	type="text/css"> --%>
 <!-- 조회페이지 css (mj) -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
@@ -79,16 +83,35 @@ z-index : 100;
   text-decoration: none;
   display: block;
 }
+section{
+   position: relative;
+   top: 93px;
+}
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
 </head>
 <body>
+      
+   <%
+       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+   %>
+            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
+   <%
+       } else{
+   %>
+            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+   <%
+       }
+   %>
+    <!-- Header End -->
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
+	
+	<section>
 	<!-- <div class="container1"> -->
 	<div class="container1">
 		<div class="row1">
@@ -119,96 +142,12 @@ z-index : 100;
 	<div class="card-list-con">
 		<div id="ajax-test-div" style="width: 70vw;">
 	</div>
-	<nav aria-label="...">
+	<page aria-label="...">
   <ul class="pagination pagination-sm" id = "numbers_mypage_post1">
   </ul>
-	</nav>
+	</page>
 	</div>
-	<!-- Footer Section Begin -->
-	<footer class="footer-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="footer-left">
-						<div class="footer-logo">
-							<a href="#"><img
-								src="${pageContext.request.contextPath}/resources/el/img/footer-logo.png"
-								alt=""></a>
-						</div>
-						<ul>
-							<li>Address: 60-49 Road 11378 New York</li>
-							<li>Phone: +65 11.188.888</li>
-							<li>Email: hello.colorlib@gmail.com</li>
-						</ul>
-						<div class="footer-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-instagram"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 offset-lg-1">
-					<div class="footer-widget">
-						<h5>Information</h5>
-						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Serivius</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div class="footer-widget">
-						<h5>My Account</h5>
-						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Shopping Cart</a></li>
-							<li><a href="#">Shop</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="newslatter-item">
-						<h5>Join Our Newsletter Now</h5>
-						<p>Get E-mail updates about our latest shop and special
-							offers.</p>
-						<form action="#" class="subscribe-form">
-							<input type="text" placeholder="Enter Your Mail">
-							<button type="button">Subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright-reserved">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="copyright-text">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</div>
-						<div class="payment-pic">
-							<img
-								src="${pageContext.request.contextPath}/resources/el/img/payment-method.png"
-								alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer Section End -->
+	</section>
 	<!-- Js Plugins -->
 	<script
 		src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
@@ -231,10 +170,22 @@ z-index : 100;
 	<script
 		src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
 	<!--게시글 조회 js 시작-MJ -->
-        <script src="${pageContext.request.contextPath}/resources/el/js/item.js"></script>
-    <!--게시글 조회 js 끝-MJ -->
-    <!--게시글 조회 행정동js 시작-MJ -->
-    	  <script src="${pageContext.request.contextPath}/resources/el/MJ/hangjungdong.js"></script>
-    <!--게시글 조회 행정동js 끝-MJ -->
+       <script src="${pageContext.request.contextPath}/resources/el/js/item.js"></script>
+   <!--게시글 조회 js 끝-MJ -->
+   <!--게시글 조회 행정동js 시작-MJ -->
+   	  <script src="${pageContext.request.contextPath}/resources/el/js/hangjungdong.js"></script>
+   <!--게시글 조회 행정동js 끝-MJ -->
+   		<!-- jQuery Easing -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
 </body>
 </html>

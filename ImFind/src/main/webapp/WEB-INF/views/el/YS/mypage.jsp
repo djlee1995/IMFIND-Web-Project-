@@ -18,8 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     
  <!-- Css Styles -->
+     <!-- Header Section Begin -->
+      <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+    <!-- Header End -->
+    
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css" type="text/css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
@@ -28,9 +33,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">    
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
 
-    
     
         <!-- Bootstrap cdn 설정  for 페이징  -->   
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
@@ -85,13 +89,13 @@
     </div>
 
       
-     <%
+   <%
        if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
-    %>
+   %>
             <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
    <%
        } else{
-    %>
+   %>
             <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
    <%
        }
@@ -99,11 +103,7 @@
     <!-- Header End -->
    
     
-<%
-   
-   String loginUser=(String)session.getAttribute("loginUser"); // 로그인
-%>
-    
+
 
     
 
@@ -570,6 +570,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
+	  <!-- Header Section Begin -->
+	      <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+	    <!-- Header End -->
+
 </body>
 
 </html>

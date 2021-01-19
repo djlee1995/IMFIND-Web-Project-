@@ -137,8 +137,7 @@
 	<script>
 var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
 console.log(lost_PostNum)
-var loginUser=<%=(String)session.getAttribute("loginUser")%>
-var kakaoLoginUser=<%=(String)session.getAttribute("kakaoLoginUser")%>
+var loginUser='<%=(String)session.getAttribute("loginUser")%>'
 
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

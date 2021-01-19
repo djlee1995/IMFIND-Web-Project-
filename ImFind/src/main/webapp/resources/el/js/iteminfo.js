@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 	
-	console.log(lost_PostNum)
+	console.log(loginUser)
 	var loc;
 	$.ajax({
 		url :'datainfo.do',
@@ -16,14 +16,12 @@ $(document).ready(function() {
 			if($.trim(loginUser)==(data[0].id)){
 				$('#update').html('<th colspan="5"><input type="button" class="updateBtn" value="수정"></th>');
 			}
-			else if($.trim(kakaoLoginUser)==(data[0].id)){
-				$('#update').html('<th colspan="5"><input type="button" class="updateBtn" value="수정"></th>');
-			}
+			
 			console.log()
 				loc=data[0].lost_Loc
 				$('#title').text(data[0].lost_Title);
 				$('#content').html(data[0].lost_Content);
-				$('#file').html('<img height="50%" width="70%" src="'+data[0].lost_Up_File+'">');
+				$('#file').html(data[0].lost_Up_File);
 				$('#pay').text(data[0].lost_Pay);
 				$('#loc').text(data[0].lost_Loc);
 				$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));

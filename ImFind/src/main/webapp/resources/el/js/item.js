@@ -55,13 +55,13 @@ jQuery(document).ready(function(){
 						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 						success : function(data) {
 							$.each(data,function(index,item) {	
-								//console.log(item)
+								console.log(item.lost_Up_File)
 								var cardElem = document.querySelector('#ajax-test-div');
 								var card = document.createElement('div');
 								card.className = "col-lg-4 col-md-6";
 							 	var singlelatestblog = document.createElement('div');
 								singlelatestblog.className = "single-latest-blog";
-								singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">,<img src="'+item.lost_Up_File+'" alt="">';
+								singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;
 								var cardbox = document.createElement('div');
 								var blog = document.createElement('div');
 								blog.className = "blog";
@@ -89,19 +89,16 @@ jQuery(document).ready(function(){
 						rowsCount=rows.length,
 						pageCount=Math.ceil(rowsCount/rowsPerPage),
 						numbers=$('#numbers_mypage_post1');
-						console.log('rowsCount 개수 : ' + rowsCount);
-						console.log('pageCount = '+ pageCount);
-						console.log('rowsPerPage  ='+ rowsPerPage);
+						
 						for(var i=1; i <= pageCount; i++){
-						console.log('페이징 번호 : ' + i);
+					
 						numbers.append('<li><a href="">' + i + '</a></li>');
 					}
 					numbers.find('li:first-child a').addClass('active');
 					function displayRows(idx){
 						var start =(idx -1)*rowsPerPage;//시작인덱스
 							end = start + rowsPerPage; //끝인덱스
-							console.log('start = ' + start);
-							console.log('end = ' + end);
+							
 						rows.hide();
 						rows.slice(start, end).show();
 						}
@@ -111,11 +108,8 @@ jQuery(document).ready(function(){
 						numbers.find('li a').removeClass('active');
 						$(this).find('a').addClass('active');
 						var index = $(this).text();
-						console.log(index);
 						displayRows(index);
-						console.log('테스트');
 					});
-					console.log('================================================')
 				};
  		<!-- 민정 검색버튼 -->
 		document.querySelector('.btn').addEventListener('click', function click() {
@@ -130,16 +124,14 @@ jQuery(document).ready(function(){
 		        data : { "lost_Title" : lost_Title },
 		        //type : 'POST',
 		        success : function(data){
-		        	console.log(data)
 	                alert("잠시만 기다려주세요!");
 	                $.each(data,function(index,item) {
-	                	console.log(item)
 	                var cardElem = document.querySelector('#ajax-test-div');
 					var card = document.createElement('div');
 					card.className = "col-lg-4 col-md-6";
 				 	var singlelatestblog = document.createElement('div');
 					singlelatestblog.className = "single-latest-blog";
-					singlelatestblog.innerHTML = '<a href = "">,<img src="'+item.lost_Up_File+'" alt="">';
+					singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;				
 					var cardbox = document.createElement('div');
 					var blog = document.createElement('div');
 					blog.className = "blog";
@@ -170,16 +162,14 @@ function enterkey() {
 	        data : { "lost_Title" : lost_Title },
 	        //type : 'POST',
 	        success : function(data){
-	        	console.log(data)
                 alert("잠시만 기다려주세요!");
                 $.each(data,function(index,item) {
-                	console.log(item)
                 var cardElem = document.querySelector('#ajax-test-div');
 				var card = document.createElement('div');
 				card.className = "col-lg-4 col-md-6";
 			 	var singlelatestblog = document.createElement('div');
 				singlelatestblog.className = "single-latest-blog";
-				singlelatestblog.innerHTML = '<a href = "">,<img src="'+item.lost_Up_File+'" alt="">';
+				singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;
 				var cardbox = document.createElement('div');
 				var blog = document.createElement('div');
 				blog.className = "blog";

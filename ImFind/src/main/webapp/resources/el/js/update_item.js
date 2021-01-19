@@ -28,7 +28,7 @@ $("#datepicker").datepicker({
 		$('#centerAddr2').val(data[0].lost_Loc);
 		$('.item7_box').text(data[0].lost_Title);
 		$('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
-		$('#summernote').summernote('insertImage',data[0].lost_Up_File);
+		$('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
 		},
 		error: function(e){console.log(e);}  
 	});	

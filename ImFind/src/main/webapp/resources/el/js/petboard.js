@@ -355,19 +355,18 @@ function pay(){
 	
 	console.log(lostpay)
 	console.log("진입")
-	var id = 'hongchii';
 	// ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		data : { "id" : id } ,
+		data : { "id" : loginUser } ,
 		type : 'POST',
 		success : function(data){
 				alert("잠시만 기다려주세요!");
 				
 		var IMP = window.IMP;
-		var code = "imp13319491";
-		//var code = "imp55973725"; // 가맹점 식별코드 imp13319491
+		//var code = "imp13319491";
+		var code = "imp55973725"; // 가맹점 식별코드 imp13319491
 		IMP.init(code);	
 		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
 		IMP.request_pay(
