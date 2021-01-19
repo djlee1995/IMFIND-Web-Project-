@@ -1,14 +1,39 @@
+$(document).ready(function() {
 	
 //  ------ 달력 js 시작 ------
 $("#datepicker").datepicker({
 	language : 'ko',
 	maxDate : new Date()
+	
 });
 //  ------ 달력 js 끝 ------
 
 
 //  ------ 글 내용 js 시작 ------
-$(document).ready(function() {
+
+	console.log(lost_PostNum)
+	$.ajax({
+		url: "datainfo.do", 
+		//type: "POST",
+		enctype: 'multipart/form-data',
+		data: {'lost_PostNum': lost_PostNum },
+		async:false,
+		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		
+		success: function(data){
+			console.log(data[0].lost_Loc)
+		
+		$("input:radio[name='Lost_Item']:radio[value='"+data[0].lost_Item+"']").prop('checked', true); 
+		$('#datepicker').val(moment(data[0].lost_Date).format('YYYY-MM-DD'));
+		$('#centerAddr2').val(data[0].lost_Loc);
+		$('.item7_box').text(data[0].lost_Title);
+		$('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
+		$('#summernote').summernote('insertImage',data[0].lost_Up_File);
+		},
+		error: function(e){console.log(e);}  
+	});	
+	
+	
 	function sendFile(file){
 		var data = new FormData();	
 		data.append("file",file);
@@ -36,17 +61,48 @@ $(document).ready(function() {
 		lang : "ko-KR",
 		placeholder: '내용을 입력해주세요',
 		callbacks: {
-			onImageUpload : function(files){
-				sendFile(files[0]);
+			
+			 onImageUpload: function(files, editor, welEditable) {
+				 for (var i = files.length - 1; i >= 0; i--) {
+                     sendFile(files[i], this);
+                  }
 			}
 		}
 	});
-}); //ready
+	
+	function sendFile(file, el) {
+		 console.log()
+	       var form_data = new FormData();
+	       form_data.append('file', file);
+	   
+	       $.ajax({
+	         data: form_data,
+	         type: "post",
+	         url: './profileImage',
+	         cache: false,
+	         contentType: false,
+	         enctype: 'multipart/form-data',
+	         processData: false,
+	         success: function(url) {
+	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+	        	 	console.log(decodeURL)
+	        		 $(el).summernote('editor.insertImage', url);
+	         }
+	       });
+	     }
+	
+	
+
+	
+ //ready
 //  ------ 글 내용 js 끝 ------
 				
 			
 //  ------ 위치 js 시작 ------
 // 1- 접속 위치
+
+});
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
 	center : new kakao.maps.LatLng(33.450701,
@@ -152,7 +208,7 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 kakao.maps.event.addListener(map,'click',function(mouseEvent) {
 	searchDetailAddrFromCoords(mouseEvent.latLng,function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
-			var infoDiv = document.getElementById('centerAddr');
+			var infoDiv = document.getElementById('centerAddr2');
 			
 			var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '
 					+ result[0].road_address.address_name
@@ -198,7 +254,7 @@ function searchDetailAddrFromCoords(coords, callback) {
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 function displayCenterInfo(result, status) {
 	if (status === kakao.maps.services.Status.OK) {
-		var infoDiv = document.getElementById('centerAddr');
+		var infoDiv = document.getElementById('centerAddr2');
 
 		for (var i = 0; i < result.length; i++) {
 			// 행정동의 region_type 값은 'H' 이므로
@@ -343,102 +399,21 @@ function getFormatDate(date){
     
     return year + month  + day;
 }
-	
-function pay(){
-	var lostpay = $("input[name=Pat_Pay]:checked").val();
-	
-	if (lostpay == 'direct'){
-		lostpay = $("#paybox").val();
-		lostpay = lostpay.replace("direct","");
-		lostpay = lostpay.replace("," , "");	
-	}
-	
-	console.log(lostpay)
-	console.log("진입")
-	var id = 'hongchii';
-	// ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
-	$.ajax({
-		url : "el/paymember",
-		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		data : { "id" : id } ,
-		type : 'POST',
-		success : function(data){
-				alert("잠시만 기다려주세요!");
-				
-		var IMP = window.IMP;
-		var code = "imp13319491";
-		IMP.init(code);	
-		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
-		IMP.request_pay(
-				{ // 결제에 필요한 데이터를 담는 괄호여서 이 안에서 에이잭스를 넣었을때 에러 발생했어요!			
-				// name과 amount만 있어도 결제 진행가능
-				pg : 'kakao', // pg사 선택 (kakao, kakaopay 둘다 가능)
-				pay_method : 'card',
-				// merchant_uid : 'merchant_' + new Date().getTime(),
-				merchant_uid : 'merchant_' + new Date().getTime(), // 주문번호
-				name : '사례금', // 상품명
-				amount : lostpay,
-				buyer_name : data[0].name,
-				buyer_email : data[0].email,
-				buyer_tel : data[0].contact,
-				}, 
-				function(rsp){
-					console.log(rsp.merchant_uid)
-					if (rsp.success){ // 결제 성공
-						var msg = '결제가 완료되었습니다.';
-						var result = 
-						{
-							"PayCode" :rsp.merchant_uid, //PayCode //가맹점에서 생성/관리하는 고유 주문번호	
-							"Pay_Way" : rsp.pay_method, //Pay_Way //결제수단
-							"Pay_Amount" : rsp.paid_amount, //Pay_Amount //결제금액
-							"Pay_State" : rsp.status, //Pay_State //결제상태
-							"Pay_Date" : getFormatDate(new Date()),//결제승인시각
-							"Id" : id
-						}// result
-						console.log(rsp.paid_at);
-						console.log(result.id);
-			
-						// 서버로 결제테이블 정보 전송
-						$.ajax({
-							url : "el/insertPay",
-							dataType : 'json',
-							contentType : 'application/json; charset=UTF-8',
-							data : JSON.stringify(result),
-							type : 'POST',
-							//async = false,
-							success : function(data){
-							}
-						});
-							alert("결제성공!");	
-							addboard();//전송
-							} // if 결제성공
-							else { // 결제 실패
-								var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg;
-								alert(msg);
-							}
-						} // function(rsp)
-				); // IMP.request 
-			}, // 가장 처음 ajax 성공
-			error : function(){
-				alert("통신에러!");
-			}
-		}); // 가장 처음 ajax
-		//return true;	
-} // pay
+
 
 function addboard(){
-	p_boardform.submit();
+	boardform.submit();
 }
 
 function inputcheck(){
-	var lostpet = $("input[name=Pat_Name]:checked").val();
-	var lostdate = $("input[name=Pat_LostDate]").val();
-	var losttitle = $("input[name=Pat_Title]").val();
+	var lostitem = $("input[name=Lost_Item]:checked").val();
+	var lostdate = $("input[name=Lost_Date]").val();
+	var losttitle = $("input[name=Lost_Title]").val();
 	
-	if (lostpet == "있음"){
-		var lostpet =$("#p_textbox").val();
-		if (lostpet == ""){
-			alert('동물이름을 입력해주세요.')
+	if (lostitem == "etc"){
+		var lostitem =$("#textbox").val();
+		if (lostitem == ""){
+			alert('분실물품을 입력해주세요.')
 			return false;
 		}
 	}
@@ -459,6 +434,5 @@ function inputcheck(){
 	// pay()
 	return true;
 }
-
 // 결제요청(결제자 정보를 어떻게 넣을 것인가?) -> 결제성공 ( 결제테이블 정보 서버전송, 디비 저장) ->폼 양식 submit ->폼 입력된 정보 디비 저장
-// 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장
+// 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장}

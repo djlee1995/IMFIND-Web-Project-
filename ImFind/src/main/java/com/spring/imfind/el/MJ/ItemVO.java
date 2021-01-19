@@ -2,11 +2,14 @@ package com.spring.imfind.el.MJ;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ItemVO {
 
 	private int Lost_PostNum; 
 	private String Lost_Title;
 	private String Lost_Content; 
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date Lost_Re_Date;
 	private String Lost_Re_Count; 
 	private String Lost_Or_File; 
@@ -14,6 +17,7 @@ public class ItemVO {
 	private int Lost_Pay;
 	private String Lost_Item; 
 	private String Lost_Loc;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date Lost_Date;
 	private String Id;
 	private int Contact;

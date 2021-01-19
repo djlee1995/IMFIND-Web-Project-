@@ -9,9 +9,7 @@
           SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.lost_postnum ASC) AS RNUM
           FROM lostpost p
       )
-     <!--  WHERE RNUM BETWEEN ${Lost_PostNum} AND 10 
-       -->
-      <!-- WHERE <![CDATA[rnum >= #{1}]]> and <![CDATA[rnum <= #{12}]]> -->
+ 
       
 </select>
 
@@ -19,14 +17,7 @@
 <select id="getItemservice" resultType="ItemVO"> 
 	SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
 
-<!-- 	<foreach 
-	collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
-	</select> -->                                                     
-	<!-- 
-	<foreach item="item" index="index" collection="array"
-      open="(" separator="," close=")">
-       lost_Title=#{item} -->
- <!--  </foreach> -->
+
   </select>
   <select id="getdata_info" resultType="ItemVO"> 
 	SELECT * from lostpost where lost_postnum = #{lost_PostNum}

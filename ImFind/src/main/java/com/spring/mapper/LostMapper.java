@@ -9,7 +9,6 @@ import com.spring.imfind.imf.*;;;
 
 
 public interface LostMapper {
-	//List<LostVO> getMembers();
 	List<PoliceVO> police();
 	List<PoliceVO> p_lostlist(String placeid);
 	List<PoliceVO> p_info(String code);

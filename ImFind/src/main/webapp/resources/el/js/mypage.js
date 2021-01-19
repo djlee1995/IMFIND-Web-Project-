@@ -104,12 +104,9 @@
 									
 									console.log('페이징 번호 : ' + i);
 									numbers.append('<li><a href="">' + i + '</a></li>');
-									//numbers.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
 								}
 								
-								//<li class="page-item"><a class="page-link" href="#">2</a></li>
 								
-								//#numbers li:first-child a
 								numbers.find('li:first-child a').addClass('active');
 								
 								//페이지네이션 함수 displayRows
@@ -170,12 +167,9 @@
 											
 											console.log('페이징 번호 : ' + i);
 											numbers.append('<li><a href="">' + i + '</a></li>');
-											//numbers.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
 										}
 										
-										//<li class="page-item"><a class="page-link" href="#">2</a></li>
 										
-										//#numbers li:first-child a
 										numbers.find('li:first-child a').addClass('active');
 										
 										//페이지네이션 함수 displayRows
@@ -226,10 +220,8 @@ $(function(){
 	
 	var userScore = $('#makeStar');
 	userScore.change(function(){
-		 //var userScoreNum = $(this).value(); //js
 		var userScoreNum = $(this).val();
 		console.log('userScoreNum:'+userScoreNum);
-		//userScore.find('.rating').find('svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
 		$('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
 		$('.make_star svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
 	}); 

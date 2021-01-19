@@ -127,10 +127,7 @@
 
 <body onload="bankList();">
 
-    <!-- Page Preloder -->
-<!--     <div id="preloder">
-        <div class="loader"></div>
-    </div> -->
+
 
     <!-- Header Section Begin -->
    	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
@@ -290,15 +287,13 @@
 				if(event.target.id){
 					event.target.style.background = '#F2F7FB';
 				} 
-				//console.log(event.target.id)
 			})
 			
 			// focusout 이벤트
 			document.addEventListener('focusout', function(e){
 				
 				if(e.target.id == 'pass'){
-					// 테스트를 위해 주석처리함.
-					//chkPW(); 
+					 
 				}
 				if(e.target.id == 'pass2'){
 				    chkEqualpw();
@@ -309,7 +304,6 @@
 				if(e.target.id == 'name'){
 					getName(e);
 				}
-				//event.target.style.background = 'rgb(255, 255, 255)';
 		});
 	});
 	 </script>	

@@ -6,6 +6,7 @@
 						url : '/imfind/list.do',
 						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 						success : function(data) {
+							console.log()
 							$.each(data,function(index,item) {	
 								//console.log(item)
 								var cardElem = document.querySelector('#ajax-test-div');
@@ -38,17 +39,9 @@
 			
 			<!-- 민정 페이징 -->
 			function myfunction (){
-				/* 변수 생성
-				- rowPerPage 페이지당 보여줄 개수 5
-				- rows 가로행의 tr  개수
-				- rowsCount 개수
-				- pageCount 페이지네이션 개수=총 데이터/페이지당 보여줄 개수
-				- numbers
-				콘솔에서 pageCount 찍어서 확인해보기
-				*/
+			
 						var rowsPerPage = 3,
-						/*rows= $('#my-table100 tbody tr'), 헤드가 테이블이랑 하나  */
-						//rows= $('#ajax-test-div').find('div'), /* => 헤드를 나누었을 때 : Soo: 반응형으로 나중에 바꾸면 헤드 다시 하나로 합치고 윗줄로 바꾸자. (202101071138)*/
+						
 						rows= $('#ajax-test-div').find(".single-latest-blog"),
 						rowsCount=rows.length,
 						pageCount=Math.ceil(rowsCount/rowsPerPage),
@@ -56,14 +49,10 @@
 						console.log('rowsCount 개수 : ' + rowsCount);
 						console.log('pageCount = '+ pageCount);
 						console.log('rowsPerPage  ='+ rowsPerPage);
-						/* 페이지네이션 li를 생성 반복문*/
 						for(var i=1; i <= pageCount; i++){
 						console.log('페이징 번호 : ' + i);
 						numbers.append('<li><a href="">' + i + '</a></li>');
-						//numbers.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
 					}
-					//<li class="page-item"><a class="page-link" href="#">2</a></li>
-					//#numbers li:first-child a
 					numbers.find('li:first-child a').addClass('active');
 					//페이지네이션 함수 displayRows
 					function displayRows(idx){

@@ -12,14 +12,14 @@
 	Lost_Re_Date, 
 	Lost_Date, 
 	Lost_Loc, 
-	Lost_Pay)values 
+	Lost_Pay,id)values 
 	(#{Lost_Title}, 
 	#{Lost_Content}, 
 	#{Lost_Item}, 
 	sysdate, 
 	#{Lost_Date}, 
 	#{Lost_Loc}, 
-	#{Lost_Pay})
+	#{Lost_Pay},#{id})
 	</insert>
 	 
 	 <select id="getPayMember" resultType="com.spring.imfind.el.EJ.MemberVO">
@@ -58,14 +58,7 @@
 	 #{Pat_Loc}, 
 	 #{Pat_Pay})
 	 </insert>
-	 
-	 <!-- <insert id="commentInsert" parameterType="LostComVO">
-		<selectKey keyProperty=Lost_PostNum order="BEFORE" resultType="int">
-			select nvl(max(Lost_PostNum), 0)+1 from LostCom
-		</selectKey> 인서트 하기전 수행하라. 그 결과를 cno에 저장함. 
-	  insert into LostCom (Lost_PostNum, Com_Content, Com_Date)
-	  values(#{Lost_PostNum}, #{Com_Content}, sysdate)
-	</insert> -->
+
 	
 	 
 </mapper> 

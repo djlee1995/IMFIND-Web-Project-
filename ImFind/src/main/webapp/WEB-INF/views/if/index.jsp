@@ -9,8 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- <link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
- --><link
+ <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
 	rel="stylesheet">
 
@@ -25,7 +24,6 @@
 
 
 	<div class="wrapper d-flex align-items-stretch">
-		<!-- style="background-image: url(${pageContext.request.contextPath}/resources/if/images/bg_1.jpg); -->
 		
 		<nav id="sidebar" class="order-last" class="img">
 		
@@ -37,7 +35,6 @@
 			<div class="">
 				<h1>
 					<a href="#" class="logo">IF <span>분실물 조회</span></a>
-					<!-- <img style="cursor:pointer;" onclick="location.href='index'" width="30px" height="30px" src="./resources/if/images/find.jpg"> -->
 					
 				</h1>
 				<ul class="list-unstyled components mb-5">
