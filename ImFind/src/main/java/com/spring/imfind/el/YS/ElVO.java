@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.spring.imfind.el.YS;
 
 import java.sql.Date;
@@ -7,83 +6,83 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ElVO {
 	private int Lost_PostNum;
-	private String Lost_Title;   /* ±ÛÁ¦¸ñ */
-	private String Lost_Content;  /* ±Û³»¿ë */
+	private String Lost_Title;   /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	private String Lost_Content;  /* ï¿½Û³ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Re_Date; /* ³¯Â¥(µî·Ï) */
-	private int Lost_Re_Count;  /* Á¶È¸¼ö */
-	private String Lost_Or_File; /* QRÆÄÀÏ */
-	private String Lost_Up_File;  /* UPÆÄÀÏ */
-	private int Lost_Pay; /* »ç·Ê±Ý¾× */
-	private String Lost_Item; /* ºÐ½Ç¹°¸í */
-	private String Lost_Loc;  /* ºÐ½ÇÀ§Ä¡ */
+	private Date Lost_Re_Date; /* ï¿½ï¿½Â¥(ï¿½ï¿½ï¿½) */
+	private int Lost_Re_Count;  /* ï¿½ï¿½È¸ï¿½ï¿½ */
+	private String Lost_Or_File; /* QRï¿½ï¿½ï¿½ï¿½ */
+	private String Lost_Up_File;  /* UPï¿½ï¿½ï¿½ï¿½ */
+	private int Lost_Pay; /* ï¿½ï¿½Ê±Ý¾ï¿½ */
+	private String Lost_Item; /* ï¿½Ð½Ç¹ï¿½ï¿½ï¿½ */
+	private String Lost_Loc;  /* ï¿½Ð½ï¿½ï¿½ï¿½Ä¡ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Date;  /* ºÐ½Ç³¯Â¥ */
-	private String Id;  /* È¸¿øID */
-	private int Contact; /* ¿¬¶ôÃ³ */
+	private Date Lost_Date;  /* ï¿½Ð½Ç³ï¿½Â¥ */
+	private String Id;  /* È¸ï¿½ï¿½ID */
+	private int Contact; /* ï¿½ï¿½ï¿½ï¿½Ã³ */
 	
 	
-	private int Com_Num; /* ´ñ±Û¹øÈ£ */
-	private String Com_Content; /* ´ñ±Û³»¿ë */
+	private int Com_Num; /* ï¿½ï¿½Û¹ï¿½È£ */
+	private String Com_Content; /* ï¿½ï¿½Û³ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Com_Date; /* ´ñ±Û³¯Â¥ */
-	//private String Id; /* È¸¿øID */
-	//private int Lost_PostNum;  /* ºÐ½Ç¹°±Û¹øÈ£ */
+	private Date Com_Date; /* ï¿½ï¿½Û³ï¿½Â¥ */
+	//private String Id; /* È¸ï¿½ï¿½ID */
+	//private int Lost_PostNum;  /* ï¿½Ð½Ç¹ï¿½ï¿½Û¹ï¿½È£ */
 	
-	private int Not_Num;/* ´ñ±Û¹øÈ£ */
-	//private String Sent_id; /* º¸³½ID */
-	private String Receive_id;  /* ¹Þ´ÂID */
-	private String Not_Content;  /* ±Û³»¿ë */
-	private String Not_Or_File; /* ORÆÄÀÏ */
-	private String Not_Up_File; /* UPÆÄÀÏ */
+	private int Not_Num;/* ï¿½ï¿½Û¹ï¿½È£ */
+	//private String Sent_id; /* ï¿½ï¿½ï¿½ï¿½ID */
+	private String Receive_id;  /* ï¿½Þ´ï¿½ID */
+	private String Not_Content;  /* ï¿½Û³ï¿½ï¿½ï¿½ */
+	private String Not_Or_File; /* ORï¿½ï¿½ï¿½ï¿½ */
+	private String Not_Up_File; /* UPï¿½ï¿½ï¿½ï¿½ */
 	
 	
-	private int Pat_PostNum;   /* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */
-	private String Pat_Title;  /* ±ÛÁ¦¸ñ */
-	private String Pat_Content; /* ±Û³»¿ë */
+	private int Pat_PostNum;   /* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
+	private String Pat_Title;  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	private String Pat_Content; /* ï¿½Û³ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_Re_Date; /* ³¯Â¥(µî·Ï) */
-	private int Pat_Pay; /* »ç·Ê±Ý¾× */
-	private String Pat_Or_File; /* QRÆÄÀÏ */
-	private String Pat_Up_File; /* UPÆÄÀÏ */
-	private String Pat_Name; /* ¾Ö¿Ïµ¿¹°ÀÌ¸§ */
+	private Date Pat_Re_Date; /* ï¿½ï¿½Â¥(ï¿½ï¿½ï¿½) */
+	private int Pat_Pay; /* ï¿½ï¿½Ê±Ý¾ï¿½ */
+	private String Pat_Or_File; /* QRï¿½ï¿½ï¿½ï¿½ */
+	private String Pat_Up_File; /* UPï¿½ï¿½ï¿½ï¿½ */
+	private String Pat_Name; /* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_LostDate; /* ¾Ö¿Ïµ¿¹°ºÐ½Ç³¯Â¥ */
-	private String Pat_Loc; /* ¾Ö¿Ïµ¿¹°ºÐ½ÇÀ§Ä¡ */
+	private Date Pat_LostDate; /* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Ð½Ç³ï¿½Â¥ */
+	private String Pat_Loc; /* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½Ä¡ */
 	
-	//private int Contact; /* ¿¬¶ôÃ³ */
+	//private int Contact; /* ï¿½ï¿½ï¿½ï¿½Ã³ */
 	
-	//private String id;/* È¸¿øID */
+	//private String id;/* È¸ï¿½ï¿½ID */
 	private String Pw; /* PW */
-	private String Name; /* ÀÌ¸§ */
-	//private int Contact; /* ¿¬¶ôÃ³ */
+	private String Name; /* ï¿½Ì¸ï¿½ */
+	//private int Contact; /* ï¿½ï¿½ï¿½ï¿½Ã³ */
 	private String Email; /* E-mail */
-	private int Acount_Num; /* °èÁÂ¹øÈ£ */
-	private String Bank; /* ±ÝÀ¶±â°ü */
-	private String Account_holder; /* °èÁÂÁÖ */
+	private int Acount_Num; /* ï¿½ï¿½ï¿½Â¹ï¿½È£ */
+	private String Bank; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	private String Account_holder; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Join_date; /* °¡ÀÔ³¯Â¥ */
-	//ÀÌ¾î¼­ ÀÛ¾÷
-	private String PayCode; /* °áÁ¦ÄÚµå */
-	private int Pay_Amount; /* »ç·Ê±Ý¾× */
-	private String Pay_Way; /* °áÁ¦¹æ¹ý */
-	private String Pay_State; /* °áÁ¦»óÅÂ */
+	private Date Join_date; /* ï¿½ï¿½ï¿½Ô³ï¿½Â¥ */
+	//ï¿½Ì¾î¼­ ï¿½Û¾ï¿½
+	private String PayCode; /* ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ */
+	private int Pay_Amount; /* ï¿½ï¿½Ê±Ý¾ï¿½ */
+	private String Pay_Way; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	private String Pay_State; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pay_Date; /* °áÁ¦ÀÏÀÚ */
-	private String Deal_State; /* °Å·¡»óÅÂ */
+	private Date Pay_Date; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	private String Deal_State; /* ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Deal_Date;/* °Å·¡³¯Â¥ */
-	//private String Id; /* ºÐ½ÇÈ¸¿øID */
-	private String F_Id; /* FinderID */ //ÅëÇÕÀÌ µÇ¾ú±â ‹š¹®¿¡ ÇÊ¿ä°¡ ¾ø±ä °£µ¥ ÀÏ´Ü µÐ´Ù. 
-	//private int Lost_PostNum; /* ºÐ½Ç¹°±Û¹øÈ£ */
-	//private int Pat_PostNum;/* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */
+	private Date Deal_Date;/* ï¿½Å·ï¿½ï¿½ï¿½Â¥ */
+	//private String Id; /* ï¿½Ð½ï¿½È¸ï¿½ï¿½ID */
+	private String F_Id; /* FinderID */ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ð´ï¿½. 
+	//private int Lost_PostNum; /* ï¿½Ð½Ç¹ï¿½ï¿½Û¹ï¿½È£ */
+	//private int Pat_PostNum;/* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
 	
-	private int Pat_ComNum; /* ¾Ö¿Ïµ¿¹°´ñ±Û¹øÈ£ */
-	private String Pat_ComContent; /* ´ñ±Û³»¿ë */
+	private int Pat_ComNum; /* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */
+	private String Pat_ComContent; /* ï¿½ï¿½Û³ï¿½ï¿½ï¿½ */
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_ComDate; /* ´ñ±Û³¯Â¥ */
-	//private String Id; /* È¸¿øID */
-	//private int Pat_PostNum;/* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */	
+	private Date Pat_ComDate; /* ï¿½ï¿½Û³ï¿½Â¥ */
+	//private String Id; /* È¸ï¿½ï¿½ID */
+	//private int Pat_PostNum;/* ï¿½Ö¿Ïµï¿½ï¿½ï¿½ï¿½Û¹ï¿½È£ */	
 	public int getLost_PostNum() {
 		return Lost_PostNum;
 	}
@@ -400,5 +399,4 @@ public class ElVO {
 	
 	
 }
-=======
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
+

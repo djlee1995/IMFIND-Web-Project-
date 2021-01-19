@@ -1,45 +1,4 @@
-<<<<<<< HEAD
 
-$(document).ready(function() {
-	$.ajax({
-		url :'datainfo.do',
-		//type : 'POST',
-		data : {'lost_PostNum': lost_PostNum },
-		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-		//dataType:'json',
-		success: function(data){
-			$.each(data, function(index,item){
-				console.log(data)
-				var output = '';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_PostNum + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Title + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Content + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Re_Date + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Re_Count + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Content + '</td></tr>';
-				output +='<tr><td><img width="300px"; height="300px"; src="'+ item.lost_Up_File + '"></td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Pay + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Item + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Loc + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_Date + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.id + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.contact + '</td></tr>';
-				$('#data_output').append(output);
-	
-			});
-			},
-			
-		error : function() {
-
-			alert("ajax통신 실패2")
-
-		}
-		
-
-
-	});
-});
-=======
 
 $(document).ready(function() {
 	
@@ -62,18 +21,13 @@ $(document).ready(function() {
 			}
 			console.log()
 				loc=data[0].lost_Loc
-				//$('#postnum').text(data[0].lost_PostNum);
 				$('#title').text(data[0].lost_Title);
 				$('#content').html(data[0].lost_Content);
-				//$('#postnum').text(data[0].lost_Re_Date);
-				//$('#postnum').text(data[0].lost_Re_Count);
 				$('#file').html('<img height="50%" width="70%" src="'+data[0].lost_Up_File+'">');
 				$('#pay').text(data[0].lost_Pay);
-				//$('#postnum').text(data[0].lost_Item);
 				$('#loc').text(data[0].lost_Loc);
 				$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));
 				$('#id').text(data[0].id);
-				//$('#postnum').text(data[0].contact);
 			},
 			
 		error : function() {
@@ -129,4 +83,3 @@ $('.updateBtn').click(function(){
 });
 	
 });
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git

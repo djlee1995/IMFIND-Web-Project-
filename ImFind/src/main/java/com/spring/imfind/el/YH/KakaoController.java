@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.spring.imfind.el.YH;
 
 import java.io.BufferedReader;
@@ -132,5 +131,4 @@ public class KakaoController {
 		return contents;
 	}
 }
-=======
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
+

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.spring.imfind.el.YS;
 
 import java.util.List;
@@ -72,5 +71,4 @@ public class YSController {
 	
 	
 }
-=======
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
+

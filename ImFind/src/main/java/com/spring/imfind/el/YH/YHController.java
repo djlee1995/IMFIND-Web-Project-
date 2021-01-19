@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.spring.imfind.el.YH;
 
 import java.io.IOException;
@@ -288,5 +287,4 @@ public class YHController {
 	}
 	
 }
-=======
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
+

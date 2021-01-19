@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.spring.imfind.el.YH;
 
 import java.io.UnsupportedEncodingException;
@@ -18,11 +17,11 @@ public class EmailSend {
 
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind ÀÌ¸ÞÀÏ ÀÎÁõ]");
-        sendMail.setText(new StringBuffer().append("<h3>¾ÆÀÌµð Ã£±â ÀÎÁõ ¹øÈ£</h3>")
-                .append("¾ÆÀÌµð Ã£±â¸¦ À§ÇÑ ÀÎÁõ¹øÈ£ ÀÔ´Ï´Ù.<br>")
-                .append("ÀÎÁõ¹øÈ£ [ <b>" + code + "<b> ] <br>")
-                .append("ÀÎÁõÄÚµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.")
+        sendMail.setSubject("[ Imfind ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½]");
+        sendMail.setText(new StringBuffer().append("<h3>ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£</h3>")
+                .append("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½Ô´Ï´ï¿½.<br>")
+                .append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ [ <b>" + code + "<b> ] <br>")
+                .append("ï¿½ï¿½ï¿½ï¿½ï¿½Úµå¸¦ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -35,11 +34,11 @@ public class EmailSend {
 		
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind ÀÌ¸ÞÀÏ ÀÎÁõ]");
-        sendMail.setText(new StringBuffer().append("<h3>ºñ¹Ð¹øÈ£ Ã£±â ÀÎÁõ ¹øÈ£</h3>")
-                .append("ºñ¹Ð¹øÈ£ Ã£±â¸¦ À§ÇÑ ÀÎÁõ¹øÈ£ ÀÔ´Ï´Ù.<br>")
-                .append("ÀÎÁõ¹øÈ£ [ <b>" + code + "<b> ] <br>")
-                .append("ÀÎÁõÄÚµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.")
+        sendMail.setSubject("[ Imfind ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½]");
+        sendMail.setText(new StringBuffer().append("<h3>ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£</h3>")
+                .append("ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½Ô´Ï´ï¿½.<br>")
+                .append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ [ <b>" + code + "<b> ] <br>")
+                .append("ï¿½ï¿½ï¿½ï¿½ï¿½Úµå¸¦ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -52,10 +51,10 @@ public class EmailSend {
 		
 	    MailHandler sendMail = new MailHandler(mailSender);
  
-        sendMail.setSubject("[ Imfind ¾ÆÀÌµð Ã£±â °á°ú]");
-        sendMail.setText(new StringBuffer().append("<h3>È¸¿ø´ÔÀÇ ¾ÆÀÌµð</h3>")
-                .append("È¸¿ø´ÔÀÇ ¾ÆÀÌµð´Â [ <b>" + id + "<b> ] ÀÔ´Ï´Ù. <br>")
-                .append("<a target='http://localhost:8080/imfind/login'>Imfind ·Î±×ÀÎ È­¸é ÀÌµ¿ </a>")
+        sendMail.setSubject("[ Imfind ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½]");
+        sendMail.setText(new StringBuffer().append("<h3>È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½</h3>")
+                .append("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ [ <b>" + id + "<b> ] ï¿½Ô´Ï´ï¿½. <br>")
+                .append("<a target='http://localhost:8080/imfind/login'>Imfind ï¿½Î±ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½Ìµï¿½ </a>")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -66,15 +65,14 @@ public class EmailSend {
 		
 		MailHandler sendMail = new MailHandler(mailSender);
 
-    	sendMail.setSubject("[ Imfind ÀÓ½Ã ºñ¹Ð¹øÈ£]");
-    	sendMail.setText(new StringBuffer().append("<h3>ÀÓ½Ã ºñ¹Ð¹øÈ£ ¹ß±Þ</h3>")
-    			.append("È¸¿ø´ÔÀÇ ÀÓ½Ãºñ¹Ð¹øÈ£´Â [ <b>" + tempPW + "<b> ] ÀÔ´Ï´Ù. <br>")
-    			.append("<a target='http://localhost:8080/imfind/login'>Imfind ·Î±×ÀÎ È­¸é ÀÌµ¿ </a>")
+    	sendMail.setSubject("[ Imfind ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£]");
+    	sendMail.setText(new StringBuffer().append("<h3>ï¿½Ó½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½ß±ï¿½</h3>")
+    			.append("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ãºï¿½Ð¹ï¿½È£ï¿½ï¿½ [ <b>" + tempPW + "<b> ] ï¿½Ô´Ï´ï¿½. <br>")
+    			.append("<a target='http://localhost:8080/imfind/login'>Imfind ï¿½Î±ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½Ìµï¿½ </a>")
     			.toString());
     	sendMail.setFrom("szexdr@naver.com", "ImFind");
     	sendMail.setTo(email);
     	sendMail.send();
 	}
 }
-=======
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
+
