@@ -47,7 +47,6 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 		
 		if(kakaoLoginUser != null) {
 			
-			System.out.println("�α����� ���� : " + (String)kakaoLoginUser);
 			
 			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
 			if(res != 1) {

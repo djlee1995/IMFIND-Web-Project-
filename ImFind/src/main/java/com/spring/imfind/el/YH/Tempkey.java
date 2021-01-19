@@ -16,7 +16,7 @@ public class Tempkey {
     }
     
     private int initNum() {
-    	Random r = new Random(); // 난수생성
+    	Random r = new Random(); 
 		int num = r.nextInt(999999);
     	return num;
     }

@@ -2,34 +2,13 @@
 //  ------ 달력 js 시작 ------
 $("#datepicker").datepicker({
 	language : 'ko',
-	maxDate : new Date(),
-
+	maxDate : new Date()
 });
 //  ------ 달력 js 끝 ------
 
 
 //  ------ 글 내용 js 시작 ------
 $(document).ready(function() {
-	function sendFile(file){
-		var data = new FormData();	
-		data.append("file",file);
-		//alert(data);
-		$.ajax({
-			url: "./profileImage", //////여기 본인 주소! 
-			type: "POST",
-			enctype: 'multipart/form-data',
-			data: data,
-			cache: false,
-			contentType : false,
-			processData : false,
-			success: function(image){	
-			$('#summernote').summernote('insertImage',image);
-			},
-			error: function(e){console.log(e);}  
-		});	
-	}
-	
-// summernote 
 	$('#summernote').summernote({
 		height :300,
 		minHeight:null,
@@ -38,11 +17,35 @@ $(document).ready(function() {
 		lang : "ko-KR",
 		placeholder: '내용을 입력해주세요',
 		callbacks: {
-			onImageUpload : function(files){
-				sendFile(files[0]);
+			 onImageUpload: function(files, editor, welEditable) {
+				 for (var i = files.length - 1; i >= 0; i--) {
+                     sendFile(files[i], this);
+                  }
 			}
 		}
 	});
+	
+	function sendFile(file, el) {
+		 console.log()
+	       var form_data = new FormData();
+	       form_data.append('file', file);
+	   
+	       $.ajax({
+	         data: form_data,
+	         type: "post",
+	         url: './profileImage',
+	         cache: false,
+	         contentType: false,
+	         enctype: 'multipart/form-data',
+	         processData: false,
+	         success: function(url) {
+	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+	        	 	console.log(decodeURL)
+	        		 $(el).summernote('editor.insertImage', url);
+	         }
+	       });
+	     }
+	
 }); //ready
 //  ------ 글 내용 js 끝 ------
 				
@@ -154,7 +157,7 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 kakao.maps.event.addListener(map,'click',function(mouseEvent) {
 	searchDetailAddrFromCoords(mouseEvent.latLng,function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
-			var infoDiv = document.getElementById('centerAddr');
+			var infoDiv = document.getElementById('centerAddr2');
 			
 			var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '
 					+ result[0].road_address.address_name
@@ -200,7 +203,7 @@ function searchDetailAddrFromCoords(coords, callback) {
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 function displayCenterInfo(result, status) {
 	if (status === kakao.maps.services.Status.OK) {
-		var infoDiv = document.getElementById('centerAddr');
+		var infoDiv = document.getElementById('centerAddr2');
 
 		for (var i = 0; i < result.length; i++) {
 			// 행정동의 region_type 값은 'H' 이므로
@@ -331,11 +334,7 @@ function commaSplit(n) {// 콤마 나누는 부분
 		
 		
 // 	------ 결제 js 시작 ------
-/* 에이피아이 문서 보면 헷갈려서 이렇게 설명 주석 달아놔도 좋습니다!
- * ㄷ
- * IMP.request_pay(param, callback)을 호출합니다. 
- * 함수의 첫번째 인자인 param에 결제 요청에 필요한 속성과 값을 담습니다.
- * */
+
 function getFormatDate(date){
     var year = date.getFullYear();
     var month = (1 + date.getMonth());
@@ -356,10 +355,8 @@ function pay(){
 		
 	}
 	
-	console.log(lostpay)
-	console.log("진입")
-	var id = 'hongchii';
-	// ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
+	
+
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
@@ -372,9 +369,8 @@ function pay(){
 		var code = "imp13319491";
 		//var code = "imp55973725"; // 가맹점 식별코드 imp13319491
 		IMP.init(code);	
-		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
 		IMP.request_pay(
-				{ // 결제에 필요한 데이터를 담는 괄호여서 이 안에서 에이잭스를 넣었을때 에러 발생했어요!			
+				{ 		
 				// name과 amount만 있어도 결제 진행가능
 				pg : 'kakao', // pg사 선택 (kakao, kakaopay 둘다 가능)
 				pay_method : 'card',
@@ -456,21 +452,9 @@ function inputcheck(){
 		
 		return false;
 	}	
-	/*
-	var editorContent = document.querySelector('.note-editable').innerText;
 	
-	if(editorContent == ""){
-		alert('내용을 입력해주세요.')
-		
-		return false;
-	}
-	*/
 	$(".item10").children('button').attr('data-toggle', 'modal')
 	$(".item10").children('button').attr('data-target', '#myModal')
-	//e.preventDefault();
-	// pay()
+	
 	return true;
 }
-
-// 결제요청(결제자 정보를 어떻게 넣을 것인가?) -> 결제성공 ( 결제테이블 정보 서버전송, 디비 저장) ->폼 양식 submit ->폼 입력된 정보 디비 저장
-// 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장

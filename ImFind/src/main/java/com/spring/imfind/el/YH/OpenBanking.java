@@ -22,7 +22,7 @@ public class OpenBanking {
 	
 	public String getAuthorize() {
 		
-		// Å×½ºÆ® ¹öÀü
+		
 		final String Url = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
 							+ "client_id=1245365a-f9f6-4ad8-b86d-fb42f8a9deb8"
 							+ "&scope=login inquiry transfer"
@@ -33,7 +33,7 @@ public class OpenBanking {
 		return Url;
 	}
 	/*
-	 * 3 legged ÀÎÁõ 
+	 * 3 legged 
 	 * */
 	public void getToken(String code) throws Exception {
 		
@@ -52,20 +52,19 @@ public class OpenBanking {
 		
 		// add request header
 		con.setRequestMethod("POST");
-       // con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
         con.setRequestProperty("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-        con.setConnectTimeout(10000);       //ÄÁÅØ¼ÇÅ¸ÀÓ¾Æ¿ô 10ÃÊ
-        con.setReadTimeout(5000);           //ÄÁÅÙÃ÷Á¶È¸ Å¸ÀÓ¾Æ¿ô 5ÃÑ
+        con.setConnectTimeout(10000);       
+        con.setReadTimeout(5000);           
 
 
         // Send post request
-        con.setDoOutput(true);              //Ç×»ó °»½ÅµÈ³»¿ëÀ» °¡Á®¿È.
+        con.setDoOutput(true);              
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.flush();
         wr.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("¿ÀÇÂ¹ðÅ· info ¿äÃ» -> Response Code : " + responseCode);
+        System.out.println("ï¿½ï¿½ï¿½Â¹ï¿½Å· info ï¿½ï¿½Ã» -> Response Code : " + responseCode);
 
         Charset charset = Charset.forName("UTF-8");
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
@@ -85,7 +84,7 @@ public class OpenBanking {
 
 		
 	}
-	// M202111000 ÀÌ¿ë±â°ü M202111000
+	// M202111000 M202111000
 	public Map<String, Object> bufferToJson(StringBuffer response) throws ScriptException{
 		
 		ScriptEngineManager sem = new ScriptEngineManager();
@@ -104,7 +103,7 @@ public class OpenBanking {
 	
 	
 	/*
-	 * 2 legged ÀÎÁõ - °èÁÂ½Ç¸íÁ¶È¸ api ¿äÃ»À» À§ÇÑ ÅäÅ« ¹ß±ÞÀ» À§ÇÑ method
+	 * 2 legged 
 	 * 
 	 * response - json
 	 * access_token
@@ -127,14 +126,13 @@ public class OpenBanking {
 				
 				// add request header
 				con.setRequestMethod("POST");
-				// con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 				con.setRequestProperty("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-				con.setConnectTimeout(10000);       //ÄÁÅØ¼ÇÅ¸ÀÓ¾Æ¿ô 10ÃÊ
-				con.setReadTimeout(5000);           //ÄÁÅÙÃ÷Á¶È¸ Å¸ÀÓ¾Æ¿ô 5ÃÑ
+				con.setConnectTimeout(10000);      
+				con.setReadTimeout(5000);          
 				
 				
 				// Send post request
-				con.setDoOutput(true);              //Ç×»ó °»½ÅµÈ³»¿ëÀ» °¡Á®¿È.
+				con.setDoOutput(true);              
 				
 				DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 				wr.flush();
@@ -142,7 +140,6 @@ public class OpenBanking {
 				
 				// response
 				int responseCode = con.getResponseCode();
-				System.out.println("¿ÀÇÂ¹ðÅ· info ¿äÃ» -> Response Code : " + responseCode);
 				
 				Charset charset = Charset.forName("UTF-8");
 				BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
@@ -162,7 +159,7 @@ public class OpenBanking {
 	}
 	public Map<String, String> getAccountInfo(Map<String, String> map, String token) throws IOException, ScriptException{
 		
-		String bank_tran_id = "M202111000" + "U" + Integer.toString((int)(Math.random()*1000000000)); //ÀºÇà°Å·¡°íÀ¯¹øÈ£
+		String bank_tran_id = "M202111000" + "U" + Integer.toString((int)(Math.random()*1000000000)); //ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 		String bank_code_std = map.get("bank_code_std");
 		String account_num = map.get("account_num");
 		String account_holder_info = map.get("account_holder_info");
@@ -183,8 +180,8 @@ public class OpenBanking {
 		con.setRequestProperty("Authorization", "Bearer " + token);
 		con.setRequestProperty("content-type", "application/json; charset=UTF-8");
 		con.setRequestProperty("Accept", "application/json");
-		con.setConnectTimeout(10000);       //ÄÁÅØ¼ÇÅ¸ÀÓ¾Æ¿ô 10ÃÊ
-		con.setReadTimeout(5000);           //ÄÁÅÙÃ÷Á¶È¸ Å¸ÀÓ¾Æ¿ô 5ÃÑ
+		con.setConnectTimeout(10000);       
+		con.setReadTimeout(5000);           
 		
 		// Send post request
 		con.setDoOutput(true);            

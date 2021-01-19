@@ -8,18 +8,22 @@
 	insert into LostPost 
 	(Lost_Title, 
 	Lost_Content, 
+	Lost_Up_File,
 	Lost_Item, 
 	Lost_Re_Date, 
 	Lost_Date, 
 	Lost_Loc, 
-	Lost_Pay)values 
+	Lost_Pay,
+	Id)values 
 	(#{Lost_Title}, 
 	#{Lost_Content}, 
+	#{Lost_Up_File},
 	#{Lost_Item}, 
 	sysdate, 
 	#{Lost_Date}, 
 	#{Lost_Loc}, 
-	#{Lost_Pay})
+	#{Lost_Pay},
+	#{Id})
 	</insert>
 	 
 	 <select id="getPayMember" resultType="com.spring.imfind.el.EJ.MemberVO">
@@ -58,14 +62,44 @@
 	 #{Pat_Loc}, 
 	 #{Pat_Pay})
 	 </insert>
+	 <!-- 여기서 동적쿼리문으로 조건문 처리  -->
+	 <insert id="commentInsert" parameterType="LostComVO">
+        <selectKey keyProperty="Com_Num" order="BEFORE" resultType="int">
+            select nvl(max(Com_Num), 0)+1 from Re_Comment
+        </selectKey>  
+          insert into Re_Comment (Com_Num, Lost_PostNum, Com_Content, Id, Com_Date, Secret_Com)
+          values(#{Com_Num},#{Lost_PostNum},#{Com_Content},#{Id},sysdate,#{Secret_Com})
+     </insert>
+    
+     <select id ="commentList" parameterType="int" resultType="LostComVO">
+      select * from Re_Comment where Lost_PostNum = #{Lost_PostNum} order by Com_Num desc
+     </select>
 	 
-	 <!-- <insert id="commentInsert" parameterType="LostComVO">
-		<selectKey keyProperty=Lost_PostNum order="BEFORE" resultType="int">
-			select nvl(max(Lost_PostNum), 0)+1 from LostCom
-		</selectKey> 인서트 하기전 수행하라. 그 결과를 cno에 저장함. 
-	  insert into LostCom (Lost_PostNum, Com_Content, Com_Date)
-	  values(#{Lost_PostNum}, #{Com_Content}, sysdate)
-	</insert> -->
-	
+	 <select id = "commentCount" resultType="int">
+      select count(*) from Re_Comment
+     </select>
+    
+     <update id ="commentUpdate" parameterType="LostComVO">
+      update Re_Comment set Com_Content = #{Com_Content} WHERE Com_Num = #{Com_Num}
+     </update>
+     
+     <delete id="commentDelete" parameterType="int">
+      delete from Re_Comment WHERE Com_Num = #{Com_Num}
+     </delete>
+     
+     
+     <update id="boardReplyupdate" parameterType="LostComVO">
+	 	update Re_Comment set Re_Seq=Re_Seq+1 where Re_Lev = #{Re_Lev} and Re_Seq > #{Re_Seq}
+	 </update>
 	 
+	 <insert id="commentReply" parameterType="LostComVO">
+	 	<!-- <selectKey>는 insert구문에만 사용 가능 -->
+	 	<!-- order값은 "BEFORE|AFTER" 대문자 사용할것 -->
+	 	<!-- keyProperty="num"에서 num은 컬럼 명이다. -->
+	 	<selectKey keyProperty="num" order="BEFORE" resultType="int">
+	 		select nvl(max(Re_Com_Num), 0)+1 from Re_Comment
+	 	</selectKey>
+		 	insert into Re_Comment(Re_Com_Num, Writer, Re_Com_Content, Re_Lev, Re_Seq, Re_Com_Date) values
+		 	(#{Re_Com_Num},#{Writer},#{Re_Com_Content},#{Re_Lev},#{Re_Seq},sysdate)
+	 </insert>
 </mapper> 

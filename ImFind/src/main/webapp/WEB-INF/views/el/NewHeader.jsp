@@ -40,9 +40,9 @@
 								</ul>
 							</li>
 							<li class="has-dropdown">
-								<a href="./list.do">분실물 조회 <i class="fas fa-sort-down"></i></a>
+								<a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
 								<ul class="dropdown">
-									<li><a href="./list.do">물건</a></li>
+									<li><a href="./item">물건</a></li>
 									<li><a href="#">동물</a></li>
 								</ul>
 							</li>

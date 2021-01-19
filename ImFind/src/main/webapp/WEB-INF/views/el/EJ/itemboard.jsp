@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%
-	String id = "hongchii";	
-	//String id=(String)session.getAttribute("id"); // 로그인한 사람만 접근할수 있도록 아이디 체크. 
-%>
+
 
 <!DOCTYPE html>
 <html>
@@ -43,7 +40,9 @@
 		    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
 		    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
 		    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css"> 
-					
+		<script>
+		var id = '${loginUser}';
+		</script> 	
 	</head>
 <body>
 
@@ -61,8 +60,8 @@
 			
 			<div class="item2">
 				<h6>작성자</h6>
-				<input type="hidden" name="id" value="<%=id %>">
-				<h6><%=id %></h6>
+				<input type="hidden" name="id" value="${loginUser}">
+				<h6>${loginUser}</h6>
 	
 			</div>
 			<!-- 필수입력사항   -->
@@ -101,11 +100,10 @@
 			
 				<div id="Loc1" style="margin: -15px 10px 10px 100px;">
 					<!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
-					<div id="Loc2"><input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
+					<div id="Loc2">
+					<input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
 							data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onKeypress="enter();" />
 					<button type="button" id="Loc2Btn" onclick="resizeMap(); relayout();" >위치 검색</button></div>
-					<!-- <button onclick="resizeMap(); relayout();" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">내위치에서 위치 찾기</button>  -->	
-					<input type="text" id="centerAddr" name="Lost_Loc" style="background-color: #e2e2e2;" readonly/>
 				</div>
 						
 				<!-- collapse 대상 태그는 class를 collapse로 설정합니다. -->
@@ -126,8 +124,6 @@
 			
 			<!--  필수입력사항 --> 
 			<div class="item8"><h6>내 용</h6></div>
-			<!-- 원래태그 <div class="item8_1"><textarea id="summernote" name="Lost_Content"></textarea></div> -->
-			<!--   <input type="text" name="title" class="form-control" id="inputTitle" placeholder="제목을 입력하세요">     -->
 			<div class="item8_1"><textarea id="summernote" name="Lost_Content"></textarea></div>
 						
 
@@ -151,7 +147,7 @@
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
-								<label><input type="radio" name="Lo0st_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
+								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value="direct"> 직접입력</label> <br>
 								<label><input type="text" name="Lost_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
@@ -160,7 +156,6 @@
 							
 							<div class="modal-footer">
 								<a href="javascript:void(0);" onClick="return pay();" >확인</a>&nbsp;&nbsp;
-							<!-- <button type="button" class="btn btn-primary" onclick="return pay()">확인</button> -->
 								<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 							</div>
 					 </div>
@@ -169,8 +164,7 @@
 			
 			<div class="btn">
 				<button type="submit">확인</button>
-				<!-- <a href="javascript:addboard()" >등록</a>&nbsp;&nbsp;  -->
-				<!-- <a href="#" onclick="pay()">일반 결제</a><br><br> -->
+				
 				<a href="index">취소</a>
 			</div>
 			
@@ -192,6 +186,7 @@
 	 	<!-- 아임포트 시작-->
 		<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
 		<!-- 아임포트 끝-->
+	
 
 </body>
 			
