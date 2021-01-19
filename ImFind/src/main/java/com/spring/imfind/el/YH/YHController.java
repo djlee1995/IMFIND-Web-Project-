@@ -26,7 +26,9 @@ import org.springframework.web.util.WebUtils;
 public class YHController {
 	
 	@RequestMapping("/NewHeader_CSS")
-	public String NewHeader_CSS() { return "el/NewHeader_CSS"; }
+	public String NewHeader_CSS() { 
+		System.out.println("newheader css");
+		return "el/NewHeader_CSS"; }
 
 	@RequestMapping("/NewFooter_JS")
 	public String NewFooter_JS() { return "el/NewFooter_JS"; }

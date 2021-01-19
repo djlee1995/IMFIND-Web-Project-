@@ -18,6 +18,14 @@
 		<!-- SELECT * FROM LostPost order by Lost_PostNum -->	
 		SELECT * FROM LostPost where id = #{id, jdbcType=VARCHAR}	
 			
+	</select>  	
+	
+	
+	<select id="getPatElsedata" parameterType="String" resultType="ElVO">		
+		
+		<!-- SELECT * FROM LostPost order by Lost_PostNum -->	
+		SELECT * FROM PatPost where id = #{id, jdbcType=VARCHAR}	
+			
 	</select>  
 	
 	<select id="getElsePaydata" parameterType="String" resultType="ElVO">		

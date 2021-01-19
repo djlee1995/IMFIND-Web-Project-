@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+
+    
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -14,13 +17,9 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     
-    <!-- 해당 페이지 스타일 202012311159-->
+ <!-- Css Styles -->
     
-    
-
-    <!-- Css Styles -->
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> <!-- 지우면 안됨. -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> 
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
@@ -29,8 +28,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">    
-  
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+
     
     
 	     <!-- Bootstrap cdn 설정  for 페이징  -->	
@@ -40,10 +39,7 @@
 	  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>	
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
      
-      <!-- 해당 페이지 스타일 202012311159-->
-    <!-- SooAdd 202101022055 : 테이블 안에 데이터가 들어감. (테이블 보더 값.  -->
-    
-    
+     
     
    <style type="text/css">	
     
@@ -75,206 +71,45 @@
 
 	</style>
 	
-    
-    <!--sooAdd 202012311540  -->
-   <!--  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
-    -->
-    
+
     
 </head>
 
 <body>
-<!-- 데이터 뿌려줄 바디안 -->
+	<script>
+		var user = '${loginUser}';
+	</script>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div>
-                <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                    <!-- 이미지못찾는 영역 -->
-                    <!--  
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                        -->
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="inner-header">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <div class="logo">
-                            <a href="./index">
-                                <img src="${pageContext.request.contextPath}/resources/el/img/logo.png" alt="">
-                            </a>
-                        </div>    
-                    </div>
-                    <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
-                            <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon"><a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
-                            </li>
-                            <li class="cart-icon"><a href="#">
-                                <i class="icon_bag_alt"></i>
-                                <span>3</span>
-                            </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-1.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="si-pic"><img src="${pageContext.request.contextPath}/resources/el/img/select-product-2.jpg" alt=""></td>
-                                                <td class="si-text">
-                                                    <div class="product-selected">
-                                                        <p>$60.00 x 1</p>
-                                                        <h6>Kabino Bedside Table</h6>
-                                                    </div>
-                                                </td>
-                                                <td class="si-close">
-                                                    <i class="ti-close"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>$120.00</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                </div>
-                            </div>
-                        </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-item">
-            <div class="container">
-                <div class="nav-depart">
-                    <div class="depart-btn">
-                        <i class="ti-menu"></i>
-                        <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                            <li><a href="#">Underwear</a></li>
-                            <li><a href="#">Kid's Clothing</a></li>
-                            <li><a href="#">Brand Fashion</a></li>
-                            <li><a href="#">Accessories/Shoes</a></li>
-                            <li><a href="#">Luxury Brands</a></li>
-                            <li><a href="#">Brand Outdoor Apparel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <nav class="nav-menu mobile-menu">
-                    <ul>
-                        <li><a href="./index">Home</a></li>
-                        <li><a href="./shop">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog">Blog</a></li>
-                        <li><a href="./contact">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details">Blog Details</a></li>
-                                <li><a href="./shopping-cart">Shopping Cart</a></li>
-                                <li><a href="./check-out">Checkout</a></li>
-                                <li><a href="./faq">Faq</a></li>
-                                <li><a href="./register">Register</a></li>
-                                <li><a href="./login">Login</a></li>
-                                <!-- sooADD (202012311052) -->
-                                <li><a href="./mypage">mypage</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
+   	
+  	<%
+    	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+    %>
+		   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
+	<%
+    	} else{
+    %>
+		   	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>		
+	<%
+    	}
+	%>
     <!-- Header End -->
+   
+    
+<%
+	
+	String loginUser=(String)session.getAttribute("loginUser"); // 로그인
+%>
+    
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Register</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Form Section Begin -->
-
-
-
-
+    
 
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
+    
      <!--   <div class="container"> -->
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
@@ -284,7 +119,7 @@
                 	    <!--   <div class="col"> -->
                 	    
                         <div class="mypageitem0">        
-                        <h2>마이페이지</h2>
+                        <h2>마이페이지 ${kakaoLoginUser}  ${loginUser}</h2>
                         </div>
                          </div>  
                         </div>
@@ -293,7 +128,7 @@
                         		  <div class="container">
 														  <div class="row">
 															    <div class="col">
-															      &nbsp;bnm1128
+															      &nbsp; ${kakaoLoginUser}  ${loginUser} 
 															    </div>
 															    <div class="col">
 															       <button type="button" class="btn btn-primary" a href="/imfind/#.do">수정</button>
@@ -322,9 +157,7 @@
 															    </div>
 														  </div>
 													
-							   					 </div>                    
-                   <!--   https://getbootstrap.com/docs/5.0/components/buttons/    --> 
-                      <!--  <form action="#">-->  
+							   					 </div>
                         
                         <!-- 아이디 자리 끝 ------------------------------------------------------------------------------------------ -->
                         
@@ -338,8 +171,7 @@
                        </div>
                        	
                         &nbsp;
-                        
-                          <!-- 202012311536_BD값 끌고 오는거 보려고함  sooAdd-->
+     
                             <!--    <nav aria-label="Page navigation example"> -->
 			                     <!-- <div class="PageNavi">-->
                        		 <table style="width:100%">
@@ -361,16 +193,51 @@
                         <!-- 페이지네이션 테스트1-2 START-->
                            <div class="text-center"> 
 						<!--  <nav aria-label="..."> -->
-						  <ul class="pagination" id="numbers_mypage_post1">
-						  
-						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-						   
-						  </ul>
+						  <ul class="pagination" id="numbers_mypage_post1">						  
+						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>-->	
+						 </ul>
 						<!--  </nav> -->
 						 </div>
 					<!--  	</nav> -->
+					    <!--- 반려동물 게시글 시작 ------------------------------------------------------------------------->
+					     <!--  분실물게시판 작성 글 목록  --> 
+                         &nbsp;
+                      <div class="mypageitem1">    
+                       <h5>반려동물 찾기 작성글</h5>
+                       </div>
+                       	
+                        &nbsp;
+                        
+                          <!-- 202012311536_BD값 끌고 오는거 보려고함  sooAdd-->
+                            <!--    <nav aria-label="Page navigation example"> -->
+			                     <!-- <div class="PageNavi">-->
+                       		 <table style="width:100%">
+										<tr style="background-color:lightgrey">
+											<th>&nbsp;번호</th>
+											<th>제목</th>	
+											<th>사례금</th>
+											<th>등록날짜</th>
+								          <th>수정</th>
+								          <th>삭제</th>
+								          <th>거래완료</th>
+										</tr>
+										</table>
+		
+                     <!--  <table id="output" style="width:100%"> -->
+                        
+                            <table id="output_PatPost"  border="0" width="100%">
+                         </table>
+                        <!-- 페이지네이션 테스트1-2 START-->
+                           <div class="text-center"> 
+						<!--  <nav aria-label="..."> -->
+						  <ul class="pagination" id="numbers_mypage_post2">
+						  
+						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>
+					
+						  </ul>
+						<!--  </nav> -->
+						 </div>
+					    <!-- 반려동물 게시글 종료 -->
                         <!-- 페이지네이션  테스트1-2 END-->                       
                         
       
@@ -405,37 +272,7 @@
 												      
 												                         </table>
 						                           
-						                         <!-- 페이징 테스트 202101051745-->
-						                         
-						                        <!-- 페이징을 지정할 태그에 class에 pagination을 넣으면 자동으로 페이징이 된다.-->	
-						                       
-						                         
 						                        
-																	  <!-- 페이징의 크기를 제어할 수 있는데 pagination-lg를 추가하면 페이징 크기가 커지고, pagination-sm를 넣으면 작아진다. -->	
-																	  <!-- 큰 페이징 class="pagination pagination-lg", 보통 페이징 class="pagination", 작은 페이징  class="pagination pagination-sm" -->	
-																	<!--  <ul class="pagination">	
-																	    <!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->	
-																	    <!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->	
-																	<!--      <li class="disabled">	
-																	      <a href="#">	
-																	        <span>«</span>	
-																	      </a>	
-																	    </li>	-->
-																	    <!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->	
-																	    <!-- active의 의미는 현재 페이지의 의미이다. -->	
-																	<!--     <li class="active"><a href="#">1</a></li>	
-																	    <li><a href="#">2</a></li>	
-																	    <li><a href="#">3</a></li>	
-																	    <li><a href="#">4</a></li>	
-																	    <li><a href="#">5</a></li>	
-																	    <li>	
-																	      <a href="#">	
-																	        <span>»</span>	
-																	      </a>	
-																	    </li>	
-																	  </ul>	--> 
-														 
-						                         <!-- 페이징 테스트   -->
 						                         
 						                         <!-- 페이징 테스트 2-1 -->
 						                      <!--   <nav aria-label="Page navigation example">-->
@@ -443,9 +280,7 @@
 													  <ul id="numbers_mypage_post2" class="pagination justify-content-center">
 													  
 													  <!--   <li class="page-item"><a class="page-link" href="#">1</a></li>
-													    <li class="page-item"><a class="page-link" href="#">2</a></li>
-													    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-													   
+													
 													  </ul>
 													  </div>
 													  
@@ -470,31 +305,6 @@
 				<!-- <div class="container-fluid">--> <!--Fluid containers-->
 				<div class="container" id=output_WhoReplied> 
 				<!--   라디오-->
-				<!--form-check id ~~~~ Ajax 뿌잉  -->
-						<!-- <div id=output_WhoReplied class="form-check">  
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-				 
-				  <label class="form-check-label" for="flexRadioDefault1">
-				  <label class="form-check-label" for="flexRadioDefault1">
-				    Default radio
-				  </label>
-				</div>
-				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-				  <label class="form-check-label" for="flexRadioDefault2">
-				    Default checked radio
-				  </label>
-				</div> -->	
-				<!--라디오-->
-<!-- -------------------------------------------------------------------------------------------------------- -->				
-				<!-- 라디오 일반 START --> 
-			<!-- 	<div id=output_WhoReplied>  -->
-		<input type="radio" name="lecture" value="html"> HTML <br>
-		<input type="radio" name="lecture" value="css"> CSS <br>
-		<input type="radio" name="lecture" value="java"> JAVA <br>
-		<input type="radio" name="lecture" value="cpp"> C++ <br>
-			<!--  	</div> -->
-				<!-- 라디오 일반 END -->
 <!-- -------------------------------------------------------------------------------------------------------- -->					
 				</div> <!--Fluid containers-->
 	<!-- Grading 	spot --> 			
@@ -503,19 +313,15 @@
 		<p> 위치 테스트(ㅇㅇㅇ님 평가하기)    <p>
 		<p>  평점 선택 위치  <p>	
 		
-		<!--HTML 별점 평가 테스트 START -->
-		
+		<!--HTML 별점 평가 테스트 START -->	
 
 <hr>
 <h2>별점주기</h2>
 <div class="make_star">
 
 	<div class="rating" data-rate="3">
-		<!-- <i class="fas fa-star"></i> 
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>	 -->
+		<!-- <i class="fas fa-star"></i> *5-->
+		
 		<svg class="svg-inline--fa fa-star fa-w-18"
 				 aria-hidden="true"
 				 focusable="false"
@@ -616,7 +422,7 @@
 </div>
   </div>
 </div>
-  <!-- modal test1 end ------------------------------------------------------------------------------------>					                         
+  <!-- modal  end ------------------------------------------------------------------------------------>					                         
 						                  
 						                         
      </form>

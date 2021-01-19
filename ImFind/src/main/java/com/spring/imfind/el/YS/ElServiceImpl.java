@@ -16,7 +16,7 @@ public class ElServiceImpl implements ElService{
 
 	@Override
 	public List<ElVO> getElsedata(String id) {
-		// TODO Auto-generated method stub
+		
 		List<ElVO>elseList=null;
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
 		elseList=elMapper.getElsedata(id);
@@ -25,10 +25,23 @@ public class ElServiceImpl implements ElService{
 		
 		return elseList;
 	}
+	
+	@Override
+	public List<ElVO> getPatElsedata(String id) {
+		
+				List<ElVO>patelseList=null;
+				ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
+				patelseList=elMapper.getElsedata(id);
+				
+				System.out.println(patelseList.toString());
+				
+				return patelseList;
+	}
 
+	
 	@Override
 	public List<ElVO> getElsePaydata(String id) {
-		// TODO Auto-generated method stub
+		
 		List<ElVO>elseList2=null;
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
 		
@@ -42,7 +55,7 @@ public class ElServiceImpl implements ElService{
 
 	@Override
 	public List<ElVO> getElseWhoReplied(String lost_Postnum) {
-		// TODO Auto-generated method stub
+		
 		List<ElVO>elseList3=null;
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
 		elseList3=elMapper.getElseWhoReplied(lost_Postnum);
@@ -50,4 +63,5 @@ public class ElServiceImpl implements ElService{
 		return elseList3;
 	}
 
+	
 }

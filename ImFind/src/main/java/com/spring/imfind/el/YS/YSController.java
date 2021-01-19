@@ -17,13 +17,13 @@ public class YSController {
 	@Autowired
 	private ElService elService;
 	
-	//soo: views ���������� el ������ �ٷ� mypage�� �ִ°� �ƴ϶�. YS������ �����ؼ� ��ġ �̵��ؼ� ������. (12/31_1305)
+	
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("id", "bnm1128");
-		//session.setAttribute("id", "A001");
+		System.out.println(session.getAttribute("loginUser"));
 		
+	
 		return "el/YS/mypage";
 	}
 	
@@ -31,11 +31,11 @@ public class YSController {
 	
 	@RequestMapping(value="/getElsedata",method=RequestMethod.POST,
 												produces="application/json;charset=UTF-8")
-	@ResponseBody//jsp�� ���� �並 ���� �ϴ� �� �ƴ� �����͸� ���� �ϱ� ���� ��� 
+	@ResponseBody  
 	public List<ElVO> getElsedata(HttpServletRequest request) {
 		HttpSession session = request.getSession();	
-		//List<EmpVO> list =empService.getEmpEx();
-		String id=(String)session.getAttribute("id");
+		
+		String id=(String)session.getAttribute("loginUser");
 		
 		System.out.println("session id1 : " + id);
 		
@@ -44,16 +44,30 @@ public class YSController {
 		return list;
 	}
 	
-	
+		@RequestMapping(value="/getPatElsedata",method=RequestMethod.POST,
+					produces="application/json;charset=UTF-8")
+		@ResponseBody  
+		public List<ElVO> getPatElsedata(HttpServletRequest request) {
+		HttpSession session = request.getSession();	
+		
+		String id=(String)session.getAttribute("id");
+		
+		System.out.println("session id1 : " + id);
+		
+		List<ElVO> listpat = elService.getElsedata(id);
+		System.out.println("list"+listpat );
+		return listpat;
+		}
+			
+			
 	@RequestMapping(value="/getElsePaydata",method=RequestMethod.POST,
 												produces="application/json;charset=UTF-8")
-	@ResponseBody//jsp�� ���� �並 ���� �ϴ� �� �ƴ� �����͸� ���� �ϱ� ���� ��� 	
+	@ResponseBody 
 	public List<ElVO> getElsePaydata(HttpServletRequest request) {
-		//������Ʈ ��ü ���� ���� ��������
+		
 		HttpSession session = request.getSession();
-		//session.getAttribute("id");
-		//List<EmpVO> list =empService.getEmpEx();
-		String id= (String)session.getAttribute("id"); //������Ʈ�� ��Ʈ������ ���� ��ȯ. 
+		
+		String id= (String)session.getAttribute("id"); 
 		
 		System.out.println("session id2 : " + id);
 		
@@ -64,11 +78,11 @@ public class YSController {
 		
 	@RequestMapping(value="/getElseWhoReplied",method=RequestMethod.POST,
 			produces="application/json;charset=UTF-8")
-	@ResponseBody//
+	@ResponseBody
 		public List<ElVO> getElseWhoReplied(String Lost_Postnum) {
 		
 		List<ElVO> list3 = elService.getElseWhoReplied( Lost_Postnum );
-		//List<ElVO> list3 = elService.getElseWhoReplied( );
+		
 		System.out.println("list3"+list3 );
 		return list3;
 	}	

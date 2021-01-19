@@ -16,30 +16,28 @@ import com.spring.imfind.imf.PoliceVO;
  */
 @Controller
 public class HomeController {
-	
-	@Autowired 
+
+	@Autowired
 	LostService lostService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView modelAndView) {
 		
-		List<PoliceVO> vo = lostService.getSimpleList();
-		System.out.println(vo.toString());
+		System.out.println("dddddddddddddddddddddddd");
 		
-		for (PoliceVO policeVO : vo) {
-			try {
-				String[] info = policeVO.getInfo().split("분실하신");
-				policeVO.setInfo(info[0]);
-			}
-			catch(Exception e) {
-				continue;
-			}
-		}
+		  List<PoliceVO> vo = lostService.getSimpleList();
+		  System.out.println(vo.toString());
+		  
+		  for (PoliceVO policeVO : vo) { try { String[] info =
+		  policeVO.getInfo().split("분실하신"); policeVO.setInfo(info[0]); }
+		  catch(Exception e) { continue; } }
+		  
+		  modelAndView.addObject("police", vo);
+		  
 		 
-		modelAndView.addObject("police", vo);
 		modelAndView.setViewName("home2");
-		
+
 		return modelAndView;
 	}
-	
+
 }
