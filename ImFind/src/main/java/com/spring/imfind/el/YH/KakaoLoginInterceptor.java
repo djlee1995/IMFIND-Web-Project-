@@ -50,7 +50,6 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 		
 		if(kakaoLoginUser != null) {
 			
-<<<<<<< HEAD
 			System.out.println("로그인한 카카오 유저: " + (String)kakaoLoginUser);
 			
 			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
@@ -62,14 +61,7 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 			   
 			   response.sendRedirect("/home.do");
 			   return;
-=======
-			System.out.println("카카오 로그인 아이디 : " + (String)kakaoLoginUser);
-			
-			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
-			if(res != 1) {
-				response.sendRedirect("/imfind/kakaoRegister");
-				//super.postHandle(request, response, handler, modelAndView);
->>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
+
 			}
 		}
 	}

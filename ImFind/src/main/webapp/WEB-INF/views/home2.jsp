@@ -4,7 +4,6 @@
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE HTML>
 <html>
-<<<<<<< HEAD
     <!-- Header Section Begin -->
    	<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
     <!-- Header End -->
@@ -16,90 +15,7 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	
-=======
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ImFind</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
 
-	<!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-	
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	<!-- 폰트 어썸 css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/bootstrap.css">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
-
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
-	
-
-	<!-- Modernizr JS -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
-	
-		<!-- jQuery -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
-	
-	<script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
-	<!-- Main -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-	
-	</head>
-
->>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 	<style>
 		.box{
 			/* border : 1px solid black; */
@@ -212,7 +128,6 @@
 		    -o-transition: 0.5s;
 		    transition: 0.5s;
 		}
-<<<<<<< HEAD
 		.fh5co-blog .blog-text{
 			padding : 16px !important;
 			margin-top:1px; 
@@ -269,7 +184,6 @@
 			padding-right : 18px !important;
 			background : white;
 		}
-=======
 	</style>
 
 	<script>
