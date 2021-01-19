@@ -24,7 +24,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 @Controller
+<<<<<<< HEAD
 public class YHController implements SessionName {
+=======
+public class YHController {
+	
+	@RequestMapping("/NewHeader_CSS")
+	public String NewHeader_CSS() { 
+		System.out.println("newheader css");
+		return "el/NewHeader_CSS"; }
+
+	@RequestMapping("/NewFooter_JS")
+	public String NewFooter_JS() { return "el/NewFooter_JS"; }
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 	
 	@Autowired
 	JavaMailSender mailSender;

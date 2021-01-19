@@ -685,6 +685,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+
+    
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -699,6 +702,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     
+<<<<<<< HEAD
     <!-- 해당 페이지 스타일 202012311159-->
     
   	<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>		
@@ -708,6 +712,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> <!-- 지우면 안됨. -->
   
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+=======
+ <!-- Css Styles -->
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> 
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">    
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
     
     
 	     <!-- Bootstrap cdn 설정  for 페이징  -->	
@@ -717,10 +736,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>	
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
      
-      <!-- 해당 페이지 스타일 202012311159-->
-    <!-- SooAdd 202101022055 : 테이블 안에 데이터가 들어감. (테이블 보더 값.  -->
-    
-    
+     
     
    <style type="text/css">	
     
@@ -752,19 +768,26 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	</style>
 	
-    
-    <!--sooAdd 202012311540  -->
-   <!--  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
-    -->
-    
+
     
 </head>
 
 <body>
-<!-- 데이터 뿌려줄 바디안 -->
+	<script>
+		var user = '${loginUser}';
+	</script>
     <!-- Page Preloder -->
+<<<<<<< HEAD
 
      <%
+=======
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+   	
+  	<%
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
     	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
     %>
 		   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
@@ -775,9 +798,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<%
     	}
 	%>
+<<<<<<< HEAD
+=======
+    <!-- Header End -->
+   
+    
+<%
+	
+	String loginUser=(String)session.getAttribute("loginUser"); // 로그인
+%>
+    
+
+    
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
+    
      <!--   <div class="container"> -->
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
@@ -787,7 +824,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 	    <!--   <div class="col"> -->
                 	    
                         <div class="mypageitem0">        
-                        <h2>마이페이지</h2>
+                        <h2>마이페이지 ${kakaoLoginUser}  ${loginUser}</h2>
                         </div>
                          </div>  
                         </div>
@@ -796,7 +833,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         		  <div class="container">
 														  <div class="row">
 															    <div class="col">
-															      &nbsp;bnm1128
+															      &nbsp; ${kakaoLoginUser}  ${loginUser} 
 															    </div>
 															    <div class="col">
 															       <button type="button" class="btn btn-primary" a href="/imfind/#.do">수정</button>
@@ -825,7 +862,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 															    </div>
 														  </div>
 													
+<<<<<<< HEAD
 							   					 </div>                    
+=======
+							   					 </div>
+                        
+                        <!-- 아이디 자리 끝 ------------------------------------------------------------------------------------------ -->
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
                         
                           <form id="post_list" method="post"> <!-- 202012311156 -->
                        <!--  <fieldset> -->
@@ -837,6 +880,49 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                        </div>
                        	
                         &nbsp;
+<<<<<<< HEAD
+=======
+     
+                            <!--    <nav aria-label="Page navigation example"> -->
+			                     <!-- <div class="PageNavi">-->
+                       		 <table style="width:100%">
+										<tr style="background-color:lightgrey">
+											<th>&nbsp;번호</th>
+											<th>제목</th>	
+											<th>사례금</th>
+											<th>등록날짜</th>
+								          <th>수정</th>
+								          <th>삭제</th>
+								          <th>거래완료</th>
+										</tr>
+										</table>
+		
+                     <!--  <table id="output" style="width:100%"> -->
+                        
+                            <table id="output"  border="0" width="100%">
+                         </table>
+                        <!-- 페이지네이션 테스트1-2 START-->
+                           <div class="text-center"> 
+						<!--  <nav aria-label="..."> -->
+						  <ul class="pagination" id="numbers_mypage_post1">						  
+						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>-->	
+						 </ul>
+						<!--  </nav> -->
+						 </div>
+					<!--  	</nav> -->
+					    <!--- 반려동물 게시글 시작 ------------------------------------------------------------------------->
+					     <!--  분실물게시판 작성 글 목록  --> 
+                         &nbsp;
+                      <div class="mypageitem1">    
+                       <h5>반려동물 찾기 작성글</h5>
+                       </div>
+                       	
+                        &nbsp;
+                        
+                          <!-- 202012311536_BD값 끌고 오는거 보려고함  sooAdd-->
+                            <!--    <nav aria-label="Page navigation example"> -->
+			                     <!-- <div class="PageNavi">-->
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
                        		 <table style="width:100%">
 										<tr style="background-color:lightgrey">
 											<th>&nbsp;번호</th>
@@ -849,18 +935,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</tr>
 										</table>
                         
-                            <table id="output"  border="0" width="100%">
+                            <table id="output_PatPost"  border="0" width="100%">
                          </table>
                         <!-- 페이지네이션 테스트1-2 START-->
                            <div class="text-center"> 
 						<!--  <nav aria-label="..."> -->
-						  <ul class="pagination" id="numbers_mypage_post1">
+						  <ul class="pagination" id="numbers_mypage_post2">
 						  
+<<<<<<< HEAD
 						   
+=======
+						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>
+					
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 						  </ul>
 						<!--  </nav> -->
 						 </div>
-					<!--  	</nav> -->
+					    <!-- 반려동물 게시글 종료 -->
                         <!-- 페이지네이션  테스트1-2 END-->                       
                         
       
@@ -894,12 +985,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 												 
 												      
 												                         </table>
+<<<<<<< HEAD
 
 						                      <!--   <nav aria-label="Page navigation example">-->
 						                      <div class="text-center">
 													  <ul id="numbers_mypage_post2" class="pagination justify-content-center">
 
 													   
+=======
+						                           
+						                        
+						                         
+						                         <!-- 페이징 테스트 2-1 -->
+						                      <!--   <nav aria-label="Page navigation example">-->
+						                      <div class="text-center">
+													  <ul id="numbers_mypage_post2" class="pagination justify-content-center">
+													  
+													  <!--   <li class="page-item"><a class="page-link" href="#">1</a></li>
+													
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 													  </ul>
 													  </div>
 
@@ -919,6 +1023,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				
 				<!-- <div class="container-fluid">--> <!--Fluid containers-->
 				<div class="container" id=output_WhoReplied> 
+<<<<<<< HEAD
 	
 <!-- -------------------------------------------------------------------------------------------------------- -->				
 				<!-- 라디오 일반 START --> 
@@ -929,6 +1034,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<input type="radio" name="lecture" value="cpp"> C++ <br>
 			<!--  	</div> -->
 				<!-- 라디오 일반 END -->
+=======
+				<!--   라디오-->
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 <!-- -------------------------------------------------------------------------------------------------------- -->					
 				</div> <!--Fluid containers-->
 	<!-- Grading 	spot --> 			
@@ -937,14 +1045,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<p> 위치 테스트(ㅇㅇㅇ님 평가하기)    <p>
 		<p>  평점 선택 위치  <p>	
 		
-		<!--HTML 별점 평가 테스트 START -->
-		
+		<!--HTML 별점 평가 테스트 START -->	
 
 <hr>
 <h2>별점주기</h2>
 <div class="make_star">
 
 	<div class="rating" data-rate="3">
+<<<<<<< HEAD
+=======
+		<!-- <i class="fas fa-star"></i> *5-->
+		
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 		<svg class="svg-inline--fa fa-star fa-w-18"
 				 aria-hidden="true"
 				 focusable="false"
@@ -1045,7 +1157,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </div>
   </div>
 </div>
-  <!-- modal test1 end ------------------------------------------------------------------------------------>					                         
+  <!-- modal  end ------------------------------------------------------------------------------------>					                         
 						                  
 						                         
      </form>

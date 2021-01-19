@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 
@@ -40,4 +41,56 @@
 	 
 	
 	
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="com.spring.mapper.MemberMapper는 MemberMapper인퍼페이스(MemberMapper.class)의 이름을 사용한다. -->
+<mapper namespace="com.spring.mapper.YS.ElMapper">
+
+
+	<!-- id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용해야된다. -->
+	
+	<!-- (202012311235) -->
+	<!-- SELECT * FROM emp_copy where deptno = #{deptno} order by empno  -->
+	
+	<select id="getElsedata" parameterType="String" resultType="ElVO">		
+		
+		<!-- SELECT * FROM LostPost order by Lost_PostNum -->	
+		SELECT * FROM LostPost where id = #{id, jdbcType=VARCHAR}	
+			
+	</select>  	
+	
+	
+	<select id="getPatElsedata" parameterType="String" resultType="ElVO">		
+		
+		<!-- SELECT * FROM LostPost order by Lost_PostNum -->	
+		SELECT * FROM PatPost where id = #{id, jdbcType=VARCHAR}	
+			
+	</select>  
+	
+	<select id="getElsePaydata" parameterType="String" resultType="ElVO">		
+		
+		<!-- SELECT * FROM Pay order by PayCode -->		
+		SELECT * FROM Pay where id = #{id, jdbcType=VARCHAR} 	
+			
+	</select>  
+	
+	<select id="getElseWhoReplied" parameterType="String" resultType="ElVO">		
+		
+		<!-- SELECT * FROM Pay order by PayCode -->		
+		SELECT Id FROM LostCom where Lost_PostNum  = #{Lost_PostNum , jdbcType=VARCHAR} 	
+			
+	</select>  
+	
+	
+	 
+	 
+	 
+	
+	
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 </mapper>

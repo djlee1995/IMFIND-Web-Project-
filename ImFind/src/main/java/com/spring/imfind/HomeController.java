@@ -24,13 +24,14 @@ import com.spring.imfind.imf.PoliceVO;
  */
 @Controller
 public class HomeController {
-	
-	@Autowired 
+
+	@Autowired
 	LostService lostService;
 	@Autowired
 	ItemService itemService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
+<<<<<<< HEAD
 	public String home(ModelAndView modelAndView) { return "home2";}
 	
 	@RequestMapping(value="getNearXY")
@@ -53,6 +54,25 @@ public class HomeController {
 		map.put("item", itemVO);
 		
 		return map;
+=======
+	public ModelAndView home(ModelAndView modelAndView) {
+		
+		System.out.println("dddddddddddddddddddddddd");
+		
+		  List<PoliceVO> vo = lostService.getSimpleList();
+		  System.out.println(vo.toString());
+		  
+		  for (PoliceVO policeVO : vo) { try { String[] info =
+		  policeVO.getInfo().split("분실하신"); policeVO.setInfo(info[0]); }
+		  catch(Exception e) { continue; } }
+		  
+		  modelAndView.addObject("police", vo);
+		  
+		 
+		modelAndView.setViewName("home2");
+
+		return modelAndView;
+>>>>>>> 1bc2d5d6e29ce0f76b38df57bebec67ff8eaa466
 	}
-	
+
 }
