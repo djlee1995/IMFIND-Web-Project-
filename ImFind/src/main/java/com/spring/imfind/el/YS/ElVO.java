@@ -6,83 +6,82 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ElVO {
 	private int Lost_PostNum;
-	private String Lost_Title;   /* 글제목 */
-	private String Lost_Content;  /* 글내용 */
+	private String Lost_Title;   
+	private String Lost_Content;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Re_Date; /* 날짜(등록) */
-	private int Lost_Re_Count;  /* 조회수 */
-	private String Lost_Or_File; /* QR파일 */
-	private String Lost_Up_File;  /* UP파일 */
-	private int Lost_Pay; /* 사례금액 */
-	private String Lost_Item; /* 분실물명 */
-	private String Lost_Loc;  /* 분실위치 */
+	private Date Lost_Re_Date; 
+	private int Lost_Re_Count;  
+	private String Lost_Or_File; 
+	private String Lost_Up_File;  
+	private int Lost_Pay;
+	private String Lost_Item; 
+	private String Lost_Loc;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Date;  /* 분실날짜 */
-	private String Id;  /* 회원ID */
-	private int Contact; /* 연락처 */
+	private Date Lost_Date; 
+	private String Id;  
+	private int Contact; 
 	
 	
-	private int Com_Num; /* 댓글번호 */
-	private String Com_Content; /* 댓글내용 */
+	private int Com_Num; 
+	private String Com_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Com_Date; /* 댓글날짜 */
-	//private String Id; /* 회원ID */
-	//private int Lost_PostNum;  /* 분실물글번호 */
-	
-	private int Not_Num;/* 댓글번호 */
-	//private String Sent_id; /* 보낸ID */
-	private String Receive_id;  /* 받는ID */
-	private String Not_Content;  /* 글내용 */
-	private String Not_Or_File; /* OR파일 */
-	private String Not_Up_File; /* UP파일 */
+	private Date Com_Date; 
 	
 	
-	private int Pat_PostNum;   /* 애완동물글번호 */
-	private String Pat_Title;  /* 글제목 */
-	private String Pat_Content; /* 글내용 */
-	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_Re_Date; /* 날짜(등록) */
-	private int Pat_Pay; /* 사례금액 */
-	private String Pat_Or_File; /* QR파일 */
-	private String Pat_Up_File; /* UP파일 */
-	private String Pat_Name; /* 애완동물이름 */
-	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_LostDate; /* 애완동물분실날짜 */
-	private String Pat_Loc; /* 애완동물분실위치 */
+	private int Not_Num;
 	
-	//private int Contact; /* 연락처 */
+	private String Receive_id;  
+	private String Not_Content;  
+	private String Not_Or_File; 
+	private String Not_Up_File; 
 	
-	//private String id;/* 회원ID */
-	private String Pw; /* PW */
-	private String Name; /* 이름 */
-	//private int Contact; /* 연락처 */
-	private String Email; /* E-mail */
-	private int Acount_Num; /* 계좌번호 */
-	private String Bank; /* 금융기관 */
-	private String Account_holder; /* 계좌주 */
-	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Join_date; /* 가입날짜 */
-	//이어서 작업
-	private String PayCode; /* 결제코드 */
-	private int Pay_Amount; /* 사례금액 */
-	private String Pay_Way; /* 결제방법 */
-	private String Pay_State; /* 결제상태 */
-	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pay_Date; /* 결제일자 */
-	private String Deal_State; /* 거래상태 */
-	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Deal_Date;/* 거래날짜 */
-	//private String Id; /* 분실회원ID */
-	private String F_Id; /* FinderID */ //통합이 되었기 떄문에 필요가 없긴 간데 일단 둔다. 
-	//private int Lost_PostNum; /* 분실물글번호 */
-	//private int Pat_PostNum;/* 애완동물글번호 */
 	
-	private int Pat_ComNum; /* 애완동물댓글번호 */
-	private String Pat_ComContent; /* 댓글내용 */
+	private int Pat_PostNum;   
+	private String Pat_Title;  
+	private String Pat_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_ComDate; /* 댓글날짜 */
-	//private String Id; /* 회원ID */
-	//private int Pat_PostNum;/* 애완동물글번호 */	
+	private Date Pat_Re_Date; 
+	private int Pat_Pay; 
+	private String Pat_Or_File; 
+	private String Pat_Up_File; 
+	private String Pat_Name; 
+	@JsonFormat(pattern="YYYY.MM.dd")
+	private Date Pat_LostDate;
+	private String Pat_Loc; 
+	
+	
+	
+	
+	private String Pw; 
+	private String Name; 
+	
+	private String Email;
+	private int Acount_Num; 
+	private String Bank; 
+	private String Account_holder; 
+	@JsonFormat(pattern="YYYY.MM.dd")
+	private Date Join_date; 
+
+	private String PayCode; 
+	private int Pay_Amount;
+	private String Pay_Way; 
+	private String Pay_State; 
+	@JsonFormat(pattern="YYYY.MM.dd")
+	private Date Pay_Date; 
+	private String Deal_State; 
+	@JsonFormat(pattern="YYYY.MM.dd")
+	private Date Deal_Date;
+
+	private String F_Id; 
+	
+	
+	private int Pat_ComNum; 
+	private String Pat_ComContent; 
+	@JsonFormat(pattern="YYYY.MM.dd")
+	private Date Pat_ComDate; 
+
+	
+	
 	public int getLost_PostNum() {
 		return Lost_PostNum;
 	}
