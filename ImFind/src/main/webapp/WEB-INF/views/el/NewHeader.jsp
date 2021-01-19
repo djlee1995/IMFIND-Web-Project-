@@ -18,9 +18,8 @@
     
     <!-- 폰트 어썸 -->
    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    
 	
-    <div id="page">
+<!--     <div id="page"> -->
 	<nav class="fh5co-nav" role="navigation">
 		<div class="top-menu">
 			<div class="container-fluid">

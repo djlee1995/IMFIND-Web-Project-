@@ -151,7 +151,9 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 // 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
 kakao.maps.event.addListener(map,'click',function(mouseEvent) {
 	searchDetailAddrFromCoords(mouseEvent.latLng,function(result, status) {
+		console.log(mouseEvent.latLng.La)
 		if (status === kakao.maps.services.Status.OK) {
+			console.log(result[0]);
 			var infoDiv = document.getElementById('centerAddr');
 			
 			var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '

@@ -17,11 +17,11 @@ public class EmailSend {
 
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind 아이디 찾기 인증코드]");
-        sendMail.setText(new StringBuffer().append("<h3>���̵� ã�� ���� ��ȣ</h3>")
-                .append("���̵� ã�⸦ ���� ������ȣ �Դϴ�.<br>")
-                .append("������ȣ [ <b>" + code + "<b> ] <br>")
-                .append("�����ڵ带 �Է����ּ���.")
+        sendMail.setSubject("[ Imfind 이메일 인증]");
+        sendMail.setText(new StringBuffer().append("<h3>아이디 찾기 인증 번호</h3>")
+                .append("아이디 찾기를 위한 인증번호 입니다.<br>")
+                .append("인증번호 [ <b>" + code + "<b> ] <br>")
+                .append("인증코드를 입력해주세요.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -34,11 +34,11 @@ public class EmailSend {
 		
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind �̸��� ����]");
-        sendMail.setText(new StringBuffer().append("<h3>��й�ȣ ã�� ���� ��ȣ</h3>")
-                .append("��й�ȣ ã�⸦ ���� ������ȣ �Դϴ�.<br>")
-                .append("������ȣ [ <b>" + code + "<b> ] <br>")
-                .append("�����ڵ带 �Է����ּ���.")
+        sendMail.setSubject("[ Imfind 이메일 인증]");
+        sendMail.setText(new StringBuffer().append("<h3>비밀번호 찾기 인증 번호</h3>")
+                .append("비밀번호 찾기를 위한 인증번호 입니다.<br>")
+                .append("인증번호 [ <b>" + code + "<b> ] <br>")
+                .append("인증코드를 입력해주세요.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -51,10 +51,10 @@ public class EmailSend {
 		
 	    MailHandler sendMail = new MailHandler(mailSender);
  
-        sendMail.setSubject("[ Imfind ���̵� ã�� ���]");
-        sendMail.setText(new StringBuffer().append("<h3>ȸ������ ���̵�</h3>")
-                .append("ȸ������ ���̵�� [ <b>" + id + "<b> ] �Դϴ�. <br>")
-                .append("<a target='http://localhost:8080/imfind/login'>Imfind �α��� ȭ�� �̵� </a>")
+	    sendMail.setSubject("[ Imfind 아이디 찾기 결과]");
+        sendMail.setText(new StringBuffer().append("<h3>회원님의 아이디</h3>")
+                .append("회원님의 아이디는 [ <b>" + id + "<b> ] 입니다. <br>")
+                .append("<a target='http://localhost:8080/imfind/login'>Imfind 로그인 화면 이동 </a>")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -64,11 +64,13 @@ public class EmailSend {
 	public void sendUserPW(String email, String tempPW) throws MessagingException, UnsupportedEncodingException {
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-
-    	sendMail.setSubject("[ Imfind �ӽ� ��й�ȣ]");
-    	sendMail.setText(new StringBuffer().append("<h3>�ӽ� ��й�ȣ �߱�</h3>")
-    			.append("ȸ������ �ӽú�й�ȣ�� [ <b>" + tempPW + "<b> ] �Դϴ�. <br>")
-    			.append("<a target='http://localhost:8080/imfind/login'>Imfind �α��� ȭ�� �̵� </a>")
+		
+		
+		
+		sendMail.setSubject("[ Imfind 임시 비밀번호]");
+		sendMail.setText(new StringBuffer().append("<h3>임시 비밀번호 발급</h3>")
+				.append("회원님의 임시비밀번호는 [ <b>" + tempPW + "<b> ] 입니다.")
+				.append("<a target='http://localhost:8080/imfind/login'>Imfind 로그인 화면 이동 </a>")
     			.toString());
     	sendMail.setFrom("szexdr@naver.com", "ImFind");
     	sendMail.setTo(email);

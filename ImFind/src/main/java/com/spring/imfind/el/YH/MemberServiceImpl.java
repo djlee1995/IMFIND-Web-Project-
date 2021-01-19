@@ -86,6 +86,13 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("stat�Դϴ� " + state);
 		return state;
 	}
+
+	@Override
+	public LoginDTO getLoginDTO(String id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		LoginDTO loginDto = memberMapper.getLoginDTO(id);
+		return loginDto;
+	}
 	
 
 }

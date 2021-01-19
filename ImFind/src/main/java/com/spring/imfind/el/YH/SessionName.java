@@ -6,4 +6,5 @@ public interface SessionName {
 	static final String ADMIN_LOGIN = "admin";
 	static final String LOGIN_COOKIE = "login_cookie";
 	static final String DESTINATION = "des";
+	static final String MEMBERINFO = "memberInfo";
 }

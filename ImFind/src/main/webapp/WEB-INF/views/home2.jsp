@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.imfind.imf.PoliceVO" %>
+<%@ page import = "com.spring.imfind.el.YH.LoginDTO" %>
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE HTML>
 <html>
     <!-- Header Section Begin -->
    	<jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
     <!-- Header End -->
-
+    
+    <!-- swiper 플러그인 -->
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+	
+	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	
 	<style>
 		.box{
 			/* border : 1px solid black; */
@@ -154,100 +162,231 @@
 			overflow: hidden;
 			height : 182px !important;
 		}
+		.text.map{
+			display : flex;
+			justify-content : flex;
+			align-items : flex;
+		}
+		.top-menu{
+		    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
+			height : 88px !important;
+		}
+		div.container-fluid:nth-child(1) > div:nth-child(1){
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 8px;
+			position: relative;
+			top: -15px;
+		}
+		.fh5co-nav{
+			padding-right : 18px !important;
+			background : white;
+		}
+		
+		.swiper-container{
+			width : 100%;
+			height : 320px;
+		}
+		.swiper-container.row{
+			width : 100%;
+			height : 320px;
+		}
+		.arrow-container{
+			display : flex;
+			justify-content : center;
+			align-items : center;
+			position : relative;
+			top: -175px;
+		}
+		.arrow-next,
+		.arrow-prev,
+		.arrow-next2,
+		.arrow-prev2{
+			margin : 0 595px;
+			color : rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+		}
+		.swipe-slide{
+			
+		}
 	</style>
 	
-	<script>
+<script>
+
+function getXY (getUserLocation){
+	
+	if('geolocation' in navigator) {
+		  /* 위치정보 사용 가능 */
+		  var options = {
+			  enableHighAccuracy: true,
+		  };
+		  navigator.geolocation.getCurrentPosition((position, options) => {
+			  var coords =  {'y' : position.coords.latitude, 'x' : position.coords.longitude };
+			  getUserLocation(coords); // 현재위치 주소 얻기
+		  });
+		  
+	} else {
+		  /* 위치정보 사용 불가능 */
+	}
+}
+function getListNearMe(item){
+	$.ajax({
+		url : './getNearXY',
+		data : {'x' : item.x, 'y' : item.y},
+		async : false,
+		success : function(data){
+			//console.log(data);
+			const parentNode = document.querySelector(".swiper-wrapper.first");
 		
-		function getXY (getUserLocation){
-			
-			if('geolocation' in navigator) {
-				  /* 위치정보 사용 가능 */
-				  var options = {
-					  enableHighAccuracy: true,
-				  };
-				  navigator.geolocation.getCurrentPosition((position, options) => {
-					  var coords =  {'y' : position.coords.latitude, 'x' : position.coords.longitude };
-					  getUserLocation(coords); // 현재위치 주소 얻기
-				  });
-				  
-			} else {
-				  /* 위치정보 사용 불가능 */
-			}
-		}
-		function getListNearMe(item){
-			$.ajax({
-				url : './getNearXY',
-				data : {'x' : item.x, 'y' : item.y},
-				async : false,
-				success : function(data){
-					//console.log(data);
-					const parentNode = document.querySelector('#fh5co-blog > div > div:nth-child(3)');
+				data.police.forEach(function(item){
+					
+				const colNode = document.createElement('div');
+				colNode.className = 'swiper-slide';
 				
- 					data.police.forEach(function(item){
+				colNode.innerHTML = '<div class="fh5co-blog">'
+										  +'<a href="#"><img class="img-responsive" src="'+ item.photo + '" alt=""></a>'
+										  +'<div class="blog-text">'
+												+'<span class="posted_on">' + item.lost_date + '</span>'
+												+'<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>'			
+												+'<h3><a href="#">' + item.item +'</a></h3>'
+												+'<p>'+ item.depplace +'</p>'
+					                  			+'<p style="margin-bottom : 0;">' + item.info + '</p>'
+					                  +'</div></div>';
 
-					const colNode = document.createElement('div');
-					colNode.className = 'col-lg-3 col-md-3';
-					colNode.innerHTML = '<div class="fh5co-blog">'
-											  +'<a href="#"><img class="img-responsive" src="'+ item.photo + '" alt=""></a>'
-											  +'<div class="blog-text">'
-											  +'<span class="posted_on">' + item.lost_date + '</span>'
-											  +'<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>'			
-							                  	+'<h3><a href="#">' + item.item +'</a></h3>'
-							                  	+'<p>'+ item.depplace +'</p>'
-							                  +'<p style="margin-bottom : 0;">' + item.info + '</p>'
-							                  +'<div class="overlay">'
-							                 	 +' <div class="text"><div class="title"><a href="index.if">지도에서 보기</a></div></div>'
-							                  +'</div>'
-						                  +'</div>';
-							          
-						parentNode.appendChild(colNode);
-					});	 
-				},
-				error : function(data){
-					alert('실패')
-				}				
-			});
-		}
-		
-		function getUserLocation(coords){
-
-		    //ajax 시작
-			$.ajax({
-				url : 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json',
-				headers : { 'Authorization' : 'KakaoAK d5e7c97eeecbba70fa5f4e5f4bc57517' },
-				type: 'GET',
-				data : { 'x' : coords.x, 'y' : coords.y },
-				success : function(data){
-					//호출 성공하면 작성할 내용
-		            if(data.documents.length != 0 ){ // 값이 있으면
-
-						var result = data.documents[0]
-						
-						var item =  {'city' : result.region_1depth_name,
-		            	        'gu' : result.region_2depth_name,
-		            	        'x' : result.x,
-		            	        'y' : result.y}
-		        
-		            	document.querySelector('.fh5co-heading h2').innerHTML =  '<i class="fas fa-street-view"></i> '+ item.city + ' ' + item.gu + ' 습득물'
-		            	return item;
-					}
-				}, 
-				error:function(request,status,error){
-				    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			}).done(function(data){
-			 	getListNearMe(coords);
+				parentNode.appendChild(colNode);  
+				
 			});	
+				data.item.forEach(function(item){
+					const parentNode = document.querySelector(".swiper-wrapper.lost");
+					
+					console.log(item)
+					const colNode = document.createElement('div');
+					colNode.className = 'swiper-slide';
+					colNode.innerHTML = '<div class="fh5co-blog">'
+										  +'<a href="#"><img class="img-responsive" src="'+ item.lost_Up_File + '" alt=""></a>'
+										  +'<div class="blog-text">'
+												+'<span class="posted_on">' + item.Lost_Date + '</span>'
+												+'<span class="comment"><a href="">' + item.commentTotalCnt +'<i class="icon-speech-bubble"></i></a></span>'			
+												+'<h3><a href="#">' + item.lost_Title +'</a></h3>'
+												+'<p>'+ item.lost_Loc +'</p>'
+					                  			+'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
+					                  +'</div>';
+				parentNode.appendChild(colNode);
+				});
+		},
+		error : function(data){
+			alert('실패')
+		}				
+	});
+}
+
+function getUserLocation(coords){
+
+    //ajax 시작
+	$.ajax({
+		url : 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json',
+		headers : { 'Authorization' : 'KakaoAK d5e7c97eeecbba70fa5f4e5f4bc57517' },
+		type: 'GET',
+		//async : false,
+		data : { 'x' : coords.x, 'y' : coords.y },
+		success : function(data){
+			//호출 성공하면 작성할 내용
+            if(data.documents.length != 0 ){ // 값이 있으면
+
+				var result = data.documents[0]
+				
+				var item =  {'city' : result.region_1depth_name,
+            	        'gu' : result.region_2depth_name,
+            	        'x' : result.x,
+            	        'y' : result.y}
+        
+            	document.querySelector('.fh5co-heading h2').innerHTML =  '<i class="fas fa-street-view"></i> '+ item.city + ' ' + item.gu + ' 습득물'
+            	return item;
+			}
+		}, 
+		error:function(request,status,error){
+		    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
-		document.addEventListener('DOMContentLoaded', function(){
-			 var result = getXY(getUserLocation);
-		});
-	    
-	</script>
+	}).done(function(data){
+	 	getListNearMe(coords);
+	});	
+}
+document.addEventListener('DOMContentLoaded', function(){
+	 
+	 // swiper 초기화 시키기
+	 var mySwiper1 = new Swiper('.swiper-container.row',{
+		 
+		slidesPerView: 5,
+		direction : 'horizontal',
+		loop : true,
+		spaceBetween: 20,
+		observer: true,
+		autoplay : {
+			delay : 2500,
+		},
+		pagination : {
+			el: '.swiper-pagination.first',
+		 	type: 'progressbar',
+		},
+	 
+		navigation : {
+			nextEl: '.arrow-next',
+			prevEl: '.arrow-prev',
+		},
+	 });
+	 
+	 // swiper 초기화 시키기
+	 var mySwiper2 = new Swiper('.swiper-container.lost',{
+		 
+		slidesPerView: 5,
+		direction : 'horizontal',
+		loop : true,
+		spaceBetween: 20,
+		observer: true,
+		autoplay : {
+			delay : 2500,
+		},
+		pagination : {
+			el: '.swiper-pagination.second',
+		 	type: 'progressbar',
+		},
+	 
+		navigation : {
+			nextEl: '.arrow-next2',
+			prevEl: '.arrow-prev2',
+		},
+	 });
+	 
+ 	 // swiper 초기화 시키기
+	 var mySwiper = new Swiper('.swiper-container',{
+		 
+		slidesPerView: 5,
+		direction : 'horizontal',
+		loop : true,
+		spaceBetween: 20,
+		observer: true,
+		
+		pagination : {
+			el: '.swiper-pagination',
+		 	type: 'progressbar',
+		},
+	 
+		navigation : {
+			nextEl: '.arrow-next',
+			prevEl: '.arrow-prev',
+		},
+	 }); 
+
+	 var result = getXY(getUserLocation);
+	 
+});
+
+</script>
 </head>
 	
 	<body>
-
+	<%	LoginDTO dto = (LoginDTO)request.getAttribute("memberInfo"); %>
 	
     <%
     	if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
@@ -271,7 +410,7 @@
 			   			<div class="row">
 				   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
 				   				<div class="slider-text-inner">
-				   					<h1>공공기관이 습득한 분실물<br> 찾기</h1>
+				   					<h1>공공기관이 습득한 분실물<br> 찾기 </h1>
 									<h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
 									<p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
 				   				</div>
@@ -281,7 +420,7 @@
 									<div class="container">
 										<div class="row">
 											<div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회</h2>
+												<h2 style="	font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회 ${memberInfo.id}</h2>
 												<blockquote>
 													<p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
 												</blockquote>
@@ -365,60 +504,136 @@
 				</div>
 			</div>
 			<a href="#" class="btn btn-primary">공공기관 습득물</a>
-			<div class="row">
-				<%-- <div class="col-lg-3 col-md-3">
-					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src="${pageContext.request.contextPath}/resources/home/images/blog-1.jpg" alt=""></a>
-						<div class="blog-text">
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<h3><a href="#">주민등록증</a></h3>
-							<p>제주국제공항 </p>
-							<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-							<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-						</div>
-					</div>
+			<div class="swiper-container row">
+				<div class="swiper-wrapper first">
 					
-					 <div class="overlay">
-					    <div class="text">
-					    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
-					    </div>
-					 </div> 
-				</div> --%>
-				
+				</div>
+				<div class="swiper-pagination first"></div>
 			</div>
 		</div>
+		<div class="arrow-container">
+			<div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
+			<div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
+		</div>
 	</div>
-	<div id="fh5co-blog">
+	<div id="fh5co-blog" class="section lostpost">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>분실물 찾아주세요</h2>
-					<p>사용자의 현재 위치에서 분실신고된 분실물입니다.</p>
+					<p>최근 분실 신고된 분실물입니다.</p>
 				</div>
 			</div>
 			<a href="#" class="btn btn-primary">분실물 찾아주세요</a>
-			<div class="row">
-				<div class="col-lg-3 col-md-3">
-					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src="${pageContext.request.contextPath}/resources/home/images/blog-1.jpg" alt=""></a>
-						<div class="blog-text">
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<h3><a href="#">구찌</a></h3>
-							<p>명동</p>
-							<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-							<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-						</div>
-					</div>
+			<div class="swiper-container lost">
+				<div class="swiper-wrapper lost">
 					
-					 <div class="overlay">
-					    <div class="text">
-					    	<div class="title"><a href="index.if">지도에서 보기</a> </div>
-					    </div>
-					 </div> 
+				</div>
+				<div class="swiper-pagination second"></div>
+			</div>
+		</div>
+		<div class="arrow-container">
+			<div class="arrow-prev2"><i class="fas fa-chevron-left fa-3x"></i></div>
+			<div class="arrow-next2"><i class="fas fa-chevron-right fa-3x"></i></div>
+		</div>
+	</div>
+	
+	<div id="fh5co-blog" class="section lostpost">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>반려동물을 찾아주세요</h2>
+					<p>사용자의 현재 위치에서 분실신고된 반려동물입니다.</p>
 				</div>
 			</div>
+			<a href="#" class="btn btn-primary">분실물 찾아주세요</a>
+			<div class="row swiper-container">
+				<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+						<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+						<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+						<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+							<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+							<div class="swiper-slide">
+							<div class="fh5co-blog animate-box">
+								<a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+								<div class="blog-text">
+									<span class="posted_on">Nov. 15th</span>
+									<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+									<h3><a href="#">구찌</a></h3>
+									<p>명동</p>
+									<p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+									<!-- <a href="#" class="btn btn-primary">Read More</a> -->
+								</div>
+							</div>
+						</div> 
+					</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+		<div class="arrow-container">
+			<div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
+			<div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
 		</div>
 	</div>
 	</section>

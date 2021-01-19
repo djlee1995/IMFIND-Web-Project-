@@ -71,7 +71,7 @@ public class YHController implements SessionName {
 		else if(kakaoLoginUser != null) {
 			session.removeAttribute(KAKAO_LOGIN);
 		}
-		
+		session.removeAttribute(MEMBERINFO);
 		Cookie loginCookie = WebUtils.getCookie(request, "login_cookie");
 		
 		if(loginCookie != null) {
@@ -95,10 +95,16 @@ public class YHController implements SessionName {
 		int state = memberService.loginCheck(id, pw);
 		
 		if(state == 1) {
+			
 			HttpSession session = request.getSession();
-			session.setAttribute(LOGIN, id); //d
+			session.setAttribute(LOGIN, id); //
+			
+			LoginDTO dto = memberService.getLoginDTO(id);
+			System.out.println(dto.toString());
 			
 			if(session.getAttribute(DESTINATION) != null) {
+				
+				session.setAttribute(MEMBERINFO, dto);
 				session.setAttribute(LOGIN, id);      
 				Object dest = session.getAttribute(DESTINATION);
 				return (String)dest;
@@ -145,7 +151,9 @@ public class YHController implements SessionName {
         System.out.println("kakao_id : " + kakao_id);
         
         String email = (String) kakao_account.get("email");
-        session.setAttribute("kakaoLoginUser", kakao_id);
+        
+        session.setAttribute(KAKAO_LOGIN, kakao_id);
+        session.setAttribute(LOGIN, userInfo.get("id"));
         
         return "redirect:/kakaoRegister";
 	}

@@ -136,7 +136,7 @@
              <div class="row">
                 <div class="col-lg-5 offset-lg-4">
                     <div class="register-form">
-                        <h2 style="font-size:1.5rem;">회원가입</h2>
+                        <h2 style="font-size:1.5rem;">회원정보 등록하고 IMFIND를 이용해주세요</h2>
                         
                         <form action="./processJoin" class="grid-form" method="post">
                    		    <input type="hidden" id="username" name="id" value="${kakaoLoginUser}">

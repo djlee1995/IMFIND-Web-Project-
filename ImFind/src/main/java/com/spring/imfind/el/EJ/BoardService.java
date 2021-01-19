@@ -10,4 +10,5 @@ public interface BoardService {
 	
 	public int commentInsert(LostComVO lostcomvo); // 댓글등록
 	public List<LostComVO> itemCommentList(int Lost_PostNum);
+	
 }

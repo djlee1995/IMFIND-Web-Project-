@@ -30,8 +30,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter implements Sessio
 		else {
 			query = "?" + query;
 		}
-		
-		
 		if(req.getMethod().equals("GET")) {
 			logger.info("dest: " + (uri + query));
 			req.getSession().setAttribute(DESTINATION, uri + query);

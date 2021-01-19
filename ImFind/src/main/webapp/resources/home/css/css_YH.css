@@ -1,4 +1,4 @@
-	.box{
+		.box{
 			/* border : 1px solid black; */
 			width: 50vw;
 			position: absolute;
@@ -67,7 +67,9 @@
 			left: 0;
 			z-index: 100;
 			padding-right : 35px;
+			background: white;
 		}
+
 		aside{
 			padding-top : 6.76%;
 		}
@@ -107,3 +109,17 @@
 		    -o-transition: 0.5s;
 		    transition: 0.5s;
 		}
+				.top-menu{
+		    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
+			height : 88px !important;
+		}
+		div.container-fluid:nth-child(1) > div:nth-child(1){
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 8px;
+			position: relative;
+			top: -15px;
+		}
+		
+		

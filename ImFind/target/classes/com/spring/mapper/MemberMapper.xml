@@ -23,6 +23,11 @@
 			name= #{name} and email = #{email}
 	</select>
 	
+	<select id="getLoginDTO" resultType="LoginDTO">
+		SELECT * from member
+			WHERE id= #{id}
+	</select>
+	
 	<select id="findPW" parameterType="String" resultType="LoginDTO">
 		SELECT pw, id from member 
 			where 

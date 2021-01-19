@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-   
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
+<!-- 폰트 어썸 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">   
+
 <nav class="fh5co-nav" role="navigation">
 	<div class="top-menu">
 		<div class="container-fluid">
@@ -25,7 +29,6 @@
 							<ul class="dropdown">
 								<li><a href="./item">물건</a></li>
 								<li><a href="#">동물</a></li>
-
 							</ul>
 						</li>
 						<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 

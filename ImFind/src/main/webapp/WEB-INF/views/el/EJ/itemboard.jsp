@@ -61,8 +61,8 @@
 			
 			<div class="item2">
 				<h6>작성자</h6>
-				<input type="hidden" name="id" value="<%=id %>">
-				<h6><%=id %></h6>
+				<input type="hidden" name="id" value="${loginUser}">
+				<h6>${loginUser}</h6>
 	
 			</div>
 			<!-- 필수입력사항   -->

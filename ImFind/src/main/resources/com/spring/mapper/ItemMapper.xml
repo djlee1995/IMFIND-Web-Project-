@@ -32,6 +32,26 @@
 	SELECT * from lostpost where lost_postnum = #{lost_PostNum}
 
   </select>
+  
+  <!-- 유희 -->
+  <select id="getItembyDate" resultType="IndexLostPostDTO">
+<!--   	  SELECT * FROM 
+  	  	(SELECT * FROM lostpost ORDER BY lost_date asc)
+  	  WHERE <![CDATA[ rownum < 15 ]]>   -->
+  	  SELECT 
+  	  		LOST_POSTNUM, 
+  	  		LOST_TITLE, 
+  	  		LOST_CONTENT, 
+  	  		LOST_UP_FILE, 
+  	  		LOST_PAY, 
+  	  		LOST_ITEM, 
+  	  		LOST_LOC, 
+  	  		LOST_DATE, ID,
+			(SELECT COUNT(*) AS cnt FROM re_comment WHERE lostpost.lost_postnum = re_comment.lost_postnum) as CommentTotalCnt 
+	  FROM lostpost 
+	  WHERE <![CDATA[ rownum < 15 ]]>
+	  ORDER BY lost_date 
+  </select>
 
   
 </mapper>

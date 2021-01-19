@@ -21,14 +21,6 @@
     <!-- Css Styles -->
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> <!-- 지우면 안됨. -->
-    
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">    --%> 
   
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
     
@@ -149,10 +141,6 @@
 														  </div>
 													
 							   					 </div>                    
-                   <!--   https://getbootstrap.com/docs/5.0/components/buttons/    --> 
-                      <!--  <form action="#">-->  
-                        
-                        <!-- 아이디 자리 끝 ------------------------------------------------------------------------------------------ -->
                         
                           <form id="post_list" method="post"> <!-- 202012311156 -->
                        <!--  <fieldset> -->
@@ -164,10 +152,6 @@
                        </div>
                        	
                         &nbsp;
-                        
-                          <!-- 202012311536_BD값 끌고 오는거 보려고함  sooAdd-->
-                            <!--    <nav aria-label="Page navigation example"> -->
-			                     <!-- <div class="PageNavi">-->
                        		 <table style="width:100%">
 										<tr style="background-color:lightgrey">
 											<th>&nbsp;번호</th>
@@ -179,8 +163,6 @@
 								          <th>거래완료</th>
 										</tr>
 										</table>
-		
-                     <!--  <table id="output" style="width:100%"> -->
                         
                             <table id="output"  border="0" width="100%">
                          </table>
@@ -189,9 +171,6 @@
 						<!--  <nav aria-label="..."> -->
 						  <ul class="pagination" id="numbers_mypage_post1">
 						  
-						    <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>
-						    <li class="page-item"><a class="page-link" href="#">2</a></li>
-						    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
 						   
 						  </ul>
 						<!--  </nav> -->
@@ -230,55 +209,15 @@
 												 
 												      
 												                         </table>
-						                           
-						                         <!-- 페이징 테스트 202101051745-->
-						                         
-						                        <!-- 페이징을 지정할 태그에 class에 pagination을 넣으면 자동으로 페이징이 된다.-->	
-						                       
-						                         
-						                        
-																	  <!-- 페이징의 크기를 제어할 수 있는데 pagination-lg를 추가하면 페이징 크기가 커지고, pagination-sm를 넣으면 작아진다. -->	
-																	  <!-- 큰 페이징 class="pagination pagination-lg", 보통 페이징 class="pagination", 작은 페이징  class="pagination pagination-sm" -->	
-																	<!--  <ul class="pagination">	
-																	    <!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->	
-																	    <!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->	
-																	<!--      <li class="disabled">	
-																	      <a href="#">	
-																	        <span>«</span>	
-																	      </a>	
-																	    </li>	-->
-																	    <!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->	
-																	    <!-- active의 의미는 현재 페이지의 의미이다. -->	
-																	<!--     <li class="active"><a href="#">1</a></li>	
-																	    <li><a href="#">2</a></li>	
-																	    <li><a href="#">3</a></li>	
-																	    <li><a href="#">4</a></li>	
-																	    <li><a href="#">5</a></li>	
-																	    <li>	
-																	      <a href="#">	
-																	        <span>»</span>	
-																	      </a>	
-																	    </li>	
-																	  </ul>	--> 
-														 
-						                         <!-- 페이징 테스트   -->
-						                         
-						                         <!-- 페이징 테스트 2-1 -->
+
 						                      <!--   <nav aria-label="Page navigation example">-->
 						                      <div class="text-center">
 													  <ul id="numbers_mypage_post2" class="pagination justify-content-center">
-													  
-													  <!--   <li class="page-item"><a class="page-link" href="#">1</a></li>
-													    <li class="page-item"><a class="page-link" href="#">2</a></li>
-													    <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+
 													   
 													  </ul>
 													  </div>
-													  
-											<!-- 	</nav> -->
-						                         
-						                          <!-- 페이징 테스트 2-2 -->
-	  <!-- Modal --> 
+
 		<!-- Modal ---------------------------------------------------> 
 <div class="modal fade" role="dialog" id="dialog">
   <div class="modal-dialog">
@@ -295,23 +234,7 @@
 				
 				<!-- <div class="container-fluid">--> <!--Fluid containers-->
 				<div class="container" id=output_WhoReplied> 
-				<!--   라디오-->
-				<!--form-check id ~~~~ Ajax 뿌잉  -->
-						<!-- <div id=output_WhoReplied class="form-check">  
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-				 
-				  <label class="form-check-label" for="flexRadioDefault1">
-				  <label class="form-check-label" for="flexRadioDefault1">
-				    Default radio
-				  </label>
-				</div>
-				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-				  <label class="form-check-label" for="flexRadioDefault2">
-				    Default checked radio
-				  </label>
-				</div> -->	
-				<!--라디오-->
+	
 <!-- -------------------------------------------------------------------------------------------------------- -->				
 				<!-- 라디오 일반 START --> 
 			<!-- 	<div id=output_WhoReplied>  -->
@@ -337,11 +260,6 @@
 <div class="make_star">
 
 	<div class="rating" data-rate="3">
-		<!-- <i class="fas fa-star"></i> 
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>
-		<i class="fas fa-star"></i>	 -->
 		<svg class="svg-inline--fa fa-star fa-w-18"
 				 aria-hidden="true"
 				 focusable="false"
@@ -581,16 +499,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
  	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>		
 
     <!-- Js Plugins -->
-<%--     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script> --%>
 </body>
 
 </html>

@@ -66,7 +66,7 @@ public class EJController {
 		   
 		   System.out.println("ddddddd");
 	      response.setContentType("text/html;charset=utf-8");
-	      String uploadPath = "/Users/hongmac/Documents/upload/";
+	      String uploadPath = "C:\\Users\\gutenLee\\Desktop\\seoul\\upload\\";
 	      //String uploadPath = "/Users/hongmac/Documents/WebProject/ImFind/src/main/webapp/resources/el/images/";
 	      
 	      

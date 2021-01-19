@@ -4,8 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ItemVO {
-
+public class IndexLostPostDTO {
 	private int Lost_PostNum; 
 	private String Lost_Title;
 	private String Lost_Content; 
@@ -20,7 +19,7 @@ public class ItemVO {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date Lost_Date;
 	private String Id;
-	private int Contact;
+	private int commentTotalCnt;
 	
 	public int getLost_PostNum() {
 		return Lost_PostNum;
@@ -94,22 +93,12 @@ public class ItemVO {
 	public void setId(String id) {
 		Id = id;
 	}
-	public int getContact() {
-		return Contact;
+	public int getCommentTotalCnt() {
+		return commentTotalCnt;
 	}
-	public void setContact(int contact) {
-		Contact = contact;
+	public void setCommentTotalCnt(int commentTotalCnt) {
+		this.commentTotalCnt = commentTotalCnt;
 	}
-	@Override
-	public String toString() {
-		return "ItemVO [Lost_PostNum=" + Lost_PostNum + ", Lost_Title=" + Lost_Title + ", Lost_Content=" + Lost_Content
-				+ ", Lost_Re_Date=" + Lost_Re_Date + ", Lost_Re_Count=" + Lost_Re_Count + ", Lost_Or_File="
-				+ Lost_Or_File + ", Lost_Up_File=" + Lost_Up_File + ", Lost_Pay=" + Lost_Pay + ", Lost_Item="
-				+ Lost_Item + ", Lost_Loc=" + Lost_Loc + ", Lost_Date=" + Lost_Date + ", Id=" + Id + ", Contact="
-				+ Contact + "]";
-	}
-	
-	
-	
+
 	
 }

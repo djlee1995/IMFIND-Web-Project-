@@ -57,6 +57,7 @@
 			<mapping path="/itemboard"></mapping>
 			<mapping path="/petboard"></mapping>
 			<mapping path="/mypage"></mapping>
+			<mapping path="/comment_insert"></mapping>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		

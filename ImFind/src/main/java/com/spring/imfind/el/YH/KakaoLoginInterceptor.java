@@ -54,6 +54,10 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
 			if(res == 1) {
 			   logger.info("KakaoLoginInterceptor - {}", "DB에 회원정보 있는 카카오 로그인 사용자.");
+			   
+			   LoginDTO dto = memberService.getLoginDTO((String)kakaoLoginUser);
+			   session.setAttribute(MEMBERINFO, dto);
+			   
 			   response.sendRedirect("/home.do");
 			   return;
 			}

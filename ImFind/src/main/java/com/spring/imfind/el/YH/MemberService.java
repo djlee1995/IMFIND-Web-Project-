@@ -12,5 +12,5 @@ public interface MemberService {
 	public String findID(String name, String email);
 	public LoginDTO findPW(String id, String email);
 	public int alterTempPW(String id, String pw);
-	
+	public LoginDTO getLoginDTO(String id);
 }
