@@ -36,12 +36,8 @@ public class MJController {
 	@ResponseBody
 	@RequestMapping(value = "/list.do", produces = "application/json;charset=UTF-8")
 	public List<ItemVO> item(ItemVO vo) {
-		// System.out.println("ininininin");
-
-		// System.out.println(vo.getLost_PostNum());
-
+	
 		List<ItemVO> list = itemService.getItemservice(vo);
-		System.out.println("data" + list);
 
 		return list;
 	}
@@ -51,9 +47,6 @@ public class MJController {
 	  @RequestMapping(value ="/search.do" ,
 	  produces="application/json;charset=UTF-8")
 	  public List<ItemVO> list(@RequestParam(value="lost_Title")String lost_Title) {
-	  
-	  	System.out.println("떠라");
-	
 	  
 	  List<ItemVO> list = itemService.getItemservice(lost_Title);
 	  System.out.println("list" + list);
@@ -80,10 +73,9 @@ public class MJController {
 	  produces="application/json;charset=UTF-8")
 	  public List<ItemVO> datainfo(@RequestParam(value="lost_PostNum")int lost_PostNum) {
 	  System.out.println(lost_PostNum);
-	  	System.out.println("떠라");
 
 	  List<ItemVO> list = itemService.getdata_info(lost_PostNum);
-	  System.out.println("list" + list);
+
 	  return list;
 	  
 	  }

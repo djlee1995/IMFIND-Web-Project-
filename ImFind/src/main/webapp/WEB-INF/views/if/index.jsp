@@ -114,7 +114,7 @@
         <!--End Modal-->
 
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
 	<script src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
 	<script

@@ -290,7 +290,6 @@
 				if(event.target.id){
 					event.target.style.background = '#F2F7FB';
 				} 
-				//console.log(event.target.id)
 			})
 			
 			// focusout 이벤트

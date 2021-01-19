@@ -17,12 +17,10 @@ public class YSController {
 	@Autowired
 	private ElService elService;
 	
-	//soo: views ���������� el ������ �ٷ� mypage�� �ִ°� �ƴ϶�. YS������ �����ؼ� ��ġ �̵��ؼ� ������. (12/31_1305)
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.setAttribute("id", "bnm1128");
-		//session.setAttribute("id", "A001");
 		
 		return "el/YS/mypage";
 	}
@@ -31,31 +29,23 @@ public class YSController {
 	
 	@RequestMapping(value="/getElsedata",method=RequestMethod.POST,
 												produces="application/json;charset=UTF-8")
-	@ResponseBody//jsp�� ���� �並 ���� �ϴ� �� �ƴ� �����͸� ���� �ϱ� ���� ��� 
+	@ResponseBody
 	public List<ElVO> getElsedata(HttpServletRequest request) {
 		HttpSession session = request.getSession();	
-		//List<EmpVO> list =empService.getEmpEx();
 		String id=(String)session.getAttribute("id");
-		
-		System.out.println("session id1 : " + id);
-		
+				
 		List<ElVO> list = elService.getElsedata(id);
-		System.out.println("list"+list );
 		return list;
 	}
 	
 	
 	@RequestMapping(value="/getElsePaydata",method=RequestMethod.POST,
 												produces="application/json;charset=UTF-8")
-	@ResponseBody//jsp�� ���� �並 ���� �ϴ� �� �ƴ� �����͸� ���� �ϱ� ���� ��� 	
+	@ResponseBody//	
 	public List<ElVO> getElsePaydata(HttpServletRequest request) {
-		//������Ʈ ��ü ���� ���� ��������
 		HttpSession session = request.getSession();
-		//session.getAttribute("id");
-		//List<EmpVO> list =empService.getEmpEx();
-		String id= (String)session.getAttribute("id"); //������Ʈ�� ��Ʈ������ ���� ��ȯ. 
+		String id= (String)session.getAttribute("id"); 
 		
-		System.out.println("session id2 : " + id);
 		
 		List<ElVO> list2 = elService.getElsePaydata( id );
 		System.out.println("list2"+list2 );
@@ -66,10 +56,8 @@ public class YSController {
 			produces="application/json;charset=UTF-8")
 	@ResponseBody//
 		public List<ElVO> getElseWhoReplied(String Lost_Postnum) {
-		
 		List<ElVO> list3 = elService.getElseWhoReplied( Lost_Postnum );
-		//List<ElVO> list3 = elService.getElseWhoReplied( );
-		System.out.println("list3"+list3 );
+		
 		return list3;
 	}	
 		

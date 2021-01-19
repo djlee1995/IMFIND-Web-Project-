@@ -110,8 +110,6 @@
 			
 			<!--  필수입력사항 --> 
 			<div class="item8"><h6>내 용</h6></div>
-			<!-- 원래태그 <div class="item8_1"><textarea id="summernote" name="Lost_Content"></textarea></div> -->
-			<!--   <input type="text" name="title" class="form-control" id="inputTitle" placeholder="제목을 입력하세요">     -->
 			<div class="item8_1"><textarea id="summernote" name="Pat_Content"></textarea></div>
 						
 
@@ -153,8 +151,6 @@
 			
 			<div class="btn">
 				<button type="submit">확인</button>
-				<!-- <a href="javascript:addboard()" >등록</a>&nbsp;&nbsp;  -->
-				<!-- <a href="#" onclick="pay()">일반 결제</a><br><br> -->
 				<a href="index">취소</a>
 			</div>
 			

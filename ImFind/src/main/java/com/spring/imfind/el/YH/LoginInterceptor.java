@@ -49,7 +49,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 
 			System.out.println("login post Handle id : " + (String)loginUser);
 			
-			// ��й�ȣ ��� ���� �� ��Ű ����
+			
 			if(!(StringUtils.isEmpty(request.getParameter("savePass")))) {
 				Cookie loginCookie = new Cookie(LOGIN_COOKIE, session.getId());
 				loginCookie.setPath("/imfind");
