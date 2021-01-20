@@ -32,6 +32,12 @@
 	SELECT * from lostpost where lost_postnum = #{lost_PostNum}
 
   </select>
+  <update id="update_data"> 
+	update lostpost set lost_title=#{Lost_Title},lost_Content=#{Lost_Content},lost_date=#{Lost_Date},lost_loc=#{Lost_Loc},lost_Up_File=#{Lost_Up_File},lost_item=#{Lost_Item} where lost_postnum = #{lost_PostNum}   
+	
+
+  </update>
+    
   
   <!-- 유희 -->
   <select id="getItembyDate" resultType="IndexLostPostDTO">

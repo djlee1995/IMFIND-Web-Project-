@@ -12,9 +12,11 @@ public interface ItemMapper {
     List<ItemVO> getItemservice(String lost_Title);
 	List<SelectVO> getSido(String sido,String gu, String dong);
 	List<ItemVO> getdata_info(int lost_PostNum);
+	int update_data(ItemVO vo);
 	
 	// YH
 	List<IndexLostPostDTO> getItembyDate();
+	
 	
 }
 

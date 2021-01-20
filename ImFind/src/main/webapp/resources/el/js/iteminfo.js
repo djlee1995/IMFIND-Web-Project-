@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 	
-	console.log(loginUser)
+	console.log(lost_PostNum)
 	var loc;
 	$.ajax({
 		url :'datainfo.do',

@@ -48,9 +48,10 @@
 
 	<!-- 분실물 등록 게시판 은지 -->
 	<div class="container">
-		<form name="boardform" action="./itemInsert" method="post" enctype="multipart/form-data">
-		
-			<!-- 타이틀  -->
+		<form name="boardform" action="./update.do" method="post" enctype="multipart/form-data">
+			 
+			 
+		<!-- 타이틀  -->
 			<div class="item1">
 				<h8>분실글 등록하기(물품)</h8>
 				<h8>* 필수입력사항</h8>
@@ -131,12 +132,12 @@
 				<button type="submit">수정</button>
 				<a href="#" onclick="history.back();">취소</a>
 			</div>
-			
+			<div class="postnum"></div>
 		</form>
 	</div>
 	<script>
 var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
-console.log(lost_PostNum)
+console.log(lost_PostNum+1)
 var loginUser='<%=(String)session.getAttribute("loginUser")%>'
 
 </script>

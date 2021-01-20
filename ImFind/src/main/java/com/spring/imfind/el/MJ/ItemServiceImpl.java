@@ -56,6 +56,13 @@ public class ItemServiceImpl implements ItemService{
 		List<IndexLostPostDTO> List = mapper.getItembyDate();
 		return List;
 	}
+	@Override
+	public int update_data(ItemVO vo) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		int res  = mapper.update_data(vo);
+	
+		return res;
+	}
 	
 	
 }

@@ -41,7 +41,7 @@ public class EJController {
 		String content = boardvo.getLost_Content();
 		Matcher match = pattern.matcher(content);
 		String Lost_Up_File = null;
-		String uploadPath = "/Users/hongmac/Documents/upload/"; 
+		String uploadPath = "C:\\Project\\WebProject\\upload\\";
 		
 		if(match.find()){ 
 			Lost_Up_File = match.group(0); 
@@ -87,7 +87,7 @@ public class EJController {
 	@RequestMapping(value="el/insertPay", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public int insertPay(@RequestBody Map<String, String> vo){
-		System.out.println("vo:" + vo.toString());
+		
 		PayVO payVO = new PayVO();
 		payVO.setPayCode((vo.get("PayCode")));
 		payVO.setPay_Way((vo.get("Pay_Amount")));
@@ -131,7 +131,7 @@ public class EJController {
 			produces="application/json;charset=UTF-8")
 	private int commentInsert(LostComVO comment, HttpSession session) throws Exception{
 		comment.setId((String)session.getAttribute("loginUser"));
-		System.out.println("comment"+comment);
+	
 		
 			if ( comment.getSecret_Com() == null) { // 댓글 공개 설정
 				comment.setSecret_Com("n");
