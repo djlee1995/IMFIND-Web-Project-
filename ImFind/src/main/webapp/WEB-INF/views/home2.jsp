@@ -63,10 +63,7 @@
       }
       .flex-active-slide > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > ul:nth-child(1) > li{
          background : white;
-<<<<<<< HEAD
-         
-=======
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+
       }
       @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
@@ -86,11 +83,8 @@
          padding-top : 6.76%;
       }
       .fh5co-nav #fh5co-logo{
-<<<<<<< HEAD
-         font-size : 34px;
-=======
+
          font-size : 31px;
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
       }
       #fh5co-services{
           margin-top: 195px !important;
@@ -164,12 +158,9 @@
          position : relative;
          top : 300px;
       }
-<<<<<<< HEAD
-      .fh5co-blog .img-responsive{
-=======
+
       .fh5co-blog .img-responsive,
       .police-photo{
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
          object-fit: contain;
          overflow: hidden;
          height : 182px !important;
@@ -222,8 +213,7 @@
       .swipe-slide{
          
       }
-<<<<<<< HEAD
-=======
+
       .hidden-panel{
       	opacity : 100%;
       }
@@ -233,7 +223,6 @@
       	width:100%;
       	height:100%;
       }
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
    </style>
    
 <script>
@@ -288,11 +277,8 @@ function getListNearMe(item){
                const colNode = document.createElement('div');
                colNode.className = 'swiper-slide';
                colNode.innerHTML = '<div class="fh5co-blog">'
-<<<<<<< HEAD
-                                +'<a href="#"><img class="img-responsive" src="'+ item.lost_Up_File + '" alt=""></a>'
-=======
+
                                 +'<a href="#">'+ item.lost_Up_File + '</a>'
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.Lost_Date + '</span>'
                                     +'<span class="comment"><a href="">' + item.commentTotalCnt +'<i class="icon-speech-bubble"></i></a></span>'         
@@ -414,21 +400,16 @@ document.addEventListener('DOMContentLoaded', function(){
 </head>
    
    <body>
-<<<<<<< HEAD
-   <%   LoginDTO dto = (LoginDTO)request.getAttribute("memberInfo"); %>
-=======
+
     <%   LoginDTO dto = (LoginDTO)request.getAttribute("memberInfo"); %>
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
    
     <%
        if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
     %>
             <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
-<<<<<<< HEAD
-   <%
-=======
+
     <%
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+
        } else{
     %>
             <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
@@ -599,10 +580,7 @@ document.addEventListener('DOMContentLoaded', function(){
                      </div>
                   </div> 
                   <div class="swiper-slide">
-<<<<<<< HEAD
-=======
-                  	
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+      	
                      <div class="fh5co-blog animate-box">
                         <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
                         <div class="blog-text">
@@ -725,10 +703,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
       </div>
    </footer>
-<<<<<<< HEAD
-   </div> 
-=======
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+
 
    <div class="gototop js-top">
       <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

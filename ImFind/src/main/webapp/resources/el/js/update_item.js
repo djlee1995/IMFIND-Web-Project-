@@ -10,11 +10,9 @@ $("#datepicker").datepicker({
 
 
 //  ------ 글 내용 js 시작 ------
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+	
+
 	console.log(lost_PostNum)
 	$.ajax({
 		url: "datainfo.do", 
@@ -25,7 +23,7 @@ $("#datepicker").datepicker({
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		
 		success: function(data){
-<<<<<<< HEAD
+
 			console.log(data[0].lost_Item.split(",")[0])
 		if(data[0].lost_Item.split(",")[0]=="etc"){
 		$("input:radio[name='Lost_Item']:radio[value='etc']").click();
@@ -36,14 +34,7 @@ $("#datepicker").datepicker({
 		$('#datepicker').val(moment(data[0].lost_Date).format('YYYY-MM-DD'));
 		$('#centerAddr2').val(data[0].lost_Loc);
 		$('.title').val(data[0].lost_Title);
-=======
-			console.log(data[0].lost_Loc)
-		
-		$("input:radio[name='Lost_Item']:radio[value='"+data[0].lost_Item+"']").prop('checked', true); 
-		$('#datepicker').val(moment(data[0].lost_Date).format('YYYY-MM-DD'));
-		$('#centerAddr2').val(data[0].lost_Loc);
-		$('.item7_box').text(data[0].lost_Title);
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+
 		$('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
 		$('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
 		},
@@ -351,65 +342,7 @@ $('#closeModalBtn').on('click', function(){
 });
 	
 
-<<<<<<< HEAD
-=======
-//사례금 입력시에 자동으로 콤마 추가
-function cmaComma(obj) {
-	var firstNum = obj.value.substring(0, 1); // 첫글자 확인 변수
-	var strNum = /^[/,/,0,1,2,3,4,5,6,7,8,9,/]/; // 숫자와 , 만 가능
-	var str = "" + obj.value.replace(/,/gi, ''); // 콤마 제거  
-	var regx = new RegExp(/(-?\d+)(\d{3})/);
-	var bExists = str.indexOf(".", 0);
-	var strArr = str.split('.');
 
-	if (!strNum.test(obj.value)) {
-		alert("숫자만 입력하십시오.\n1,000원 이상의 금액을 입력하세요.");
-		obj.value = 1000;
-		obj.focus();
-		return false;
-	}
-
-	if ((firstNum < "0" || "9" < firstNum)) {
-		alert("숫자만 입력하십시오.");
-		obj.value = 1000;
-		obj.focus();
-		return false;
-	}
-
-	while (regx.test(strArr[0])) {
-		strArr[0] = strArr[0].replace(regx, "$1,$2");
-	}
-	if (bExists > -1) {
-		obj.value = strArr[0] + "." + strArr[1];
-	} else {
-		obj.value = strArr[0];
-	}
-}
-
-function commaSplit(n) {// 콤마 나누는 부분
-	var txtNumber = '' + n;
-	var rxSplit = new RegExp('([0-9])([0-9][0-9][0-9][,.])');
-	var arrNumber = txtNumber.split('.');
-	arrNumber[0] += '.';
-	do {
-		arrNumber[0] = arrNumber[0].replace(rxSplit, '$1,$2');
-	} while (rxSplit.test(arrNumber[0]));
-	if (arrNumber.length > 1000) {
-		return arrNumber.join('');
-	} else {
-		return arrNumber[0].split('.')[0];
-	}
-}
-//  ------ 사례금 js 끝 ------
-		
-		
-// 	------ 결제 js 시작 ------
-/* 에이피아이 문서 보면 헷갈려서 이렇게 설명 주석 달아놔도 좋습니다!
- * ㄷ
- * IMP.request_pay(param, callback)을 호출합니다. 
- * 함수의 첫번째 인자인 param에 결제 요청에 필요한 속성과 값을 담습니다.
- * */
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
 function getFormatDate(date){
     var year = date.getFullYear();
     var month = (1 + date.getMonth());
@@ -454,9 +387,7 @@ function inputcheck(){
 	// pay()
 	return true;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+
 // 결제요청(결제자 정보를 어떻게 넣을 것인가?) -> 결제성공 ( 결제테이블 정보 서버전송, 디비 저장) ->폼 양식 submit ->폼 입력된 정보 디비 저장
 // 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장}
