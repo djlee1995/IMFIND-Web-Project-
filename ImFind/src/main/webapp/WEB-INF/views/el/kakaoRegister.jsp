@@ -14,6 +14,9 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<%--      <!-- Header Section Begin -->
+      <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+    <!-- Header End --> --%>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css">
@@ -25,110 +28,187 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
-   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
-  
+    	<!-- Theme style  -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+	<!-- 폰트 어썸 css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!-- Animate.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+	
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
+	
+	<!-- Modernizr JS -->
+	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
+	
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
+
 </head>
 
 <!-- 유희 css -->
 <style>
 
-	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
-	.notosanskr * { 
-			font-family: 'Noto Sans KR', sans-serif;
-	}
-	
-	form{
-			font-family: 'Noto Sans KR', sans-serif;
-	}
-	.col-lg-5{
-		margin : 0 auto;
-	}
-	.group-input.label{
-		margin-left:10px
-	}
-	input[id="tel"]{
-		width:80px !important;
-	}
-	.site-btn.certification-api{
-		width : 85px;
-		height: 49px;
-		padding : 0;
-		padding-top : 14px;
-		margin-left : 10px;
-		text-align : center;
-		border-radius : 3px;
-	}  
-	.group-input.tel{
-		display: flex;
-		align-items: center;
-		flex-wrap:wrap;
+   .notosanskr * { 
+         font-family: 'Noto Sans KR', sans-serif;
+   }
+   
+   form{
+         font-family: 'Noto Sans KR', sans-serif !important;
+   }
+   .col-lg-5{
+      margin : 0 auto !important;
+   }
+   .group-input.label{
+      margin-left:10px !important;
+   }
+   input[id="tel"]{
+      width:80px !important;
+   }
+   .site-btn.certification-api{
+      width : 85px;
+      height: 49px;
+      padding : 0;
+      padding-top : 14px;
+      margin-left : 10px;
+      text-align : center;
+      border-radius : 3px;
+   }  
+   .group-input.tel{
+      display: flex;
+      align-items: center;
+      flex-wrap:wrap;
 
-	}
-	.site-btn.policy{
-		margin : 0 auto;
-		display : block;
-		background : #317AE1;
-	}
+   }
+   .site-btn.policy{
+      margin : 0 auto;
+      display : block;
+      background : #317AE1;
+   }
 
  	.grid-form{
 		display : grid;
-		grid-template-columns: 0.5fr 1fr;
+		grid-template-columns: 0.4fr 1fr !important;
 		grid-template-rows : 150px 80px 80px 205px 100px 100px;
 	} 
-	.register-form form .group-input label, .login-form form .group-input label{
-		font-size : 14px;
-/* 		//width : 80%; */
+   .register-form form .group-input label, .login-form form .group-input label{
+      font-size : 14px !important;;
+/*       //width : 80%; */
+   }
+   button[class ~= "register-btn"]{
+      grid-column: auto / span 2;
+   }
+   input[type="number"]::-webkit-outer-spin-button,
+   input[type="number"]::-webkit-inner-spin-button {
+       -webkit-appearance: none;
+       margin: 0;
+   }
+   .register-form form .group-input input, .login-form form .group-input input {
+       border: 1px solid #ebebeb;
+       height: 37px;
+       width: 93%;
+       padding-left: 20px;
+       padding-right: 15px;
+       margin-right : 9px;
+   }
+   .col-lg-5{
+      padding-top: 35px !important;
+      border: 1px solid rgba(0, 0, 0, .2) !important;
+      margin-top: 69px !important;
+      border-radius : 2px !important;
+   }
+   .col-lg-5 h2{
+      font-family: 'Noto Sans KR', sans-serif;
+   }
+   div.site-btn:nth-child(4){
+      width: 93;
+      position: relative;
+      left: -10px;
+      height: 19%;
+      top: 9px;
+      text-align: center;
+      background : #317AE1;
+   }
+   .site-btn.certification-api.account,
+   .site-btn.policy{
+      display : flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .site-btn-policy{
+   		margin : 0;
+   		width: 93%;
+		height: 39px;
+		border-radius: 3px;
+   }
+   .site-btn.certification-api.account > div{
+      margin-bottom : 14px;
+   }
+   	.fh5co-nav{
+		position: fixed;
+		top: 0;
+		width: 100vw;
+		left: 0;
+		z-index: 100;
+		padding-right : 35px;
+		padding-right : 18px !important;
+		background : white;
 	}
-	button[class ~= "register-btn"]{
-		grid-column: auto / span 2;
+	.fh5co-nav #fh5co-logo{
+		font-size : 31px;
 	}
-	input[type="number"]::-webkit-outer-spin-button,
-	input[type="number"]::-webkit-inner-spin-button {
-	    -webkit-appearance: none;
-	    margin: 0;
-	}
-	.register-form form .group-input input, .login-form form .group-input input {
-	    border: 1px solid #ebebeb;
-	    height: 37px;
-	    width: 100%;
-	    padding-left: 20px;
-	    padding-right: 15px;
-	}
-	.col-lg-5{
-		padding-top: 35px;
-		border: 1px solid rgba(0, 0, 0, .2);
-		margin-top: 69px;
-		border-radius : 2px;
-	}
-	.col-lg-5 h2{
+	.fh5co-nav ul li a {
 		font-family: 'Noto Sans KR', sans-serif;
+		font-weigth : bold;
+	    font-size: 15px;
+	    padding: 29px 15px;
+	    color: rgba(0, 0, 0, 0.7);
+	    -webkit-transition: 0.5s;
+	    -o-transition: 0.5s;
+	    transition: 0.5s;
 	}
-	div.site-btn:nth-child(4){
-		width: 100%;
-		position: relative;
-		left: -10px;
-		height: 19%;
-		top: 9px;
-		text-align: center;
-		background : #317AE1;
+   .col-xs-2 {
+	    width: 16.66667%;
+	    padding-left:15px;
 	}
-	.site-btn.certification-api.account,
-	.site-btn.policy{
-		display : flex;
-		justify-content: center;
-		align-items: center;
+	.col-xs-10 {
+	    width: 83.33333%;
+   	    padding-right:15px;
 	}
-	.site-btn.certification-api.account > div{
-		margin-bottom : 14px;
+	.fh5co-nav a {
+	    padding: 5px 10px;
+	    color: #000;
+	}
+	input::placeholder {
+	  color: gray;
+	  font-size : 0.8em;
+	  font-style: italic;
 	}
 </style>
-
 <body onload="bankList();">
 
-    <!-- Header Section Begin -->
-   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
-    <!-- Header End -->
+    <%
+       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
+    %>
+            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
+    <%
+       } else{
+    %>
+            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+   <%
+       }
+   %>
+
 
     <!-- Register Section Begin -->
     <div class="register-login-section spad">
@@ -146,7 +226,7 @@
                             <div class="group-input">
                                 <input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required>
                                 <input type="password" id="pass2" placeholder="비밀번호 확인을 위해 다시 한 번 입력해주세요" autocomplete="false" required>
-                                <span style="font-size:0.7rem;">최소 8자리 이상 : 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
+                                <span style="font-size:0.7rem;">최소 8자리 이상 <br> 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
                             </div> 
                             <div class="group-input label">
                                 <label for="name">이름 *</label>
