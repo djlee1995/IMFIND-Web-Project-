@@ -13,6 +13,7 @@ public interface ItemMapper {
 	List<SelectVO> getSido(String sido,String gu, String dong);
 	List<ItemVO> getdata_info(int lost_PostNum);
 	int update_data(ItemVO vo);
+	int delete_data(int lost_PostNum);
 	
 	// YH
 	List<IndexLostPostDTO> getItembyDate();

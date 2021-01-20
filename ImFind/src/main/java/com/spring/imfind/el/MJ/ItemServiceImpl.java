@@ -63,6 +63,12 @@ public class ItemServiceImpl implements ItemService{
 	
 		return res;
 	}
+	@Override
+	public int delete_data(int lost_PostNum) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		int res  = mapper.delete_data(lost_PostNum);
+		return res;
+	}
 	
 	
 }

@@ -37,6 +37,9 @@
 	
 
   </update>
+  <delete id="delete_data">
+  	delete from lostpost where lost_postnum = #{lost_PostNum}
+  </delete>
     
   
   <!-- 유희 -->
