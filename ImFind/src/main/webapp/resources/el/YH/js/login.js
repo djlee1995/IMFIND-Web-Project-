@@ -1,4 +1,3 @@
-
 function countdown(remTime, str){
 	
 	console.log(str);

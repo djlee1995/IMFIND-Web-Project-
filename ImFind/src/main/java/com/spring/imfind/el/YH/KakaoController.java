@@ -23,9 +23,6 @@ import org.springframework.stereotype.Controller;
 
 import com.fasterxml.jackson.core.JsonParser;
 
-/*
- * Ä«Ä«¿À ·Î±×ÀÎÀ» À§ÇÑ Å¬·¡½º ÀÔ´Ï´Ù. 
- * */
 
 public class KakaoController {
 	
@@ -46,19 +43,19 @@ public class KakaoController {
 		// add request header
 		con.setRequestMethod("POST");
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-        con.setConnectTimeout(10000);       //ÄÁÅØ¼ÇÅ¸ÀÓ¾Æ¿ô 10ÃÊ
-        con.setReadTimeout(5000);           //ÄÁÅÙÃ÷Á¶È¸ Å¸ÀÓ¾Æ¿ô 5ÃÑ
+        con.setConnectTimeout(10000);       
+        con.setReadTimeout(5000);           
 
 
         // Send post request
-        con.setDoOutput(true);              //Ç×»ó °»½ÅµÈ³»¿ëÀ» °¡Á®¿È.
+        con.setDoOutput(true);              
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.writeBytes(Parameters);
         wr.flush();
         wr.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("Ä«Ä«¿À ÅäÅ« ¿äÃ» -> Response Code : " + responseCode);
+        System.out.println("Ä«Ä«ï¿½ï¿½ ï¿½ï¿½Å« ï¿½ï¿½Ã» -> Response Code : " + responseCode);
 
         Charset charset = Charset.forName("UTF-8");
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
@@ -88,18 +85,18 @@ public class KakaoController {
 		con.setRequestMethod("POST");
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
         con.setRequestProperty("Authorization", "Bearer " + access_token);
-        con.setConnectTimeout(10000);       //ÄÁÅØ¼ÇÅ¸ÀÓ¾Æ¿ô 10ÃÊ
-        con.setReadTimeout(5000);           //ÄÁÅÙÃ÷Á¶È¸ Å¸ÀÓ¾Æ¿ô 5ÃÑ
+        con.setConnectTimeout(10000);       
+        con.setReadTimeout(5000);      
 
 
         // Send post request
-        con.setDoOutput(true);              //Ç×»ó °»½ÅµÈ³»¿ëÀ» °¡Á®¿È.
+        con.setDoOutput(true);              
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.flush();
         wr.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("Ä«Ä«¿À user info ¿äÃ» -> Response Code : " + responseCode);
+        System.out.println("Ä«Ä«ï¿½ï¿½ user info ï¿½ï¿½Ã» -> Response Code : " + responseCode);
 
         Charset charset = Charset.forName("UTF-8");
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(),charset));
@@ -134,3 +131,4 @@ public class KakaoController {
 		return contents;
 	}
 }
+

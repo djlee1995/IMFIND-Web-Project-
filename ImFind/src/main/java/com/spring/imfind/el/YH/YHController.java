@@ -23,38 +23,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 @Controller
-public class YHController implements SessionName {
-	
-	@Autowired
-	JavaMailSender mailSender;
-	
-	@Autowired
-	EmailSend mailSend;
-	// 유희
-	@Autowired
-	private MemberService memberService;
+public class YHController {
 	
 	@RequestMapping("/NewHeader_CSS")
 	public String NewHeader_CSS() { return "el/NewHeader_CSS"; }
 
 	@RequestMapping("/NewFooter_JS")
 	public String NewFooter_JS() { return "el/NewFooter_JS"; }
+	
+	@Autowired
+	JavaMailSender mailSender;
+	
+	@Autowired
+	EmailSend mailSend;
+	
+	// 유희
+	@Autowired
+	private MemberService memberService;
 
+
+	// header include - 
 	@RequestMapping("el/header")
 	public String header() { return "el/NewHeader"; }
 	
 	@RequestMapping("el/mainJS")
 	public String getJS() { return "home/NewFooter_JS"; }
 	
+	// header include -
 	@RequestMapping("el/afterLoginHeader")
 	public String afterLoginHeader() { return "el/afterLoginHeader"; }
 	
+	//
 	@RequestMapping("/register")
 	public String register() { return "el/register"; }
 	
+	// login -
 	@RequestMapping("/login")
 	public String login() { return "el/login"; }
 	
+	// logout -
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -62,16 +69,16 @@ public class YHController implements SessionName {
 		
 		HttpSession session = request.getSession();
 		
-		String loginUser = (String)session.getAttribute(LOGIN);
-		String kakaoLoginUser = (String)session.getAttribute(KAKAO_LOGIN);
+		String loginUser = (String)session.getAttribute("loginUser");
+		String kakaoLoginUser = (String)session.getAttribute("kakaoLoginUser");
 		
 		if(loginUser != null) {
-			session.removeAttribute(LOGIN);
+			session.removeAttribute("loginUser");
 		}
 		else if(kakaoLoginUser != null) {
-			session.removeAttribute(KAKAO_LOGIN);
+			session.removeAttribute("kakaoLoginUser");
 		}
-		session.removeAttribute(MEMBERINFO);
+		
 		Cookie loginCookie = WebUtils.getCookie(request, "login_cookie");
 		
 		if(loginCookie != null) {
@@ -87,7 +94,7 @@ public class YHController implements SessionName {
 	 * */
 	@RequestMapping("/loginCheck")
 	@ResponseBody
-	public String loginCheck(@RequestParam(value="id") String id, @RequestParam(value="pw") String pw, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String loginCheck(@RequestParam(value="id") String id, @RequestParam(value="pw") String pw, HttpServletRequest request) {
 		
 		System.out.println("login in");
 		System.out.println(id);
@@ -95,20 +102,8 @@ public class YHController implements SessionName {
 		int state = memberService.loginCheck(id, pw);
 		
 		if(state == 1) {
-			
 			HttpSession session = request.getSession();
-			session.setAttribute(LOGIN, id); //
-			
-			LoginDTO dto = memberService.getLoginDTO(id);
-			System.out.println(dto.toString());
-			
-			if(session.getAttribute(DESTINATION) != null) {
-				
-				session.setAttribute(MEMBERINFO, dto);
-				session.setAttribute(LOGIN, id);      
-				Object dest = session.getAttribute(DESTINATION);
-				return (String)dest;
-			}
+			session.setAttribute("loginUser", id); //d
 			return "pass";
 		}
 		else {
@@ -143,19 +138,17 @@ public class YHController implements SessionName {
 		String access_token = kakao.getAccessToken(code);
 		
 		Map<String, Object> userInfo = kakao.getUserInfo(access_token);
-        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); 
-        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account");
+        Map<String, String> properties = (Map<String, String>) userInfo.get("properties"); // 
+        Map<String, Object> kakao_account = (Map<String, Object>) userInfo.get("kakao_account"); // 
         
         String kakao_id = Integer.toString((int) userInfo.get("id"));
         
         System.out.println("kakao_id : " + kakao_id);
         
         String email = (String) kakao_account.get("email");
+        session.setAttribute("kakaoLoginUser", kakao_id);
         
-        session.setAttribute(KAKAO_LOGIN, kakao_id);
-        session.setAttribute(LOGIN, userInfo.get("id"));
-        
-        return "redirect:/kakaoRegister";
+        return "redirect:/home.do";
 	}
 	
 	// get 오픈뱅킹 인증 url
@@ -174,16 +167,18 @@ public class YHController implements SessionName {
 	public String getOpenBankingToken(String code, String access_token) throws Exception{
 		
 		System.out.println("account : " + code);
+		System.out.println("���¹�ŷ token in");
 
 		OpenBanking bank = new OpenBanking();
 		bank.getToken(code);
 		
 		return "forward:/register";
 	}
-	
 	// 오픈 뱅킹 2 legged get code
 	@RequestMapping(value="/getToken")
 	public @ResponseBody String getToken(@RequestBody Map<String, String> map) throws Exception{
+
+		System.out.println("���¹�ŷ ���½Ǹ���ȸ in");
 		
 		String account = map.get("account");
 		String birth = map.get("birth");
@@ -197,10 +192,7 @@ public class YHController implements SessionName {
 		return "register";
 	}
 	@RequestMapping("/kakaoRegister")
-	public String kakaoRegister() { 
-		System.out.println("카카오 레지스터ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ");
-		return "el/kakaoRegister"; 
-	}
+	public String kakaoRegister() { return "el/kakaoRegister"; }
 	
 	@RequestMapping("/chkID")
 	public @ResponseBody String chkID(@RequestParam String id) {
@@ -294,6 +286,5 @@ public class YHController implements SessionName {
 		return "";
 	}
 	
-
-	
 }
+

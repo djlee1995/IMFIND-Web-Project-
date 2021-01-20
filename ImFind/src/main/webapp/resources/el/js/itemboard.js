@@ -1,4 +1,4 @@
-	
+
 //  ------ 달력 js 시작 ------
 $("#datepicker").datepicker({
 	language : 'ko',
@@ -9,23 +9,6 @@ $("#datepicker").datepicker({
 
 //  ------ 글 내용 js 시작 ------
 $(document).ready(function() {
-	function sendFile(file){
-		var data = new FormData();	
-		data.append("file",file);
-		$.ajax({
-			url: "./profileImage", //////여기 본인 주소! 
-			type: "POST",
-			enctype: 'multipart/form-data',
-			data: data,
-			cache: false,
-			contentType : false,
-			processData : false,
-			success: function(image){	
-			$('#summernote').summernote('insertImage',image);
-			},
-			error: function(e){console.log(e);}  
-		});	
-	}
 	
 // summernote 
 	$('#summernote').summernote({
@@ -35,12 +18,54 @@ $(document).ready(function() {
 		focus:true,
 		lang : "ko-KR",
 		placeholder: '내용을 입력해주세요',
+		toolbar: [
+            // [groupName, [list of button]]
+            ['Font Style', ['fontname']],
+            ['style', ['bold', 'italic', 'underline']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['paragraph']],
+            ['height', ['height']],
+            ['Insert', ['picture']],
+            ['Insert', ['link']],
+            ['Misc', ['fullscreen']]
+         ],
 		callbacks: {
-			onImageUpload : function(files){
-				sendFile(files[0]);
+			//onImageUpload : function(files){
+				//sendFile(files[0]);
+			 onImageUpload: function(files, editor, welEditable) {
+				 for (var i = files.length - 1; i >= 0; i--) {
+                     sendFile(files[i], this);
+                  }
 			}
 		}
 	});
+	
+	function sendFile(file, el) {
+		 console.log()
+	       var form_data = new FormData();
+	       form_data.append('file', file);
+	   
+	       $.ajax({
+	         data: form_data,
+	         type: "post",
+	         url: './profileImage',
+	         cache: false,
+	         contentType: false,
+	         enctype: 'multipart/form-data',
+	         processData: false,
+	         success: function(url) {
+	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+	        	 	console.log(decodeURL)
+	        		 $(el).summernote('editor.insertImage', url);
+	         }
+	       });
+	     }
+	
+	
+
+	
 }); //ready
 //  ------ 글 내용 js 끝 ------
 				
@@ -128,10 +153,8 @@ function displayMarker(locPosition, message) {
 		var latlng = mouseEvent.latLng;
 		// 마커 위치를 클릭한 위치로 옮깁니다.
 		marker.setPosition(latlng);
-		//var message = '클릭한 위치의 위도는' + latlng.getLat() + '이고,';
-		//message += '경도는' + latlng.getLng() + '입니다';
+		
 		var resultDiv = document.getElementById('clickLatlng');
-		//resultDiv.innerHTML = message;
 	});
 }
 
@@ -151,10 +174,8 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 // 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
 kakao.maps.event.addListener(map,'click',function(mouseEvent) {
 	searchDetailAddrFromCoords(mouseEvent.latLng,function(result, status) {
-		console.log(mouseEvent.latLng.La)
 		if (status === kakao.maps.services.Status.OK) {
-			console.log(result[0]);
-			var infoDiv = document.getElementById('centerAddr');
+			var infoDiv = document.getElementById('centerAddr2');
 			
 			var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '
 					+ result[0].road_address.address_name
@@ -200,7 +221,7 @@ function searchDetailAddrFromCoords(coords, callback) {
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 function displayCenterInfo(result, status) {
 	if (status === kakao.maps.services.Status.OK) {
-		var infoDiv = document.getElementById('centerAddr');
+		var infoDiv = document.getElementById('centerAddr2');
 
 		for (var i = 0; i < result.length; i++) {
 			// 행정동의 region_type 값은 'H' 이므로
@@ -357,20 +378,22 @@ function pay(){
 	}
 	
 	console.log(lostpay)
-	console.log("진입")
-	var id = 'hongchii';
+	
+	
+	/*console.log(id)*/
 	// ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		data : { "id" : id } ,
+		data : { "id" : loginUser} ,
 		type : 'POST',
 		success : function(data){
+			console.log(data[0])
 				alert("잠시만 기다려주세요!");
 				
 		var IMP = window.IMP;
-		var code = "imp13319491";
-		//var code = "imp55973725"; // 가맹점 식별코드 imp13319491
+		//var code = "imp13319491";
+		var code = "imp55973725"; // 가맹점 식별코드 imp13319491
 		IMP.init(code);	
 		// 결제요청, 아래 바이어 네임,바이어 주소에 넣어주면 될것같습니다!
 		IMP.request_pay(
@@ -456,15 +479,7 @@ function inputcheck(){
 		
 		return false;
 	}	
-	/*
-	var editorContent = document.querySelector('.note-editable').innerText;
 	
-	if(editorContent == ""){
-		alert('내용을 입력해주세요.')
-		
-		return false;
-	}
-	*/
 	$(".item10").children('button').attr('data-toggle', 'modal')
 	$(".item10").children('button').attr('data-target', '#myModal')
 	//e.preventDefault();
@@ -474,3 +489,4 @@ function inputcheck(){
 
 // 결제요청(결제자 정보를 어떻게 넣을 것인가?) -> 결제성공 ( 결제테이블 정보 서버전송, 디비 저장) ->폼 양식 submit ->폼 입력된 정보 디비 저장
 // 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장
+

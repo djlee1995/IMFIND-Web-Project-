@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +61,7 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 			   
 			   response.sendRedirect("/home.do");
 			   return;
+
 			}
 		}
 	}

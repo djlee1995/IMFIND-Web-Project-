@@ -19,7 +19,8 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper = 
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.itemInsert(boardvo);
-		//System.out.println("물품ServiceImpl = " + res);
+		
+		System.out.println(boardvo.toString());
 		
 		return res;
 	}
@@ -29,18 +30,18 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 		List<MemberVO> list = boardMapper.getPayMember(id);
-		//System.out.println("list"+ list);
+		
 		
 		return list;
 	}
 	
 	@Override
 	public int insertPay(PayVO payVO) {
-		//System.out.println("왔니");
+		
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.insertPay(payVO);
-		//System.out.println("res1111111 = " + res);
+		
 		
 		return res;
 	}
@@ -51,27 +52,63 @@ public class BoardServiceImpl implements BoardService {
 		BoardMapper boardMapper = 
 				sqlSession.getMapper(BoardMapper.class);
 		int res = boardMapper.petInsert(petvo);
-		//System.out.println("동물ServiceImpl = " + res);
+		
 		
 		return res;
 	}
 	
-	@Override
-	public int commentInsert(LostComVO lostcomvo) {
-		BoardMapper boardMapper =
-				sqlSession.getMapper(BoardMapper.class);
-		int res = boardMapper.commentInsert(lostcomvo);
-		
-		return res;
-	}
 	
 	@Override
-	public List<LostComVO> itemCommentList(int Lost_PostNum) {
+	public int commentCount() throws Exception {
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 
-		List<LostComVO> list = boardMapper.itemCommentList(Lost_PostNum);
 		
-		return list;
+		return boardMapper.commentCount();
+	}
+
+	@Override
+	public List<LostComVO> commentList(int Lost_PostNum) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+
+		
+		return boardMapper.commentList(Lost_PostNum);
+	}
+
+	@Override
+	public int commentInsert(LostComVO comment) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+
+		return boardMapper.commentInsert(comment);
+	}
+
+	@Override
+	public int commentUpdate(LostComVO comment) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+
+		
+		return boardMapper.commentUpdate(comment);
+	}
+
+	@Override
+	public int commentDelete(int Com_Num) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+
+		return boardMapper.commentDelete(Com_Num);
+	}
+	
+	@Override
+	public int commentReply(LostComVO comment) {
+		BoardMapper boardMapper = 
+				sqlSession.getMapper(BoardMapper.class);
+		boardMapper.commentReplyupdate(comment);
+		comment.setRe_Seq(comment.getRe_Seq()+1);
+		comment.setRe_Lev(comment.getRe_Lev()+1);
+		
+		return 0;
 	}
 }

@@ -7,6 +7,8 @@ import com.spring.imfind.el.YS.ElVO;
 public interface ElMapper {
 
 	List<ElVO> getElsedata(String id);
+	
+	List<ElVO> getPatElsedata(String id);
 
 	List<ElVO> getElsePaydata(String id);
 
