@@ -129,18 +129,19 @@ section{
 		</div>
 	</div>
 	 <div class = "si">
-    <select id="sido">
+    <select class="select" id="sido">
       <option value="">시/도 선택하세요</option>
     </select>
-    <select id="sigugun">
+    <select class="select" id="sigugun">
       <option value="">시/군/구 선택하세요</option>
     </select>
-    <select id="dong">
+    <select class="select" id="dong">
       <option value="">읍/면/동 선택하세요</option>
     </select>
   </div>
 	<div class="card-list-con">
-		<div id="ajax-test-div" style="width: 70vw;">
+		<div>
+		<table id="output" border="1" align="center"></table>
 	</div>
 	<page aria-label="...">
   <ul class="pagination pagination-sm" id = "numbers_mypage_post1">
@@ -148,6 +149,8 @@ section{
 	</page>
 	</div>
 	</section>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	
 	<!-- Js Plugins -->
 	<script
 		src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>

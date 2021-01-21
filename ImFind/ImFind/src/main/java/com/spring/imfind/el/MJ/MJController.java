@@ -73,11 +73,9 @@ public class MJController {
 
    @RequestMapping(value = "/sido.do", produces = "application/json; charset=utf-8")
    @ResponseBody
-   public List<SelectVO> sido(@RequestParam(value = "sido", required = false) String sido,
-         @RequestParam(value = "gu", required = false) String gu,
-         @RequestParam(value = "dong", required = false) String dong) {
-      List<SelectVO> list = itemService.getSido(sido, gu, dong);
-
+   public List<ItemVO> sido(@RequestParam(value = "lost_Loc", required = false) String lost_Loc) {
+      List<ItemVO> list = itemService.getSido(lost_Loc);
+      
       return list;
    }
 

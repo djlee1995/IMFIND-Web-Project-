@@ -28,6 +28,9 @@
        lost_Title=#{item} -->
  <!--  </foreach> -->
   </select>
+  <select id="getSido" resultType="ItemVO"> 
+   SELECT * from lostpost  WHERE replace(lost_loc,' ','') like #{lost_Loc} || '%'
+  </select>
   <select id="getdata_info" resultType="ItemVO"> 
    SELECT * from lostpost where lost_postnum = #{lost_PostNum}
 

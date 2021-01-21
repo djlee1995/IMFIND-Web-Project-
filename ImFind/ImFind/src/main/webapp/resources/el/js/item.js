@@ -1,5 +1,12 @@
 // 시군구동 검색 
 jQuery(document).ready(function(){
+	listdata();
+		var lost_Loc;
+		var si;
+		var gu;
+		var dong;
+		
+	
   //sido option 추가
   jQuery.each(hangjungdong.sido, function(idx, code){
     //append를 이용하여 option 하위에 붙여넣음
@@ -9,7 +16,9 @@ jQuery(document).ready(function(){
   jQuery('#sido').change(function(){
     jQuery('#sigugun').show();
     jQuery('#sigugun').empty();
-    jQuery('#sigugun').append(fn_option('','시/군/구 선택하세요')); //
+    jQuery('#sigugun').append(fn_option('','시/군/구 선택하세요'));
+    jQuery('#dong').empty();
+    jQuery('#dong').append(fn_option('','읍/면/동 선택하세요'));//
     jQuery.each(hangjungdong.sigugun, function(idx, code){
       if(jQuery('#sido > option:selected').val() == code.sido)
         jQuery('#sigugun').append(fn_option(code.sigugun, code.codeNm));
@@ -24,6 +33,12 @@ jQuery(document).ready(function(){
       //trigger를 이용해 change 실행
       jQuery('#sigugun').trigger('change');
     }
+    si = $('#sido :selected').text();
+    if(si=='시/도 선택하세요'){
+    	si = "";
+    }
+    lost_Loc=si
+    console.log(lost_Loc)
   });
   //시군구 변경시 행정동 옵션추가
   jQuery('#sigugun').change(function(){
@@ -37,51 +52,86 @@ jQuery(document).ready(function(){
     jQuery('#dong').prepend(fn_option('','읍/면/동 선택하세요'));
     //option중 선택을 기본으로 선택
     jQuery('#dong option:eq("")').attr('selected', 'selected');
+    gu = $('#sigugun :selected').text();
+    if(gu=='시/군/구 선택하세요'){
+    	gu = "";
+    	
+    }
+    lost_Loc=si+gu
+    console.log(lost_Loc)
   });
   jQuery('#dong').change(function(){
     var sido = jQuery('#sido option:selected').val();
     var sigugun = jQuery('#sigugun option:selected').val();
     var dong = jQuery('#dong option:selected').val();
     var dongCode = sido + sigugun + dong + '00';
+    dong = $('#dong :selected').text();
+    
+    if(dong=='읍/면/동 선택하세요'){
+    	dong = "";
+    }
+   
+    lost_Loc=si+gu+dong
+    console.log(lost_Loc)
   });
+  
+  $('.select').change(function(){
+	  if(lost_Loc==''){
+		  listdata();
+		}
+	  $.ajax({
+	      url :'sido.do',
+	      //type : 'POST',
+	      data : {'lost_Loc': lost_Loc },
+	      async:false,
+	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	      //dataType:'json',
+	      success: function(data){
+	    	  $('#output').empty();
+				$.each(data,function(index,item) {	
+					var output = '';
+					output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
+					output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+					output +='<td>'+item.lost_Title+'</td>';
+					output +='<td>'+item.lost_Pay+'</td></tr>';
+					$('#output').append(output);
+				});
+	         },
+	         
+	      error : function() {
+
+	         alert("ajax통신 실패2")
+
+	      }
+	})
 });
+
+});
+
   function fn_option(code, name){
 	  return '<option value="' + code +'">' + name +'</option>';
 	}
-<!-- 민정 조회페이지 -->
-			$('#ajax-test-div').empty();
-			$.ajax({
-						url : '/imfind/list.do',
-						contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-						success : function(data) {
-							$.each(data,function(index,item) {	
-								console.log(item.lost_Up_File)
-								var cardElem = document.querySelector('#ajax-test-div');
-								var card = document.createElement('div');
-								card.className = "col-lg-4 col-md-6";
-							 	var singlelatestblog = document.createElement('div');
-								singlelatestblog.className = "single-latest-blog";
-								singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;
-								var cardbox = document.createElement('div');
-								var blog = document.createElement('div');
-								blog.className = "blog";
-								blog.innerHTML =index + '    ' + item.lost_Title;
-								var pay = document.createElement('div');
-								pay.className = "pay";
-								pay.innerHTML = item.lost_Pay;
-								singlelatestblog.append(blog);
-								singlelatestblog.append(pay); 
-								card.appendChild(singlelatestblog); 
-								cardElem.appendChild(card);
-							});
-						},
-						error : function() {
-							alert("ajax 통신 실패!!!");
-						},
-					complete : function() {
-						myfunction();
-					}
-				});// ajax 끝.
+  function listdata() {
+	  
+	  $.ajax({
+			url : '/imfind/list.do',
+			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+			success : function(data) {
+				$('#output').empty();
+				$.each(data,function(index,item) {	
+					var output = '';
+					output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
+					output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+					output +='<td>'+item.lost_Title+'</td>';
+					output +='<td>'+item.lost_Pay+'</td></tr>';
+					$('#output').append(output);
+				});
+			},
+			error : function() {
+				alert("ajax 통신 실패!!!");
+			}
+	});// ajax 끝.
+}
 			<!-- 민정 페이징 -->
 			function myfunction (){
 						var rowsPerPage = 27,
@@ -123,28 +173,20 @@ jQuery(document).ready(function(){
 		        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		        data : { "lost_Title" : lost_Title },
 		        //type : 'POST',
-		        success : function(data){
-	                alert("잠시만 기다려주세요!");
-	                $.each(data,function(index,item) {
-	                var cardElem = document.querySelector('#ajax-test-div');
-					var card = document.createElement('div');
-					card.className = "col-lg-4 col-md-6";
-				 	var singlelatestblog = document.createElement('div');
-					singlelatestblog.className = "single-latest-blog";
-					singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;				
-					var cardbox = document.createElement('div');
-					var blog = document.createElement('div');
-					blog.className = "blog";
-					blog.innerHTML = item.lost_Title;
-					var pay = document.createElement('div');
-					pay.className = "pay";
-					pay.innerHTML = item.lost_Pay;
-					singlelatestblog.append(blog);
-					singlelatestblog.append(pay); 
-					card.appendChild(singlelatestblog); 
-					cardElem.appendChild(card);
-	                })
-		        },
+		        success : function(data) {
+				$('#output').empty();
+				$.each(data,function(index,item) {	
+					var output = '';
+					output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
+					output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+					output +='<td>'+item.lost_Title+'</td>';
+					output +='<td>'+item.lost_Pay+'</td></tr>';
+					$('#output').append(output);
+				});
+			},
+			error : function() {
+				alert("ajax 통신 실패!!!");
+			},
 			})
 		})
 		//엔터
@@ -161,28 +203,20 @@ function enterkey() {
 	        contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	        data : { "lost_Title" : lost_Title },
 	        //type : 'POST',
-	        success : function(data){
-                alert("잠시만 기다려주세요!");
-                $.each(data,function(index,item) {
-                var cardElem = document.querySelector('#ajax-test-div');
-				var card = document.createElement('div');
-				card.className = "col-lg-4 col-md-6";
-			 	var singlelatestblog = document.createElement('div');
-				singlelatestblog.className = "single-latest-blog";
-				singlelatestblog.innerHTML = '<a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File;
-				var cardbox = document.createElement('div');
-				var blog = document.createElement('div');
-				blog.className = "blog";
-				blog.innerHTML = item.lost_Title;
-				var pay = document.createElement('div');
-				pay.className = "pay";
-				pay.innerHTML = item.lost_Pay;
-				singlelatestblog.append(blog);
-				singlelatestblog.append(pay); 
-				card.appendChild(singlelatestblog); 
-				cardElem.appendChild(card);
-                })
-	        },
-		})
+	       success : function(data) {
+				$('#output').empty();
+				$.each(data,function(index,item) {	
+					var output = '';
+					output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
+					output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+					output +='<td>'+item.lost_Title+'</td>';
+					output +='<td>'+item.lost_Pay+'</td></tr>';
+					$('#output').append(output);
+				});
+			},
+			error : function() {
+				alert("ajax 통신 실패!!!");
+			},
+		});
     }
 }
