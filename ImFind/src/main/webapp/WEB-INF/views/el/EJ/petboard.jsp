@@ -186,9 +186,14 @@
 				<h8>분실글 등록하기(애완동물)</h8>
 				<h8>* 필수입력사항</h8>
 			</div>
+			<div class="item2">
+				<h6>작성자</h6>
+				<input type="hidden" name="id" value="${loginUser}"/>
+				<h6>${loginUser}</h6>
+			</div>
 
 			<!-- 필수입력사항   -->
-			<div class="item2">
+			<div class="item3">
 				<h6>* 동물 이름</h6>
 				<label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
 				<label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
@@ -267,7 +272,7 @@
 								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
 								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
 								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=false" value="direct"> 직접입력</label> <br>
+								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
 								<label><input type="text" name="Pat_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern='\d*' placeholder="직접입력" disabled required></label>
 							</div>

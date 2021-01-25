@@ -248,7 +248,7 @@
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
 								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
-								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value="direct"> 직접입력</label> <br>
+								<label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
 								<label><input type="text" name="Lost_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern='\d*' placeholder="직접입력" disabled required></label>
 							</div>

@@ -55,5 +55,8 @@ public class HomeController {
 		return map;
 
 	}
-
+	@RequestMapping(value = "police", method = RequestMethod.GET)
+	   public String police() { 
+	      return "police";
+    }
 }
