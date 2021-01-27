@@ -480,7 +480,6 @@ document.addEventListener('DOMContentLoaded', function(){
        }
    %>
 
-
 <root>
    <!-- 메인 광고 표시 -->
    <aside id="fh5co-hero" class="js-fullheight">
@@ -503,7 +502,7 @@ document.addEventListener('DOMContentLoaded', function(){
                               <div class="row">
                                  <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
                                     <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회 ${memberInfo.id}</h2>
-                                    <blockquote>
+                                     <blockquote>
                                        <p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
                                     </blockquote>
                                  </div>
