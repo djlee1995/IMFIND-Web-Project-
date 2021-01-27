@@ -14,7 +14,8 @@
 	Lost_Date, 
 	Lost_Loc, 
 	Lost_Pay,
-	Id)values 
+	Id,
+	PayCode)values 
 	(#{Lost_Title}, 
 	#{Lost_Content}, 
 	#{Lost_Up_File},
@@ -23,8 +24,8 @@
 	#{Lost_Date}, 
 	#{Lost_Loc}, 
 	#{Lost_Pay},
-	#{Id})
-
+	#{Id},
+	#{PayCode})
 	</insert>
 	 
 	 <select id="getPayMember" resultType="com.spring.imfind.el.EJ.MemberVO">
@@ -163,4 +164,16 @@
    	update pet_reply set re_content = #{re_content} WHERE re_Num = #{re_num}
    </update>
     <!-- 동준 대댓글  끝-->
+    <!-- 인덱스페이지 사례금 상위 5개  -->
+    <select id="gethighsetLostPay" resultType="BoardVO">
+    	select * from ( select * from lostpost order by lost_pay desc) where <![CDATA[ rownum <= 5 ]]>
+    </select>
+        <select id="gethighsetPetPay" resultType="PetVO">
+    	select * from ( select * from petpost order by pet_pay desc) where <![CDATA[ rownum <= 5 ]]>
+    </select>
+    
+    <update id="addPayBoardNum" parameterType="BoardVO" >
+    	update pay set lost_postnum = #{postNum} where paycode = #{PayCode}
+    </update>
+    
 </mapper>

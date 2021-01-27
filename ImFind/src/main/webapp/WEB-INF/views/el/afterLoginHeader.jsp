@@ -8,25 +8,31 @@
 
 <style>
 	.container-fluid{
-		border: 1px solid black;
+
+/* 		border: 1px solid black; */
 		width: 75vw;
 		margin: 0 auto;
 		padding: 0;
 	}
 	@media(min-width: 1900px){
 		.container-fluid.main-nav{
-			border: 1px solid black;
+/* 			border: 1px solid black; */
 			width: 62vw;
 			margin: 0 auto;
 			padding: 0;
 		}
 	
 	}
+	.top-menu{
+	    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
+		height : 73px !important;
+
+	}
 </style>
 
 <nav class="fh5co-nav" role="navigation">
 	<div class="top-menu">
-		<div class="container-fluid">
+		<div class="container-fluid main-nav">
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="fh5co-logo" ><a href="./">ImFind<span>.</span></a></div>

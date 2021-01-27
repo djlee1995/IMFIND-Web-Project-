@@ -41,11 +41,9 @@
 
   </update>
   <delete id="delete_data">
-<<<<<<< HEAD
+
   	delete from lostpost where lost_postnum = #{lost_PostNum}
-=======
-     delete from lostpost where lost_postnum = #{lost_PostNum}
->>>>>>> main_dev
+
   </delete>
     
   

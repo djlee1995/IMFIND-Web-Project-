@@ -46,100 +46,6 @@
 
 
 
-<<<<<<< HEAD
-	<!-- 분실물 등록 게시판 은지 -->
-	<div class="container">
-		<form name="boardform" action="./update.do" method="post" enctype="multipart/form-data">
-			 
-			 
-		<!-- 타이틀  -->
-
-			<div class="item1">
-				<h8>분실글 등록하기(물품)</h8>
-				<h8>* 필수입력사항</h8>
-			</div>
-			
-			<div class="item2">
-				<h6>작성자</h6>
-				<input type="hidden" name="id" value="${loginUser}">
-				<h6>${loginUser}</h6>
-	
-			</div>
-			<!-- 필수입력사항   -->
-			<div class="item3">
-				<h6>* 분실 물품</h6>
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=true" value="핸드폰" checked="checked">핸드폰</label> 
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=true" value="지갑"> 지갑</label> 
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=true" value="가방"> 가방</label> 
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=true" value="귀금속"> 귀금속</label>
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=true" value="현금"> 현금</label>  
-				<label><input type="radio" name="Lost_Item" onClick="this.form.textbox.disabled=false" value="etc"> 기타</label> 
-				<label><input type="text" name="Lost_Item" id="textbox" class="form-control" placeholder="직접입력" disabled required></label>
-			</div>
-
-			<!-- datepicker js 시작 -->
-			<script src="${pageContext.request.contextPath}/resources/el/EJ/datepicker/air-datepicker/dist/js/datepicker.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/el/EJ/datepicker/air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
-			<!-- datepicker js 끝	-->
-			
-			<!-- 카카오맵 시작 -->
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4434d2cc6bcfc1d87507d4afab43bdfb&libraries=services"></script>
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4434d2cc6bcfc1d87507d4afab43bdfb"></script>
-			<!-- 카카오맵 끝 -->
-			
-			<!-- 필수입력사항 -->
-			<div class="item5">
-				<h6>* 분실 날짜</h6>
-				<input id="datepicker" type="text" name="Lost_Date" placeholder="날짜를 선택해주세요." required>
-			</div>
-
-	
-			<div class="item6"><h6>분실 위치</h6></div>
-			
-			<!-- 지도 불러오기  -->
-			<div class="container-fluid">
-			
-				<div id="Loc1" style="margin: -15px 10px 10px 100px;">
-					<!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
-					<div id="Loc2">
-					<input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
-							data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onKeypress="enter();" />
-					<button type="button" id="Loc2Btn" onclick="resizeMap(); relayout();" >위치 검색</button></div>
-				
-				</div>
-						
-				<!-- collapse 대상 태그는 class를 collapse로 설정합니다. -->
-				<div class="collapse" id="collapseExample">
-					<div class="well">
-					<div id="map" style="width: 350px; height: 350px;"></div>
-					</div>
-				</div>
-				
-			</div>
-			
-
-			<!-- 필수입력사항 -->
-			<div class="item7"><h6>* 제 목</h6></div>		
-			<div class="item7_box"><input type="text" class="title" name="Lost_Title" placeholder="제목을 입력하세요" required></div>
-
-			
-			<!--  필수입력사항 --> 
-			<div class="item8"><h6>내 용</h6></div>
-			<div class="item8_1"><textarea id="summernote" name="Lost_Content"></textarea></div>
-						
-
-			
-			
-			<div class="btn">
-				<button type="submit">수정</button>
-				<a href="#" onclick="history.back();">취소</a>
-			</div>
-			<div class="postnum"></div>
-
-		</form>
-	</div>
-	<script>
-=======
    <!-- 분실물 등록 게시판 은지 -->
    <div class="container">
       <form name="boardform" action="./update.do" method="post" enctype="multipart/form-data">
@@ -232,7 +138,6 @@
       </form>
    </div>
    <script>
->>>>>>> main_dev
 var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
 
 console.log(lost_PostNum+1)

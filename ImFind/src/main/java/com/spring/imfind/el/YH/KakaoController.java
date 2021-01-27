@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> main_dev
 package com.spring.imfind.el.YH;
 
 import java.io.BufferedReader;

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
  
@@ -47,7 +46,7 @@
 	
     <!-- 유희 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/YH/css/login.css?after" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css">
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css"> --%>
 </head>
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
@@ -68,11 +67,9 @@
 	align-items : flex;
 }
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
 	.notosanskr * { 
 		font-family: 'Noto Sans KR', sans-serif;
 }
-
 #username,
 #pass{
     height: 40px !important;
@@ -118,7 +115,6 @@ body > nav > div > div > div > div.col-xs-10.text-right.menu-1{
 /* 	width : 1220px; */
     width: 83.33333% !important;
 }
-
 div.container-fluid:nth-child(1) > div:nth-child(1) {
     display: flex;
     justify-content: space-between !important;

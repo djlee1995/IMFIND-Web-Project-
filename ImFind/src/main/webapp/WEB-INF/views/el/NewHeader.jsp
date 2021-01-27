@@ -36,7 +36,7 @@
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li class="active"><a href="index.if">if</a></li>
-							<li><a href="./">ELSE</a></li>
+							<li><a href="./home.do">ELSE</a></li>
  							<li class="has-dropdown">
 								<a href="./itemboard">분실물 등록 <i class="fas fa-sort-down"></i></a>
 								<ul class="dropdown">
