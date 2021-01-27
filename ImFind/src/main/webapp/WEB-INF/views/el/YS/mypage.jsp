@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">    
- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/style2.css" type="text/css">
 
     
         <!-- Bootstrap cdn 설정  for 페이징  -->   
@@ -131,7 +131,7 @@
                                                    &nbsp; ${kakaoLoginUser}  ${loginUser} 
                                                  </div>
                                                  <div class="col">
-                                                    <button type="button" class="btn btn-primary" a href="/imfind/#.do">수정</button>
+                                                    <button type="button" class="btn btn-primary" ><a href="/imfind/modify">수정</a></button>
                                                  </div>
                                                  <div class="col">
                                                   &nbsp;
@@ -225,12 +225,12 @@
       
                      <!--  <table id="output" style="width:100%"> -->
                         
-                            <table id="output_PatPost"  border="0" width="100%">
+                            <table id="output_PetPost"  border="0" width="100%">
                          </table>
                         <!-- 페이지네이션 테스트1-2 START-->
                            <div class="text-center"> 
                   <!--  <nav aria-label="..."> -->
-                    <ul class="pagination" id="numbers_mypage_post2">
+                    <ul class="pagination" id="mypage_post_pet">
                     
                       <!--  <li class="page-item"><a class="page-link" href="#">1</a></li>
                
@@ -245,48 +245,48 @@
     
     <!-- PayTable Start -->
      &nbsp;
-                      <div class="mypageitem1">    
-                       <h5>결제내역</h5>
-                       </div>
+    <div class="mypageitem1">    
+    <h5>결제내역</h5>
+    </div>
                           
-                        &nbsp;
-                        <!-- 페이징 테스트 2-1 -->
-                    <!--   <nav aria-label="Page navigation example"><!-- 페이징 테스트 --> 
-                                    <!--  <div class="PageNavi"> --> 
-                                         
-                                            <table style="width:100%">
-                                            
-                                             <tr style="background-color:lightgrey">
-                                                <th>결제날짜</th>
-                                                <th>결제금액</th>   
-                                                <th>결제방법</th>
-                                                <th>결제상태</th>
-                                                 <th>환불요청 </th>
+    &nbsp;
+         <!-- 페이징 테스트 2-1 -->
+         <!--   <nav aria-label="Page navigation example"><!-- 페이징 테스트 --> 
+           <!--  <div class="PageNavi"> --> 
+                                               
+       <table style="width:100%">
+                                                  
+      <tr style="background-color:lightgrey">
+         <th>결제날짜</th>
+         <th>결제금액</th>   
+         <th>결제방법</th>
+         <th>결제상태</th>
+         <th>환불요청 </th>
+                                                 
+      </tr>
+      </table>
+          
+      <table id="output_pay"  border="0" width="100%"> 
+                                              
                                            
-                                             </tr>
-                                             </table>
-    
-                                         <table id="output_pay"  border="0" width="100%"> 
-                                        
-                                     
-                                          
-                                                             </table>
+                                                
+      </table>
+                                                   
+                                                
+                                                 
+      <!-- 페이징 테스트 2-1 -->
+      <!--   <nav aria-label="Page navigation example">-->
+       <div class="text-center">
+        <ul id="numbers_mypage_post2" class="pagination justify-content-center">
+                                               
+       <!--   <li class="page-item"><a class="page-link" href="#">1</a></li>
                                              
-                                          
-                                           
-                                           <!-- 페이징 테스트 2-1 -->
-                                        <!--   <nav aria-label="Page navigation example">-->
-                                        <div class="text-center">
-                                         <ul id="numbers_mypage_post2" class="pagination justify-content-center">
-                                         
-                                         <!--   <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                       
-                                         </ul>
-                                         </div>
-                                         
-                                 <!--    </nav> -->
-                                           
-                                            <!-- 페이징 테스트 2-2 -->
+       </ul>
+        </div>
+                                               
+      <!--    </nav> -->
+                                                 
+      <!-- 페이징 테스트 2-2 -->
      <!-- Modal --> 
       <!-- Modal ---------------------------------------------------> 
 <div class="modal fade" role="dialog" id="dialog">
@@ -402,7 +402,7 @@
    </div>
 </div>
 
-      
+  </div>    <!-- 202101240429_test -->
       
       <!--HTML 별점 평가  테스트 END -->
          <div>
@@ -414,7 +414,8 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">파인더 평점 입력 완료</button>
+           <!--  <button type="button" class="btn btn-primary">파인더 평점 입력 완료</button>  -->   
+              <button type="button" class="btn btn-primary" id="input_grade" >파인더 평점 입력 완료</button> 
       </div>
     </div>
 
@@ -422,6 +423,7 @@
 </div>
   </div>
 </div>
+
   <!-- modal  end ------------------------------------------------------------------------------------>                                        
                                     
                                            
@@ -432,6 +434,7 @@
                    </div>                        
                         
                     </div>
+                   
              
     <!-- PayTable End -->
  
@@ -558,6 +561,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!--마이페이지 js 시작-연수 -->
    <script src="${pageContext.request.contextPath}/resources/el/js/mypage.js"></script>
    <!--마이페이지 js 끝-연수 -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <!-- Js Plugins -->
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
@@ -570,9 +574,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
-	  <!-- Header Section Begin -->
-	      <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
-	    <!-- Header End -->
+     <!-- Header Section Begin -->
+         <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
+       <!-- Header End -->
 
 </body>
 

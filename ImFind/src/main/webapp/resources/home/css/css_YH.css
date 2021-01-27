@@ -110,9 +110,9 @@
 		    -o-transition: 0.5s;
 		    transition: 0.5s;
 		}
-				.top-menu{
+		.top-menu{
 		    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
-			height : 88px !important;
+			height : 73px !important;
 		}
 		div.container-fluid:nth-child(1) > div:nth-child(1){
 			display: flex;

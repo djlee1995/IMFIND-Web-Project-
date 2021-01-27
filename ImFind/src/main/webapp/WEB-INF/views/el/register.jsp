@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -288,6 +289,8 @@
 
 
 =======
+=======
+>>>>>>> main_dev
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -642,5 +645,8 @@
    <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
 
 
+<<<<<<< HEAD
 >>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
+=======
+>>>>>>> main_dev
 </html>

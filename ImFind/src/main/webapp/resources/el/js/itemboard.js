@@ -370,6 +370,7 @@ function getFormatDate(date){
 function pay(){
 	var lostpay = $("input[name=Lost_Pay]:checked").val();
 	
+<<<<<<< HEAD
 	if (lostpay == 'direct'){
 		lostpay = $("#paybox").val();
 		lostpay = lostpay.replace("direct","");
@@ -378,6 +379,14 @@ function pay(){
 	}
 	
 	console.log(lostpay)
+=======
+	if (lostpay == ''){
+		lostpay = $("#paybox").val();
+		lostpay = lostpay.replaceAll("," , "");
+	}
+	
+	console.log(id)
+>>>>>>> main_dev
 	
 	
 	/*console.log(id)*/
@@ -385,7 +394,11 @@ function pay(){
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+<<<<<<< HEAD
 		data : { "id" : loginUser} ,
+=======
+		data : { "id" : id} ,
+>>>>>>> main_dev
 		type : 'POST',
 		success : function(data){
 			console.log(data[0])
@@ -490,4 +503,7 @@ function inputcheck(){
 // 결제요청(결제자 정보를 어떻게 넣을 것인가?) -> 결제성공 ( 결제테이블 정보 서버전송, 디비 저장) ->폼 양식 submit ->폼 입력된 정보 디비 저장
 // 무료글 등록 클릭 -> 폼 양식 submit -> 폼 입력된 정보 디비 저장
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev

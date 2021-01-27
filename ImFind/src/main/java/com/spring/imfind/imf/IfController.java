@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
 package com.spring.imfind.imf;
 
 import java.util.HashMap;
@@ -104,4 +107,7 @@ public class IfController {
 	}
 	
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev

@@ -6,6 +6,7 @@
 <html>
     <!-- Header Section Begin -->
       <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
     <!-- Header End -->
     
     <!-- swiper 플러그인 -->
@@ -63,7 +64,10 @@
       }
       .flex-active-slide > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > ul:nth-child(1) > li{
          background : white;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
       }
       @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
@@ -83,7 +87,10 @@
          padding-top : 6.76%;
       }
       .fh5co-nav #fh5co-logo{
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
          font-size : 31px;
       }
       #fh5co-services{
@@ -131,7 +138,7 @@
       .fh5co-blog .blog-text{
          padding : 16px !important;
          margin-top:1px; 
-         max-height:280px; 
+         max-height:146px; 
          overflow:hidden; 
          vertical-align:top;
          text-overflow: ellipsis; 
@@ -158,7 +165,10 @@
          position : relative;
          top : 300px;
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
       .fh5co-blog .img-responsive,
       .police-photo{
          object-fit: contain;
@@ -170,10 +180,7 @@
          justify-content : flex;
          align-items : flex;
       }
-      .top-menu{
-          box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
-         height : 88px !important;
-      }
+
       div.container-fluid:nth-child(1) > div:nth-child(1){
          display: flex;
          justify-content: center;
@@ -189,7 +196,7 @@
       
       .swiper-container{
          width : 100%;
-         height : 320px;
+         height : 340px;
       }
       .swiper-container.row{
          width : 100%;
@@ -211,8 +218,18 @@
          cursor: pointer;
       }
       .swipe-slide{
-         
+           box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
       }
+      .hidden-panel{
+         opacity : 100%;
+      }
+      .hidden-panel:hover{
+         opacity : 0%;
+         background: black;
+         width:100%;
+         height:100%;
+      }
+<<<<<<< HEAD
 
       .hidden-panel{
       	opacity : 100%;
@@ -223,9 +240,80 @@
       	width:100%;
       	height:100%;
       }
+=======
+   .container-poeplelost,
+   .container-animal{
+      border: 1px solid black;
+   }
+      
+   /* 인덱스 css 다시하기 */
+   .container-police,
+   .container-poeplelost,
+   .container-animal{
+      width: 75vw;
+      margin: 0 auto;
+   }
+   @media(min-width: 1900px){
+      .container-police,
+      .container-poeplelost,
+      .container-animal{
+         width: 62vw;
+         margin: 0 auto;
+      }
+   }
+   #fh5co-blog{
+      padding-top:0;
+      padding-bottom:16px;
+   }
+   /* 경찰청 분실물 row */
+   .container-police > div:nth-child(1) > div:nth-child(1){
+      margin : 0 auto;
+      width : 100%;
+      padding : 0;
+   }
+   .col-md-8.col-md-offset-2.text-center.fh5co-heading{
+      margin-bottom : 16px;
+   }
+   .cover{
+        opacity: 0;  /* for demo purpose  */
+   }
+    .stack-top{
+        z-index: 9;
+        background : rgba(36, 49, 70, 0.76);
+          width: 100%;
+        height: 99%;            
+        position: absolute;
+        margin:0;
+        padding:0;
+        top: 4px;
+        left: 0;
+    }
+    .cover:hover{
+         opacity : 0.6;
+    }
+    h3.lost-title > a{
+       font-family: 'Noto Sans KR', sans-serif;
+       font-size:1.5rem;
+    }
+/*     .banner{
+       width: 100% ;
+       margin:0;
+       padding:0;
+    }
+    .slider-text{
+       heigth:40px;
+       min-height: 20vh;
+    } */
+>>>>>>> main_dev
    </style>
    
 <script>
+var code;
+var x;
+var y;
+function doPopupopen() { 
+       openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
+   }
 
 function getXY (getUserLocation){
    
@@ -249,20 +337,22 @@ function getListNearMe(item){
       data : {'x' : item.x, 'y' : item.y},
       async : false,
       success : function(data){
+         
          //console.log(data);
          const parentNode = document.querySelector(".swiper-wrapper.first");
-      
             data.police.forEach(function(item){
-               
+             console.log(item);
             const colNode = document.createElement('div');
             colNode.className = 'swiper-slide';
-            
-            colNode.innerHTML = '<div class="fh5co-blog">'
-                                +'<a href="#"><img class="img-responsive" src="'+ item.photo + '" alt=""></a>'
+            code=item.code;
+            x=item.x;
+            y=item.y;
+            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen();">클릭</button></div><div class="fh5co-blog">'
+                                +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.lost_date + '</span>'
                                     +'<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>'         
-                                    +'<h3><a href="#">' + item.item +'</a></h3>'
+                                    +'<h3 class="lost-title"><a href="#">' + item.item +'</a></h3>'
                                     +'<p>'+ item.depplace +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.info + '</p>'
                                  +'</div></div>';
@@ -270,6 +360,8 @@ function getListNearMe(item){
             parentNode.appendChild(colNode);  
             
          });   
+            
+         
             data.item.forEach(function(item){
                const parentNode = document.querySelector(".swiper-wrapper.lost");
                
@@ -277,12 +369,15 @@ function getListNearMe(item){
                const colNode = document.createElement('div');
                colNode.className = 'swiper-slide';
                colNode.innerHTML = '<div class="fh5co-blog">'
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
                                 +'<a href="#">'+ item.lost_Up_File + '</a>'
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.Lost_Date + '</span>'
                                     +'<span class="comment"><a href="">' + item.commentTotalCnt +'<i class="icon-speech-bubble"></i></a></span>'         
-                                    +'<h3><a href="#">' + item.lost_Title +'</a></h3>'
+                                    +'<h3><a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">' + item.lost_Title + '</a></h3>'
                                     +'<p>'+ item.lost_Loc +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
                                  +'</div>';
@@ -329,19 +424,19 @@ function getUserLocation(coords){
 document.addEventListener('DOMContentLoaded', function(){
     
     // swiper 초기화 시키기
-    var mySwiper1 = new Swiper('.swiper-container.row',{
+    var mySwiper1 = new Swiper('.swiper-container.police',{
        
       slidesPerView: 5,
       direction : 'horizontal',
       loop : true,
-      spaceBetween: 20,
+      spaceBetween: 10,
       observer: true,
       autoplay : {
          delay : 2500,
       },
       pagination : {
          el: '.swiper-pagination.first',
-          type: 'progressbar',
+         type: 'progressbar',
       },
     
       navigation : {
@@ -356,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function(){
       slidesPerView: 5,
       direction : 'horizontal',
       loop : true,
-      spaceBetween: 20,
+      spaceBetween: 10,
       observer: true,
       autoplay : {
          delay : 2500,
@@ -378,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function(){
       slidesPerView: 5,
       direction : 'horizontal',
       loop : true,
-      spaceBetween: 20,
+      spaceBetween: 10,
       observer: true,
       
       pagination : {
@@ -400,24 +495,33 @@ document.addEventListener('DOMContentLoaded', function(){
 </head>
    
    <body>
+<<<<<<< HEAD
 
+=======
+>>>>>>> main_dev
     <%   LoginDTO dto = (LoginDTO)request.getAttribute("memberInfo"); %>
    
     <%
        if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
     %>
             <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
+<<<<<<< HEAD
 
     <%
 
+=======
+    <%
+>>>>>>> main_dev
        } else{
     %>
             <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
    <%
        }
    %>
-   
-   <div class="fh5co-loader"></div>
+
+
+<root>
+   <!-- 메인 광고 표시 -->
    <aside id="fh5co-hero" class="js-fullheight">
       <div class="flexslider js-fullheight">
          <ul class="slides">
@@ -425,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function(){
                   <div class="overlay-gradient"></div>
                   <div class="container-fluid">
                      <div class="row">
-                        <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
+                        <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
                            <div class="slider-text-inner">
                               <h1>공공기관이 습득한 분실물<br> 찾기 </h1>
                            <h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
@@ -456,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                  <li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
                                  <li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
                                  <li class=""><a href="./item"><span>분실물 조회</span></a></li> 
-                                 <li class=""><a href="#"><span>분실 동물 조회</span></a></li> 
+                                 <li class=""><a href="./pet"><span>분실 동물 조회</span></a></li> 
                               </ul>
                         </div>
                      
@@ -468,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function(){
                <div class="overlay-gradient"></div>
                <div class="container-fluid">
                   <div class="row">
-                     <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
+                     <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
                         <div class="slider-text-inner">
                            <h1>찾으시는 물건이 없나요?</h1>
                            <h2>ImFind가 분실물 실시간 알람과 위치 기반<a href="http://freehtml5.co/" target="_blank"></a></h2>
@@ -496,59 +600,75 @@ document.addEventListener('DOMContentLoaded', function(){
                         </div>
                         <div class="li-group">
                               <ul>
-                                 <li class=""><a href="#"><span>분실물 등록</span></a></li> 
-                                 <li class=""><a href="#"><span>분실 동물 등록</span></a></li> 
-                                 <li class=""><a href="#"><span>분실물 조회</span></a></li> 
-                                 <li class=""><a href="#"><span>분실 동물 조회</span></a></li> 
+                                 <li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
+                                 <li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
+                                 <li class=""><a href="./item"><span>분실물 조회</span></a></li> 
+                                 <li class=""><a href="./pet"><span>분실 동물 조회</span></a></li> 
                               </ul>
                         </div>
-                     
-                         </div>              
+                     </div>              
                   </div>
                </div>
             </li>
            </ul>
         </div>
    </aside>
-
+   <!-- 메인 광고 표시 끝  -->
+   
+   <!-- 공공데이터 구역  -->
    <section>
-   <div id="fh5co-blog">
-      <div class="container">
-         <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-               <h2>Recent Post</h2>
-               <p>사용자의 현재 위치 근처에 있는 분실물과 습득물입니다.</p>
+      <div class="container-police">
+         <div id="fh5co-blog">
+            <div class="container">
+               <div class="row animate-box">
+                  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                     <h2>Recent Post</h2>
+                     <p>사용자의 현재 위치 근처에 있는 분실물과 습득물입니다.</p>
+                  </div>
+               </div>
+               <div class="swiper-container police">
+                  <div class="swiper-wrapper first">
+                     
+                  </div>
+                  <div class="swiper-pagination first"></div>
+               </div>
             </div>
-         </div>
-         <a href="#" class="btn btn-primary">공공기관 습득물</a>
-         <div class="swiper-container row">
-            <div class="swiper-wrapper first">
-               
+            <div class="arrow-container">
+               <div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
+               <div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
             </div>
-            <div class="swiper-pagination first"></div>
          </div>
       </div>
-      <div class="arrow-container">
-         <div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
-         <div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
-      </div>
-   </div>
-   <div id="fh5co-blog" class="section lostpost">
-      <div class="container">
-         <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-               <h2>분실물 찾아주세요</h2>
-               <p>최근 분실 신고된 분실물입니다.</p>
+   </section>
+   <!-- 공공데이터 구역 끝  -->
+   
+   <!-- 분실물 구역 시작 -->
+   <section>
+      <div class="container-poeplelost">
+         <div id="fh5co-blog" class="section lostpost">
+            <div class="container">
+               <div class="row animate-box">
+                  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                     <h2>분실물 찾아주세요 <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 -10 24 24" width="64" height="48"><path fill-rule="evenodd" 
+                     d="M3.267 1.457c.3.286.312.76.026 1.06A6.475 6.475 0 001.5 7a6.472 6.472 0 001.793 4.483.75.75 0 01-1.086 1.034 8.89 8.89 0 01-.276-.304l.569-.49-.569.49A7.971 7.971 0 010 7c0-2.139.84-4.083 2.207-5.517a.75.75 0 011.06-.026zm9.466 0a.75.75 0 011.06.026A7.975 7.975 0 0116 7c0 2.139-.84 4.083-2.207 5.517a.75.75 0 11-1.086-1.034A6.475 6.475 0 0014.5 7a6.475 6.475 0 00-1.793-4.483.75.75 0 01.026-1.06zM8.75 8.582a1.75 1.75 0 10-1.5 0v5.668a.75.75 0 001.5 0V8.582zM5.331 4.736a.75.75 0 10-1.143-.972A4.983 4.983 0 003 7c0 1.227.443 2.352 1.177 3.222a.75.75 0 001.146-.967A3.483 3.483 0 014.5 7c0-.864.312-1.654.831-2.264zm6.492-.958a.75.75 0 00-1.146.967c.514.61.823 1.395.823 2.255 0 .86-.31 1.646-.823 2.255a.75.75 0 101.146.967A4.983 4.983 0 0013 7a4.983 4.983 0 00-1.177-3.222z"></path></svg></h2>
+                     <p>최근 분실 신고된 분실물입니다.</p>
+                  </div>
+               </div>
+               <a href="#" class="btn btn-primary">분실물 찾아주세요</a>
+               <div class="swiper-container lost">
+                  <div class="swiper-wrapper lost">
+                     
+                  </div>
+                  <div class="swiper-pagination second"></div>
+               </div>
+            </div>
+            <div class="arrow-container">
+               <div class="arrow-prev2"><i class="fas fa-chevron-left fa-3x"></i></div>
+               <div class="arrow-next2"><i class="fas fa-chevron-right fa-3x"></i></div>
             </div>
          </div>
-         <a href="#" class="btn btn-primary">분실물 찾아주세요</a>
-         <div class="swiper-container lost">
-            <div class="swiper-wrapper lost">
-               
-            </div>
-            <div class="swiper-pagination second"></div>
-         </div>
       </div>
+<<<<<<< HEAD
       <div class="arrow-container">
          <div class="arrow-prev2"><i class="fas fa-chevron-left fa-3x"></i></div>
          <div class="arrow-next2"><i class="fas fa-chevron-right fa-3x"></i></div>
@@ -643,24 +763,128 @@ document.addEventListener('DOMContentLoaded', function(){
                            <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
                            <!-- <a href="#" class="btn btn-primary">Read More</a> -->
                         </div>
-                     </div>
-                  </div> 
-               </div>
-            <div class="swiper-pagination"></div>
-         </div>
-      </div>
-      <div class="arrow-container">
-         <div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
-         <div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
-      </div>
-   </div>
+=======
    </section>
-   <footer id="fh5co-footer" role="contentinfo">
-      <div class="container">
-         <div class="row row-pb-md">
+<!-- 분실물 구역 끝 -->
+
+<!-- 동물 분실 시작 -->
+    <section>
+       <div class="container-animal">
+         <div id="fh5co-blog" class="section lostpost">
+            <div class="container">
+               <div class="row animate-box">
+                  <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                     <h2>반려동물을 찾아주세요</h2>
+                     <p>사용자의 현재 위치에서 분실신고된 반려동물입니다.</p>
+                  </div>
+               </div>
+               <a href="#" class="btn btn-primary">분실물 찾아주세요</a>
+               <div class="row swiper-container">
+                  <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+                        <div class="swiper-slide">
+                           
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+                        <div class="swiper-slide">
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+                        <div class="swiper-slide">
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+                           <div class="swiper-slide">
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+                           <div class="swiper-slide">
+                           <div class="fh5co-blog animate-box">
+                              <a href="#"><img class="img-responsive" src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
+                              <div class="blog-text">
+                                 <span class="posted_on">Nov. 15th</span>
+                                 <span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
+                                 <h3><a href="#">구찌</a></h3>
+                                 <p>명동</p>
+                                 <p style="margin-bottom : 0;">답십리지구대에서는 [2020.12.20]  [주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
+                                 <!-- <a href="#" class="btn btn-primary">Read More</a> -->
+                              </div>
+                           </div>
+                        </div> 
+>>>>>>> main_dev
+                     </div>
+                  <div class="swiper-pagination"></div>
+               </div>
+            </div>
+            <div class="arrow-container">
+               <div class="arrow-prev"><i class="fas fa-chevron-left fa-3x"></i></div>
+               <div class="arrow-next"><i class="fas fa-chevron-right fa-3x"></i></div>
+            </div>
+         </div>
+       </div>
+    </section>
+ <!-- 동물 분실 끝 -->
+</root>
+<!-- footer 시작 -->
+ <footer id="fh5co-footer" role="contentinfo" style="padding-top: 24px;padding-bottom: 16px;">
+      <div class="container" style="padding-bottom: 0px;">
+         <div class="row row-pb-md" style="margin-top: 50px;">
             <div class="col-md-4 fh5co-widget">
-               <h4>Ink's</h4>
-               <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+               <h4>차자조</h4>
+               <p>김민정</p>
+               <p>김연수</p>
+               <p>이동준</p>
+               <p>이유희</p>
+               <p>홍은지</p>
             </div>
             <div class="col-md-4 col-md-push-1">
                <h4>Links</h4>
@@ -703,7 +927,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
       </div>
    </footer>
+<<<<<<< HEAD
 
+=======
+<!-- footer 끝 -->
+>>>>>>> main_dev
 
    <div class="gototop js-top">
       <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

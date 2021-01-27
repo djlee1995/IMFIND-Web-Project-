@@ -17,50 +17,79 @@
 
 
 <select id="getItemservice" resultType="ItemVO"> 
-	SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+   SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
 
-<!-- 	<foreach 
-	collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
-	</select> -->                                                     
-	<!-- 
-	<foreach item="item" index="index" collection="array"
+<!--    <foreach 
+   collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
+   </select> -->                                                     
+   <!-- 
+   <foreach item="item" index="index" collection="array"
       open="(" separator="," close=")">
        lost_Title=#{item} -->
  <!--  </foreach> -->
   </select>
+  <select id="getSido" resultType="ItemVO"> 
+   SELECT * from lostpost  WHERE replace(lost_loc,' ','') like #{lost_Loc} || '%'
+  </select>
   <select id="getdata_info" resultType="ItemVO"> 
-	SELECT * from lostpost where lost_postnum = #{lost_PostNum}
+   SELECT * from lostpost where lost_postnum = #{lost_PostNum}
 
   </select>
   <update id="update_data"> 
-	update lostpost set lost_title=#{Lost_Title},lost_Content=#{Lost_Content},lost_date=#{Lost_Date},lost_loc=#{Lost_Loc},lost_Up_File=#{Lost_Up_File},lost_item=#{Lost_Item} where lost_postnum = #{lost_PostNum}   
-	
+   update lostpost set lost_title=#{Lost_Title},lost_Content=#{Lost_Content},lost_date=#{Lost_Date},lost_loc=#{Lost_Loc},lost_Up_File=#{Lost_Up_File},lost_item=#{Lost_Item} where lost_postnum = #{lost_PostNum}   
+   
 
   </update>
   <delete id="delete_data">
+<<<<<<< HEAD
   	delete from lostpost where lost_postnum = #{lost_PostNum}
+=======
+     delete from lostpost where lost_postnum = #{lost_PostNum}
+>>>>>>> main_dev
   </delete>
     
   
   <!-- 유희 -->
   <select id="getItembyDate" resultType="IndexLostPostDTO">
-<!--   	  SELECT * FROM 
-  	  	(SELECT * FROM lostpost ORDER BY lost_date asc)
-  	  WHERE <![CDATA[ rownum < 15 ]]>   -->
-  	  SELECT 
-  	  		LOST_POSTNUM, 
-  	  		LOST_TITLE, 
-  	  		LOST_CONTENT, 
-  	  		LOST_UP_FILE, 
-  	  		LOST_PAY, 
-  	  		LOST_ITEM, 
-  	  		LOST_LOC, 
-  	  		LOST_DATE, ID,
-			(SELECT COUNT(*) AS cnt FROM re_comment WHERE lostpost.lost_postnum = re_comment.lost_postnum) as CommentTotalCnt 
-	  FROM lostpost 
-	  WHERE <![CDATA[ rownum < 15 ]]>
-	  ORDER BY lost_date 
+<!--        SELECT * FROM 
+          (SELECT * FROM lostpost ORDER BY lost_date asc)
+       WHERE <![CDATA[ rownum < 15 ]]>   -->
+       SELECT 
+             LOST_POSTNUM, 
+             LOST_TITLE, 
+             LOST_CONTENT, 
+             LOST_UP_FILE, 
+             LOST_PAY, 
+             LOST_ITEM, 
+             LOST_LOC, 
+             LOST_DATE, ID,
+         (SELECT COUNT(*) AS cnt FROM re_comment WHERE lostpost.lost_postnum = re_comment.lost_postnum) as CommentTotalCnt 
+     FROM lostpost 
+     WHERE <![CDATA[ rownum < 15 ]]>
+     ORDER BY lost_date 
   </select>
+  
+<!-- PET -->
+<delete id="petdelete_data">
+     delete from petpost where pet_postnum = #{Pet_PostNum}
+</delete>
+<select id="getPet"   resultType="PetVO">
+      SELECT * FROM (
+          SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.pet_postnum ASC) AS RNUM
+          FROM petpost p)      
+</select>
+<select id="getPetservice" resultType="PetVO"> 
+   SELECT * from petpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+</select>
+<select id="getPetSido" resultType="PetVO"> 
+   SELECT * from petpost  WHERE replace(pet_loc,' ','') like #{pet_Loc} || '%'
+</select>
+ <select id="getpetdata_info" resultType="PetVO"> 
+   SELECT * from petpost where pet_postnum = #{Pet_PostNum}
+</select>
+<update id="petupdate_data"> 
+   update petpost set pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name} where pet_postnum = #{Pet_PostNum} 
+</update>  
 
   
 </mapper>

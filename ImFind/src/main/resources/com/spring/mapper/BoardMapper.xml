@@ -36,33 +36,39 @@
 	 insert into Pay 
 	 (PayCode, 
 	 Pay_Amount, 
-	 Pay_Way, 
 	 Pay_State, 
-	 Pay_Date,Id)values 
+	 Pay_Date,
+	 Id)values 
 	 (#{PayCode}, 
 	 #{Pay_Amount}, 
-	 #{Pay_Way}, 
 	 #{Pay_State},
 	 #{Pay_Date},
 	 #{Id})
 	 </insert>
+	 
+	 <update id = "updatePay" parameterType="PayVO">
+		 update Pay set Pay_State = #{Pay_State} where Id=#{Id} AND PayCode=#{PayCode}
+	 </update>
 	
  	 <insert id = "petInsert" >
-	 insert into PatPost 
-	 (Pat_Title, 
-	 Pat_Content, 
-	 Pat_Name, 
-	 Pat_Re_Date, 
-	 Pat_LostDate, 
-	 Pat_Loc, 
-	 Pat_Pay,Id)values 
-	 (#{Pat_Title}, 
-	 #{Pat_Content}, 
-	 #{Pat_Name}, 
+	 insert into PetPost 
+	 (Pet_Title, 
+	 Pet_Content, 
+	 pet_Name, 
+	 pet_Re_Date, 
+	 pet_LostDate, 
+	 pet_Up_File,
+	 pet_Loc, 
+	 pet_Pay,
+	 Id)values 
+	 (#{pet_Title}, 
+	 #{pet_Content}, 
+	 #{pet_Name}, 
 	 sysdate, 
-	 #{Pat_LostDate}, 
-	 #{Pat_Loc}, 
-	 #{Pat_Pay},
+	 #{pet_LostDate}, 
+	 #{pet_Up_File},
+	 #{pet_Loc}, 
+	 #{pet_Pay},
 	 #{Id})
 	 </insert>
 	 <!-- 여기서 동적쿼리문으로 조건문 처리  -->
@@ -87,23 +93,74 @@
      </update>
      
      <delete id="commentDelete" parameterType="int">
-      delete from Re_Comment WHERE Com_Num = #{Com_Num}
+     {CALL
+     	BEGIN
+     	DELETE FROM re_comment WHERE com_num = #{com_num};
+	 	DELETE FROM reply WHERE com_num = #{com_num};
+	 	END
+     }
      </delete>
      
+     <!-- 동준 대댓글 -->
+     <insert id="replyInsert" parameterType="replyVO">
+        <selectKey keyProperty="re_num" order="BEFORE" resultType="int">
+            select nvl(max(re_Num), 0)+1 from reply
+        </selectKey>  
+          insert into reply (re_num,re_content,re_date,id,com_num)
+          values(#{re_num},#{re_content},sysdate,#{id},#{com_num})
+     </insert>
      
-     <update id="boardReplyupdate" parameterType="LostComVO">
-	 	update Re_Comment set Re_Seq=Re_Seq+1 where Re_Lev = #{Re_Lev} and Re_Seq > #{Re_Seq}
-	 </update>
-
+    <select id ="replyList"  resultType="replyVO">
+      select * from reply order by re_num    
+   </select>
+   <delete id ="replyDelete">
+      delete from reply where re_num = #{re_num}    
+   </delete>
+   <update id="replyUpdate">
+   	update reply set re_Content = #{re_content} WHERE re_Num = #{re_num}
+   </update>
+    <!-- 동준 대댓글  끝-->
+    <insert id="pet_commentInsert" parameterType="LostComVO">
+        <selectKey keyProperty="Com_Num" order="BEFORE" resultType="int">
+            select nvl(max(Com_Num), 0)+1 from pet_Comment
+        </selectKey>  
+          insert into pet_Comment (Com_Num, Lost_PostNum, Com_Content, Id, Com_Date, Secret_Com)
+          values(#{Com_Num},#{Lost_PostNum},#{Com_Content},#{Id},sysdate,#{Secret_Com})
+     </insert>
+    
+     <select id ="pet_commentList" parameterType="int" resultType="LostComVO">
+      select * from pet_Comment where Lost_PostNum = #{Lost_PostNum} order by Com_Num desc
+     </select>
 	 
-	 <insert id="commentReply" parameterType="LostComVO">
-	 	<!-- <selectKey>는 insert구문에만 사용 가능 -->
-	 	<!-- order값은 "BEFORE|AFTER" 대문자 사용할것 -->
-	 	<!-- keyProperty="num"에서 num은 컬럼 명이다. -->
-	 	<selectKey keyProperty="num" order="BEFORE" resultType="int">
-	 		select nvl(max(Re_Com_Num), 0)+1 from Re_Comment
-	 	</selectKey>
-		 	insert into Re_Comment(Re_Com_Num, Writer, Re_Com_Content, Re_Lev, Re_Seq, Re_Com_Date) values
-		 	(#{Re_Com_Num},#{Writer},#{Re_Com_Content},#{Re_Lev},#{Re_Seq},sysdate)
-	 </insert>
-</mapper> 
+	 <select id = "pet_commentCount" resultType="int">
+      select count(*) from pet_Comment
+     </select>
+    
+     <update id ="pet_commentUpdate" parameterType="LostComVO">
+      update pet_Comment set Com_Content = #{Com_Content} WHERE Com_Num = #{Com_Num}
+     </update>
+     
+     <delete id="pet_commentDelete" parameterType="int">
+      delete from pet_Comment WHERE Com_Num = #{Com_Num}
+     </delete>
+     
+     <!-- 동준 대댓글 -->
+     <insert id="pet_replyInsert" parameterType="replyVO">
+        <selectKey keyProperty="re_num" order="BEFORE" resultType="int">
+            select nvl(max(re_Num), 0)+1 from pet_reply
+        </selectKey>  
+          insert into pet_reply (re_num,re_content,re_date,id,com_num)
+          values(#{re_num},#{re_content},sysdate,#{id},#{com_num})
+     </insert>
+     
+    <select id ="pet_replyList"  resultType="replyVO">
+      select * from pet_reply order by re_num    
+   </select>
+   <delete id ="pet_replyDelete">
+      delete from pet_reply where re_num = #{re_num}    
+   </delete>
+   <update id="pet_replyUpdate">
+   	update pet_reply set re_content = #{re_content} WHERE re_Num = #{re_num}
+   </update>
+    <!-- 동준 대댓글  끝-->
+</mapper>
