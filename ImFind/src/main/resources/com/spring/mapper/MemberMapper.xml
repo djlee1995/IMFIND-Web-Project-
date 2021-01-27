@@ -66,6 +66,9 @@
 			sysdate
 		)
 	</insert> 
-	
+	<!-- MJ Email chk -->
+	<select resultType="int" parameterType="String" id="checkEmail">
+	   Select count(*) from member where email = #{email}
+	</select> 
 	
 </mapper>

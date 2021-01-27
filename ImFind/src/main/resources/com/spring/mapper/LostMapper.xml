@@ -59,8 +59,7 @@
 	
    <!-- 유희 -->
    <select id="getSimpleList" resultType="PoliceVO">
-      
-          SELECT *
+        SELECT *
         FROM (select * from p_lost p join p_place l on p.placeid = l.placeid),
              (SELECT #{x} v_x, #{y} v_y, 110979.309 r_x, 88907.949 r_y, 1500.000 v_z FROM dual)
         WHERE SQRT( POWER((v_x - x) * r_x, 2) +   POWER((v_y - y) * r_y, 2)) <![CDATA[ <= v_z and rownum < 50 ]]>

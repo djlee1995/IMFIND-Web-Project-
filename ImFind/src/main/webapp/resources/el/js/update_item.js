@@ -7,13 +7,6 @@ $("#datepicker").datepicker({
    
 });
 //  ------ 달력 js 끝 ------
-
-
-//  ------ 글 내용 js 시작 ------
-
-   
-
-   console.log(lost_PostNum)
    $.ajax({
       url: "datainfo.do", 
       //type: "POST",
@@ -93,10 +86,6 @@ $("#datepicker").datepicker({
       error: function(e){console.log(e);}  
    });   
    
-   
-  
-   
-
    
  //ready
 //  ------ 글 내용 js 끝 ------
@@ -336,8 +325,6 @@ $('#openModalBtn').on('click', function(){
 $('#closeModalBtn').on('click', function(){
    $('#modalBox').modal('hide');
 });
-   
-
 
 function getFormatDate(date){
     var year = date.getFullYear();

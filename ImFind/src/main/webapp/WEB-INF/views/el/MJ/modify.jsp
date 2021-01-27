@@ -31,27 +31,50 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
+    
+           <!-- Theme style  -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
+   <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">    -->
+   <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+   <!-- 폰트 어썸 css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!-- Animate.css -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+   <!-- Icomoon Icon Fonts-->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+   
+   <!-- Magnific Popup -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
+   <!-- Flexslider  -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
+   
+   <!-- Modernizr JS -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
+   
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
       
     
 </head>
 
 <!-- 유희 css -->
 <style>
-
-   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
    .notosanskr * { 
          font-family: 'Noto Sans KR', sans-serif;
    }
    
    form{
-         font-family: 'Noto Sans KR', sans-serif;
+         font-family: 'Noto Sans KR', sans-serif !important;
    }
    .col-lg-5{
-      margin : 0 auto;
+      margin : 0 auto !important;
    }
    .group-input.label{
-      margin-left:10px
+      margin-left:10px !important;
    }
    input[id="tel"]{
       width:80px !important;
@@ -60,7 +83,7 @@
       width : 85px;
       height: 49px;
       padding : 0;
-      padding-top : 14px;                     
+      padding-top : 14px;
       margin-left : 10px;
       text-align : center;
       border-radius : 3px;
@@ -79,11 +102,11 @@
 
     .grid-form{
       display : grid;
-      grid-template-columns: 0.5fr 1fr;
-      grid-template-rows : 80px 150px 80px 80px 205px 100px 100px;
+      grid-template-columns: 0.4fr 1fr !important;
+      grid-template-rows : 80px 150px 80px 80px 205px 100px 100px !important;
    } 
    .register-form form .group-input label, .login-form form .group-input label{
-      font-size : 14px;
+      font-size : 14px !important;;
 /*       //width : 80%; */
    }
    button[class ~= "register-btn"]{
@@ -97,21 +120,22 @@
    .register-form form .group-input input, .login-form form .group-input input {
        border: 1px solid #ebebeb;
        height: 37px;
-       width: 100%;
+       width: 93%;
        padding-left: 20px;
        padding-right: 15px;
+       margin-right : 9px;
    }
    .col-lg-5{
-      padding-top: 35px;
-      border: 1px solid rgba(0, 0, 0, .2);
-      margin-top: 69px;
-      border-radius : 2px;
+      padding-top: 35px !important;
+      border: 1px solid rgba(0, 0, 0, .2) !important;
+      margin-top: 69px !important;
+      border-radius : 2px !important;
    }
    .col-lg-5 h2{
       font-family: 'Noto Sans KR', sans-serif;
    }
    div.site-btn:nth-child(4){
-      width: 100%;
+      width: 93%;
       position: relative;
       left: -10px;
       height: 19%;
@@ -125,8 +149,54 @@
       justify-content: center;
       align-items: center;
    }
+   .site-btn-policy{
+         margin : 0;
+         width: 93%;
+      height: 39px;
+      border-radius: 3px;
+   }
    .site-btn.certification-api.account > div{
       margin-bottom : 14px;
+   }
+      .fh5co-nav{
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      left: 0;
+      z-index: 100;
+      padding-right : 35px;
+      padding-right : 18px !important;
+      background : white;
+   }
+   .fh5co-nav #fh5co-logo{
+      font-size : 31px;
+   }
+   .fh5co-nav ul li a {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weigth : bold;
+       font-size: 15px;
+       padding: 29px 15px;
+       color: rgba(0, 0, 0, 0.7);
+       -webkit-transition: 0.5s;
+       -o-transition: 0.5s;
+       transition: 0.5s;
+   }
+   .col-xs-2 {
+       width: 16.66667%;
+       padding-left:15px;
+   }
+   .col-xs-10 {
+       width: 83.33333%;
+          padding-right:15px;
+   }
+   .fh5co-nav a {
+       padding: 5px 10px;
+       color: #000;
+   }
+   input::placeholder {
+     color: gray;
+     font-size : 0.8em;
+     font-style: italic;
    }
 </style>
 
@@ -134,7 +204,7 @@
 
 
     <!-- Header Section Begin -->
-      <jsp:include page="${request.contextPath}/el/header"></jsp:include>
+   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>    
     <!-- Header End -->
     
     <!-- Register Section Begin -->

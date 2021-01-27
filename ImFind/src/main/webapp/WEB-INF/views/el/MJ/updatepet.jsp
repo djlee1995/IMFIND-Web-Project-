@@ -67,6 +67,7 @@
          <!-- 필수입력사항   -->
          <div class="item3">
             <h6>* 동물 이름</h6>
+
                  <label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
             <label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
             <label><input type="text" name="Pet_Name" id="p_textbox" class="form-control" placeholder="직접입력" disabled required></label>

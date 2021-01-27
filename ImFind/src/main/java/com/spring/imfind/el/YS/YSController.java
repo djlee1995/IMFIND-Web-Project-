@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,13 +21,14 @@ public class YSController {
       System.out.println(session.getAttribute("loginUser"));
       return "el/YS/mypage";
    }
-   @RequestMapping(value="/getElsedata",method=RequestMethod.POST,
-                                    produces="application/json;charset=UTF-8")
+   @RequestMapping(value="/getElsedata",method=RequestMethod.POST, produces="application/json;charset=UTF-8")
    @ResponseBody  
    public List<ElVO> getElsedata(HttpServletRequest request) {
+      
       HttpSession session = request.getSession();         
-      String id=(String)session.getAttribute("loginUser");      
+      String id=(String)session.getAttribute("loginUser"); 
       System.out.println("session id1 : " + id);      
+      
       List<ElVO> list = elService.getElsedata(id);
       System.out.println("list"+list );
       return list;
@@ -53,68 +55,60 @@ public class YSController {
       System.out.println("list2"+list2 );
       return list2;
    }
+   
+   
    @RequestMapping(value="/getElseWhoReplied",method=RequestMethod.POST,
          produces="application/json;charset=UTF-8")
    @ResponseBody
       public List<ElVO> getElseWhoReplied(String params) {
-      List<ElVO> list3 = elService.getElseWhoReplied( params );
+     System.out.println("getElseWhoReplied " + params);
+      
+      List<ElVO> list3 = elService.getElseWhoReplied(params);
       System.out.println("list3"+list3 );
       return list3;
    }   
-   //---------------------------------------------------------------
-   /*
-   @RequestMapping(value="/insertGrade,updatePay_Grade",method=RequestMethod.POST,
-	         produces="application/json;charset=UTF-8")
-	   @ResponseBody
-	   public Map<String, Object> insertGrade(ElVO elvo){
-	   	Map<String, Object> retVal=new HashMap<String, Object>();
-	   		try {
-	   			elService.insertGrade(elvo);
-	   			elService.updatePay_Grade(elvo);
-	   			retVal.put("res","OK");
-	   		}
-	   		catch(Exception e)
-	   		{
-	   		 retVal.put("res","FAIL");
-			 retVal.put("message","Failure");		
-	   		}
-	   	 return retVal;
-	 }
-   */
+
    // 평점 입력하기 -> 1.insert grade, 2.update pay table
-   @RequestMapping(value="/insertGrade.do",method=RequestMethod.POST,
-	         produces="application/json;charset=UTF-8")
+   @RequestMapping(value="/insertGrade.do")
    @ResponseBody
-   public Map<String, Object> insertGrade(ElVO elvo){
-	   System.out.println("inserGrade in");
-	   	System.out.println(elvo.toString());
-	   Map<String, Object> retVal=new HashMap<String, Object>();
-	   try {
-			elService.insertGrade(elvo);
-			elvo.setDeal_State("completed");
-			elService.updatePay_Grade(elvo);
-			retVal.put("res","OK");
-	   }
-	   catch(Exception e)
-	   {
-		 System.out.println(e.getMessage());
-		 retVal.put("res","FAIL");
-		 retVal.put("message","Failure");		
-	   }
-	   return retVal;
+   public Map<String, Object> insertGrade(@RequestBody HashMap<String, String> map){
+      
+      ElVO elvo = new ElVO();
+      
+      System.out.println("inserGrade in");
+      
+      System.out.println(map.get("F_ID"));
+      System.out.println("grade " + map.get("grade"));
+      System.out.println("lost_num " + map.get("Lost_PostNum"));
+      
+      elvo.setF_ID(map.get("F_ID"));
+      elvo.setGrade(Integer.parseInt(map.get("grade")));
+      elvo.setLost_PostNum(Integer.parseInt(map.get("Lost_PostNum")));
+      elvo.setId(map.get("Id"));
+      
+      
+      Map<String, Object> retVal = new HashMap<String, Object>();
+      
+      try {
+         int res = elService.insertGrade(elvo);
+         if(res == 1) {
+            
+            elvo.setDeal_State("completed");
+            int res2 = elService.updatePay_Grade(elvo);
+            System.out.println("update 상태 " + res2);
+            
+            retVal.put("res","OK");
+         }
+      }
+      catch(Exception e)
+      {
+       System.out.println(e.getMessage());
+       retVal.put("res","FAIL");
+       retVal.put("message","Failure");      
+      }
+      return retVal;
    }
-	/*
-	 * int retVal=elService.insertGrade(elvo); retVal.put("res","OK");
-	 * 
-	 * int urs=elService.updatePay_Grade(elvo);
-	 * 
-	 * 
-	 * 
-	 * return urs+res;
-	 * 
-	 * }
-	 */
-   //---------------------------------------------------------------
+
    @RequestMapping("/index")
    public String index2() {
       return "el/index";

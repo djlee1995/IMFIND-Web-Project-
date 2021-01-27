@@ -213,4 +213,28 @@ public int pet_replyUpdate(replyVO vo) throws Exception {
       
       return boardMapper.pet_replyUpdate(vo);
 }
+// 유희 인덱스
+@Override
+public List<BoardVO> gethighsetLostPay() throws Exception {
+	   BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	   List<BoardVO> list = boardMapper.gethighsetLostPay();
+	   return list;
+}
+
+@Override
+public List<PetVO> gethighsetPetPay() throws Exception {
+	   BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	   List<PetVO> list = boardMapper.gethighsetPetPay();
+	   return list;
+}
+
+	@Override
+	public int addPayBoardNum(BoardVO vo) throws Exception {
+		BoardMapper boardMapper =
+					sqlSession.getMapper(BoardMapper.class);
+	    int res = boardMapper.addPayBoardNum(vo);
+		return res;
+	}
 }

@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.MJ;
 import java.io.File;
 import java.io.PrintWriter;
@@ -146,38 +147,5 @@ public class MJController {
       List<PetVO> list = itemService.getpetdata_info(Pet_PostNum);
       return list;
    }
-   @RequestMapping("/petupdate.do")
-   public String petupdate_data(PetVO vo) {
-      System.out.println("업데이트 vo " + vo);
-      Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
-      String content = vo.getPet_Content();
-      Matcher match = pattern.matcher(content);
-      String pet_Up_File = null;
-      String uploadPath = "C:\\Project\\WebProject\\upload\\";
-      //String uploadPath = "/Users/hongmac/Documents/upload/"; 
-
-      if(match.find()){ 
-			pet_Up_File = match.group(0); 
-		}
-		//if(pattern)
-		vo.setPet_Up_File(pet_Up_File); // 이미지 태그 Lost_Up_File에 삽입
-		
-		if (vo.getPet_Up_File() == null) {
-			System.out.println("pet_Up_File"+pet_Up_File);
-			String noimg = "0";
-			System.out.println(noimg);
-			vo.setPet_Up_File(noimg);
-			
-		}
-		//pet_Content부분에 있는 태그들 자르기
-		vo.setPet_Content(vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "")); 
-	    String replace1 = vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-	    String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", ""); 
-	    String replace4 = vo.getPet_Name().replaceAll("있음,", ""); // name
-	    vo.setPet_Content(replace2);
-	    vo.setPet_Name(replace4);
-	    System.out.println("petpay======" + vo.toString());
-	    itemService.petupdate_data(vo);
-      return "redirect:/pet";
-   }
+   
 }

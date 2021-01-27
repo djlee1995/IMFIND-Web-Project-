@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.EJ;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class BoardVO {
 	private String Lost_Loc; // 분실위치
 	private String Lost_Date; // 분실날짜
 	private String Id; // 회원ID
+	private String PayCode;
 	
 	public int getLost_PostNum() {
 		return Lost_PostNum;
@@ -86,6 +88,13 @@ public class BoardVO {
 	}
 	public void setId(String id) {
 		Id = id;
+	}
+	
+	public String getPayCode() {
+		return PayCode;
+	}
+	public void setPayCode(String payCode) {
+		PayCode = payCode;
 	}
 	
 	@Override
