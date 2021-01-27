@@ -170,6 +170,22 @@
 			padding-bottom: 19px;
 			min-height: 201px;
 		}
+		.container-btn{
+			width: 54vw;
+			margin: 0 auto;
+			padding-left: 722px;
+		}
+		.container-btn > input{
+			border : none;
+			background: none;
+			font-family: 'Noto Sans KR', sans-serif !important;
+		}
+		.container-btn > input:hover{
+			color:black;
+		}
+		div#file > img{
+			width:100% !important;
+		}
     </style> 
 </head>
 <body>
@@ -191,10 +207,12 @@
    
    <div class="menu">
    		<i class="fas fa-home fa-1x"></i>
-   		<span style="font-size : 1.5rem;">목록으로</span>
+   		<a href="./item"><span style="font-size : 1.5rem;">목록으로</span></a>
    </div>
    
+   <div id="output"></div>	
    <div class="container iteminfo">
+<!--    		<div id="update"></div> -->
    		<div id="file">
    			
    		</div>
@@ -213,7 +231,8 @@
 	   			<label for="lostdate">분실 날짜</label>
 	   			<span id="lostdate"></span>
 	   			<label for="loc">분실 위치</label>
-	   			<span id="loc"></span>   			
+	   			<span id="loc"></span>   	
+	   		
    			</div>
    		</div>
    </div>

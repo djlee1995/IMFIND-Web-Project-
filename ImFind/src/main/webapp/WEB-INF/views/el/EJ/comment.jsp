@@ -153,10 +153,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
    
-   
+var id = '${loginUser}';
    //댓글 목록
    function commentList(){
-   var id = '${loginUser}';
+  
    
    $.ajax({
       url : '/imfind/comment_list',
@@ -183,18 +183,20 @@
                a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
                
             } else if (boardWriter == id) {
-               a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
-               a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button><i class="fas fa-reply"></i></button> ';
+            	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                 a += '<div class="recommentbtn">';
+                 a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                 a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
                
             } else if (value.secret_Com == 'y') { 
                a += '<div class="commentContent" id="commentContent'+ value.com_Num +'"> <p>비밀댓글입니다. </p>';
                a += '</div></div>';
                
             } else {
-               //a += '<div class="commentInfo'+value.com_Num+'">'+'<h3>'+value.id+'</h3>&nbsp;&nbsp;';
-               a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">' +value.com_Content;
-               a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');"><i class="fas fa-reply"></i></button> ';
-               a += '</div></div>';
+            	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                 a += '<div class="recommentbtn">';
+                 a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                 a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
             }
    
          }); // each

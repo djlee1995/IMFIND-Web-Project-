@@ -1,5 +1,7 @@
 package com.spring.imfind.el.EJ;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,7 +84,6 @@ public class AdminController {
 	@ResponseBody
 	//public String cancel_success(@RequestParam(value="payCode")String payCode) {
 	public List<PayVO> cancel_success(@RequestBody HashMap<String, String> map) {
-		// 여기까지 요청은 받는거 같은에 페이코드가 널이네용!! 요것만찾아내면 되겠어요!!
 		System.out.println(map.get("Id"));
 		System.out.println(map.get("PayCode"));
 		String pay_State = "cancel";
@@ -91,10 +92,17 @@ public class AdminController {
 		payVO.setPayCode(map.get("PayCode"));
 		payVO.setPay_State(pay_State);
 		
+		SimpleDateFormat time = new SimpleDateFormat("yy-MM-dd HH:mm");
+		Date time2 = new Date();
+
+		String Cancel_Date = time.format(time2);
+		System.out.println("Cancel_Date"+ Cancel_Date);
+		payVO.setCancel_Date(Cancel_Date);
+		
 		System.out.println("취소payvo:" + payVO.toString());
 		int res = adminService.updatePaystate(payVO);
 		List<PayVO> cancelList = adminService.getPayList();
-		// 그런데 여기서 1을 리턴해줬습
+		
 		return cancelList;
 	}
 	

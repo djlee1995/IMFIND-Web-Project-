@@ -23,9 +23,14 @@ public interface BoardMapper {
    
    public int commentReplyupdate(LostComVO comment); //답글에 대한 re_seq update작업
    public int commentReply(LostComVO comment); //답글 insert작업 수행
-   
+   public int updatePay(PayVO payVO);
    //동준 대댓글
    public List<replyVO> replyList() throws Exception;
    public int replyInsert(replyVO vo)throws Exception;
    public int replyDelete(int re_num)throws Exception;
+   
+   //유희 인덱스
+   public List<BoardVO> gethighsetLostPay() throws Exception;
+   public List<PetVO> gethighsetPetPay() throws Exception;
+public int addPayBoardNum(BoardVO vo);
 }

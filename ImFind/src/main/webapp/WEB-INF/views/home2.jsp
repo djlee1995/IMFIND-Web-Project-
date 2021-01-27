@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.imfind.imf.PoliceVO" %>
 <%@ page import = "com.spring.imfind.el.YH.LoginDTO" %>
-<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "com.spring.imfind.el.EJ.BoardVO" %>
+<%@ page import = "com.spring.imfind.el.EJ.PetVO" %>
+<%@ page import = "java.util.List" %>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML>
 <html>
     <!-- Header Section Begin -->
@@ -143,15 +147,48 @@
       p {
          font-family : 'Noto Sans KR', sans-serif !important;
       }
+      
+      @media(max-width : 500px){
+         .row.siren{
+		 	display: flex;
+		 	flex-direction:column;
+		 }
+      }
+      
       @media(min-width : 1200px){
          .col-lg-3 {
              width: 20%;
              max-height: 493px;
          }
+         .row.siren{
+		 	display: flex;
+		 }
+		 div.thumb > img{
+		 	width : 200px;
+		 	max-height: 200px !important;
+		 	object-fit: scale-down;
+		 }
+		 .fh5co-blog.siren{
+		  	display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 15px;
+			border : 1px solid rgb(238, 238, 238);
+		 }
+	   	.blog-text.siren{
+		  	max-height: 225px;
+			height: 199px;
+			width: 367px;
+			margin:0;
+		 }
       }
       section{
           position: relative;
-          top: 226px;
+          top: 76px;
+      }
+      section#first{
+      	background : #FBF7F2;
+		padding-top: 28px;
       }
       footer{
          position : relative;
@@ -217,15 +254,12 @@
          width:100%;
          height:100%;
       }
-   .container-poeplelost,
-   .container-animal{
-      border: 1px solid black;
-   }
       
    /* 인덱스 css 다시하기 */
    .container-police,
    .container-poeplelost,
-   .container-animal{
+   .container-animal,
+   .container-btn{
       width: 75vw;
       margin: 0 auto;
    }
@@ -280,6 +314,75 @@
        heigth:40px;
        min-height: 20vh;
     } */
+    .banner{
+    	width: 100%;
+    	margin-left : 0 !important;
+    	height: 342px !important;
+    }
+    .fh5co-blog.lost{
+    	width:220px;
+    	max-height: 209.3px !important;
+    }
+    .fh5co-blog.lost > a > img{
+    	width : 100%!important;
+    	object-fit : scale-down !important;
+    }
+    .slider-text-bg {
+    	min-height: 221px !important;
+    }
+    .flex-control-nav{
+    	top: 290px;
+    }
+    .container-btn{
+    	margin-top: 0;
+		z-index: 8;
+		position: relative;
+    }
+    .container-btn > .row{
+    	display :flex;
+    	justify-content: space-between;
+    }
+    span.posted_on{
+    	margin-right:72px !important;
+    }
+    .col-sm-3 > div.card{
+    	border:rgb(238, 238, 238);
+    }
+     /*MJ footer*/
+  .col-md-push-1{
+  	position: relative;
+  	top:50px;
+  }
+  .col-md-12{
+  	display : flex;
+  	justify-content: space-between;
+  }
+  #imfindlogo {
+  	width : 250px;
+  	height :180px;
+  	position: relative;
+	right: 250px;
+	top: 50px;
+  }
+  .block {
+  	position: relative;
+	left: 436px;
+  	margin: 0 auto;
+  }
+  .row row-pb-md {
+  	position: relative;
+  	height :300px;
+  }
+  #siren{
+  	width: 33px;
+	margin-bottom: 5px;
+  }
+ .swiper-container.siren {
+      width: 200px;
+      height: 100%;
+   }
+
+ 
    </style>
    
 <script>
@@ -326,7 +429,7 @@ function getListNearMe(item){
                                 +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.lost_date + '</span>'
-                                    +'<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>'         
+                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
                                     +'<h3 class="lost-title"><a href="#">' + item.item +'</a></h3>'
                                     +'<p>'+ item.depplace +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.info + '</p>'
@@ -343,15 +446,23 @@ function getListNearMe(item){
                console.log(item)
                const colNode = document.createElement('div');
                colNode.className = 'swiper-slide';
-               colNode.innerHTML = '<div class="fh5co-blog">'
-                                +'<a href="#">'+ item.lost_Up_File + '</a>'
+               
+               if(item.lost_Up_File == '0'){
+            	   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+               }
+               else{
+            	   lost_up_file = item.lost_Up_File
+               }
+               
+               colNode.innerHTML = '<div class="fh5co-blog lost">'
+                                +'<a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">'+ lost_up_file
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.Lost_Date + '</span>'
                                     +'<span class="comment"><a href="">' + item.commentTotalCnt +'<i class="icon-speech-bubble"></i></a></span>'         
-                                    +'<h3><a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">' + item.lost_Title + '</a></h3>'
+                                    +'<h3>' + item.lost_Title + '</h3>'
                                     +'<p>'+ item.lost_Loc +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
-                                 +'</div>';
+                                 +'</div>'  + '</a>';
             parentNode.appendChild(colNode);
             });
       },
@@ -457,6 +568,21 @@ document.addEventListener('DOMContentLoaded', function(){
          prevEl: '.arrow-prev',
       },
     }); 
+     
+    // swiper 초기화 시키기
+    var swiperSiren = new Swiper('.swiper-container.siren',{
+       
+      slidesPerView: 1,
+      direction : 'horizontal',
+      loop : true,
+      spaceBetween: 10,
+/*       observer: true, */
+      
+      pagination : {
+         el: '.swiper-pagination.siren',
+         clickable: true,
+      },
+    }); 
 
     var result = getXY(getUserLocation);
     
@@ -465,25 +591,71 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 </head>
    
-   <body>
-    <%   LoginDTO dto = (LoginDTO)request.getAttribute("memberInfo"); %>
-   
-    <%
-       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
-    %>
-            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
-    <%
-       } else{
-    %>
-            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-   <%
-       }
-   %>
+<body>
+	<% List<BoardVO> boardvo = (List<BoardVO>)request.getAttribute("boardvo"); %>
+	<% List<PetVO> petvo = (List<PetVO>)request.getAttribute("petvo"); %>
+	
+   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+
 
 
 <root>
+<div class="page"></div>
+	<section id="first">
+		<div class="container-btn">
+			<div class="container">
+	        	<h3 style="font-family : 'Noto Sans KR', sans-serif">   
+	        		<img src="${pageContext.request.contextPath}/resources/el/images/siren.svg"  alt="" id="siren"/>
+		        	긴급 찾습니다!
+	           </h3>
+		        <div class="row siren">
+		        	<div class="swiper-container siren">
+		        		<div class="swiper-wrapper siren">
+		        			<%for(BoardVO vo : boardvo){ %>
+				         	<div class="swiper-slide fh5co-blog siren">
+				         		<div class="thumb">
+				         			<%if(vo.getLost_Up_File() == "0") {%>
+				         				<img src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
+				         			<%}else{ %>
+				         				<%=vo.getLost_Up_File() %>
+				         			<%} %>
+				         		</div>
+				         		<div class="blog-text siren">
+			                       <span class="posted_on"><%=vo.getLost_Date() %></span>
+			                       <h3><a href="#"><%=vo.getLost_Content() %></a></h3>
+			                       <p><%=vo.getLost_Loc() %></p>
+			                    </div>
+			         	   </div>
+			         	   <%} %>
+		        		</div>
+		        	</div>
+	         	   <div class="swiper-container siren">
+       	   			   <div class="swiper-wrapper siren">
+       	   			   		<%for(PetVO vo : petvo){ %>
+							<div class="swiper-slide fh5co-blog siren">
+				         		<div class="thumb">
+				         			<%if(vo.getPet_Up_File() == "0") {%>
+				         				<img alt="" src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
+				         			<%}else{ %>
+				         				<%=vo.getPet_Up_File() %>
+				         			<%} %>
+			         			</div>
+				         		<div class="blog-text siren">
+			                       <span class="posted_on"><%=vo.getPet_LostDate() %></span>
+			                       <h3><a href="#"><%=vo.getPet_Title() %></a></h3>
+			                       <p><%=vo.getPet_Loc() %></p>
+			                    </div>
+			         	   </div>
+			         	   <%} %>
+       	   			   </div>
+	         	   </div>
+	         	   
+				</div>
+			</div>
+        </div>
+	</section>
    <!-- 메인 광고 표시 -->
-   <aside id="fh5co-hero" class="js-fullheight">
+<!--    <aside id="fh5co-hero" class="js-fullheight">
       <div class="flexslider js-fullheight">
          <ul class="slides">
                <li>
@@ -496,36 +668,7 @@ document.addEventListener('DOMContentLoaded', function(){
                            <h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
                            <p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
                            </div>
-                        </div> 
-                         <div class="box">
-                            <div id="fh5co-mission" style="padding-top: .2rem;">
-                           <div class="container">
-                              <div class="row">
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회 ${memberInfo.id}</h2>
-                                    <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
-                                    </blockquote>
-                                 </div>
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 등록 서비스</h2>
-                                    <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">분실자가 등록한 분실물 게시글을 위치 기반 서비스로 가까이에 위치한 사용자에게 알려드립니다.</p>
-                                    </blockquote>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="li-group">
-                              <ul>
-                                 <li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
-                                 <li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
-                                 <li class=""><a href="./item"><span>분실물 조회</span></a></li> 
-                                 <li class=""><a href="./pet"><span>분실 동물 조회</span></a></li> 
-                              </ul>
-                        </div>
-                     
-                         </div>        
+                        </div>       
                      </div>
                   </div>
                </li>
@@ -537,48 +680,20 @@ document.addEventListener('DOMContentLoaded', function(){
                         <div class="slider-text-inner">
                            <h1>찾으시는 물건이 없나요?</h1>
                            <h2>ImFind가 분실물 실시간 알람과 위치 기반<a href="http://freehtml5.co/" target="_blank"></a></h2>
-                           <p class="ct"><a href="/imfind/index">이동하기 <i class="icon-arrow-right"></i></a></p>
+                           <p class="ct"><a href="/imfind/">이동하기 <i class="icon-arrow-right"></i></a></p>
                         </div>
-                     </div>
-                         <div class="box" >
-                            <div id="fh5co-mission" style="padding-top: .2rem;">
-                           <div class="container">
-                              <div class="row">
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회</h2>
-                                    <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
-                                    </blockquote>
-                                 </div>
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 등록 서비스</h2>
-                                    <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">분실자가 등록한 분실물 게시글을 위치 기반 서비스로 가까이에 위치한 사용자에게 알려드립니다.</p>
-                                    </blockquote>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="li-group">
-                              <ul>
-                                 <li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
-                                 <li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
-                                 <li class=""><a href="./item"><span>분실물 조회</span></a></li> 
-                                 <li class=""><a href="./pet"><span>분실 동물 조회</span></a></li> 
-                              </ul>
-                        </div>
-                     </div>              
+                     </div>             
                   </div>
                </div>
             </li>
            </ul>
         </div>
-   </aside>
+   </aside> -->
    <!-- 메인 광고 표시 끝  -->
    
    <!-- 공공데이터 구역  -->
    <section>
-      <div class="container-police">
+      <div class="container-police" id="police">
          <div id="fh5co-blog">
             <div class="container">
                <div class="row animate-box">
@@ -605,7 +720,7 @@ document.addEventListener('DOMContentLoaded', function(){
    
    <!-- 분실물 구역 시작 -->
    <section>
-      <div class="container-poeplelost">
+      <div class="container-poeplelost" id="people">
          <div id="fh5co-blog" class="section lostpost">
             <div class="container">
                <div class="row animate-box">
@@ -615,7 +730,6 @@ document.addEventListener('DOMContentLoaded', function(){
                      <p>최근 분실 신고된 분실물입니다.</p>
                   </div>
                </div>
-               <a href="#" class="btn btn-primary">분실물 찾아주세요</a>
                <div class="swiper-container lost">
                   <div class="swiper-wrapper lost">
                      
@@ -634,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <!-- 동물 분실 시작 -->
     <section>
-       <div class="container-animal">
+       <div class="container-animal" id="animal">
          <div id="fh5co-blog" class="section lostpost">
             <div class="container">
                <div class="row animate-box">
@@ -643,7 +757,6 @@ document.addEventListener('DOMContentLoaded', function(){
                      <p>사용자의 현재 위치에서 분실신고된 반려동물입니다.</p>
                   </div>
                </div>
-               <a href="#" class="btn btn-primary">분실물 찾아주세요</a>
                <div class="row swiper-container">
                   <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -739,57 +852,36 @@ document.addEventListener('DOMContentLoaded', function(){
  <!-- 동물 분실 끝 -->
 </root>
 <!-- footer 시작 -->
- <footer id="fh5co-footer" role="contentinfo" style="padding-top: 24px;padding-bottom: 16px;">
+ <footer id="fh5co-footer" role="contentinfo" style="padding-top: 0px;padding-bottom: 0px;">
       <div class="container" style="padding-bottom: 0px;">
-         <div class="row row-pb-md" style="margin-top: 50px;">
-            <div class="col-md-4 fh5co-widget">
-               <h4>차자조</h4>
-               <p>김민정</p>
-               <p>김연수</p>
-               <p>이동준</p>
-               <p>이유희</p>
-               <p>홍은지</p>
+         <div class="row row-pb-md" style="margin-top: 0px;">
+          <div class="col-md-4 col-md-push-2">
+                <img id="imfindlogo" src="${pageContext.request.contextPath}/resources/el/img/55.PNG" alt="" />
             </div>
             <div class="col-md-4 col-md-push-1">
                <h4>Links</h4>
                <ul class="fh5co-footer-links">
                   <li><a href="#">if</a></li>
                   <li><a href="#">else</a></li>
-                  <li><a href="#">Won Cases</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">About us</a></li>
+                  <li><a href="https://www.lost112.go.kr/">Lost112</a></li>
+                  <li><a href="https://www.seoul.go.kr/v2012/find.html">대중교통 통합분실물센터</a></li>
                </ul>
             </div>
-
             <div class="col-md-4 col-md-push-1">
                <h4>Contact Information</h4>
                <ul class="fh5co-footer-links">
-                  <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
-                  <li><a href="tel://1234567920">+ 1235 2355 98</a></li>
-                  <li><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
-                  <li><a href="http://gettemplates.co">gettemplates.co</a></li>
+                  <li>69, Jong-ro, Jongno-gu, Seoul, Republic of Korea YMCA <br>
                </ul>
             </div>
          </div>
-
          <div class="row copyright">
-            <div class="col-md-12 text-center">
                <p>
                   <small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
                   <small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
                </p>
                <p>
-                  <ul class="fh5co-social-icons">
-                     <li><a href="#"><i class="icon-twitter"></i></a></li>
-                     <li><a href="#"><i class="icon-facebook"></i></a></li>
-                     <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                     <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                  </ul>
-               </p>
             </div>
          </div>
-
-      </div>
    </footer>
 <!-- footer 끝 -->
 

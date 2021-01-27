@@ -1,4 +1,3 @@
-	
 //  ------ 달력 js 시작 ------
 $("#datepicker").datepicker({
 	language : 'ko',
@@ -9,25 +8,7 @@ $("#datepicker").datepicker({
 
 //  ------ 글 내용 js 시작 ------
 $(document).ready(function() {
-	function sendFile(file){
-		var data = new FormData();	
-		data.append("file",file);
-		$.ajax({
-			url: "./profileImage", //////여기 본인 주소! 
-			type: "POST",
-			enctype: 'multipart/form-data',
-			data: data,
-			cache: false,
-			contentType : false,
-			processData : false,
-			success: function(image){	
-			$('#summernote').summernote('insertImage',image);
-			},
-			error: function(e){console.log(e);}  
-		});	
-	}
-	
-// summernote 
+	// summernote 
 	$('#summernote').summernote({
 		height :300,
 		minHeight:null,
@@ -36,11 +17,37 @@ $(document).ready(function() {
 		lang : "ko-KR",
 		placeholder: '내용을 입력해주세요',
 		callbacks: {
-			onImageUpload : function(files){
-				sendFile(files[0]);
+			//onImageUpload : function(files){
+				//sendFile(files[0]);
+			 onImageUpload: function(files, editor, welEditable) {
+				 for (var i = files.length - 1; i >= 0; i--) {
+                     sendFile(files[i], this);
+                  }
 			}
 		}
 	});
+	
+	function sendFile(file, el) {
+		 console.log()
+	       var form_data = new FormData();
+	       form_data.append('file', file);
+	   
+	       $.ajax({
+	         data: form_data,
+	         type: "post",
+	         url: './profileImage',
+	         cache: false,
+	         contentType: false,
+	         enctype: 'multipart/form-data',
+	         processData: false,
+	         success: function(url) {
+	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+	        	 	console.log(decodeURL)
+	        		 $(el).summernote('editor.insertImage', url);
+	         }
+	       });
+	     }
+	
 }); //ready
 //  ------ 글 내용 js 끝 ------
 				
@@ -152,7 +159,7 @@ searchAddrFromCoords(map.getCenter(), displayCenterInfo);
 kakao.maps.event.addListener(map,'click',function(mouseEvent) {
 	searchDetailAddrFromCoords(mouseEvent.latLng,function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
-			var infoDiv = document.getElementById('centerAddr');
+			var infoDiv = document.getElementById('centerAddr2');
 			
 			var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '
 					+ result[0].road_address.address_name
@@ -198,7 +205,7 @@ function searchDetailAddrFromCoords(coords, callback) {
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 function displayCenterInfo(result, status) {
 	if (status === kakao.maps.services.Status.OK) {
-		var infoDiv = document.getElementById('centerAddr');
+		var infoDiv = document.getElementById('centerAddr2');
 
 		for (var i = 0; i < result.length; i++) {
 			// 행정동의 region_type 값은 'H' 이므로
@@ -345,21 +352,20 @@ function getFormatDate(date){
 }
 	
 function pay(){
-	var lostpay = $("input[name=Pat_Pay]:checked").val();
-	
-	if (lostpay == 'direct'){
-		lostpay = $("#paybox").val();
-		lostpay = lostpay.replace("direct","");
-		lostpay = lostpay.replace("," , "");	
-	}
-	
-	console.log(lostpay)
-	console.log("진입")
+		var petpay = $("input[name=Pet_Pay]:checked").val();
+		
+		if (petpay == ''){
+			petpay = $("#paybox").val();
+			petpay = petpay.replaceAll("," , "");
+			
+		}	
+	console.log(petpay)
+
 	// ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		data : { "id" : loginUser } ,
+		data : { "id" : id } ,
 		type : 'POST',
 		success : function(data){
 				alert("잠시만 기다려주세요!");
@@ -377,24 +383,25 @@ function pay(){
 				// merchant_uid : 'merchant_' + new Date().getTime(),
 				merchant_uid : 'merchant_' + new Date().getTime(), // 주문번호
 				name : '사례금', // 상품명
-				amount : lostpay,
+				amount : petpay,
 				buyer_name : data[0].name,
 				buyer_email : data[0].email,
 				buyer_tel : data[0].contact,
 				}, 
-				function(rsp){
+				function(rsp){ 
 					console.log(rsp.merchant_uid)
 					if (rsp.success){ // 결제 성공
 						var msg = '결제가 완료되었습니다.';
 						var result = 
 						{
 							"PayCode" :rsp.merchant_uid, //PayCode //가맹점에서 생성/관리하는 고유 주문번호	
-							"Pay_Way" : rsp.pay_method, //Pay_Way //결제수단
+							//"Pay_Way" : rsp.pay_method, //Pay_Way //결제수단
 							"Pay_Amount" : rsp.paid_amount, //Pay_Amount //결제금액
 							"Pay_State" : rsp.status, //Pay_State //결제상태
 							"Pay_Date" : getFormatDate(new Date()),//결제승인시각
 							"Id" : id
 						}// result
+						console.log(result)
 						console.log(rsp.paid_at);
 						console.log(result.id);
 			
@@ -410,6 +417,7 @@ function pay(){
 							}
 						});
 							alert("결제성공!");	
+							
 							addboard();//전송
 							} // if 결제성공
 							else { // 결제 실패
@@ -431,9 +439,9 @@ function addboard(){
 }
 
 function inputcheck(){
-	var lostpet = $("input[name=Pat_Name]:checked").val();
-	var lostdate = $("input[name=Pat_LostDate]").val();
-	var losttitle = $("input[name=Pat_Title]").val();
+	var lostpet = $("input[name=Pet_Name]:checked").val();
+	var lostdate = $("input[name=Pet_LostDate]").val();
+	var losttitle = $("input[name=Pet_Title]").val();
 	
 	if (lostpet == "있음"){
 		var lostpet =$("#p_textbox").val();
@@ -452,15 +460,7 @@ function inputcheck(){
 		
 		return false;
 	}	
-	/*
-	var editorContent = document.querySelector('.note-editable').innerText;
 	
-	if(editorContent == ""){
-		alert('내용을 입력해주세요.')
-		
-		return false;
-	}
-	*/
 	$(".item10").children('button').attr('data-toggle', 'modal')
 	$(".item10").children('button').attr('data-target', '#myModal')
 	//e.preventDefault();

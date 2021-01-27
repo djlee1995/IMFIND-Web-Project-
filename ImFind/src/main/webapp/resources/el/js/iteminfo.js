@@ -11,20 +11,26 @@ $(document).ready(function() {
 	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 	      //dataType:'json',
 	      success: function(data){
-	         console.log(loginUser)
+	         console.log(data)
+	         
 	         if($.trim(loginUser)==(data[0].id)){
-	            $('#update').html('<th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th>');
+	            $('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
 	         }
-
+	    
+	         if(data[0].lost_Up_File == '0'){
+	        	 lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+	         }else{
+	        	 lost_up_file = data[0].lost_Up_File;
+	         }
  
 		console.log(data)
 		formattedDate = getChangeDateString(data[0].lost_Re_Date)
-		
+		loc=data[0].lost_Loc;
 		$('#lost_Re_Date').text(formattedDate);
 		$('#title').text(data[0].lost_Title);
 		$('#content-body-text').html(data[0].lost_Content);
 		/*$('#file').html(data[0].lost_Up_File);*/
-		$('#file').html('<img src="./resources/el/images/church.jpg"/>');
+		$('#file').html(lost_up_file);
 		$('#pay').text(data[0].lost_Pay);
 		$('#loc').text(data[0].lost_Loc);
 		$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));

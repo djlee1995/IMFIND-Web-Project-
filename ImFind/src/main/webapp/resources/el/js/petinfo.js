@@ -11,16 +11,30 @@ $(document).ready(function() {
 		success: function(data){
 			console.log(loginUser)
 			if($.trim(loginUser)==(data[0].id)){
-				$('#petupdate').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"></th>');
+				$('#petupdate').html('<div class="container-btn"><th colspan="5"><input type="button" class="petupdateBtn" value="수정"></th></div>');
 			}
+			
+			console.log(data[0])
 			console.log()
 				loc=data[0].pet_Loc
-				$('#title').text(data[0].Pet_Title);
+/*				$('#title').text(data[0].Pet_Title);
 				$('#content').html(data[0].Pet_Content);
 				$('#file').html(data[0].PetUp_File);
 				$('#pay').text(data[0].Pet_Pay);
 				$('#loc').text(data[0].Pet_Loc);
 				$('#lostdate').text(moment(data[0].Pet_LostDate).format('YYYY-MM-DD'));
+				$('#id').text(data[0].id);*/
+				
+				formattedDate = getChangeDateString(data[0].lost_Re_Date)
+				loc=data[0].pet_Loc;
+				$('#lost_Re_Date').text(formattedDate);
+				$('#title').text(data[0].lost_Title);
+				$('#content-body-text').html(data[0].lost_Content);
+				/*$('#file').html(data[0].lost_Up_File);*/
+				$('#file').html('<img src="./resources/el/images/no_img.png"/>');
+				$('#pay').text(data[0].lost_Pay);
+				$('#loc').text(data[0].lost_Loc);
+				$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));
 				$('#id').text(data[0].id);
 			},
 		error : function() {
@@ -56,6 +70,6 @@ geocoder.addressSearch(loc, function(result, status) {
     } 
 });    
 $('.petupdateBtn').click(function(){
-	$(location).attr("href", "updatepage?Pet_PostNum="+Pet_PostNum+"");
+	$(location).attr("href", "petupdatepage?Pet_PostNum="+Pet_PostNum+"");
 });
 });

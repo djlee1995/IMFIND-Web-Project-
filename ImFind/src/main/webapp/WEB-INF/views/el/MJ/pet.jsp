@@ -10,48 +10,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>I'm Find</title>
-<!-- Google Font --
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <!-- Css Styles -->
+
  <!-- Header Section Begin -->
    <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
  <!-- Header End -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css"
-   type="text/css">
-<%-- <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css"
-   type="text/css"> --%>
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css"
-   type="text/css"> <!-- 지우면 안됨 -->
-<%-- <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css"
-   type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css"
-   type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/nice-select.css"
-   type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css"
-   type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css"
-   type="text/css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/css/style.css"
-   type="text/css"> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css"> <!-- 지우면 안됨 -->
+
 <!-- 조회페이지 css (mj) -->
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
+<!-- 조회페이지 css (mj) -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
 <!-- Bootstrap cdn 설정  for 페이징  -->   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">   
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link href="${pageContext.request.contextPath}/resources/el/YH/select2/css/select2.css"  rel="stylesheet" />
 <style>
 #paging-head{
 position : fixed;
@@ -84,25 +63,105 @@ z-index : 100;
 }
 section{
    position: relative;
-   top: 93px;
+   top: 180px;
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* YH */
+	.photo > img{
+		width: 100% !important;
+		height : 175px;
+		object-fit:contain;
+		border : none;
+	}
+	.card-con{
+		border : 
+	}
+	.subinfo{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 3px;
+	}
+	div.date{
+		margin-right:5px;
+	}
+	div.title{
+		margin: 7px 0 0 10px;
+		color : black;
+		font-weight: 500;
+		font-size:14px !important;
+	}
+	div.card-con > a{
+		text-decoration:none;
+	}
+	div.loc{
+		padding-top: 6px;
+		margin-left: 10px;
+	}
+	.selectBox{
+		position: relative;
+		top: -34px;
+		display: flex;
+		justify-content: center;
+	}
+	/* section 가로 크기 */
+	@media(min-width: 1700px){
+		.searchbar,
+		.selectBox,
+		.cardList{
+			width: 50vw;
+			margin: 0 auto;
+		}
+	}
+	@media(min-width: 1200px){
+		.searchbar,
+		.selectBox,
+		.cardList{
+			width: 64vw;
+			margin: 0 auto;
+		}
+		.card-wrapper{
+			display:flex;
+			flex-wrap:wrap;
+		}
+		.card-con{
+			width: 180px;
+			height: 265px;
+			border : 1px solid rgb(238, 238, 238);;
+			margin:7px;
+		}
+		
+	}
+	@media(max-width: 500px){
+		.searchbar,
+		.selectBox,
+		.cardList{
+			width: 100vw;
+			margin: 0 auto;
+		}
+	}
+	.container1.searchbar{
+		position: relative;
+		top: -53px;
+	}
+	.card-wrapper{
+		margin : 0 auto;
+	}
+	.cardList{
+		display : flex;
+		justify-content: center;
+		align-items : center;
+	}
+	/* 요소 크기 */
 </style>
 </head>
 <body>
-   <%
-       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
-   %>
-            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
-   <%
-       } else{
-   %>
-            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-   <%
-       }
-   %>
+
+	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+
     <!-- Header End -->
    <!-- Page Preloder -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -111,13 +170,13 @@ section{
    </div>
    <section>
    <!-- <div class="container1"> -->
-   <div class="petcontainer1">
-      <div class="petrow1">
-         <div id="petcustom-search-input">
-            <div class="petinput-group col-md-12">
+   <div class="container1 searchbar">
+      <div class="row1">
+         <div id="custom-search-input">
+            <div class="input-group col-md-12">
                <input type="text" class="input-lg" name="input-search" 
                   onKeypress="enterkey();" placeholder="search.." > 
-                  <span class="petinput-group-btn" >
+                  <span class="input-group-btn" >
                   <button class="btn" type="button" >
                      <i class="ti-search"></i>
                   </button>
@@ -126,24 +185,35 @@ section{
          </div>
       </div>
    </div>
-    <div class = "petsi">
-    <select class="petselect" id="petsido">
-      <option value="">시/도 선택하세요</option>
-    </select>
-    <select class="petselect" id="petsigugun">
-      <option value="">시/군/구 선택하세요</option>
-    </select>
-    <select class="petselect" id="petdong">
-      <option value="">읍/면/동 선택하세요</option>
-    </select>
+   
+   <div class="container1 selectBox">
+	    <div class = "petsi">
+		    <select class="js-example-basic-single" id="petsido">
+		      	<option value="">시/도 선택하세요</option>
+		    </select>
+		    <select class="js-example-basic-single" id="petsigugun">
+		      	<option value="">시/군/구 선택하세요</option>
+		    </select>
+		    <select class="js-example-basic-single" id="petdong">
+		      	<option value="">읍/면/동 선택하세요</option>
+		    </select>
+	  </div>
+   </div>
+  
+  <div class="container1 cardList">
+  	   <div class="card-wrapper">
+  	   
+  	   </div>
+	   <div class="petcard-list-con">
+	      <div>
+	      	<table id="petoutput" border="1" align="center"></table>
+	      </div>
+	   </div>
   </div>
-   <div class="petcard-list-con">
-      <div>
-      <table id="petoutput" border="1" align="center"></table>
-   </div>
-   </div>
+  
    </section>
    <!-- Js Plugins -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    <script
       src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
    <script
@@ -181,5 +251,6 @@ section{
    <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
    <!-- Main -->
    <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/el/YH/select2/js/select2.min.js" /></script>
 </body>
 </html>

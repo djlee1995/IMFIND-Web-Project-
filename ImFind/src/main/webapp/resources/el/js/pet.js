@@ -1,6 +1,7 @@
 // 시군구동 검색 
 jQuery(document).ready(function(){
    listdata();
+   $(".js-example-basic-single").select2();
       var pet_Loc;
       var si;
       var gu;
@@ -69,7 +70,7 @@ jQuery(document).ready(function(){
     pet_Loc=si+gu+dong
     console.log(pet_Loc)
   });
-  $('.petselect').change(function(){
+  $('#petsido').change(function(){
      if(pet_Loc==''){
         listdata();
       }
@@ -82,9 +83,18 @@ jQuery(document).ready(function(){
          //dataType:'json',
          success: function(data){
             $('#petoutput').empty();
-            $.each(data,function(index,item) {   
+          
+            $.each(data,function(index,item) {  
+            	
+                if(item.pet_Up_File == '0'){
+                	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
+                }
+                else{
+                	pet_Up_File = item.lost_Up_File;
+                }
+                
                var output = '';
-               output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Up_File+'</td>';
+               output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+pet_Up_File+'</td>';
                output +='<td>'+(moment(item.pet_Date).format('YYYY-MM-DD'))+'</td>';
                output +='<td>'+item.pet_Title+'</td>';
                output +='<td>'+item.pet_Pay+'</td></tr>';
@@ -101,26 +111,56 @@ jQuery(document).ready(function(){
      return '<option value="' + code +'">' + name +'</option>';
    }
   function listdata() {
+	  
      $.ajax({
          url : '/imfind/petlist.do',
          contentType : 'application/x-www-form-urlencoded;charset=utf-8',
          success : function(data) {
-            $('#petoutput').empty();
+            $('.card-wrapper').empty();
+            var output = '';
+  
             $.each(data,function(index,item) {  
-               var output = '';
-               output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Up_File+'</td>';
+            	console.log(item)
+                if(item.pet_Up_File == '0'){
+                	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
+                }
+                else{
+                	pet_Up_File = item.pet_Up_File;
+                }
+                if(item.lost_Loc == null){
+					lost_Loc = '';
+				}
+				else{
+					lost_Loc = item.lost_Loc;
+				}
+                formattedDate = getChangeDateString(item.lost_Re_Date)
+/*               output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+pet_Up_File+'</td>';
                output +='<td>'+(moment(item.pet_Date).format('YYYY-MM-DD'))+'</td>';
                output +='<td>'+item.pet_Title+'</td>';
-               output +='<td>'+item.pet_Pay+'</td></tr>';
-               $('#petoutput').append(output);
+               output +='<td>'+item.pet_Pay+'</td></tr>';*/
+               
+               output += '<div class="card-con">';
+			   output +=     '<a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">';
+			   output +=       '<div class="photo">' + pet_Up_File +'</div>'
+			   output +=       '<div class="simpleinfo">'
+			   output +=         '<div class="title">'+ item.pet_Title +'</div>'
+			   output +=          '<div class="subinfo">'
+			   output +=           '<div class="pay">' + item.pet_Pay + '원' +'</div>'
+			   output +=           '<div class="date">'+ formattedDate +'</div>'
+			   output +=         '</div>'
+			   output +=       '</div>'
+			   output +=       '<div class="loc">' + lost_Loc + '</div>'
+			   output +=     '</a>'
+			   output +=   '</div>'
             });
+            $('.card-wrapper').append(output);
          },
          error : function() {
             alert("ajax 통신 실패!!!");
          }
    });// ajax 끝.
 }
-       <!-- 민정 검색버튼 -->
+  	  /* 민정 검색버튼 */
       document.querySelector('.btn').addEventListener('click', function click() {
          var lost_Title = $("input[name=input-search]").val();
          if (lost_Title ==""){
@@ -136,10 +176,19 @@ jQuery(document).ready(function(){
             $('#petoutput').empty();
             $.each(data,function(index,item) {   
                var output = '';
-               output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Up_File+'</td>';
-               output +='<td>'+(moment(pet.lost_Date).format('YYYY-MM-DD'))+'</td>';
-               output +='<td>'+item.pet_Title+'</td>';
-               output +='<td>'+item.pet_Pay+'</td></tr>';
+               output += '<div class="card-con">';
+			   output +=     '<a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">';
+			   output +=       '<div class="photo">' + pet_Up_File +'</div>'
+			   output +=       '<div class="simpleinfo">'
+			   output +=         '<div class="title">'+ item.pet_Title +'</div>'
+			   output +=          '<div class="subinfo">'
+			   output +=           '<div class="pay">' + item.pet_Pay + '원' +'</div>'
+			   output +=           '<div class="date">'+ formattedDate +'</div>'
+			   output +=         '</div>'
+			   output +=       '</div>'
+			   output +=       '<div class="loc">' + lost_Loc + '</div>'
+			   output +=     '</a>'
+			   output +=   '</div>'
                $('#petoutput').append(output);
             });
          },
@@ -178,3 +227,31 @@ function enterkey() {
       });
     }
 }
+      
+      //유희 추가함
+      function getChangeDateString(originalDate){
+
+    	var fromNow = moment(originalDate).startOf('day').fromNow();
+    	console.log(fromNow)
+    	var fromNowTrim = fromNow.substr(0, 2).trim();
+    	console.log(fromNowTrim)
+    	
+    	if(fromNow.includes('days')){
+    		if(fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4' || fromNowTrim == '5' || fromNowTrim == '6'  ){
+    			return fromNowTrim + '일전';
+    			//$('#lost_Re_Date').text(fromNow +'일전');			
+    		}
+    		else{
+    			return moment(originalDate).format('YYYY-MM-DD');
+    			//$('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));			
+    		}
+    	}
+    	else if(fromNow == 'a day ago'){
+    		return '어제';
+    		//$('#lost_Re_Date').text('어제');	
+    	}
+    	else if(fromNow.includes('hours')){
+    		return fromNowTrim + '시간 전';
+    		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
+    		}
+    }

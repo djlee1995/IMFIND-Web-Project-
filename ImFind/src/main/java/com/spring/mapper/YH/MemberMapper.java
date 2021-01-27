@@ -16,4 +16,6 @@ public interface MemberMapper {
 	public LoginDTO findPW(@Param("id") String id, @Param("email") String email);
 	public int alterTempPW(@Param("id") String id, @Param("pw") String pw);
 	public LoginDTO getLoginDTO(String id);
+  // MJ Email chk
+   public int checkEmail(String email);
 }

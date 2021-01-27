@@ -130,9 +130,15 @@
 			width: 181px;
 			height: 34px;
 		}
+		.container-fluid {
+		    /* border: 1px solid black; */
+		    width: 75vw;
+		    margin: 0 auto;
+		    padding: 0;
+		}
 		</style>
 		<script>
-		var user = '${loginUser}';
+		var id = '${loginUser}';
 		</script> 	
 	</head>
 <body>
@@ -150,17 +156,17 @@
 							<li class="active"><a href="index.if">if</a></li>
 							<li><a href="./">ELSE</a></li>
  							<li class="has-dropdown">
-								<a href="./itemboard">분실물 등록<i class="fas fa-sort-down"></i></a>
+								<a href="">분실물 등록<i class="fas fa-sort-down"></i></a>
 								<ul class="dropdown">
 									<li><a href="./itemboard">물건</a></li>
 									<li><a href="./petboard">동물</a></li>
 								</ul>
 							</li>
 							<li class="has-dropdown">
-								<a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
+								<a href="">분실물 조회 <i class="fas fa-sort-down"></i></a>
 								<ul class="dropdown">
 									<li><a href="./item">물건</a></li>
-									<li><a href="#">동물</a></li>
+									<li><a href="./pet">동물</a></li>
 								</ul>
 							</li>
 							<c:if test="${loginUser} eq null">
@@ -180,7 +186,7 @@
 	<!-- 분실물 등록 게시판 은지 -->
 <section>
 	<div class="container">
-		<form name="p_boardform" action="./el/petInsert" method="post" enctype="multipart/form-data">
+		<form name="p_boardform" action="./petInsert" method="post" enctype="multipart/form-data">
 			<!-- 타이틀  -->
 			<div class="item1">
 				<h8>분실글 등록하기(애완동물)</h8>
@@ -195,9 +201,9 @@
 			<!-- 필수입력사항   -->
 			<div class="item3">
 				<h6>* 동물 이름</h6>
-				<label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
-				<label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
-				<label><input type="text" name="Pat_Name" id="p_textbox" class="form-control" placeholder="직접입력" disabled required></label>
+				<label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
+				<label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
+				<label><input type="text" name="Pet_Name" id="p_textbox" class="form-control" placeholder="직접입력" disabled required></label>
 			</div>
 
 			<!-- datepicker js 시작 -->
@@ -213,7 +219,7 @@
 			<!-- 필수입력사항 -->
 			<div class="item5">
 				<h6>* 분실 날짜</h6>
-				<input id="datepicker" type="text" name="Pat_LostDate" placeholder="날짜를 선택해주세요." required>
+				<input id="datepicker" type="text" name="Pet_LostDate" placeholder="날짜를 선택해주세요." required>
 			</div>
 
 	
@@ -224,7 +230,7 @@
 					<div id="Loc1" style="margin: -15px 10px 10px 100px;">
 						<!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
 						<div id="Loc2">
-						<input type="text" id="centerAddr2" name="Lost_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
+						<input type="text" id="centerAddr2" name="Pet_Loc" placeholder="분실 위치를 입력해주세요." onclick="resizeMap(); relayout();" 
 								data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onKeypress="enter();" />
 						<button type="button" id="Loc2Btn" onclick="resizeMap(); relayout();" >위치 검색</button></div>
 					</div>
@@ -242,12 +248,12 @@
 			<!-- 필수입력사항 -->
 			<div class="item7">
 				<h6>제 목(*)</h6>
-				<div class="item7_box"><input type="text" class="title" name="Lost_Title" placeholder="제목을 입력하세요" required></div>
+				<div class="item7_box"><input type="text" class="title" name="Pet_Title" placeholder="제목을 입력하세요" required></div>
 			</div>	
 			
 			<!--  필수입력사항 --> 
 			<div class="item8"><h6>내 용</h6></div>
-			<div class="item8_1"><textarea id="summernote" name="Pat_Content"></textarea></div>
+			<div class="item8_1"><textarea id="summernote" name="Pet_Content"></textarea></div>
 						
 
 
@@ -265,15 +271,15 @@
 								<h4 class="modal-title" id="myModalLabel">사례금 결제하기</h4>
 							</div>
 							
-							<div class="modal-body" id="lostpay">
+							<div class="modal-body" id="petpay">
 								<h7>사례금선택</h7> <br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
-								<label><input type="radio" name="Pat_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
-								<label><input type="text" name="Pat_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
+								<label><input type="radio" name="Pet_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
+								<label><input type="text" name="Pet_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern='\d*' placeholder="직접입력" disabled required></label>
 							</div>
 							
@@ -295,12 +301,9 @@
 	</div>
 </section>
 
-	<script>
-		var loginUser='<%=(String)session.getAttribute("loginUser")%>'
-		
-	</script>
+	
 		<!--게시글 등록 js 시작-은지 -->
-		<script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/el/js/petboard.js"></script>
 		<!--게시글 등록 js 끝-은지 -->
 	 	<!-- 아임포트 시작-->
 		<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 

@@ -72,7 +72,7 @@
 	    $('#output').empty();
 	   
 	    var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>결제관리</h1>'
-	    var form ='<tr><td width = "80px">회원ID</td><td width = "80px">주문번호</td><td width = "80px">결제금액</td><td width = "80px">결제상태</td><td width = "120px">결제승인시각</td></tr>';
+	    var form ='<tr><td width = "80px">회원ID</td><td width = "80px">주문번호</td><td width = "80px">결제금액</td><td width = "80px">결제상태</td><td width = "120px">결제승인시각</td><td width = "120px">결제승</td></tr>';
 	    $('#output').append(title);
 	    $('#output').append(form);
 	   
@@ -98,6 +98,7 @@
 	                	output += '<td width = "80px">환불완료</td>';
 	                }
 	                	output += '<td width = "120px">' + item.pay_Date + '</td>';
+	                	//output += '<td width = "120px">' + item.cancel_Date + '</td>';
 	                output += '</tr>'
 	                //console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
 	                $('#output').append(output); //추가
@@ -149,7 +150,7 @@
 	    $('#output').empty();
 	   
 	    var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>결제관리</h1>'
-	    var form ='<tr><td width = "80px">회원ID</td><td width = "80px">주문번호</td><td width = "80px">결제금액</td><td width = "80px">결제상태</td><td width = "120px">결제승인시각</td></tr>';
+	    var form ='<tr><td width = "80px">회원ID</td><td width = "80px">주문번호</td><td width = "80px">결제금액</td><td width = "80px">결제상태</td><td width = "120px">결제승인시각</td><td width = "120px"></td><td width = "120px">환불완료날짜</td></tr>';
 	    $('#output').append(title);
 	    $('#output').append(form);
 	   
@@ -164,16 +165,18 @@
 	                output += '<td width = "80px">' + item.id + '</td>';
 	                output += '<td width = "80px">' + item.payCode + '</td>';
 	               // output += '<td width = "80px">' + item.pay_Way + '</td>';
-	                output += '<td width = "80px">/' + item.pay_Amount + '</td>';
+	                output += '<td width = "80px">' + item.pay_Amount + '</td>';
 	                if (item.pay_State == 'refund'){
 	                	output += '<td width = "80px">환불요청</td>';
 	                	output += '<td width = "120px">' + item.pay_Date + '</td>';
 		                output += '<td><button type="button" id="cancelBtn" class="btn btn-outline-primary onclick="cancelPay()">환불승인</button></td>';
+		                output += '<td width = "120px">-</td>';
 	                }
 	                if (item.pay_State == 'cancel'){
 	                	output += '<td width = "80px">환불완료</td>';
 	                	output += '<td width = "120px">' + item.pay_Date + '</td>';
 			            output += '<td><button type="button" id="cancelBtn_s" class="btn btn-outline-primary onclick="cancels()">환불완료</button></td>';
+			            output += '<td width = "120px">' + item.cancel_Date + '</td>';
 	                }
 	                output += '</tr>'
 	               // console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
@@ -207,7 +210,7 @@
 				}
 			}).done(function(result){ // 환불 성공시 로직
 				alert("환불 성공 : " + result);
-						
+			
 				cancelList(id, paycode);
 			
 			}).fail(function(error){ // 환불 실패시 로직
@@ -223,6 +226,7 @@
 			cancelPay(event);
 		})
 	})
+	var toady = new Date();
 	
 	function cancelPay(event){
         //alert("click")
@@ -278,11 +282,12 @@
 		                output += '<td width = "80px">' + item.id + '</td>';
 		                output += '<td width = "80px">' + item.payCode + '</td>';
 		               // output += '<td width = "80px">' + item.pay_Way + '</td>';
-		                output += '<td width = "80px">/' + item.pay_Amount + '</td>';
+		                output += '<td width = "80px">' + item.pay_Amount + '</td>'; 
 		                if (item.pay_State == 'refund'){
 		                	output += '<td width = "80px">환불요청</td>';
 		                	output += '<td width = "120px">' + item.pay_Date + '</td>';
 			                output += '<td><button type="button" id="cancelBtn" class="btn btn-outline-primary onclick="cancelPay()">환불승인</button></td>';
+			                output += '<td width = "120px">-</td>';
 		                }
 		                if (item.pay_State == 'cancel'){
 		                	output += '<td width = "80px">환불완료</td>';

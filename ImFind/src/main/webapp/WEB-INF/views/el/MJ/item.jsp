@@ -62,7 +62,7 @@ z-index : 100;
 }
 section{
    position: relative;
-   top: 93px;
+   top: 180px;
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
@@ -107,11 +107,11 @@ section{
 			justify-content: center;
 		}
 		/* section 가로 크기 */
-		@media(min-width: 1900px){
+		@media(min-width: 1700px){
 			.searchbar,
 			.selectBox,
 			.cardList{
-				width: 50w;
+				width: 50vw;
 				margin: 0 auto;
 			}
 		}
@@ -129,7 +129,7 @@ section{
 			.card-con{
 				width: 180px;
 				height: 265px;
-				border : 1px solid rgb(238, 238, 238);;
+				border : 1px solid rgb(238, 238, 238);
 				margin:7px;
 			}
 			
@@ -146,29 +146,27 @@ section{
 			position: relative;
 			top: -53px;
 		}
-		
+		.card-wrapper{
+			margin : 0 auto;
+		}
+		.cardList{
+			display : flex;
+			justify-content: center;
+			align-items : center;
+		}
 		/* 요소 크기 */
 </style>
 </head>
 <body>
-      
-   <%
-       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
-   %>
-            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
-   <%
-       } else{
-   %>
-            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-   <%
-       }
-   %>
+
+	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+
     <!-- Header End -->
    <!-- Page Preloder -->
    <div id="preloder">
       <div class="loader"></div>
    </div>
-   
+   <div class="page"></div>
    <section>
 	   <!-- <div class="container1"> -->
 	   <div class="container1 searchbar">
@@ -198,15 +196,6 @@ section{
 		    	<select class="js-example-basic-single" id="dong">
 		      		<option value="">읍/면/동 선택하세요</option>
 		    	</select>
-			  <!--   <select class="form-select form-select-lg mb-3" id="sido" aria-label="Default select example">
-			    	<option value="">시/도 선택하세요</option>
-		    	</select>
-		    	<select class="form-select form-select-lg mb-3" id="sigugun">
-		      		<option value="">시/군/구 선택하세요</option>
-		    	</select>
-		    	<select class="form-select form-select-lg mb-3" id="dong">
-		      		<option value="">읍/면/동 선택하세요</option>
-		    	</select> -->
 		  </div>
 	   </div> 
 
@@ -262,7 +251,7 @@ section{
    <!--게시글 조회 행정동js 끝-MJ -->
          <!-- jQuery Easing -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    <!-- Waypoints -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
    <!-- Flexslider -->

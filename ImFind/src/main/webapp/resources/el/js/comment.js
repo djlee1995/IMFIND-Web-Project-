@@ -30,19 +30,20 @@ $('[name=commentInsertBtn]').click(function(){//댓글 등록 버튼 클릭시
       $('#Secret_Com').val('n');
    
       var insertData = $('[name=commentInsertForm]').serialize();
-      alert('n');
+      //alert('n');
          
       commentInsert(insertData);
       return true;
    }
-       alert('insert 진입 before');
-   console.log("insertData" + insertData);   
+       //alert('insert 진입 before');
+   //console.log("insertData" + insertData);   
 
 });
 //댓글 등록
 function commentInsert(insertData){
-   alert('insert 진입');
+   //alert('insert 진입');
    console.log(insertData);
+   
    //console.log(secret_com)
    $.ajax({
       url : '/imfind/comment_insert',
@@ -132,7 +133,7 @@ function commentDelete(com_Num){
       }
    });
    
-   $.ajax({
+   /*$.ajax({
       url : '/imfind/replydelete',
       //type : 'post',
       data : {'Com_Num': com_Num},
@@ -144,7 +145,7 @@ function commentDelete(com_Num){
       error:function(){
          alert("ajax통신 실패(delete)");
       }
-   });
+   });*/
 }
 //동준 대댓글
 function reply(com_Num) {
@@ -158,7 +159,7 @@ function reply(com_Num) {
 
 function replyinsert(com_Num) {
    var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+'';
-   console.log(insertdata)
+   //console.log(insertdata)
    $.ajax({
       url : '/imfind/reply_insert',
       type : 'POST',
@@ -182,14 +183,25 @@ function replyList() {
       url : '/imfind/replylist',
       type : 'POST',
       success : function(data){
-         console.log(data[0])
+         //console.log(id)
          $('.re_content').empty();
        $.each(data, function(key, value){
+    	   //console.log(value.id)
+    	   if(value.id==id){
           var a='';
              a+='<div> ->'+value.re_content+'';
+             a+='아이디:'+value.id+'';
+             a+='날짜:'+value.re_date+'';
+           
              a+='<button type="button" onclick="replyupdate('+value.re_num+');">수정</button>';
             a+='<button type="button" onclick="replydelete('+value.re_num+');">삭제</button></div>';
           $('#re_content'+value.com_num).append(a);
+    	   }
+    	   else{
+    		   var a='';
+               a+='<div> ->'+value.re_content+'';
+            $('#re_content'+value.com_num).append(a);
+    	   }
        });
       },
       error:function(){
@@ -218,7 +230,7 @@ function replyupdate(re_num) {
    });*/
 }
 function replydelete(re_num) {
-   console.log(re_num)
+   //console.log(re_num)
    $.ajax({
       url : '/imfind/reply_delete',
       type : 'POST',

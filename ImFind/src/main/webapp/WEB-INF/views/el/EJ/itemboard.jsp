@@ -113,14 +113,21 @@
 		    margin-left: 0;
 		    margin-right: 5px;
 		}
+		.container-fluid {
+		    /* border: 1px solid black; */
+		    width: 75vw;
+		    margin: 0 auto;
+		    padding: 0;
+		}
 
 		</style>
 		<script>
-		var user = '${loginUser}';
+		var id = '${loginUser}';
 		</script> 	
 	</head>
 <body>
 <!-- 헤더시작 -->
+
 <header>
 	<div class="fh5co-nav" role="navigation">
 		<div class="top-menu">
@@ -231,7 +238,7 @@
 			<div class="item10"><h6>사례금</h6>
 			<!-- 모달을 열기 위한 버튼 data-toggle="modal" data-target="#myModal" -->
 			<button type="button" onClick="return inputcheck()" id="paybtn">결제하기</button></div>
-			
+			<input type="hidden" name="PayCode">
 			<!-- 모달 영역 -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">

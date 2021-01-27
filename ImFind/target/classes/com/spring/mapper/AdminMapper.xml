@@ -21,7 +21,7 @@
     </select>
 	
 	 <update id = "updatePaystate" parameterType="PayVO">
-		 update Pay set Pay_State = #{Pay_State} where Id=#{Id} AND PayCode=#{PayCode}
+		 update Pay set Pay_State = #{Pay_State}, Cancel_Date = TO_DATE(sysdate,'yy-MM-dd HH24:mi') where Id=#{Id} AND PayCode=#{PayCode}
 	 </update>
 	 
 </mapper>

@@ -88,7 +88,7 @@ public class MJController {
    }
    @RequestMapping("/petupdatepage")
    public String petupdatepage() {
-      return "el/MJ/petupdatepage";
+      return "el/MJ/updatepet";
    }
    @RequestMapping(value = "/petdeletepage", produces = "application/json;charset=UTF-8")
    public String petdeletepage(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {

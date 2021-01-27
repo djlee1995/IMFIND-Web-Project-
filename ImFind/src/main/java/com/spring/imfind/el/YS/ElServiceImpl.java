@@ -34,40 +34,32 @@ public class ElServiceImpl implements ElService{
 	}
 	@Override
 	public List<ElVO> getElseWhoReplied(String params) {
-		List<ElVO>elseList3=null;
+		
+		List<ElVO> elseList3=null;
 		System.out.println("params:"+ params);
+		int param = Integer.parseInt(params);
+
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
-		int param = Integer.parseInt(params);//U
-		elseList3=elMapper.getElseWhoReplied(param);
+		elseList3 = elMapper.getElseWhoReplied(param);
+		
 		System.out.println("elseList3:whyarethey" + elseList3);//2021202008
+		
 		return elseList3;
 	}
 	@Override
-//	public int insertGrade(ElVO elvo) {
-		public void insertGrade(ElVO elvo) {	
-		// TODO Auto-generated method stub
+	public int insertGrade(ElVO elvo) {	
+		
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
-		//int res=elMapper.insertGrade(elvo);
-		elMapper.insertGrade(elvo);
-		return;
+		int res = elMapper.insertGrade(elvo);
+		
+		return res;
 	}
+	
 	@Override
-	//public int updatePay_Grade(ElVO elvo) {
-		public void updatePay_Grade(ElVO elvo) {
-		// TODO Auto-generated method stub
+	public int updatePay_Grade(ElVO elvo) {
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
-		//int res=elMapper.updatePay_Grade(elvo);
-		elMapper.updatePay_Grade(elvo);
-		return;
+		int res = elMapper.updatePay_Grade(elvo);
+		return res;
 	}
-	/*
-	 * @Override public List<ElVO> getElseWhoReplied(String params) { // TODO
-	 * Auto-generated method stub List<ElVO>elseList3=null;
-	 * System.out.println("params:"+ params);
-	 * 
-	 * ElMapper elMapper=sqlSession.getMapper(ElMapper.class); int param =
-	 * Integer.parseInt(params); elseList3=elMapper.getElseWhoReplied(param);
-	 * System.out.println("elseList3:whyarethey" + elseList3);//2021202008 return
-	 * elseList3; }
-	 */
+
 }

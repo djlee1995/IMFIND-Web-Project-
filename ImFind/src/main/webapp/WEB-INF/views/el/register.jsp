@@ -237,6 +237,7 @@
                             </div>
                             <div class="group-input">
                                 <input type="text" id="email" name="email" required>
+                                <span style="font-size : 0.5rem"></span>
                             </div>
                             <div class="group-input label">
                                 <label for="account">계좌인증 *</label>

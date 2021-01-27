@@ -133,4 +133,40 @@ public class BoardServiceImpl implements BoardService {
             sqlSession.getMapper(BoardMapper.class);
       return boardMapper.replyDelete(re_num);
    }
+   @Override
+	public int updatePay(PayVO payvo) {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+		int res = boardMapper.updatePay(payvo);
+	
+		return res;
+	}
+
+   
+   // 유희 인덱스
+   @Override
+   public List<BoardVO> gethighsetLostPay() throws Exception {
+	   BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	   List<BoardVO> list = boardMapper.gethighsetLostPay();
+	   return list;
+   }
+   
+   @Override
+   public List<PetVO> gethighsetPetPay() throws Exception {
+	   BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	   List<PetVO> list = boardMapper.gethighsetPetPay();
+	   return list;
+   }
+
+	@Override
+	public int addPayBoardNum(BoardVO vo) throws Exception {
+		BoardMapper boardMapper =
+					sqlSession.getMapper(BoardMapper.class);
+	    int res = boardMapper.addPayBoardNum(vo);
+		return res;
+	}
+   
+   
 }

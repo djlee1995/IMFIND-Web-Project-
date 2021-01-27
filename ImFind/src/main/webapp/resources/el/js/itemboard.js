@@ -370,14 +370,12 @@ function getFormatDate(date){
 function pay(){
 	var lostpay = $("input[name=Lost_Pay]:checked").val();
 	
-	if (lostpay == 'direct'){
+	if (lostpay == ''){
 		lostpay = $("#paybox").val();
-		lostpay = lostpay.replace("direct","");
-		lostpay = lostpay.replace("," , "");
-		
+		lostpay = lostpay.replaceAll("," , "");
 	}
 	
-	console.log(lostpay)
+	console.log(id)
 	
 	
 	/*console.log(id)*/
@@ -385,7 +383,7 @@ function pay(){
 	$.ajax({
 		url : "el/paymember",
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		data : { "id" : loginUser} ,
+		data : { "id" : id} ,
 		type : 'POST',
 		success : function(data){
 			console.log(data[0])
@@ -437,6 +435,8 @@ function pay(){
 							}
 						});
 							alert("결제성공!");	
+							document.querySelector('input[name="PayCode"]').value = result.PayCode;
+							
 							addboard();//전송
 							} // if 결제성공
 							else { // 결제 실패
