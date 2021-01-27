@@ -237,6 +237,7 @@
                             </div>
                             <div class="group-input">
                                 <input type="text" id="email" name="email" required>
+                                <span style="font-size : 0.5rem"></span>
                             </div>
                             <div class="group-input label">
                                 <label for="account">계좌인증 *</label>
@@ -350,6 +351,5 @@
    <script src="${pageContext.request.contextPath}/resources/el/YH/js/register.js"></script>
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
    <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
-
 
 </html>

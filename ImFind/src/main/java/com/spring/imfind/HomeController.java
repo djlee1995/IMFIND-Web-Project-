@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.imfind.el.EJ.BoardService;
 import com.spring.imfind.el.EJ.BoardVO;
+import com.spring.imfind.el.EJ.PetVO;
 import com.spring.imfind.el.MJ.IndexLostPostDTO;
 import com.spring.imfind.el.MJ.ItemService;
 import com.spring.imfind.imf.LostService;
@@ -29,9 +31,21 @@ public class HomeController {
 	LostService lostService;
 	@Autowired
 	ItemService itemService;
+	@Autowired
+	BoardService boardService;
 
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-	public String home(ModelAndView modelAndView) { return "home2";}
+	public ModelAndView home(ModelAndView modelAndView) throws Exception { 
+		
+		List<BoardVO> list = boardService.gethighsetLostPay();
+		List<PetVO> list2 = boardService.gethighsetPetPay();
+		
+		modelAndView.addObject("petvo", list2);
+		modelAndView.addObject("boardvo", list);
+		modelAndView.setViewName("home2");
+		
+		return modelAndView;
+	}
 	
 	@RequestMapping(value="getNearXY")
 	public @ResponseBody Map<String, Object> listByRadius(@RequestParam("x") String x, @RequestParam("y") String y){
@@ -39,14 +53,14 @@ public class HomeController {
 		List<PoliceVO> vo = lostService.getSimpleList(x, y);
 		List<BoardVO> boardVO;
 		for (PoliceVO policeVO : vo) { 
-			System.out.println(policeVO.toString());
+			/* System.out.println(policeVO.toString()); */
 			try { String[] info = policeVO.getInfo().split("분실하신"); policeVO.setInfo(info[0]); }
 			catch(Exception e) { continue; } 
 		}
 		
 		List<IndexLostPostDTO> itemVO = itemService.getItembyDate();
 		for (IndexLostPostDTO policeVO : itemVO) { 
-			System.out.println(policeVO.toString());
+			/* System.out.println(policeVO.toString()); */
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("police", vo);

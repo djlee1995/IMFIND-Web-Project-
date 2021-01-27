@@ -72,10 +72,13 @@ public class YHController {
 		String loginUser = (String)session.getAttribute("loginUser");
 		String kakaoLoginUser = (String)session.getAttribute("kakaoLoginUser");
 		
+		session.removeAttribute("loginUser");
+		session.removeAttribute("kakaoLoginUser");
+		
 		if(loginUser != null) {
 			session.removeAttribute("loginUser");
 		}
-		else if(kakaoLoginUser != null) {
+		if(kakaoLoginUser != null) {
 			session.removeAttribute("kakaoLoginUser");
 		}
 		
@@ -145,8 +148,10 @@ public class YHController {
         
         System.out.println("kakao_id : " + kakao_id);
         
+        
         String email = (String) kakao_account.get("email");
         session.setAttribute("kakaoLoginUser", kakao_id);
+        session.setAttribute("loginUser", kakao_id);
         
         return "redirect:/home.do";
 	}
@@ -286,5 +291,18 @@ public class YHController {
 		return "";
 	}
 	
+	// MJ Email chk
+   @RequestMapping("/chkEmail")
+   public @ResponseBody String chkEmail(@RequestParam String email) {
+      
+      int state = memberService.CheckEmail(email);
+      if(state == 1) {
+         return "ok";
+      }
+      else {
+         return "email exists";
+      }
+
+   }
 }
 

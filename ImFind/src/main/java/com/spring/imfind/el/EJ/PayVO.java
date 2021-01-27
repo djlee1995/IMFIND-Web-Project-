@@ -14,6 +14,8 @@ public class PayVO {
 	private String F_Id; // 파인더ID
 	private String Lost_PostNum; // 분실물글번호
 	private String Pat_PostNum; // 애완동물글번호
+	private String Cancel_Date;
+	
 	
 	public String getPayCode() {
 		return PayCode;
@@ -82,14 +84,19 @@ public class PayVO {
 		Pat_PostNum = pat_PostNum;
 	}
 	
+	public String getCancel_Date() {
+		return Cancel_Date;
+	}
+	public void setCancel_Date(String cancel_Date) {
+		Cancel_Date = cancel_Date;
+	}
 	@Override
 	public String toString() {
 		return "PayVO [PayCode=" + PayCode + ", Pay_Amount=" + Pay_Amount + ", Pay_Way=" + Pay_Way + ", Pay_State="
 				+ Pay_State + ", Pay_Date=" + Pay_Date + ", Deal_State=" + Deal_State + ", Deal_Date=" + Deal_Date
 				+ ", Id=" + Id + ", F_Id=" + F_Id + ", Lost_PostNum=" + Lost_PostNum + ", Pat_PostNum=" + Pat_PostNum
-				+ "]";
+				+ ", Cancel_Date=" + Cancel_Date + "]";
 	}
-	
 	
 	
 }

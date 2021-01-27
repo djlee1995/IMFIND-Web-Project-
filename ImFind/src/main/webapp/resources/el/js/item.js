@@ -93,24 +93,14 @@ function selectBtn() {
             //dataType:'json',
             success: function(data){
                $('#output').empty();
-               $.each(data,function(index,item) { 
-            	   if(item.lost_Up_File == '0'){
-					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-					}
-					else{
-					   lost_up_file = item.lost_Up_File;
-					}
-					
-					if(item.lost_Loc == null){
-						lost_Loc = '';
-					}
-					else{
-						lost_Loc = item.lost_Loc;
-					}
+               
+               $.each(data,function(index,item) {   
                   if(item.lost_Pay!=0){
                      var output = '';
+                     
+                     formattedDate = getChangeDateString(item.lost_Re_Date)
                      output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-                     output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+                     output +='<td>'+formattedDate+'</td>';
                      output +='<td>'+item.lost_Title+'</td>';
                      output +='<td>'+item.lost_Pay+'</td></tr>';
                      $('#output').append(output);
@@ -135,22 +125,10 @@ function selectBtn() {
             success: function(data){
                $('#output').empty();
                $.each(data,function(index,item) {   
-            	   if(item.lost_Up_File == '0'){
-					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-					}
-					else{
-					   lost_up_file = item.lost_Up_File;
-					}
-					
-					if(item.lost_Loc == null){
-						lost_Loc = '';
-					}
-					else{
-						lost_Loc = item.lost_Loc;
-					}
                   var output = '';
+                  formattedDate = getChangeDateString(item.lost_Re_Date)
                   output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-                  output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+                  output +='<td>'+formattedDate+'</td>';
                   output +='<td>'+item.lost_Title+'</td>';
                   output +='<td>'+item.lost_Pay+'</td></tr>';
                   $('#output').append(output);
@@ -191,6 +169,8 @@ function listdata() {
 					else{
 						lost_Loc = item.lost_Loc;
 					}
+	              formattedDate = getChangeDateString(item.lost_Re_Date)
+		              
 				  console.log(item)
 				  output += '<div class="card-con">';
 				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">';
@@ -198,16 +178,16 @@ function listdata() {
 				  output +=       '<div class="simpleinfo">'
 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
 				  output +=          '<div class="subinfo">'
-				  output +=           '<div class="pay">' + item.lost_Pay + '</div>'
-				  output +=           '<div class="date">'+ (moment(item.lost_Date).format('YY-MM-DD')) +'</div>'
+				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="date">'+ formattedDate +'</div>'
 				  output +=         '</div>'
 				  output +=       '</div>'
 				  output +=       '<div class="loc">' + lost_Loc + '</div>'
 				  output +=     '</a>'
 				  output +=   '</div>'
 					  
-				  $('.card-wrapper').append(output);
                }); 
+               $('.card-wrapper').append(output);
          },
          error : function() {
             alert("ajax 통신 실패!!!");
@@ -262,7 +242,7 @@ function fn_option(code, name){
 	      //type : 'POST',
 	      success : function(data) {
 		    $('#output').empty();
-		    $.each(data,function(index,item) { 
+		    $.each(data,function(index,item) {   
 		    	if(item.lost_Up_File == '0'){
 					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
 					}
@@ -277,8 +257,10 @@ function fn_option(code, name){
 						lost_Loc = item.lost_Loc;
 					}
 		       var output = '';
+		       
+               formattedDate = getChangeDateString(item.lost_Re_Date)
 		       output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-		       output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
+		       output +='<td>'+ formattedDate + '</td>';
 		       output +='<td>'+item.lost_Title+'</td>';
 		       output +='<td>'+item.lost_Pay+'</td></tr>';
 		       $('#output').append(output);
@@ -308,7 +290,6 @@ function enterkey() {
     	   $('.card-wrapper').empty();
     	   $.each(data,function(index,item) {  
                var output = '';
-              
                if(item.lost_Up_File == '0'){
 				   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
 				}
@@ -322,6 +303,8 @@ function enterkey() {
 				else{
 					lost_Loc = item.lost_Loc;
 				}
+              formattedDate = getChangeDateString(item.lost_Re_Date)
+               
 	          output += '<div class="card">';
 	          output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">';
 	          output +=       '<div class="photo">' + lost_up_file +'</div>'
@@ -329,7 +312,7 @@ function enterkey() {
 	          output +=         '<div class="title">'+ item.lost_Title +'</div>'
 	          output +=          '<div class="subinfo">'
 	          output +=           '<div class="pay">' + item.lost_Pay + '</div>'
-	          output +=           '<div class="date">'+ (moment(item.lost_Date).format('YYYY-MM-DD')) +'</div>'
+	          output +=           '<div class="date">'+ formattedDate +'</div>'
 	          output +=         '</div>'
 	          output +=       '</div>'
 	          output +=       '<div class="loc"></div>'
@@ -347,3 +330,32 @@ function enterkey() {
       });
     }
 }
+  
+  //유희 추가함
+  function getChangeDateString(originalDate){
+
+	var fromNow = moment(originalDate).startOf('day').fromNow();
+	console.log(fromNow)
+	var fromNowTrim = fromNow.substr(0, 2).trim();
+	console.log(fromNowTrim)
+	
+	if(fromNow.includes('days')){
+		if(fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4' || fromNowTrim == '5' || fromNowTrim == '6'  ){
+			return fromNowTrim + '일전';
+			//$('#lost_Re_Date').text(fromNow +'일전');			
+		}
+		else{
+			return moment(originalDate).format('YYYY-MM-DD');
+			//$('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));			
+		}
+	}
+	else if(fromNow == 'a day ago'){
+		return '어제';
+		//$('#lost_Re_Date').text('어제');	
+	}
+	else if(fromNow.includes('hours')){
+		return fromNowTrim + '시간 전';
+		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
+		}
+}
+

@@ -38,87 +38,96 @@ $('[name=commentInsertBtn]').click(function(){//댓글 등록 버튼 클릭시
        alert('insert 진입 before');
    console.log("insertData" + insertData);   
 
+    if($('#Secret_Com').is(":checked") == false){
+      $('#Secret_Com').val('n');
+   
+      var insertData = $('[name=commentInsertForm]').serialize();
+      //alert('n');
+         
+      commentInsert(insertData);
+      return true;
+   }
+
+
 });
 //댓글 등록
 function commentInsert(insertData){
-   alert('insert 진입');
-   console.log(insertData);
-   //console.log(secret_com)
-   $.ajax({
-      url : '/imfind/comment_insert',
-      type : 'POST',
-      data : insertData,
-      success : function(data){
-         if(data == 1){
-            alert("댓글이 등록되었습니다");
-            commentList(); //댓글 작성 후 댓글 목록 reload
-            $('[name=Com_Content]').val('');
-         } else{
-            console.log('Insert Error');
-         }
-      },
-      error:function(){
-         alert("ajax통신 실패!(insert)");
-      }
-   });
+	alert('insert 진입');
+	console.log(insertData);
+	//console.log(secret_com)
+	$.ajax({
+		url : '/imfind/comment_insert',
+		type : 'POST',
+		data : insertData,
+		success : function(data){
+			if(data == 1){
+				alert("댓글이 등록되었습니다");
+				commentList(); //댓글 작성 후 댓글 목록 reload
+				$('[name=Com_Content]').val('');
+			} else{
+				console.log('Insert Error');
+			}
+		},
+		error:function(){
+			alert("ajax통신 실패!(insert)");
+		}
+	});
+
 }
-
-
 
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
 function commentUpdateForm(com_Num, com_Content){
-   
    var a ='';
-   
    a += '<div class="content">';
    a += '<input type="text" name="content_'+com_Num+'" value="'+com_Content+'"/>';
    a += '<button type="button" onclick="commentUpdate('+com_Num+');">수정</button> ';
    a += '<button type="button" onclick="commentList();">취소</button>';
    a += '<button type="button" onclick="reply();">댓글</button>';
    a += '</div>';
-   
    $('#commentContent'+com_Num).html(a);
 }
 
 
 //댓글 수정
 function commentUpdate(com_Num){
-   
-   var updateContent = $('[name=content_'+com_Num+']').val();
-   
-   $.ajax({
-      url : '/imfind/comment_update',
-      //type : 'post',
-      dataType : 'json',
-      data : {'Com_Content' : updateContent, 'Com_Num' : com_Num}, // cno comment에 대한 글 번호
-      contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-      success : function(data){
-         if(data == 1) 
-            commentList(); //댓글 수정후 목록 출력
-      },
-      error:function(){
-         alert("ajax통신 실패(update)!!");
-      }
-   });
+
+	var updateContent = $('[name=content_'+com_Num+']').val();
+	
+	$.ajax({
+		url : '/imfind/comment_update',
+		//type : 'post',
+		dataType : 'json',
+		data : {'Com_Content' : updateContent, 'Com_Num' : com_Num}, // cno comment에 대한 글 번호
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		success : function(data){
+			if(data == 1) 
+				commentList(); //댓글 수정후 목록 출력
+		},
+		error:function(){
+			alert("ajax통신 실패(update)!!");
+		}
+	});
+
 }
 
 //댓글 삭제
 function commentDelete(com_Num){
-   $.ajax({
-      url : '/imfind/comment_delete',
-      //type : 'post',
-      data : {'Com_Num': com_Num},
-      dataType : 'json',
-      contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-      success : function(data){
-          commentList(); //댓글 삭제후 목록 출력
-      },
-      error:function(){
-         alert("ajax통신 실패(delete)");
-      }
-   });
-   
+	$.ajax({
+		url : '/imfind/comment_delete',
+		//type : 'post',
+		data : {'Com_Num': com_Num},
+		dataType : 'json',
+		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
+		success : function(data){
+			if(data == 1)
+				commentList(); //댓글 삭제후 목록 출력
+		},
+		error:function(){
+			alert("ajax통신 실패(delete)");
+		}
+	});
 }
+
 //동준 대댓글
 function reply(com_Num) {
    var text='';
@@ -223,3 +232,4 @@ function replydelete(re_num) {
       }
    });
 }
+

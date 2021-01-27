@@ -62,173 +62,162 @@ z-index : 100;
 }
 section{
    position: relative;
-   top: 93px;
+   top: 180px;
 }
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-	/* YH */
-		.photo > img{
-			width: 100% !important;
-			height : 175px;
-			object-fit:contain;
-			border : none;
-		}
-		.card-con{
-			border : 
-		}
-		.subinfo{
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding-top: 3px;
-		}
-		div.date{
-			margin-right:5px;
-		}
-		div.title{
-			margin: 7px 0 0 10px;
-			color : black;
-			font-weight: 500;
-			font-size:14px !important;
-		}
-		div.card-con > a{
-			text-decoration:none;
-		}
-		div.loc{
-			padding-top: 6px;
-			margin-left: 10px;
-		}
-		.selectBox{
-			position: relative;
-			top: -34px;
-			display: flex;
-			justify-content: center;
-		}
-		/* section 가로 크기 */
-		@media(min-width: 1900px){
-			.searchbar,
-			.selectBox,
-			.cardList{
-				width: 50w;
-				margin: 0 auto;
-			}
-		}
-		@media(min-width: 1200px){
-			.searchbar,
-			.selectBox,
-			.cardLlst{
-				width: 64vw;
-				margin: 0 auto;
-			}
-			.card-wrapper{
-				display:flex;
-				flex-wrap:wrap;
-			}
-			.card-con{
-				width: 180px;
-				height: 265px;
-				border : 1px solid rgb(238, 238, 238);;
-				margin:7px;
-			}
-			
-		}
-		@media(max-width: 500px){
-			.searchbar,
-			.selectBox,
-			.cardList{
-				width: 100vw;
-				margin: 0 auto;
-			}
-		}
-		.container1.searchbar{
-			position: relative;
-			top: -53px;
-		}
-		
-		/* 요소 크기 */
+   /* YH */
+      .photo > img{
+         width: 100% !important;
+         height : 175px;
+         object-fit:contain;
+         border : none;
+      }
+      .card-con{
+         border : 
+      }
+      .subinfo{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding-top: 3px;
+      }
+      div.date{
+         margin-right:5px;
+      }
+      div.title{
+         margin: 7px 0 0 10px;
+         color : black;
+         font-weight: 500;
+         font-size:14px !important;
+      }
+      div.card-con > a{
+         text-decoration:none;
+      }
+      div.loc{
+         padding-top: 6px;
+         margin-left: 10px;
+      }
+      .selectBox{
+         position: relative;
+         top: -34px;
+         display: flex;
+         justify-content: center;
+      }
+      /* section 가로 크기 */
+      @media(min-width: 1700px){
+         .searchbar,
+         .selectBox,
+         .cardList{
+            width: 50vw;
+            margin: 0 auto;
+         }
+      }
+      @media(min-width: 1200px){
+         .searchbar,
+         .selectBox,
+         .cardLlst{
+            width: 64vw;
+            margin: 0 auto;
+         }
+         .card-wrapper{
+            display:flex;
+            flex-wrap:wrap;
+         }
+         .card-con{
+            width: 180px;
+            height: 265px;
+            border : 1px solid rgb(238, 238, 238);
+            margin:7px;
+         }
+         
+      }
+      @media(max-width: 500px){
+         .searchbar,
+         .selectBox,
+         .cardList{
+            width: 100vw;
+            margin: 0 auto;
+         }
+      }
+      .container1.searchbar{
+         position: relative;
+         top: -53px;
+      }
+      .card-wrapper{
+         margin : 0 auto;
+      }
+      .cardList{
+         display : flex;
+         justify-content: center;
+         align-items : center;
+      }
+      /* 요소 크기 */
 </style>
 </head>
 <body>
-      
-   <%
-       if(session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null){
-   %>
-            <jsp:include page="${request.contextPath}/el/header"></jsp:include>      
-   <%
-       } else{
-   %>
-            <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-   <%
-       }
-   %>
+
+   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+
     <!-- Header End -->
    <!-- Page Preloder -->
    <div id="preloder">
       <div class="loader"></div>
    </div>
-   
+   <div class="page"></div>
    <section>
-	   <!-- <div class="container1"> -->
-	   <div class="container1 searchbar">
-	      <div class="row1">
-	         <div id="custom-search-input">
-	            <div class="input-group col-md-12">
-	               <input type="text" class="input-lg" name="input-search" 
-	                  onKeypress="enterkey();" placeholder="search.."/ > 
-	                  <span class="input-group-btn" >
-	                  <button class="btn" type="button" >
-	                     <i class="ti-search"></i>
-	                  </button>
-	               </span>
-	            </div>
-	         </div>
-	      </div>
-	   </div>
-	   
-	  <div class="container1 selectBox">
-		    <div class = "si">
-   			    <select class="js-example-basic-single" id="sido">
-			    	<option value="">시/도 선택하세요</option>
-		    	</select>
-		    	<select class="js-example-basic-single" id="sigugun">
-		      		<option value="">시/군/구 선택하세요</option>
-		    	</select>
-		    	<select class="js-example-basic-single" id="dong">
-		      		<option value="">읍/면/동 선택하세요</option>
-		    	</select>
-			  <!--   <select class="form-select form-select-lg mb-3" id="sido" aria-label="Default select example">
-			    	<option value="">시/도 선택하세요</option>
-		    	</select>
-		    	<select class="form-select form-select-lg mb-3" id="sigugun">
-		      		<option value="">시/군/구 선택하세요</option>
-		    	</select>
-		    	<select class="form-select form-select-lg mb-3" id="dong">
-		      		<option value="">읍/면/동 선택하세요</option>
-		    	</select> -->
-		  </div>
-	   </div> 
+      <!-- <div class="container1"> -->
+      <div class="container1 searchbar">
+         <div class="row1">
+            <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                  <input type="text" class="input-lg" name="input-search" 
+                     onKeypress="enterkey();" placeholder="search.."/ > 
+                     <span class="input-group-btn" >
+                     <button class="btn" type="button" >
+                        <i class="ti-search"></i>
+                     </button>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+     <div class="container1 selectBox">
+          <div class = "si">
+                <select class="js-example-basic-single" id="sido">
+                <option value="">시/도 선택하세요</option>
+             </select>
+             <select class="js-example-basic-single" id="sigugun">
+                  <option value="">시/군/구 선택하세요</option>
+             </select>
+             <select class="js-example-basic-single" id="dong">
+                  <option value="">읍/면/동 선택하세요</option>
+             </select>
+        </div>
+      </div> 
 
 
 
 
 
-	   
-	   <div class="container1 cardLlst">
-	   
-	   		<div class="card-wrapper">
-	   			
-	   		</div>
-		   <div class="card-list-con">
-			   <div>
-			      <table id="output" border="1" align="center"></table>
-			   </div>
-			   <page aria-label="...">
-			 		<ul class="pagination pagination-sm" id = "numbers_mypage_post1"></ul>
-			   </page>
-		   </div>
-	   </div>
+      
+      <div class="container1 cardLlst">
+      
+            <div class="card-wrapper">
+               
+            </div>
+         <div class="card-list-con">
+            <div>
+               <table id="output" border="1" align="center"></table>
+            </div>
+            <page aria-label="...">
+                <ul class="pagination pagination-sm" id = "numbers_mypage_post1"></ul>
+            </page>
+         </div>
+      </div>
    </section>
    
    
@@ -262,7 +251,7 @@ section{
    <!--게시글 조회 행정동js 끝-MJ -->
          <!-- jQuery Easing -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    <!-- Waypoints -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
    <!-- Flexslider -->

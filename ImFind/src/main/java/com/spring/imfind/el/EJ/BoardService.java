@@ -32,4 +32,9 @@ public interface BoardService {
    public int pet_replyInsert(replyVO vo) throws Exception; 
    public int pet_replyDelete(int re_num)throws Exception;
    public int pet_replyUpdate(replyVO vo) throws Exception;
+   //유희 인덱스
+   public List<BoardVO> gethighsetLostPay() throws Exception;
+   public List<PetVO> gethighsetPetPay() throws Exception;
+   public int addPayBoardNum(BoardVO vo) throws Exception;
+
 }

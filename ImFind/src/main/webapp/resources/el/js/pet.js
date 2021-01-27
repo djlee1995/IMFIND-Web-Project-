@@ -1,6 +1,7 @@
 // 시군구동 검색 
 jQuery(document).ready(function(){
    listdata();
+
       var pet_Loc;
       var si;
       var gu;
@@ -211,3 +212,30 @@ function enterkey() {
       });
     }
 }
+    //유희 추가함
+      function getChangeDateString(originalDate){
+
+    	var fromNow = moment(originalDate).startOf('day').fromNow();
+    	console.log(fromNow)
+    	var fromNowTrim = fromNow.substr(0, 2).trim();
+    	console.log(fromNowTrim)
+    	
+    	if(fromNow.includes('days')){
+    		if(fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4' || fromNowTrim == '5' || fromNowTrim == '6'  ){
+    			return fromNowTrim + '일전';
+    			//$('#lost_Re_Date').text(fromNow +'일전');			
+    		}
+    		else{
+    			return moment(originalDate).format('YYYY-MM-DD');
+    			//$('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));			
+    		}
+    	}
+    	else if(fromNow == 'a day ago'){
+    		return '어제';
+    		//$('#lost_Re_Date').text('어제');	
+    	}
+    	else if(fromNow.includes('hours')){
+    		return fromNowTrim + '시간 전';
+    		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
+    		}
+    }

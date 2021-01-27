@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.EJ;
 
 import java.io.File;
@@ -36,7 +37,7 @@ public class EJController {
 	}
 	
 	@RequestMapping("/itemInsert")
-	public String itemInsert(BoardVO boardvo) {
+	public String itemInsert(BoardVO boardvo) throws Exception {
 		Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
 		System.out.println("pattetn="+ pattern);
 		String content = boardvo.getLost_Content();
@@ -44,7 +45,8 @@ public class EJController {
 		System.out.println("match=" + match);
 		String Lost_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
-		String uploadPath = "C:\\Project\\WebProject\\upload\\";
+	    String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+
 
 		if(match.find()){ 
 			Lost_Up_File = match.group(0); 
@@ -52,25 +54,33 @@ public class EJController {
 		//if(pattern)
 		boardvo.setLost_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
 		
-		if (boardvo.getLost_Up_File() == null) {
-			System.out.println("Lost_Up_File"+Lost_Up_File);
-			String noimg = "0";
-			System.out.println(noimg);
-			boardvo.setLost_Up_File(noimg);
-			
-		}
-		//Lost_Content부분에 있는 태그들 자르기
-	    boardvo.setLost_Content(boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-	    String replace1 = boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-	    String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-	    String replace3 = boardvo.getLost_Pay().replaceAll(",", ""); // pay 
-	   // String replace4 = boardvo.getLost_Item().replaceAll("있음,", ""); // name
-	    boardvo.setLost_Content(replace2);
-	    boardvo.setLost_Pay(replace3);
-	   // boardvo.setLost_Item(replace4);
-	    
-	    
+		 if (boardvo.getLost_Up_File() == null) {
+	            System.out.println("Lost_Up_File"+Lost_Up_File);
+	            String noimg = "0";
+	            System.out.println(noimg);
+	            boardvo.setLost_Up_File(noimg);
+	
+	        }
+
+        //Lost_Content부분에 있는 태그들 자르기
+        boardvo.setLost_Content(boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z])(\\s[a-zA-Z]=[^>])?(\\s)(/)?>", ""));
+        String replace1 = boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z])(\\s[a-zA-Z]=[^>])?(\\s)(/)?>", "");
+        String replace2 = replace1.replaceAll("<img[^>]src=[\"']?([^>\"']+)[\"']?[^>]>", "");
+        boardvo.setLost_Content(replace2);
+        
+        if (boardvo.getLost_Pay() == null ) {
+            String replace4 = "0";
+            boardvo.setLost_Pay(replace4);
+        }
+
+        if (boardvo.getLost_Pay() != null) {
+            String replace3 = boardvo.getLost_Pay().replaceAll(",", "");
+            boardvo.setLost_Pay(replace3);
+        }
+        
 	    boardService.itemInsert(boardvo);
+	    //pay 테이블에 게시글번호 입력하기
+	   //boardService.addPayBoardNum(boardvo);
 	     
 	     return "redirect:/item";		
 	}
@@ -153,14 +163,23 @@ public class EJController {
 		petvo.setPet_Content(petvo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "")); 
 	    String replace1 = petvo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
 	    String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-	    String replace3 = petvo.getPet_Pay().replaceAll(",", ""); // pay 
+	    //String replace3 = petvo.getPet_Pay().replaceAll(",", ""); // pay 
 	    String replace4 = petvo.getPet_Name().replaceAll("있음,", ""); // name
 	    petvo.setPet_Content(replace2);
-	    petvo.setPet_Pay(replace3);
+	    //petvo.setPet_Pay(replace3);
 	    petvo.setPet_Name(replace4);
 	    System.out.println("petpay======" + petvo.toString());
 	    
-	    
+	    if (petvo.getPet_Pay() == null ) {
+            String replace5 = "0";
+            petvo.setPet_Pay(replace5);
+        }
+
+        if (petvo.getPet_Pay() != null) {
+            String replace6 = petvo.getPet_Pay().replaceAll(",", "");
+            petvo.setPet_Pay(replace6);
+        }
+        
 	    boardService.petInsert(petvo);
 	     
 	    // return "redirect:/item";		
@@ -349,4 +368,5 @@ public class EJController {
 		private int pet_commentDelete(@RequestParam(value="Com_Num") int Com_Num) throws Exception{
 			return boardService.pet_commentDelete(Com_Num);
 		}
+
 }

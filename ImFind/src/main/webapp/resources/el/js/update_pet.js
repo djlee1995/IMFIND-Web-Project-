@@ -1,19 +1,11 @@
 $(document).ready(function() {
-   
 //  ------ 달력 js 시작 ------
 $("#petdatepicker").datepicker({
    language : 'ko',
    maxDate : new Date()
    
 });
-//  ------ 달력 js 끝 ------
-
-
 //  ------ 글 내용 js 시작 ------
-
-   
-
-   console.log(pet_PostNum)
    $.ajax({
       url: "petdatainfo.do", 
       //type: "POST",
@@ -97,9 +89,7 @@ $("#petdatepicker").datepicker({
       error: function(e){console.log(e);}  
    });   
    
-   
- 
-   
+
 
    
  //ready

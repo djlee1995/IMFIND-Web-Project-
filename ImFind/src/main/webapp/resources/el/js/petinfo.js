@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	console.log(loginUser)
 	var loc;
@@ -68,5 +67,6 @@ $('.petupdateBtn').click(function(){
 });
 $('.petdeleteBtn').click(function(){
 	$(location).attr("href", "petdeletepage?Pet_PostNum="+Pet_PostNum+"");
+
 });
 });
