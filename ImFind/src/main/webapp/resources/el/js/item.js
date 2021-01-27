@@ -93,7 +93,20 @@ function selectBtn() {
             //dataType:'json',
             success: function(data){
                $('#output').empty();
-               $.each(data,function(index,item) {   
+               $.each(data,function(index,item) { 
+            	   if(item.lost_Up_File == '0'){
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					}
+					else{
+					   lost_up_file = item.lost_Up_File;
+					}
+					
+					if(item.lost_Loc == null){
+						lost_Loc = '';
+					}
+					else{
+						lost_Loc = item.lost_Loc;
+					}
                   if(item.lost_Pay!=0){
                      var output = '';
                      output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
@@ -122,6 +135,19 @@ function selectBtn() {
             success: function(data){
                $('#output').empty();
                $.each(data,function(index,item) {   
+            	   if(item.lost_Up_File == '0'){
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					}
+					else{
+					   lost_up_file = item.lost_Up_File;
+					}
+					
+					if(item.lost_Loc == null){
+						lost_Loc = '';
+					}
+					else{
+						lost_Loc = item.lost_Loc;
+					}
                   var output = '';
                   output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
                   output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
@@ -236,7 +262,20 @@ function fn_option(code, name){
 	      //type : 'POST',
 	      success : function(data) {
 		    $('#output').empty();
-		    $.each(data,function(index,item) {   
+		    $.each(data,function(index,item) { 
+		    	if(item.lost_Up_File == '0'){
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					}
+					else{
+					   lost_up_file = item.lost_Up_File;
+					}
+					
+					if(item.lost_Loc == null){
+						lost_Loc = '';
+					}
+					else{
+						lost_Loc = item.lost_Loc;
+					}
 		       var output = '';
 		       output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
 		       output +='<td>'+(moment(item.lost_Date).format('YYYY-MM-DD'))+'</td>';
@@ -271,11 +310,18 @@ function enterkey() {
                var output = '';
               
                if(item.lost_Up_File == '0'){
-            	   lost_up_file = '<img src="./resources/images/no_img.png"/>';
-               }
-               else{
-            	   lost_up_file = item.lost_Up_File;
-               }
+				   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+				}
+				else{
+				   lost_up_file = item.lost_Up_File;
+				}
+				
+				if(item.lost_Loc == null){
+					lost_Loc = '';
+				}
+				else{
+					lost_Loc = item.lost_Loc;
+				}
 	          output += '<div class="card">';
 	          output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">';
 	          output +=       '<div class="photo">' + lost_up_file +'</div>'

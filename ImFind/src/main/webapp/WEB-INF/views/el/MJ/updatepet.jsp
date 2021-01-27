@@ -67,9 +67,9 @@
          <!-- 필수입력사항   -->
          <div class="item3">
             <h6>* 동물 이름</h6>
-                 <label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
-            <label><input type="radio" name="Pat_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
-            <label><input type="text" name="Pat_Name" id="p_textbox" class="form-control" placeholder="직접입력" disabled required></label>
+                 <label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=true" value="없음" checked="checked">없음</label> 
+            <label><input type="radio" name="Pet_Name" onClick="this.form.p_textbox.disabled=false" value="있음" >있음</label>
+            <label><input type="text" name="Pet_Name" id="p_textbox" class="form-control" placeholder="직접입력" disabled required></label>
          </div>
 
          <!-- datepicker js 시작 -->
@@ -134,11 +134,11 @@
       </form>
    </div>
    <script>
-var pet_PostNum =<%=request.getParameter("pet_PostNum") %>
+	var pet_PostNum =<%=request.getParameter("Pet_PostNum") %>
 
-console.log(pet_PostNum+1)
+		console.log(pet_PostNum)
 
-var loginUser='<%=(String)session.getAttribute("loginUser")%>'
+	var loginUser='<%=(String)session.getAttribute("loginUser")%>'
 
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

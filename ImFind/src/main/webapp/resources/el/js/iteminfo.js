@@ -15,16 +15,21 @@ $(document).ready(function() {
 	         if($.trim(loginUser)==(data[0].id)){
 	            $('#update').html('<th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th>');
 	         }
-
- 
-		console.log(data)
+	         if($.trim(data[0].pet_Up_File) == '0'){
+		        	
+	        	 $('#file').html('<img src="./resources/el/images/no_img.png"/>');
+				}
+			else{
+				 $('#file').html(data[0].pet_Up_File);
+				}
+				
+		
 		formattedDate = getChangeDateString(data[0].lost_Re_Date)
 		loc=data[0].lost_Loc;
 		$('#lost_Re_Date').text(formattedDate);
 		$('#title').text(data[0].lost_Title);
 		$('#content-body-text').html(data[0].lost_Content);
-		/*$('#file').html(data[0].lost_Up_File);*/
-		$('#file').html('<img src="./resources/el/images/no_img.png"/>');
+		
 		$('#pay').text(data[0].lost_Pay);
 		$('#loc').text(data[0].lost_Loc);
 		$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));

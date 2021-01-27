@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	console.log(loginUser)
 	var loc;
@@ -9,18 +10,25 @@ $(document).ready(function() {
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
-			console.log(loginUser)
+			console.log($.trim(data[0].pet_Up_File))
 			if($.trim(loginUser)==(data[0].id)){
-				$('#petupdate').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"></th>');
+				$('#petupdate').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th>');
 			}
-			console.log()
+			if($.trim(data[0].pet_Up_File) == '0'){
+	        	
+	        	 $('#file').html('<img src="./resources/el/images/no_img.png"/>');
+				}
+			else{
+				 $('#file').html(data[0].pet_Up_File);
+				}
+			
 				loc=data[0].pet_Loc
-				$('#title').text(data[0].Pet_Title);
-				$('#content').html(data[0].Pet_Content);
-				$('#file').html(data[0].PetUp_File);
-				$('#pay').text(data[0].Pet_Pay);
-				$('#loc').text(data[0].Pet_Loc);
-				$('#lostdate').text(moment(data[0].Pet_LostDate).format('YYYY-MM-DD'));
+				$('#pet').text(data[0].pet_Name);
+				$('#title').text(data[0].pet_Title);
+				$('#content').html(data[0].pet_Content);
+				$('#pay').text(data[0].pet_Pay);
+				$('#loc').text(data[0].pet_Loc);
+				$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
 				$('#id').text(data[0].id);
 			},
 		error : function() {
@@ -57,5 +65,8 @@ geocoder.addressSearch(loc, function(result, status) {
 });    
 $('.petupdateBtn').click(function(){
 	$(location).attr("href", "petupdatepage?Pet_PostNum="+Pet_PostNum+"");
+});
+$('.petdeleteBtn').click(function(){
+	$(location).attr("href", "petdeletepage?Pet_PostNum="+Pet_PostNum+"");
 });
 });

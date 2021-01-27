@@ -89,7 +89,7 @@ jQuery(document).ready(function(){
                 	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
                 }
                 else{
-                	pet_Up_File = item.lost_Up_File;
+                	pet_Up_File = item.pet_Up_File;
                 }
                 
                var output = '';
@@ -118,11 +118,12 @@ jQuery(document).ready(function(){
   
             $.each(data,function(index,item) {  
             	
+
                 if(item.pet_Up_File == '0'){
                 	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
                 }
                 else{
-                	pet_Up_File = item.lost_Up_File;
+                	pet_Up_File = item.pet_Up_File;
                 }
                 
                var output = '';
@@ -153,6 +154,13 @@ jQuery(document).ready(function(){
               success : function(data) {
             $('#petoutput').empty();
             $.each(data,function(index,item) {   
+
+                if(item.pet_Up_File == '0'){
+                	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
+                }
+                else{
+                	pet_Up_File = item.pet_Up_File;
+                }
                var output = '';
                output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Up_File+'</td>';
                output +='<td>'+(moment(pet.lost_Date).format('YYYY-MM-DD'))+'</td>';
@@ -182,6 +190,13 @@ function enterkey() {
           success : function(data) {
             $('#petoutput').empty();
             $.each(data,function(index,item) {   
+
+                if(item.pet_Up_File == '0'){
+                	pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
+                }
+                else{
+                	pet_Up_File = item.pet_Up_File;
+                }
                var output = '';
                output +='<tr><td><a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Up_File+'</td>';
                output +='<td>'+(moment(item.pet_Date).format('YYYY-MM-DD'))+'</td>';

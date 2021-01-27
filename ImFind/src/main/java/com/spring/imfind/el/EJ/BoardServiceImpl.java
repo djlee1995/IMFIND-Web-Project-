@@ -141,4 +141,76 @@ public class BoardServiceImpl implements BoardService {
 	
 		return res;
 	}
+   @Override
+   public int pet_replyInsert(replyVO vo) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_replyInsert(vo);
+   }
+
+   @Override
+   public List<replyVO> pet_replyList() throws Exception {
+      BoardMapper boardMapper = 
+            sqlSession.getMapper(BoardMapper.class);
+      return boardMapper.pet_replyList();
+   }
+
+   @Override
+   public int pet_replyDelete(int re_num) throws Exception {
+      BoardMapper boardMapper = 
+            sqlSession.getMapper(BoardMapper.class);
+      return boardMapper.pet_replyDelete(re_num);
+   }
+   @Override
+   public List<LostComVO> pet_commentList(int Lost_PostNum) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_commentList(Lost_PostNum);
+   }
+
+   @Override
+   public int pet_commentInsert(LostComVO comment) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_commentInsert(comment);
+   }
+
+   @Override
+   public int pet_commentUpdate(LostComVO comment) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_commentUpdate(comment);
+   }
+
+   @Override
+   public int pet_commentDelete(int Com_Num) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_commentDelete(Com_Num);
+   }
+
+@Override
+public int replyUpdate(replyVO vo) throws Exception {
+	BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.replyUpdate(vo);
+}
+
+@Override
+public int pet_replyUpdate(replyVO vo) throws Exception {
+	BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_replyUpdate(vo);
+}
 }

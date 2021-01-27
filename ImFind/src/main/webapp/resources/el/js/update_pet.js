@@ -18,87 +18,87 @@ $("#petdatepicker").datepicker({
       url: "petdatainfo.do", 
       //type: "POST",
       enctype: 'multipart/form-data',
-      data: {'pet_PostNum': pet_PostNum },
+      data: {'Pet_PostNum': pet_PostNum },
       async:false,
       contentType: 'application/x-www-form-urlencoded;charset=utf-8',
       
       success: function(data){
 
-         console.log(data[0].pet_Name.split(",")[0])
-      if(data[0].pet_Name.split(",")[0]=="etc"){
-      $("input:radio[name='Pet_Name']:radio[value='etc']").click();
-      $('#textbox').val(data[0].pet_Name.split(",")[1]);
+         console.log(data[0])
+      if(data[0].pet_Name=="없음"){
+    	$("input:radio[name='Pet_Name']:radio[value='"+data[0].pet_Name+"']").prop('checked', true); 
       }
-      $('.postnum').html('<input type="hidden" name="pet_Name" value="'+pet_PostNum+'">');
-      $("input:radio[name='Pet_Name']:radio[value='"+data[0].pet_Naem+"']").prop('checked', true); 
+      else{
+    	  $("input:radio[name='Pet_Name']:radio[value='있음']").prop('checked', true); 
+    	  $("input:radio[name='Pet_Name']:radio[value='있음']").click();
+    	  $('#p_textbox').val(data[0].pet_Name);
+      }
+      $('.postnum').html('<input type="hidden" name="Pet_PostNum" value="'+data[0].pet_PostNum+'">');
+     
       $('#petdatepicker').val(moment(data[0].pet_lostDate).format('YYYY-MM-DD'));
       $('#petcenterAddr2').val(data[0].pet_Loc);
-      $('.Pet_Title').val(data[0].lost_Title);
-
-      $('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
-      $('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
+      $('.Pet_Title').val(data[0].pet_Title);
+      $('#summernote').summernote({
+    		height :300,
+    		minHeight:null,
+    		maxHeight:null,
+    		focus:true,
+    		lang : "ko-KR",
+    		placeholder: '내용을 입력해주세요',
+    		toolbar: [
+               // [groupName, [list of button]]
+               ['Font Style', ['fontname']],
+               ['style', ['bold', 'italic', 'underline']],
+               ['font', ['strikethrough']],
+               ['fontsize', ['fontsize']],
+               ['color', ['color']],
+               ['para', ['paragraph']],
+               ['height', ['height']],
+               ['Insert', ['picture']],
+               ['Insert', ['link']],
+               ['Misc', ['fullscreen']]
+            ],
+    		callbacks: {
+    			//onImageUpload : function(files){
+    				//sendFile(files[0]);
+    			 onImageUpload: function(files, editor, welEditable) {
+    				 for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                     }
+    			}
+    		}
+    	});
+    	
+    	function sendFile(file, el) {
+    		 console.log()
+    	       var form_data = new FormData();
+    	       form_data.append('file', file);
+    	   
+    	       $.ajax({
+    	         data: form_data,
+    	         type: "post",
+    	         url: './profileImage',
+    	         cache: false,
+    	         contentType: false,
+    	         enctype: 'multipart/form-data',
+    	         processData: false,
+    	         success: function(url) {
+    	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+    	        	 	console.log(decodeURL)
+    	        		 $(el).summernote('editor.insertImage', url);
+    	         }
+    	       });
+    	     }
+      if(data[0].pet_Up_File!='0'){
+          $('#summernote').summernote('editor.pasteHTML',data[0].pet_Up_File);
+      }
+      $('#summernote').summernote('editor.pasteHTML', data[0].pet_Content);
       },
       error: function(e){console.log(e);}  
    });   
    
    
-   function sendFile(file){
-      var data = new FormData();   
-      data.append("file",file);
-      $.ajax({
-         url: "./profileImage", //////여기 본인 주소! 
-         type: "POST",
-         enctype: 'multipart/form-data',
-         data: data,
-         cache: false,
-         contentType : false,
-         processData : false,
-         success: function(image){   
-         $('#summernote').summernote('insertImage',image);
-         },
-         error: function(e){console.log(e);}  
-      });   
-   }
-   
-// summernote 
-   $('#summernote').summernote({
-      height :300,
-      minHeight:null,
-      maxHeight:null,
-      focus:true,
-      lang : "ko-KR",
-      placeholder: '내용을 입력해주세요',
-      callbacks: {
-         
-          onImageUpload: function(files, editor, welEditable) {
-             for (var i = files.length - 1; i >= 0; i--) {
-                     sendFile(files[i], this);
-                  }
-         }
-      }
-   });
-   
-   function sendFile(file, el) {
-       console.log()
-          var form_data = new FormData();
-          form_data.append('file', file);
-      
-          $.ajax({
-            data: form_data,
-            type: "post",
-            url: './profileImage',
-            cache: false,
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function(url) {
-                  var decodeURL = decodeURIComponent(url, 'utf-8');
-                  console.log(decodeURL)
-                  $(el).summernote('editor.insertImage', url);
-            }
-          });
-        }
-   
+ 
    
 
    

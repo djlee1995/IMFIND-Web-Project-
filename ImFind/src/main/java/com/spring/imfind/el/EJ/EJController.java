@@ -80,7 +80,7 @@ public class EJController {
 	   @PostMapping("/profileImage")
 	   public void summer_image(MultipartFile file, HttpServletRequest request,
 	         HttpServletResponse response) throws Exception {
-		 
+		 System.out.println("변환!!");
 	      response.setContentType("text/html;charset=utf-8");
 	     // String uploadPath = "/Users/hongmac/Documents/upload/";
 	      String uploadPath = "C:\\Project\\WebProject\\upload\\";
@@ -165,7 +165,7 @@ public class EJController {
 	     
 	    // return "redirect:/item";		
 		
-		return "redirect:/item";
+		return "redirect:/pet";
 	}
 	/* 은지 - 게시판 등록 끝 */
 	
@@ -251,6 +251,13 @@ public class EJController {
 	      
 	      return reply_list;
 	   }
+	   @ResponseBody
+		@RequestMapping(value="/reply_update",
+				produces="application/json;charset=UTF-8")
+		private int replyUpdate(replyVO vo) throws Exception{
+			
+			return boardService.replyUpdate(vo);
+		}
 
 	   @ResponseBody
 	   @RequestMapping(value="/reply_insert",
@@ -269,4 +276,77 @@ public class EJController {
 	      return boardService.replyDelete(re_num);
 	   }
 	   /* 동준 대댓글 끝 */
+	   /* 동준 대댓글 시작  */
+	   @ResponseBody
+	   @RequestMapping(value="/pet_replylist",
+	         produces="application/json;charset=UTF-8")
+	   private List<replyVO> pet_replyList() throws Exception{
+	      List<replyVO> reply_list = boardService.pet_replyList();
+	      
+	      
+	      return reply_list;
+	   }
+
+	   @ResponseBody
+	   @RequestMapping(value="/pet_reply_insert",
+	         produces="application/json;charset=UTF-8")
+	   private int pet_replyInsert(replyVO vo, HttpSession session) throws Exception{
+	      vo.setId((String)session.getAttribute("loginUser"));
+	      System.out.println("comment"+vo.com_num);
+	      
+	      return boardService.pet_replyInsert(vo);
+	   }
+	   @ResponseBody
+	   @RequestMapping(value="/pet_reply_delete",
+	         produces="application/json;charset=UTF-8")
+	   private int pet_replydelete(@RequestParam(value="re_num") int re_num) throws Exception{
+	      
+	      return boardService.pet_replyDelete(re_num);
+	   }
+	   @ResponseBody
+		@RequestMapping(value="/pet_reply_update",
+				produces="application/json;charset=UTF-8")
+		private int pet_replyUpdate(replyVO vo) throws Exception{
+			
+			return boardService.pet_replyUpdate(vo);
+		}
+	   /* 동준 대댓글 끝 */
+	   @ResponseBody
+		@RequestMapping(value="/pet_comment_list",
+				produces="application/json;charset=UTF-8")
+		private List<LostComVO> pet_commentList(@RequestParam int Lost_PostNum) throws Exception{
+			List<LostComVO> comment_list = boardService.pet_commentList(Lost_PostNum);
+			
+			
+			return comment_list;
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="/pet_comment_insert",
+				produces="application/json;charset=UTF-8")
+		private int pet_commentInsert(LostComVO comment, HttpSession session) throws Exception{
+			comment.setId((String)session.getAttribute("loginUser"));
+			System.out.println("aaaaaaaaaaaaaaacomment"+comment);
+			
+				if ( comment.getSecret_Com() == null) { // 댓글 공개 설정
+					comment.setSecret_Com("n");
+				}
+		
+			return boardService.pet_commentInsert(comment);
+		}
+		
+
+		@ResponseBody
+		@RequestMapping(value="/pet_comment_update",
+				produces="application/json;charset=UTF-8")
+		private int pet_commentUpdate(LostComVO comment) throws Exception{
+			
+			return boardService.pet_commentUpdate(comment);
+		}
+		@ResponseBody
+		@RequestMapping(value="/pet_comment_delete",
+				produces="application/json;charset=UTF-8")
+		private int pet_commentDelete(@RequestParam(value="Com_Num") int Com_Num) throws Exception{
+			return boardService.pet_commentDelete(Com_Num);
+		}
 }

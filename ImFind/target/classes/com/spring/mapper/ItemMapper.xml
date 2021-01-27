@@ -84,7 +84,7 @@
    SELECT * from petpost where pet_postnum = #{Pet_PostNum}
 </select>
 <update id="petupdate_data"> 
-   update petpost set pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_date=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Lost_Name} where pet_postnum = #{Pet_PostNum} 
+   update petpost set pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name} where pet_postnum = #{Pet_PostNum} 
 </update>  
 
   

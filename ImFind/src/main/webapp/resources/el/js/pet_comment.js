@@ -45,12 +45,12 @@ function commentInsert(insertData){
    console.log(insertData);
    //console.log(secret_com)
    $.ajax({
-      url : '/imfind/comment_insert',
+      url : '/imfind/pet_comment_insert',
       type : 'POST',
       data : insertData,
       success : function(data){
          if(data == 1){
-            alert("댓글이 등록되었습니다");
+            alert("댓글이 등록되었습니다pet");
             commentList(); //댓글 작성 후 댓글 목록 reload
             $('[name=Com_Content]').val('');
          } else{
@@ -64,13 +64,12 @@ function commentInsert(insertData){
 }
 
 
-
 //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
 function commentUpdateForm(com_Num, com_Content){
    
    var a ='';
    
-   a += '<div class="content">';
+   a += '<div>';
    a += '<input type="text" name="content_'+com_Num+'" value="'+com_Content+'"/>';
    a += '<button type="button" onclick="commentUpdate('+com_Num+');">수정</button> ';
    a += '<button type="button" onclick="commentList();">취소</button>';
@@ -87,7 +86,7 @@ function commentUpdate(com_Num){
    var updateContent = $('[name=content_'+com_Num+']').val();
    
    $.ajax({
-      url : '/imfind/comment_update',
+      url : '/imfind/pet_comment_update',
       //type : 'post',
       dataType : 'json',
       data : {'Com_Content' : updateContent, 'Com_Num' : com_Num}, // cno comment에 대한 글 번호
@@ -105,19 +104,22 @@ function commentUpdate(com_Num){
 //댓글 삭제
 function commentDelete(com_Num){
    $.ajax({
-      url : '/imfind/comment_delete',
+      url : '/imfind/pet_comment_delete',
       //type : 'post',
       data : {'Com_Num': com_Num},
       dataType : 'json',
       contentType : 'application/x-www-form-urlencoded;charset=utf-8',
       success : function(data){
-          commentList(); //댓글 삭제후 목록 출력
+    	  console.log(data)
+         
+            commentList(); //댓글 삭제후 목록 출력
       },
       error:function(){
          alert("ajax통신 실패(delete)");
       }
    });
    
+  
 }
 //동준 대댓글
 function reply(com_Num) {
@@ -133,7 +135,7 @@ function replyinsert(com_Num) {
    var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+'';
    console.log(insertdata)
    $.ajax({
-      url : '/imfind/reply_insert',
+      url : '/imfind/pet_reply_insert',
       type : 'POST',
       data : insertdata,
       success : function(data){
@@ -151,36 +153,36 @@ function replyinsert(com_Num) {
    });
 }
 function replyList() {
-   $.ajax({
-      url : '/imfind/replylist',
-      type : 'POST',
-      success : function(data){
-         console.log(id)
-         $('.re_content').empty();
-       $.each(data, function(key, value){
-    	   console.log(value.id)
-    	   if(value.id==id){
-          var a='';
-             a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
-             a+='아이디:'+value.id+'';
-             a+='날짜:'+value.re_date+'';
-           
-             a+='<button type="button" onclick="replyupdate_form('+value.re_num+',\''+value.re_content+'\');">수정</button>';
-            a+='<button type="button" onclick="replydelete('+value.re_num+');">삭제</button></div>';
-          $('#re_content'+value.com_num).append(a);
-    	   }
-    	   else{
-    		   var a='';
-               a+='<div> ->'+value.re_content+'';
-            $('#re_content'+value.com_num).append(a);
-    	   }
-       });
-      },
-      error:function(){
-         alert("ajax통신 실패!(insert)");
-      }
-   });
-}
+	   $.ajax({
+	      url : '/imfind/pet_replylist',
+	      type : 'POST',
+	      success : function(data){
+	         console.log(id)
+	         $('.re_content').empty();
+	       $.each(data, function(key, value){
+	    	   console.log(value.id)
+	    	   if(value.id==id){
+	          var a='';
+	             a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
+	             a+='아이디:'+value.id+'';
+	             a+='날짜:'+value.re_date+'';
+	           
+	             a+='<button type="button" onclick="replyupdate_form('+value.re_num+',\''+value.re_content+'\');">수정</button>';
+	            a+='<button type="button" onclick="replydelete('+value.re_num+');">삭제</button></div>';
+	          $('#re_content'+value.com_num).append(a);
+	    	   }
+	    	   else{
+	    		   var a='';
+	               a+='<div> ->'+value.re_content+'';
+	            $('#re_content'+value.com_num).append(a);
+	    	   }
+	       });
+	      },
+	      error:function(){
+	         alert("ajax통신 실패!(insert)");
+	      }
+	   });
+	}
 function replyupdate_form(re_num,re_content) {
 	var b='';
 		b+='<input class="replyupdate_form" id="replyupdate_form'+re_num+'" type="text" value="'+re_content+'">';
@@ -189,25 +191,25 @@ function replyupdate_form(re_num,re_content) {
 		$('#replyList'+re_num).html(b)
 }
 function replyupdate(re_num) {
-   console.log(re_num)
-   var re_content = $('#replyupdate_form'+re_num).val();
-   $.ajax({
-      url : '/imfind/reply_update',
-      type : 'POST',
-      data : {'re_num':re_num,'re_content':re_content},
-      success : function(data){
-    	  replyList();
-         
-      },
-      error:function(){
-         alert("ajax통신 실패!(insert)");
-      }
-   });
-}
+	   console.log(re_num)
+	   var re_content = $('#replyupdate_form'+re_num).val();
+	   $.ajax({
+	      url : '/imfind/pet_reply_update',
+	      type : 'POST',
+	      data : {'re_num':re_num,'re_content':re_content},
+	      success : function(data){
+	    	  replyList();
+	         
+	      },
+	      error:function(){
+	         alert("ajax통신 실패!(insert)");
+	      }
+	   });
+}   
 function replydelete(re_num) {
    console.log(re_num)
    $.ajax({
-      url : '/imfind/reply_delete',
+      url : '/imfind/pet_reply_delete',
       type : 'POST',
       data : {'re_num':re_num},
       success : function(data){

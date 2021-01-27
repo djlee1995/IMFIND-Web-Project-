@@ -50,6 +50,10 @@
     <td id="id"></td>
   </tr>
   <tr>
+    <th>애완동물 이름</th>
+    <td id="pet"></td>
+  </tr>
+  <tr>
     <th>분실날짜</th>
     <td id="lostdate">2020.10.13</td>
   </tr>
@@ -66,7 +70,7 @@
     <th colspan="5" align="left">분실정보</th>
   </tr>
   <tr>
-    <td colspan="5" id="content">
+    <td colspan="5" id="content">rms
     </td>
   </tr>
   <tr>
@@ -75,7 +79,7 @@
     </td>  
    </tr>
 </table>
-		<jsp:include page="../EJ/comment.jsp" flush="true" />
+		<jsp:include page="../EJ/pet_comment.jsp" flush="true" />
    </section>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script
