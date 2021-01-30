@@ -386,10 +386,8 @@
    </style>
    
 <script>
-var code;
-var x;
-var y;
-function doPopupopen() { 
+
+function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
    }
 
@@ -416,16 +414,13 @@ function getListNearMe(item){
       async : false,
       success : function(data){
          
-         //console.log(data);
+         console.log(data);
          const parentNode = document.querySelector(".swiper-wrapper.first");
             data.police.forEach(function(item){
              console.log(item);
             const colNode = document.createElement('div');
             colNode.className = 'swiper-slide';
-            code=item.code;
-            x=item.x;
-            y=item.y;
-            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen();">클릭</button></div><div class="fh5co-blog">'
+            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen('+item.x+','+item.y+','+item.code+');">클릭</button></div><div class="fh5co-blog">'
                                 +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.lost_date + '</span>'
@@ -652,77 +647,7 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
          </div>
         </div>
-   </section>
-   <!-- 메인 광고 표시 -->
-<!--    <aside id="fh5co-hero" class="js-fullheight">
-      <div class="flexslider js-fullheight">
-         <ul class="slides">
-               <li>
-                  <div class="overlay-gradient"></div>
-                  <div class="container-fluid">
-                     <div class="row">
-                        <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
-                           <div class="slider-text-inner">
-                              <h1>공공기관이 습득한 분실물<br> 찾기 </h1>
-                           <h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
-                           <p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
-                           </div>
-<<<<<<< HEAD
-                        </div> 
-                         <div class="box">
-                            <div id="fh5co-mission" style="padding-top: .2rem;">
-                           <div class="container">
-                              <div class="row">
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 통합 조회 ${memberInfo.id}</h2>
-                                     <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">지역별 관할 지구대, 대중교통 및 공공 기관에서 습득한 분실물을 지도 기반으로 통합 조회가 가능합니다.</p>
-                                    </blockquote>
-                                 </div>
-                                 <div class="col-md-6 col-md-offset-3 text-center animate-box" style="margin-left : 7%;">
-                                    <h2 style="   font-family: 'Noto Sans KR', sans-serif;">분실물 등록 서비스</h2>
-                                    <blockquote>
-                                       <p style="font-family: 'Noto Sans KR', sans-serif;">분실자가 등록한 분실물 게시글을 위치 기반 서비스로 가까이에 위치한 사용자에게 알려드립니다.</p>
-                                    </blockquote>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="li-group">
-                              <ul>
-                                 <li class=""><a href="./itemboard"><span>분실물 등록</span></a></li> 
-                                 <li class=""><a href="./petboard"><span>분실 동물 등록</span></a></li> 
-                                 <li class=""><a href="./item"><span>분실물 조회</span></a></li> 
-                                 <li class=""><a href="./pet"><span>분실 동물 조회</span></a></li> 
-                              </ul>
-                        </div>
-                     
-                         </div>        
-=======
-                        </div>       
->>>>>>> branch 'main_dev' of https://github.com/djlee1995/WebProject.git
-                     </div>
-                  </div>
-               </li>
-         <li style="background-image: url(images/img_bg_2.jpg);">
-               <div class="overlay-gradient"></div>
-               <div class="container-fluid">
-                  <div class="row">
-                     <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
-                        <div class="slider-text-inner">
-                           <h1>찾으시는 물건이 없나요?</h1>
-                           <h2>ImFind가 분실물 실시간 알람과 위치 기반<a href="http://freehtml5.co/" target="_blank"></a></h2>
-                           <p class="ct"><a href="/imfind/">이동하기 <i class="icon-arrow-right"></i></a></p>
-                        </div>
-                     </div>             
-                  </div>
-               </div>
-            </li>
-           </ul>
-        </div>
-   </aside> -->
-   <!-- 메인 광고 표시 끝  -->
-   
+   </section>  
    <!-- 공공데이터 구역  -->
    <section>
       <div class="container-police" id="police">

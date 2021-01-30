@@ -1,47 +1,13 @@
+var loc;
+
 $(document).ready(function() {
-   
+	info();
+	img();  
+	  //like_func();
 	  console.log(lost_PostNum)
-	   var loc;
-	   $.ajax({
-	      url :'datainfo.do',
-	      //type : 'POST',
-	      data : {'lost_PostNum': lost_PostNum },
-	      async:false,
-	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-	      //dataType:'json',
-	      success: function(data){
-	         console.log(data)
-	         
-	         if($.trim(loginUser)==(data[0].id)){
-	            $('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
-	         }
-	    
-	         if(data[0].lost_Up_File == '0'){
-	        	 lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-	         }else{
-	        	 lost_up_file = data[0].lost_Up_File;
-	         }
- 
-		console.log(data)
-		formattedDate = getChangeDateString(data[0].lost_Re_Date)
-		loc=data[0].lost_Loc;
-		$('#lost_Re_Date').text(formattedDate);
-		$('#title').text(data[0].lost_Title);
-		$('#content-body-text').html(data[0].lost_Content);
-		/*$('#file').html(data[0].lost_Up_File);*/
-		$('#file').html(lost_up_file);
-		$('#pay').text(data[0].lost_Pay);
-		$('#loc').text(data[0].lost_Loc);
-		$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));
-		$('#id').text(data[0].id);
-		
-		
-		
-      },
-      error : function() {
-         alert("ajax통신 실패2")
-      }
-   });
+	   
+	  
+	   
    
    
 	   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -89,6 +55,208 @@ $(document).ready(function() {
 	});
 	   
 	});
+function info() {
+	  $.ajax({
+	      url :'datainfo.do',
+	      //type : 'POST',
+	      data : {'lost_PostNum': lost_PostNum },
+	      async:false,
+	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	      //dataType:'json',
+	      success: function(data){
+	         console.log(data)
+	         
+	         if($.trim(loginUser)==(data[0].id)){
+	            $('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
+	         }
+	    
+	         if(data[0].lost_Up_File == '0'){
+	        	 lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+	         }else{
+	        	 lost_up_file = data[0].lost_Up_File;
+	         }
+
+		console.log(data)
+		formattedDate = getChangeDateString(data[0].lost_Re_Date)
+		loc=data[0].lost_Loc;
+		$('#lost_Re_Date').text(formattedDate);
+		$('#title').html(data[0].lost_Title+'<a href="javascript: like_func();"><img id="like_img" width="30px"></a><span id="like_cnt"></span>');
+		$('#content-body-text').html(data[0].lost_Content);
+		/*$('#file').html(data[0].lost_Up_File);*/
+		$('#file').html(lost_up_file);
+		$('#pay').text(data[0].lost_Pay);
+		$('#loc').text(data[0].lost_Loc);
+		$('#lostdate').text(moment(data[0].lost_Date).format('YYYY-MM-DD'));
+		$('#id').text(data[0].id);
+		
+		
+		
+    },
+    error : function() {
+       alert("ajax통신 실패2")
+    }
+ });
+}
+function img(){
+	 $.ajax({
+		    url: "./likeChk",
+		    //type : 'POST',
+		     
+		      async:false,
+		      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		      //dataType:'json',
+		    success: function(data) {
+		    	
+		    	if(data.length==0){
+		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
+			    	$('#like_cnt').text("0");
+	    			/* $.ajax({
+	    				    url: "./likeCount",
+	    				    //type : 'POST',
+	    				    data : {'lost_PostNum':lost_PostNum},
+	    				      async:false,
+	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	    				      //dataType:'json',
+	    				    success: function(data) {
+	    				    	console.log(data)
+	    				    	
+	    				    
+	    				    },
+	    				    error: function(request, status, error){
+	    				      alert("좋아요 에러");
+	    				    }
+	    				  });*/
+		    	}else{
+		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
+	    			 $.ajax({
+	    				    url: "./likeCount",
+	    				    //type : 'POST',
+	    				    data : {'lost_PostNum':lost_PostNum},
+	    				      async:false,
+	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	    				      //dataType:'json',
+	    				    success: function(data) {
+	    				    	console.log(data)
+	    				    	
+	    				    	$('#like_cnt').text(data);
+	    				    
+	    				    },
+	    				    error: function(request, status, error){
+	    				      alert("좋아요 에러");
+	    				    }
+	    				  });
+		    	 $.each(data,function(index,item) {
+		    		 
+		    		 if(loginUser==item.id && lost_PostNum == item.lost_PostNum){
+		    			 $("#like_img").attr("src", "./resources/el/images/like2.png");
+
+		    			 $.ajax({
+		    				    url: "./likeCount",
+		    				    //type : 'POST',
+		    				    data : {'lost_PostNum':lost_PostNum},
+		    				      async:false,
+		    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		    				      //dataType:'json',
+		    				    success: function(data) {
+		    				    	console.log(data)
+		    				    	
+		    				    	$('#like_cnt').text(data);
+		    				    
+		    				    },
+		    				    error: function(request, status, error){
+		    				      alert("좋아요 에러");
+		    				    }
+		    				  });
+
+		    		 }
+		    		 else{
+		    			 
+		    		 }
+		    	 });
+		    	}
+		    
+		    },
+		    error: function(request, status, error){
+		      alert("좋아요 에러");
+		    }
+		  });
+	 
+}
+function like_func(){
+	  $.ajax({
+	    url: "./likeChk",
+	    //type : 'POST',
+	     
+	      async:false,
+	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	      //dataType:'json',
+	    success: function(data) {
+	    	if(data.length==0){
+    		
+    			 $.ajax({
+ 				    url: "./likeplus",
+ 				  //type : 'POST',
+ 				      data : {'lost_PostNum':lost_PostNum,'id':loginUser},
+ 				      async:false,
+ 				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+ 				      //dataType:'json',
+ 				    success: function(data) {
+ 				    	//$("#like_img").attr("src", "./resources/el/images/like2.png");
+ 				    	img();
+ 				    	
+ 				    },
+ 				    error: function(request, status, error){
+ 					      alert("좋아요 에러3");
+ 				    }
+ 			 });
+	    	}else{
+	    		$.ajax({
+				    url: "./likeplus",
+				  //type : 'POST',
+				      data : {'lost_PostNum':lost_PostNum,'id':loginUser},
+				      async:false,
+				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+				      //dataType:'json',
+				    success: function(data) {
+				    	img();
+				    	//$("#like_img").attr("src", "./resources/el/images/like2.png");
+
+				    },
+				    error: function(request, status, error){
+					      alert("좋아요 에러5");
+				    }
+			 });
+	    	 $.each(data,function(index,item) {
+	    		 if(loginUser==item.id && lost_PostNum == item.lost_PostNum){
+	    			 $.ajax({
+	    				    url: "./likecancel",
+	    				  //type : 'POST',
+	    				      data : {'lost_PostNum':lost_PostNum,'id':loginUser},
+	    				      async:false,
+	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	    				      //dataType:'json',
+	    				    success: function(data) {
+	    				    	img();
+	    				    	//$("#like_img").attr("src", "./resources/el/images/like1.png");
+
+	    				    },
+	    				    error: function(request, status, error){
+	    					      alert("좋아요 에러4");
+	    				    }
+	    			 });
+	    		 }
+	    		
+	    	 });
+	    	}
+	    
+	    },
+	    error: function(request, status, error){
+	      alert("좋아요 에러6");
+	    }
+	  });
+	}
+
+
 
 function getChangeDateString(originalDate){
 	

@@ -218,10 +218,12 @@
          </div>
          <div class="infoText">
             <div class="head">
-               <h3 id="title"></h3>
+               <h3 id="title">
+               </h3>
+            
                <div>
                   <label for="id">등록자</label>
-                   <span id="id"></span>      
+                   <span id="id" class="getId"></span>      
                   <span id="lost_Re_Date"></span>
                </div>
             </div>

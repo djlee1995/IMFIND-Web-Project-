@@ -152,7 +152,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
-   
+var boardWriter ='<%=request.getParameter("getId") %>'
 var id = '${loginUser}';
    //댓글 목록
    function commentList(){
@@ -167,8 +167,7 @@ var id = '${loginUser}';
       success : function(data){
          console.log(data)
          var a ='';
-         var boardWriter = $('#boardWriter').val();
-      
+
          $.each(data, function(key, value){
             
             var lost_PostNum = value.pet_PostNum;
@@ -176,30 +175,53 @@ var id = '${loginUser}';
             a += '<div class="commentArea" id="'+ value.com_Num +'">';
             a += '<div class="commentInfo">'+'<span>'+value.id+'</span>'+'<span>날짜:'+ moment(value.lost_Date).format('YYYY-MM-DD')+'</span>' +'</div>&nbsp;&nbsp;';
             
-            if (value.id == id){ 
-               a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
-               a += '<div class="recommentbtn"><button type ="button" class="button4" onclick="commentUpdateForm('+value.com_Num+',\''+value.com_Content+'\');"><i class="fas fa-cut"></i>수정</button>';
-               a += '<button type ="button" class="button3" onclick="commentDelete('+value.com_Num+');"><i class="fas fa-trash-alt"></i>삭제</button><button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
-               a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
-               
-            } else if (boardWriter == id) {
-            	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
-                 a += '<div class="recommentbtn">';
-                 a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
-                 a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
-               
-            } else if (value.secret_Com == 'y') { 
-               a += '<div class="commentContent" id="commentContent'+ value.com_Num +'"> <p>비밀댓글입니다. </p>';
-               a += '</div></div>';
-               
-            } else {
-            	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
-                 a += '<div class="recommentbtn">';
-                 a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
-                 a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
-            }
-   
-         }); // each
+            if (value.secret_Com == 'y'){
+           	 if (value.id == id){ 
+                    a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                    a += '<div class="recommentbtn"><button type ="button" class="button4" onclick="commentUpdateForm('+value.com_Num+',\''+value.com_Content+'\');"><i class="fas fa-cut"></i>수정</button>';
+                    a += '<button type ="button" class="button3" onclick="commentDelete('+value.com_Num+');"><i class="fas fa-trash-alt"></i>삭제</button><button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                    a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
+                    
+                 }
+           	 else if (boardWriter == id) {
+               	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                    a += '<div class="recommentbtn">';
+                    a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                    a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
+                  
+               }
+           	 else{
+           		 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'"> <p>비밀댓글입니다. </p>';
+                    a += '</div></div>';
+           	 }
+           		 
+           }
+           else{
+           	
+           	if (value.id == id){ 
+                   a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                   a += '<div class="recommentbtn"><button type ="button" class="button4" onclick="commentUpdateForm('+value.com_Num+',\''+value.com_Content+'\');"><i class="fas fa-cut"></i>수정</button>';
+                   a += '<button type ="button" class="button3" onclick="commentDelete('+value.com_Num+');"><i class="fas fa-trash-alt"></i>삭제</button><button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                   a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
+                   
+                }
+           	else if (boardWriter == id) {
+              	 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                   a += '<div class="recommentbtn">';
+                   a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                   a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
+                 
+              }
+           	else{
+           		 a += '<div class="commentContent" id="commentContent'+ value.com_Num +'">'+value.com_Content; //댓글내용
+                    a += '<div class="recommentbtn">';
+                    a += '<button type ="button" class="button5" onclick="reply('+value.com_Num+');">답변</button></div></div>';
+                    a += '<div class="re_content" id="re_content'+ value.com_Num +'"></div><div class="reply" id="reply'+ value.com_Num +'"></div></div></div>';
+           	}
+           }
+           
+       
+        }); // each
          
          $(".commentList").html(a); //html형식으로 .. 음..
       }, // success

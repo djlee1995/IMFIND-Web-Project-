@@ -19,12 +19,12 @@ function getItemList(){
          var output=' ' ;         
              output += '<tr>';            
              output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//번호//id 부여하고 경고발생
-             output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목            
+             output += '<td class="mypage-line"><a href="iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Title+'</a></td>';//제목            
              output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
              output += '<input type="hidden" value="'+ item.paycode + '">' // 결제코드
              output += '<td class="mypage-line">'+item.lost_Re_Date+'</td>';//등록날짜                       
-             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-default btn-block">수정</button></td>';                
-             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-default btn-block">삭제</button></td>';   
+             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-default btn-block" onclick="update('+item.lost_PostNum+');">수정</button></td>';                
+             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-default btn-block" onclick="del('+item.lost_PostNum+');">삭제</button></td>';   
              
              if(item.deal_State=='completed'){
                 output +='<td class="mypage-line">거래완료</td>';
@@ -34,12 +34,6 @@ function getItemList(){
      
              $('#output').append(output);
              
-             $('#updateBtn').click(function(){
-                $(location).attr("href", "updatepage?lost_PostNum="+item.lost_PostNum+"");              
-             });
-              $('#deleteBtn').click(function(){
-                $(location).attr("href", "deletepage?lost_PostNum="+item.lost_PostNum+"");
-              });
          });
       },
        error:function(){
@@ -48,6 +42,14 @@ function getItemList(){
     });  
 }  
 
+//수정버튼 클릭
+function update(lost_PostNum) {
+	 $(location).attr("href", "updatepage?lost_PostNum="+lost_PostNum+"");
+}
+//삭제버튼 클릭
+function del(lost_PostNum) {
+	 $(location).attr("href", "deletepage?lost_PostNum="+lost_PostNum+"");
+}
 //분실동물 목록
 function getPetList(){
     $('#output').empty(); 
@@ -65,11 +67,11 @@ function getPetList(){
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
-            output += '<td class="mypage-line">'+item.pet_Title+'</td>';//제목            
+            output += '<td class="mypage-line"><a href="iteminfo?lost_PostNum='+item.pet_PostNum+'">'+item.pet_Title+'</a></td>';//제목            
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
             output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" onclick="update_pet('+item.pet_PostNum+')">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" onclick="del_pet('+item.pet_PostNum+')">삭제</button></td>';                
             output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
@@ -80,6 +82,14 @@ function getPetList(){
           alert("ajax통신 실패1pet!!");         
        },   
    });  
+}
+//수정버튼 클릭(pet)
+function update_pet(pet_PostNum) {
+	 $(location).attr("href", "petupdatepage?Pet_PostNum="+pet_PostNum+"");
+}
+//삭제버튼 클릭(pet)
+function del_pet(pet_PostNum) {
+	 $(location).attr("href", "petdeletepage?Pet_PostNum="+pet_PostNum+"");
 }
 //결제내역 목록
 function getPayList(){

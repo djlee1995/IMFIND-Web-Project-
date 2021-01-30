@@ -286,7 +286,8 @@
                             <div class="group-input" >
                                 <div class="site-btn policy" ><div>동의하기</div></div>
                             </div>
-                            <input type="hidden" name="join_date"/>
+                            <input type="hidden" name="account_holder" value="<%=vo.getId()%>">
+                       <!--      <input type="hidden" name="join_date"/> -->
                             <button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
                         </form>
                         <div class="switch-login">

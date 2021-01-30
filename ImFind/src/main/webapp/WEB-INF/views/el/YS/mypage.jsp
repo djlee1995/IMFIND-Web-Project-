@@ -73,7 +73,7 @@
                    <blockquote class="quote-secondary">
                          <div class="row">
                             <div class="col"> &nbsp;<h4> ${kakaoLoginUser}  ${loginUser} </h4></div>
-                            <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;">수정</button></div>
+                            <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;"><a href="./modify">수정</a></button></div>
                             <div class="col" style="padding-left: 38px; padding-top:20px"><h4>나의 매너 점수</h4></div>
                             <div class="col"><p style="padding-top: 28px;">★★★★★</p></div>
                             <div class="col"> &nbsp; </div>

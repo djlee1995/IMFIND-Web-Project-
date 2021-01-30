@@ -1,4 +1,3 @@
-
 package com.spring.imfind.el.MJ;
 import java.io.File;
 import java.io.PrintWriter;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.imfind.el.EJ.PetVO;
+
 @Controller
 public class MJController {
    @Autowired
@@ -41,6 +41,36 @@ public class MJController {
    public String deletepage(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
       itemService.delete_data(lost_PostNum);
       return "redirect:/item";
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likeChk", produces = "application/json;charset=UTF-8")
+   public List<ItemVO> likeChk() {
+	  
+      List<ItemVO> list = itemService.likeChk();
+      System.out.println(list);
+      return list;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likeCount", produces = "application/json;charset=UTF-8")
+   public int likeCount(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+	  
+      int res = itemService.likeCount(lost_PostNum);
+     
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likeplus", produces = "application/json;charset=UTF-8")
+   public int likeplus(@RequestParam(value = "lost_PostNum") int lost_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.like_plus(lost_PostNum,id);
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likecancel", produces = "application/json;charset=UTF-8")
+   public int likecancel(@RequestParam(value = "lost_PostNum") int lost_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.like_cancel(lost_PostNum,id);
+      return res;
    }
    @ResponseBody
    @RequestMapping(value = "/list.do", produces = "application/json;charset=UTF-8")

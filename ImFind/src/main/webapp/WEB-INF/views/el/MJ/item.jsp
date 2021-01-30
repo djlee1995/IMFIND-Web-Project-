@@ -196,7 +196,10 @@ section{
              <select class="js-example-basic-single" id="dong">
                   <option value="">읍/면/동 선택하세요</option>
              </select>
+             	
         </div>
+        	사례금<input type="checkbox" id="payChk">
+             <button class="selectBtn" onclick="selectBtn();">검색</button>
       </div> 
 
 

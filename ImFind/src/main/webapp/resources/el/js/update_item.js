@@ -79,8 +79,11 @@ $("#datepicker").datepicker({
   	         }
   	       });
   	     }
+  	if(data[0].lost_Up_File!='0'){
+        $('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
+    }
   	$('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
-    $('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
+ 
   	
       },
       error: function(e){console.log(e);}  

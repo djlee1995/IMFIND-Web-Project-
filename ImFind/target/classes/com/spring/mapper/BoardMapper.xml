@@ -142,7 +142,12 @@
      </update>
      
      <delete id="pet_commentDelete" parameterType="int">
-      delete from pet_Comment WHERE Com_Num = #{Com_Num}
+      {CALL
+     	BEGIN
+     	DELETE FROM pet_comment WHERE com_num = #{com_num};
+	 	DELETE FROM pet_reply WHERE com_num = #{com_num};
+	 	END
+     }
      </delete>
      
      <!-- 동준 대댓글 -->

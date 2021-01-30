@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>I'm Find</title>
+
  <!-- Header Section Begin -->
    <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
  <!-- Header End -->
@@ -17,9 +18,6 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css"> <!-- 지우면 안됨 -->
 
-<!-- 조회페이지 css (mj) -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
 <!-- 조회페이지 css (mj) -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
 <!-- Bootstrap cdn 설정  for 페이징  -->   
@@ -69,97 +67,97 @@ section{
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 /* YH */
-	.photo > img{
-		width: 100% !important;
-		height : 175px;
-		object-fit:contain;
-		border : none;
-	}
-	.card-con{
-		border : 
-	}
-	.subinfo{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-top: 3px;
-	}
-	div.date{
-		margin-right:5px;
-	}
-	div.title{
-		margin: 7px 0 0 10px;
-		color : black;
-		font-weight: 500;
-		font-size:14px !important;
-	}
-	div.card-con > a{
-		text-decoration:none;
-	}
-	div.loc{
-		padding-top: 6px;
-		margin-left: 10px;
-	}
-	.selectBox{
-		position: relative;
-		top: -34px;
-		display: flex;
-		justify-content: center;
-	}
-	/* section 가로 크기 */
-	@media(min-width: 1700px){
-		.searchbar,
-		.selectBox,
-		.cardList{
-			width: 50vw;
-			margin: 0 auto;
-		}
-	}
-	@media(min-width: 1200px){
-		.searchbar,
-		.selectBox,
-		.cardList{
-			width: 64vw;
-			margin: 0 auto;
-		}
-		.card-wrapper{
-			display:flex;
-			flex-wrap:wrap;
-		}
-		.card-con{
-			width: 180px;
-			height: 265px;
-			border : 1px solid rgb(238, 238, 238);;
-			margin:7px;
-		}
-		
-	}
-	@media(max-width: 500px){
-		.searchbar,
-		.selectBox,
-		.cardList{
-			width: 100vw;
-			margin: 0 auto;
-		}
-	}
-	.container1.searchbar{
-		position: relative;
-		top: -53px;
-	}
-	.card-wrapper{
-		margin : 0 auto;
-	}
-	.cardList{
-		display : flex;
-		justify-content: center;
-		align-items : center;
-	}
-	/* 요소 크기 */
+   .photo > img{
+      width: 100% !important;
+      height : 175px;
+      object-fit:contain;
+      border : none;
+   }
+   .card-con{
+      border : 
+   }
+   .subinfo{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 3px;
+   }
+   div.date{
+      margin-right:5px;
+   }
+   div.title{
+      margin: 7px 0 0 10px;
+      color : black;
+      font-weight: 500;
+      font-size:14px !important;
+   }
+   div.card-con > a{
+      text-decoration:none;
+   }
+   div.loc{
+      padding-top: 6px;
+      margin-left: 10px;
+   }
+   .selectBox{
+      position: relative;
+      top: -34px;
+      display: flex;
+      justify-content: center;
+   }
+   /* section 가로 크기 */
+   @media(min-width: 1700px){
+      .searchbar,
+      .selectBox,
+      .cardList{
+         width: 50vw;
+         margin: 0 auto;
+      }
+   }
+   @media(min-width: 1200px){
+      .searchbar,
+      .selectBox,
+      .cardList{
+         width: 64vw;
+         margin: 0 auto;
+      }
+      .card-wrapper{
+         display:flex;
+         flex-wrap:wrap;
+      }
+      .card-con{
+         width: 180px;
+         height: 265px;
+         border : 1px solid rgb(238, 238, 238);;
+         margin:7px;
+      }
+      
+   }
+   @media(max-width: 500px){
+      .searchbar,
+      .selectBox,
+      .cardList{
+         width: 100vw;
+         margin: 0 auto;
+      }
+   }
+   .container1.searchbar{
+      position: relative;
+      top: -53px;
+   }
+   .card-wrapper{
+      margin : 0 auto;
+   }
+   .cardList{
+      display : flex;
+      justify-content: center;
+      align-items : center;
+   }
+   /* 요소 크기 */
 </style>
 </head>
 <body>
 
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
+   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
 
     <!-- Header End -->
    <!-- Page Preloder -->
@@ -186,28 +184,30 @@ section{
    </div>
    
    <div class="container1 selectBox">
-	    <div class = "petsi">
-		    <select class="js-example-basic-single" id="petsido">
-		      	<option value="">시/도 선택하세요</option>
-		    </select>
-		    <select class="js-example-basic-single" id="petsigugun">
-		      	<option value="">시/군/구 선택하세요</option>
-		    </select>
-		    <select class="js-example-basic-single" id="petdong">
-		      	<option value="">읍/면/동 선택하세요</option>
-		    </select>
-	  </div>
+       <div class = "petsi">
+          <select class="js-example-basic-single" id="petsido">
+               <option value="">시/도 선택하세요</option>
+          </select>
+          <select class="js-example-basic-single" id="petsigugun">
+               <option value="">시/군/구 선택하세요</option>
+          </select>
+          <select class="js-example-basic-single" id="petdong">
+               <option value="">읍/면/동 선택하세요</option>
+          </select>
+     </div>
+     사례금<input type="checkbox" id="payChk">
+             <button class="selectBtn" onclick="selectBtn();">검색</button>
    </div>
   
   <div class="container1 cardList">
-  	   <div class="card-wrapper">
-  	   
-  	   </div>
-	   <div class="petcard-list-con">
-	      <div>
-	      	<table id="petoutput" border="1" align="center"></table>
-	      </div>
-	   </div>
+        <div class="card-wrapper">
+        
+        </div>
+      <div class="petcard-list-con">
+         <div>
+            <table id="petoutput" border="1" align="center"></table>
+         </div>
+      </div>
   </div>
   
    </section>
@@ -251,6 +251,5 @@ section{
    <!-- Main -->
    <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
    <script src="${pageContext.request.contextPath}/resources/el/YH/select2/js/select2.min.js" /></script>
-
 </body>
 </html>
