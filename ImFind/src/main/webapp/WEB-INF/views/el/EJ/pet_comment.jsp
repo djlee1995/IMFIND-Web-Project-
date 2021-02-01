@@ -222,6 +222,7 @@ var id = '${loginUser}';
            
        
         }); // each
+
          
          $(".commentList").html(a); //html형식으로 .. 음..
       }, // success

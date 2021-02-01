@@ -139,8 +139,10 @@ function reply(com_Num) {
 }
 
 function replyinsert(com_Num) {
+
    var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+''+'&lost_postnum='+lost_PostNum+'';
    console.log(lost_PostNum)
+
    $.ajax({
       url : '/imfind/reply_insert',
       type : 'POST',

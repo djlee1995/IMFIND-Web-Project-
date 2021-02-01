@@ -12,7 +12,9 @@ import com.spring.imfind.el.EJ.PetVO;
 import com.spring.mapper.MJ.ItemMapper;
 
 @Service
-public class ItemServiceImpl implements ItemService {
+
+public class ItemServiceImpl implements ItemService{
+
 
 	@Autowired
 	private SqlSession sqlSession;

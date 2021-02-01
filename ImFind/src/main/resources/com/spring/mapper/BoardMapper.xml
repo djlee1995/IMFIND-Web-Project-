@@ -61,7 +61,8 @@
 	 pet_Up_File,
 	 pet_Loc, 
 	 pet_Pay,
-	 Id)values 
+	 Id,
+	 PayCode)values 
 	 (#{pet_Title}, 
 	 #{pet_Content}, 
 	 #{pet_Name}, 
@@ -70,7 +71,8 @@
 	 #{pet_Up_File},
 	 #{pet_Loc}, 
 	 #{pet_Pay},
-	 #{Id})
+	 #{Id},
+	 #{PayCode})
 	 </insert>
 	 <!-- 여기서 동적쿼리문으로 조건문 처리  -->
 	 <insert id="commentInsert" parameterType="LostComVO">
@@ -177,8 +179,44 @@
     	select * from ( select * from petpost order by pet_pay desc) where <![CDATA[ rownum <= 5 ]]>
     </select>
     
+  
     <update id="addPayBoardNum" parameterType="BoardVO" >
-    	update pay set lost_postnum = #{postNum} where paycode = #{PayCode}
+    	update pay set lost_postnum = #{Lost_PostNum} where paycode = #{PayCode}
     </update>
     
+    <select id="getPostNum" parameterType="BoardVO" resultType="BoardVO">
+    	SELECT lost_postnum from lostpost where paycode = #{PayCode}
+    </select>
+    
+    <update id="addPayPetBoardNum" parameterType="PetVO" >
+    	update pay set Pet_PostNum = #{Pet_PostNum} where paycode = #{PayCode}
+    </update>
+    
+    <select id="getPetPostNum" parameterType="BoardVO" resultType="PetVO">
+    	SELECT Pet_PostNum from petpost where paycode = #{PayCode}
+    </select>
+    
+    <select id="getCommentList" resultType="ComVO">
+    	select id, re_comment.com_content as re_content, com_date, com_num, lost_postnum from re_comment where re_comment.id = #{id}
+			union
+			select id, re_content, re_date as com_date, com_num, lost_postnum from 
+        (select re_comment.lost_postnum, reply.re_content, reply.re_date, reply.id, reply.com_num, reply.re_num 
+            from re_comment, reply 
+            where re_comment.com_num = reply.com_num and reply.id = #{id})
+		where id = #{id}
+    </select>
+    
+    <select id="getPetCommentList" resultType="ComVO">
+    	select id, pet_comment.com_content as re_content, com_date, com_num, lost_postnum from pet_comment where pet_comment.id =#{id}
+			union
+			select id, re_content, re_date as com_date, com_num, lost_postnum from 
+        (select pet_comment.lost_postnum, pet_reply.re_content, pet_reply.re_date, pet_reply.id, pet_reply.com_num, pet_reply.re_num 
+            from pet_comment, pet_reply 
+            where pet_comment.com_num = pet_reply.com_num and pet_reply.id = #{id})
+		where id =#{id}
+    </select>
+    
+    <delete id="deleteMember">
+     	DELETE FROM member WHERE id = #{id} and pw = #{pw}
+    </delete>
 </mapper>

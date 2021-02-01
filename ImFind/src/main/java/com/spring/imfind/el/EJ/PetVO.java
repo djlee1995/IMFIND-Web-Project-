@@ -13,6 +13,8 @@ public class PetVO {
 	private String Pet_Loc; // 동물 분실 위치
 	private String Id; // 회원 ID
 	private String Contact; // 연락처
+	private String PayCode;
+	
 	public String getPet_PostNum() {
 		return Pet_PostNum;
 	}
@@ -85,11 +87,17 @@ public class PetVO {
 	public void setContact(String contact) {
 		Contact = contact;
 	}
+	public String getPayCode() {
+		return PayCode;
+	}
+	public void setPayCode(String payCode) {
+		PayCode = payCode;
+	}
 	@Override
 	public String toString() {
 		return "PetVO [Pet_PostNum=" + Pet_PostNum + ", Pet_Title=" + Pet_Title + ", Pet_Content=" + Pet_Content
 				+ ", Pet_Re_Date=" + Pet_Re_Date + ", Pet_Pay=" + Pet_Pay + ", Pet_Or_File=" + Pet_Or_File
 				+ ", Pet_Up_File=" + Pet_Up_File + ", Pet_Name=" + Pet_Name + ", Pet_LostDate=" + Pet_LostDate
-				+ ", Pet_Loc=" + Pet_Loc + ", Id=" + Id + ", Contact=" + Contact + "]";
+				+ ", Pet_Loc=" + Pet_Loc + ", Id=" + Id + ", Contact=" + Contact + ", PayCode=" + PayCode + "]";
 	}
 }

@@ -1,11 +1,42 @@
+// 연수 1.28
+var params;
+ var show_Grade_Star;
+ var showScore;
+
 $(document).ready(function(){
    getItemList();
+   $.ajax({
+       url:'/imfind/getStarGrade.do',
+       type:'POST',
+       contentType:'application/x-www-form-urlencoded;charset=utf-8',
+       data: {'F_Id' : user},
+       success:function(data){
+      	 show_Grade_Star = data;
+       },
+		error:function(){
+			alert("매너 평가 점수를 출력하지 못했습니다.");			
+	   },
+       complete : function(){ 
+        	starfunction ();
+       },
+   });		
 });
+
+//데이터 불러오기 END -----------------------------------------------연수 1.28-----------------------------------------------
+//매너평가등급:출력 (별점) 
+	  function starfunction (){    
+		var rating=$('.grade .showGrade');
+		rating.each(function(){
+		showScore = show_Grade_Star ;
+		$(this).find('svg:nth-child(-n+'+showScore+')').css({color:'#F05522'});  		
+	});  	
+};
 
 //분실글 목록
 function getItemList(){
-  $('#output').empty(); 
-     
+   $('#output').empty(); 
+   $('#input-grade').attr('id', 'input-grade');
+   
    var form = '<tr><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
    $('#output').append(form);
     
@@ -19,21 +50,29 @@ function getItemList(){
          var output=' ' ;         
              output += '<tr>';            
              output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//번호//id 부여하고 경고발생
-             output += '<td class="mypage-line"><a href="iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Title+'</a></td>';//제목            
+             output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목            
              output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
              output += '<input type="hidden" value="'+ item.paycode + '">' // 결제코드
              output += '<td class="mypage-line">'+item.lost_Re_Date+'</td>';//등록날짜                       
-             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-default btn-block" onclick="update('+item.lost_PostNum+');">수정</button></td>';                
-             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-default btn-block" onclick="del('+item.lost_PostNum+');">삭제</button></td>';   
+             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-default btn-block">수정</button></td>';                
+             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-default btn-block">삭제</button></td>';   
              
              if(item.deal_State=='completed'){
-                output +='<td class="mypage-line">거래완료</td>';
-             }       
-             output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+                output +='<td class="mypage-line">거래확정</td>';
+             }  
+             else{
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+             }
              output += '</tr>';
      
              $('#output').append(output);
              
+             $('#updateBtn').click(function(){
+                $(location).attr("href", "updatepage?lost_PostNum="+item.lost_PostNum+"");              
+             });
+              $('#deleteBtn').click(function(){
+                $(location).attr("href", "deletepage?lost_PostNum="+item.lost_PostNum+"");
+              });
          });
       },
        error:function(){
@@ -42,17 +81,10 @@ function getItemList(){
     });  
 }  
 
-//수정버튼 클릭
-function update(lost_PostNum) {
-	 $(location).attr("href", "updatepage?lost_PostNum="+lost_PostNum+"");
-}
-//삭제버튼 클릭
-function del(lost_PostNum) {
-	 $(location).attr("href", "deletepage?lost_PostNum="+lost_PostNum+"");
-}
 //분실동물 목록
 function getPetList(){
     $('#output').empty(); 
+    $('#input-grade').attr('id', 'input-grade-pet')
     
     var form = '<tr><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
      $('#output').append(form);
@@ -63,15 +95,54 @@ function getPetList(){
       contentType:'application/x-www-form-urlencoded;charset=utf-8',
       success:function(data){
         $.each(data, function(index, item){   
-          
+          console.log(item)
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
-            output += '<td class="mypage-line"><a href="iteminfo?lost_PostNum='+item.pet_PostNum+'">'+item.pet_Title+'</a></td>';//제목            
+            output += '<td class="mypage-line">'+item.pet_Title+'</td>';//제목            
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
             output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" onclick="update_pet('+item.pet_PostNum+')">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" onclick="del_pet('+item.pet_PostNum+')">삭제</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';    
+            
+            if(item.deal_State=='completed'){
+                output +='<td class="mypage-line">거래확정</td>';
+             }  
+             else{
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+             }
+             output += '</tr>';
+        
+            $('#output').append(output);
+        });
+      },
+       error:function(){
+          alert("ajax통신 실패1pet!!");         
+       },   
+   });  
+}
+//내가 쓴 댓글 목록 - 은지 1.28
+function getCommentList(){
+    $('#output').empty(); 
+    
+    var form = '<tr><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    $('#output').append(form);
+    
+    $.ajax({
+      url:'/imfind/getCommentList',
+      type:'POST',
+      data: {'id' : user},
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+         var output=' ' ;
+            output += '<tr>';            
+            output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
+            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line">'+item.com_Date+'</td>';//등록날짜
+            //output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';                
             output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
@@ -82,14 +153,6 @@ function getPetList(){
           alert("ajax통신 실패1pet!!");         
        },   
    });  
-}
-//수정버튼 클릭(pet)
-function update_pet(pet_PostNum) {
-	 $(location).attr("href", "petupdatepage?Pet_PostNum="+pet_PostNum+"");
-}
-//삭제버튼 클릭(pet)
-function del_pet(pet_PostNum) {
-	 $(location).attr("href", "petdeletepage?Pet_PostNum="+pet_PostNum+"");
 }
 //결제내역 목록
 function getPayList(){
@@ -133,7 +196,40 @@ function getPayList(){
     }
  });
 }    
-
+//내가 쓴 댓글 목록(동물) - 1.28 은지
+function getPetCommentList(){
+    $('#output').empty(); 
+    
+    var form = '<tr><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    $('#output').append(form);
+    
+    $.ajax({
+      url:'/imfind/getPetCommentList',
+      type:'POST',
+      data: {'id' : user},
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+        	console.log(item)
+        
+         var output=' ' ;
+            output += '<tr>';            
+            output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
+            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line">'+item.com_Date+'</td>';//등록날짜  
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            output += '</tr>';
+        
+            $('#output').append(output);
+        });
+      },
+       error:function(){
+          alert("ajax통신 실패1pet!!");         
+       },   
+   });  
+}
 //환불 신청
 document.addEventListener('click', function(event){
      console.log(event.target)
@@ -340,7 +436,28 @@ function myfunction2 (){
          error:function(){
             alert("ajax통신 실패4!!!");         
          },
-         // grade_insert_btn();//시점을 이걸로 해주면 될까 싶어서. (202101211526)_응 안되.되나/???
+      });                     
+   };
+   function getElseWhoRepliedPet (lostPostNum){
+      $.ajax({
+         url:'/imfind/getElseWhoRepliedPet.do',//여기에 sql을 join으로 lostpost_table이랑 lost_com?을 써서 부르자. 
+         type:'POST',
+         data:{"params" : lostPostNum},//서버로 선택된 행의 lostpostNo를 넘기겠.
+         contentType:'application/x-www-form-urlencoded;charset=utf-8',
+         dataType: 'json',
+         success:function(data){
+
+            $('#output_WhoReplied').empty(); 
+            var output_WhoReplied= '';
+            
+            $.each(data, function(index, item){   
+               output_WhoReplied += '<input type="radio" name="finder" value="'+ item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
+            });
+            $('#output_WhoReplied').append(output_WhoReplied);
+         },
+         error:function(){
+            alert("ajax통신 실패4!!!");         
+         },
       });                     
    };
        
@@ -351,10 +468,18 @@ document.addEventListener('click', function(e){
        lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
        myfunction3(lostPostNum);
    }
-   if(e.target.id == 'input_grade'){
+   if(e.target.id == 'input-grade'){
       alert(1111)
       grade_insert_btn();
    }
+   if(e.target.className == 'btnWhoGetStar-pet'){
+	   lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
+	   getElseWhoRepliedPet(lostPostNum);
+   }
+   if(e.target.id == 'input-grade-pet'){
+	      alert(1111)
+	      grade_insert_btnPet();
+	   }
 });
 
 
@@ -393,7 +518,7 @@ function grade_insert_btn (){
      alert('targetNum ' + targetNum)
      alert('user ' + user);
    
-     data = {"F_ID" : params, "grade" : targetNum, "Id" : user, "Lost_PostNum" : lostPostNum};                         
+     data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Lost_PostNum" : lostPostNum};                         
      // 서버로 전송
      $.ajax({
          url:'/imfind/insertGrade.do',
@@ -402,11 +527,9 @@ function grade_insert_btn (){
          contentType : 'application/json',
          datatype:'json',
          success:function(retVal){
+        	 console.log("retVal " + retVal.res)
             if(retVal.res=="OK"){
-    
-              $('.modal fade in show').modal("hide");
-             $('#output_WhoReplied').val('');
-             $('#finder_name').val('');  
+            	window.location.href='./mypage'
           }
             else{
                alert("파인더평가가 완료 되지 않았습니다.insertFail");
@@ -419,3 +542,107 @@ function grade_insert_btn (){
      //기본이벤트 제거 
      event.preventDefault();
 };              
+//동물 모달_파인더 평가 요청 커멘드 버튼 
+function grade_insert_btnPet (){         
+     alert('동물 모달')
+     params = $('#output_WhoReplied input[name="finder"]:checked').val();
+     
+     alert('params ' + params);   
+     alert('targetNum ' + targetNum)
+     alert('user ' + user);
+   
+     data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Pet_PostNum" : lostPostNum};                         
+     // 서버로 전송
+     $.ajax({
+         url:'/imfind/insertGradePet.do',
+         type:'POST',
+         data: JSON.stringify(data),
+         contentType : 'application/json',
+         datatype:'json',
+         success:function(retVal){
+        	 console.log("retVal " + retVal.res)
+            if(retVal.res=="OK"){
+            	window.location.href='./mypage'
+          }
+            else{
+               alert("파인더평가가 완료 되지 않았습니다.insertFail");
+             }
+         },
+         error:function(){
+            alert("ajax통신 실패!!!");                
+         }
+     });
+     //기본이벤트 제거 
+     event.preventDefault();
+};  
+
+function getMoeny(){
+	  alert('정산내역')
+	  $('#output').empty(); 
+	  
+	  $.ajax({
+	         url:'/imfind/getMoneyList',
+	         data: {"id" : user},
+	         contentType : 'application/json',
+	         datatype:'json',
+	         success:function(data){
+	        	  var output = '<tr>'
+	        		  			+'<td>글번호</td>'
+	        		  			+'<td>거래자</td>'
+	        		  			+'<td>거래완료일</td>'
+	        		  			+'<td>정산 금액</td>'
+	        		  			+'<td>정산 계좌</td>'
+	        		  			+'<td>은행</td>'
+	        		  			+'<td>계좌주</td>'
+	        		  			+'<td>정산 상태</td>'
+	        		  			+'<td>정산날짜</td>'
+        		  			+'</td>'
+	        	  
+	        	  $.each(data, function(index, item){   
+	        		  alert('총신 성공')
+	        		  console.log(item)
+	        		  
+	        		  var adjustment_state;
+	        		  var adjustment_date;
+	        		  
+	        		  if(item.lost_PostNum == null){
+	        			  postnum = item.pat_PostNum
+	        			  href = './petinfo?Pet_PostNum='
+	        		  }
+	        		  else{
+	        			  postnum = item.lost_PostNum
+	        			  href = './iteminfo?lost_PostNum='
+	        		  }
+	        		  
+	        		  if(item.adjustment_state == null){
+	        			  adjustment_state = '정산 진행중';
+	        			  adjustment_date = '-'
+	        		  }else{
+	        			  adjustment_state = item.adjustment_state
+	        			  adjustment_date = moment(item.adjustment_date).format('YY-MM-DD HH:MM:SS')
+	        		  }
+	        		  
+	        		  
+	        		  
+	                     output += '<tr>';            
+	                     output += '<a href="'+ href+postnum +'"><td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ postnum +'</td></a>';//글번호 
+	                     output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ item.id +'</td>';//글번호 
+	                     output += '<td class="mypage-line">'+ item.Deal_Date +'</td>';// 정산날짜
+	                     output += '<td class="mypage-line"><input type="hidden" id="payCode" value="'+ item.pay_Amount+'">' + item.pay_Amount +'</td>' //정산금액
+	                     output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+ item.account_Num + '">'+ item.account_Num +'</td>' //정산계좌         
+	                     output += '<td class="mypage-line">'+ item.bank +'</td>';//은행
+	                     output += '<td class="mypage-line">'+ item.account_holder +'</td>';//계좌주
+	                     output += '<td class="mypage-line">'+ adjustment_state +'</td>';// 정산상태
+	                     output += '<td class="mypage-line">'+ adjustment_date +'</td>';// 정산날짜
+
+	                     output += '</tr>';
+	                     $('#output').append(output);
+	                 });
+	         },
+	         error:function(){
+	            alert("ajax통신 실패!!!");                
+	         }
+	     });
+	     //기본이벤트 제거 
+	     event.preventDefault();
+}

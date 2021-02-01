@@ -1,4 +1,6 @@
 var loc;
+var arr = [];
+
 
 $(document).ready(function() {
 	info();
