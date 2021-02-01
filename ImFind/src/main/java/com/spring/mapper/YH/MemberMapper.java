@@ -1,3 +1,4 @@
+
 package com.spring.mapper.YH;
 
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,7 @@ public interface MemberMapper {
 	public String findID(@Param("name") String name, @Param("email") String email);
 	public LoginDTO findPW(@Param("id") String id, @Param("email") String email);
 	public int alterTempPW(@Param("id") String id, @Param("pw") String pw);
+	public LoginDTO getLoginDTO(String id);
+  // MJ Email chk
+   public int checkEmail(String email);
 }

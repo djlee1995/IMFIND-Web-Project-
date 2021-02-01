@@ -19,15 +19,3 @@
 
 })(jQuery);
 
-
-//(function(){
-//	
-//	window.addEventListener('resize', function(event){
-//		console.log(window.innerWidth);
-//		console.log(window.innerHeight);
-//		
-//		var widthSize = window.innerWidth;
-//		if(widthSize)
-//	});
-//	
-//})();

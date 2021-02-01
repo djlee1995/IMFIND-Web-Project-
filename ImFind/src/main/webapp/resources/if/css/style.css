@@ -4,6 +4,8 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -52,7 +54,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" font-family:'BM JUA','배달의민족 주아',sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -150,7 +152,7 @@ a:not([href]):not([tabindex]) {
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
 .manual{
-	 padding-top: 20px; 
+	 padding-top: 0px;
 }
   /* The Modal (background) */
         .modal {
@@ -352,7 +354,8 @@ h3, .h3 {
   font-size: 1.75rem; }
 
 h4, .h4 {
-  font-size: 1.5rem; }
+  font-size: 2.5rem;
+  text-align: center; }
 
 h5, .h5 {
   font-size: 1.25rem; }
@@ -8231,7 +8234,8 @@ h1, h2, h3, h4, h5,
   background-position: center center; }
 
 .wrapper {
-  width: 100%; 
+  width: 74%;
+  margin: 0px auto; 
 }
 .movie{
 	margin-top: 60px;
@@ -8244,15 +8248,17 @@ h1, h2, h3, h4, h5,
   -o-transition: all 0.3s;
   transition: all 0.3s;
   position: relative;
-  z-index: 2; }
-  #sidebar:after {
+  z-index: 2;
+  margin: auto;
+  }
+ /*  #sidebar:after {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     content: '';
-    background: #2f89fc;
+    background: #FBF7F2;MJ
     background: -moz-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
     background: -webkit-gradient(left top, right bottom, color-stop(0%, #2f89fc), color-stop(100%, #5effc9));
     background: -webkit-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
@@ -8260,10 +8266,10 @@ h1, h2, h3, h4, h5,
     background: -ms-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
     background: -webkit-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
     background: -o-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
-    background: #317AE1;
+    background: #FBF7F2;MJ
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f89fc', endColorstr='#5effc9', GradientType=1 );
     opacity: .7;
-    z-index: -1; }
+    z-index: -1; } 푸터부분 삭제 */
   #sidebar.active {
     margin-right: -500px; }
     #sidebar.active .custom-menu {
@@ -8277,7 +8283,7 @@ h1, h2, h3, h4, h5,
   #sidebar .h6 {
     color: #fff; }
   #sidebar h1 {
-    margin-bottom: 20px;
+    margin-bottom: 0px;/* MJ */
     font-weight: 700;
     font-size: 30px; }
     #sidebar h1 .logo {
@@ -8295,7 +8301,8 @@ h1, h2, h3, h4, h5,
 
   }
   #sidebar ul li {
-    font-size: 16px; }
+    font-size: 12px;
+    white-space: nowrap; }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {
@@ -8327,7 +8334,7 @@ h1, h2, h3, h4, h5,
   #sidebar .custom-menu {
     display: inline-block;
     position: absolute;
-    top: 20px;
+    top: 96px;
     left: 0;
     margin-left: -35px;
     -webkit-transition: 0.3s;
@@ -8389,7 +8396,7 @@ a[data-toggle="collapse"] {
     border-color: #2f89fc !important; }
 .police{
 	color:black;
-	background:white;
+ /* MJ*/
 	padding: 0px 10px 10px 30px;
     height: 170px;
 }
@@ -8408,17 +8415,21 @@ a[data-toggle="collapse"] {
 	overflow: auto;
 }
 .footer{
-	text-align:center;
+	float:left;
 	border-top-width: 50px;
     margin-top: 25px;
+	font-size: 12px;
+	padding-left:1.5em;text-indent:-1.5em;
 }
 /* .police a { color: black; }
 .nav-content a{ color: black;}
  */a{color: black;}
  a:hover{ color: #258FFF;}
 .footer p {
-  color: rgba(255, 255, 255, 0.8); }
-
+    color: var(--gray);
+    font-family: Roboto,Noto Sans KR, Arial, sans-serif;
+    text-align: center;
+}
 .form-control {
   height: 40px !important;
   background: #fff;
@@ -8445,5 +8456,3 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   background: #fff; }
-  
- 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+<!-- Root Context: defines shared resources visible to all other web components -->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+
+		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@3.36.85.242:1521:xe"  />
+		<property name="username" value="imfind"  />
+		<property name="password" value="123456"  />
+	</bean>
+	<!-- sqlSession 객체 생성  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- mybatis에서 resultType과 parameterType 사용 시 bean 객체를 사용하려면 패키지 경로 및 bean 클래스 명까지 입력해야한다. 하지만 alias 처리를 해주면 bean클래스명만 입력하면된다. -->
+		<property name="typeAliasesPackage" value="com.spring.imfind"/>
+		<!-- <property name="mapperLocations" value="classpath*:/com/spring/mapper/MemberMapper.xml" />  -->
+		<property name="mapperLocations" value="classpath*:/com/spring/mapper/**/*.xml" />
+	</bean>
+	<!-- sqlSession 객체를 관리하기 위해 사용 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean> 
+
+	<!-- mybatis mapper 설정관련(사용 시 Namespace 탭에서 mybatis-spring 추가하기) -->
+	<!-- mapper 관련 인터페이스 (ex: MamberMapper.java)를 찾기 위한 패키지 경로 설정함 -->
+	<mybatis-spring:scan base-package="com.spring.mapper"/>	
+
+	
+	  <!-- naver mail  : smtp 사용가능하도록 설정확인 할것 -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name ="host" value="smtp.naver.com"></property>
+	  	<property name="port" value="465"></property>
+	  	<property name="username" value="szexdr@naver.com"></property>
+	  	<property name="password" value="qhahzhwhshxh1"></property>
+	    <property name="javaMailProperties">
+		    <props>	
+		      <prop key="mail.smtp.starttls.enable">true</prop>
+		      <prop key="mail.smtp.auth">true</prop>
+		      <prop key="mail.smtps.ssl.checkserveridentity">true</prop>
+		      <prop key="mail.smtps.ssl.trust">*</prop>
+		      <prop key="mail.debug">true</prop>
+		      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		    </props>
+	    </property>
+	  </bean>
+	<context:component-scan base-package="com.spring.imfind" />
+</beans>

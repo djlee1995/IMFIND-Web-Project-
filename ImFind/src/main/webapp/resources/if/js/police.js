@@ -1,15 +1,11 @@
 
 $(document).ready(function() {	
-	$(document).ready(function() {
-        $('#myModal').show();
-		});
+	
+       
 	 police();
 	
 });
-//팝업 Close 기능
-function close_pop(flag) {
-     $('#myModal').hide();
-		};
+
    
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 mapOption = { 

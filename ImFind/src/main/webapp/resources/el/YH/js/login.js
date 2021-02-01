@@ -1,4 +1,3 @@
-
 function countdown(remTime, str){
 	
 	console.log(str);
@@ -54,6 +53,7 @@ function loginValidate(loginBoxElem){
 	    		"pw": pw.value},  
 	    type: "POST",     
 		success : function(data){
+			alert(data)
 			//console.log(data);
 			if(data == 'unpass'){
 
@@ -73,8 +73,11 @@ function loginValidate(loginBoxElem){
 					inputElem.appendChild(warn_id);
 				}
 			}
+			else if('pass'){
+				window.location.href = "./";
+			}
 			else{
-				window.location.href = "home.do";
+				window.location.href = data;
 			}
 		},
 		error : function(){

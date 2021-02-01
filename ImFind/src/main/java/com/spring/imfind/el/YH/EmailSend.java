@@ -17,11 +17,11 @@ public class EmailSend {
 
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind ÀÌ¸ŞÀÏ ÀÎÁõ]");
-        sendMail.setText(new StringBuffer().append("<h3>¾ÆÀÌµğ Ã£±â ÀÎÁõ ¹øÈ£</h3>")
-                .append("¾ÆÀÌµğ Ã£±â¸¦ À§ÇÑ ÀÎÁõ¹øÈ£ ÀÔ´Ï´Ù.<br>")
-                .append("ÀÎÁõ¹øÈ£ [ <b>" + code + "<b> ] <br>")
-                .append("ÀÎÁõÄÚµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.")
+        sendMail.setSubject("[ Imfind ì´ë©”ì¼ ì¸ì¦]");
+        sendMail.setText(new StringBuffer().append("<h3>ì•„ì´ë”” ì°¾ê¸° ì¸ì¦ ë²ˆí˜¸</h3>")
+                .append("ì•„ì´ë”” ì°¾ê¸°ë¥¼ ìœ„í•œ ì¸ì¦ë²ˆí˜¸ ì…ë‹ˆë‹¤.<br>")
+                .append("ì¸ì¦ë²ˆí˜¸ [ <b>" + code + "<b> ] <br>")
+                .append("ì¸ì¦ì½”ë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -34,11 +34,11 @@ public class EmailSend {
 		
 		int code = new Tempkey().getNumCode();
         MailHandler sendMail = new MailHandler(mailSender);
-        sendMail.setSubject("[ Imfind ÀÌ¸ŞÀÏ ÀÎÁõ]");
-        sendMail.setText(new StringBuffer().append("<h3>ºñ¹Ğ¹øÈ£ Ã£±â ÀÎÁõ ¹øÈ£</h3>")
-                .append("ºñ¹Ğ¹øÈ£ Ã£±â¸¦ À§ÇÑ ÀÎÁõ¹øÈ£ ÀÔ´Ï´Ù.<br>")
-                .append("ÀÎÁõ¹øÈ£ [ <b>" + code + "<b> ] <br>")
-                .append("ÀÎÁõÄÚµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.")
+        sendMail.setSubject("[ Imfind ì´ë©”ì¼ ì¸ì¦]");
+        sendMail.setText(new StringBuffer().append("<h3>ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° ì¸ì¦ ë²ˆí˜¸</h3>")
+                .append("ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°ë¥¼ ìœ„í•œ ì¸ì¦ë²ˆí˜¸ ì…ë‹ˆë‹¤.<br>")
+                .append("ì¸ì¦ë²ˆí˜¸ [ <b>" + code + "<b> ] <br>")
+                .append("ì¸ì¦ì½”ë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -51,10 +51,10 @@ public class EmailSend {
 		
 	    MailHandler sendMail = new MailHandler(mailSender);
  
-        sendMail.setSubject("[ Imfind ¾ÆÀÌµğ Ã£±â °á°ú]");
-        sendMail.setText(new StringBuffer().append("<h3>È¸¿ø´ÔÀÇ ¾ÆÀÌµğ</h3>")
-                .append("È¸¿ø´ÔÀÇ ¾ÆÀÌµğ´Â [ <b>" + id + "<b> ] ÀÔ´Ï´Ù. <br>")
-                .append("<a target='http://localhost:8080/imfind/login'>Imfind ·Î±×ÀÎ È­¸é ÀÌµ¿ </a>")
+	    sendMail.setSubject("[ Imfind ì•„ì´ë”” ì°¾ê¸° ê²°ê³¼]");
+        sendMail.setText(new StringBuffer().append("<h3>íšŒì›ë‹˜ì˜ ì•„ì´ë””</h3>")
+                .append("íšŒì›ë‹˜ì˜ ì•„ì´ë””ëŠ” [ <b>" + id + "<b> ] ì…ë‹ˆë‹¤. <br>")
+                .append("<a target='http://localhost:8080/imfind/login'>Imfind ë¡œê·¸ì¸ í™”ë©´ ì´ë™ </a>")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);
@@ -64,11 +64,13 @@ public class EmailSend {
 	public void sendUserPW(String email, String tempPW) throws MessagingException, UnsupportedEncodingException {
 		
 		MailHandler sendMail = new MailHandler(mailSender);
-
-    	sendMail.setSubject("[ Imfind ÀÓ½Ã ºñ¹Ğ¹øÈ£]");
-    	sendMail.setText(new StringBuffer().append("<h3>ÀÓ½Ã ºñ¹Ğ¹øÈ£ ¹ß±Ş</h3>")
-    			.append("È¸¿ø´ÔÀÇ ÀÓ½Ãºñ¹Ğ¹øÈ£´Â [ <b>" + tempPW + "<b> ] ÀÔ´Ï´Ù. <br>")
-    			.append("<a target='http://localhost:8080/imfind/login'>Imfind ·Î±×ÀÎ È­¸é ÀÌµ¿ </a>")
+		
+		
+		
+		sendMail.setSubject("[ Imfind ì„ì‹œ ë¹„ë°€ë²ˆí˜¸]");
+		sendMail.setText(new StringBuffer().append("<h3>ì„ì‹œ ë¹„ë°€ë²ˆí˜¸ ë°œê¸‰</h3>")
+				.append("íšŒì›ë‹˜ì˜ ì„ì‹œë¹„ë°€ë²ˆí˜¸ëŠ” [ <b>" + tempPW + "<b> ] ì…ë‹ˆë‹¤.")
+				.append("<a target='http://localhost:8080/imfind/login'>Imfind ë¡œê·¸ì¸ í™”ë©´ ì´ë™ </a>")
     			.toString());
     	sendMail.setFrom("szexdr@naver.com", "ImFind");
     	sendMail.setTo(email);

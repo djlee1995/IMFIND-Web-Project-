@@ -1,80 +1,79 @@
 package com.spring.imfind.el.EJ;
-
 import java.util.Date;
-
 public class PetVO {
-	private String Pat_PostNum; // 글번호
-	private String Pat_Title; // 글제목
-	private String Pat_Content; // 글내용
-	private Date Pat_Re_Date; // 등록날짜
-	private int Pat_Pay; //사례금
-	private String Pat_Or_File; // QR파일
-	private String Pat_Up_File; // UP파일
-	private String Pat_Name; // 애완동물 이름
-	private String Pat_LostDate; //동물 분실 날짜
-	private String Pat_Loc; // 동물 분실 위치
+	private String Pet_PostNum; // 글번호
+	private String Pet_Title; // 글제목
+	private String Pet_Content; // 글내용
+	private Date Pet_Re_Date; // 등록날짜
+	private String Pet_Pay; //사례금
+	private String Pet_Or_File; // QR파일
+	private String Pet_Up_File; // UP파일
+	private String Pet_Name; // 애완동물 이름
+	private String Pet_LostDate; //동물 분실 날짜
+	private String Pet_Loc; // 동물 분실 위치
 	private String Id; // 회원 ID
 	private String Contact; // 연락처
+	private String PayCode;
 	
-	public String getPat_PostNum() {
-		return Pat_PostNum;
+	public String getPet_PostNum() {
+		return Pet_PostNum;
 	}
-	public void setPat_PostNum(String pat_PostNum) {
-		Pat_PostNum = pat_PostNum;
+	public void setPet_PostNum(String pet_PostNum) {
+		Pet_PostNum = pet_PostNum;
 	}
-	public String getPat_Title() {
-		return Pat_Title;
+	public String getPet_Title() {
+		return Pet_Title;
 	}
-	public void setPat_Title(String pat_Title) {
-		Pat_Title = pat_Title;
+	public void setPet_Title(String pet_Title) {
+		Pet_Title = pet_Title;
 	}
-	public String getPat_Content() {
-		return Pat_Content;
+	public String getPet_Content() {
+		return Pet_Content;
 	}
-	public void setPat_Content(String pat_Content) {
-		Pat_Content = pat_Content;
+	public void setPet_Content(String pet_Content) {
+		Pet_Content = pet_Content;
 	}
-	public Date getPat_Re_Date() {
-		return Pat_Re_Date;
+	public Date getPet_Re_Date() {
+		return Pet_Re_Date;
 	}
-	public void setPat_Re_Date(Date pat_Re_Date) {
-		Pat_Re_Date = pat_Re_Date;
+	public void setPet_Re_Date(Date pet_Re_Date) {
+		Pet_Re_Date = pet_Re_Date;
 	}
-	public int getPat_Pay() {
-		return Pat_Pay;
+	public String getPet_Pay() {
+		return Pet_Pay;
 	}
-	public void setPat_Pay(int pat_Pay) {
-		Pat_Pay = pat_Pay;
+	public void setPet_Pay(String pet_Pay) {
+		Pet_Pay = pet_Pay;
 	}
-	public String getPat_Or_File() {
-		return Pat_Or_File;
+	public String getPet_Or_File() {
+		return Pet_Or_File;
 	}
-	public void setPat_Or_File(String pat_Or_File) {
-		Pat_Or_File = pat_Or_File;
+	public void setPet_Or_File(String pet_Or_File) {
+		Pet_Or_File = pet_Or_File;
 	}
-	public String getPat_Up_File() {
-		return Pat_Up_File;
+	public String getPet_Up_File() {
+		return Pet_Up_File;
 	}
-	public void setPat_Up_File(String pat_Up_File) {
-		Pat_Up_File = pat_Up_File;
+	public void setPet_Up_File(String pet_Up_File) {
+		Pet_Up_File = pet_Up_File;
 	}
-	public String getPat_Name() {
-		return Pat_Name;
+	public String getPet_Name() {
+		return Pet_Name;
 	}
-	public void setPat_Name(String pat_Name) {
-		Pat_Name = pat_Name;
+	public void setPet_Name(String pet_Name) {
+		Pet_Name = pet_Name;
 	}
-	public String getPat_LostDate() {
-		return Pat_LostDate;
+	public String getPet_LostDate() {
+		return Pet_LostDate;
 	}
-	public void setPat_LostDate(String pat_LostDate) {
-		Pat_LostDate = pat_LostDate;
+	public void setPet_LostDate(String pet_LostDate) {
+		Pet_LostDate = pet_LostDate;
 	}
-	public String getPat_Loc() {
-		return Pat_Loc;
+	public String getPet_Loc() {
+		return Pet_Loc;
 	}
-	public void setPat_Loc(String pat_Loc) {
-		Pat_Loc = pat_Loc;
+	public void setPet_Loc(String pet_Loc) {
+		Pet_Loc = pet_Loc;
 	}
 	public String getId() {
 		return Id;
@@ -88,14 +87,17 @@ public class PetVO {
 	public void setContact(String contact) {
 		Contact = contact;
 	}
-	
+	public String getPayCode() {
+		return PayCode;
+	}
+	public void setPayCode(String payCode) {
+		PayCode = payCode;
+	}
 	@Override
 	public String toString() {
-		return "PetVO [Pat_PostNum=" + Pat_PostNum + ", Pat_Title=" + Pat_Title + ", Pat_Content=" + Pat_Content
-				+ ", Pat_Pay=" + Pat_Pay + ", Pat_Or_File=" + Pat_Or_File + ", Pat_Up_File=" + Pat_Up_File
-				+ ", Pat_Name=" + Pat_Name + ", Pat_LostDate=" + Pat_LostDate + ", Pat_Loc=" + Pat_Loc + ", Id=" + Id
-				+ ", Contact=" + Contact + "]";
+		return "PetVO [Pet_PostNum=" + Pet_PostNum + ", Pet_Title=" + Pet_Title + ", Pet_Content=" + Pet_Content
+				+ ", Pet_Re_Date=" + Pet_Re_Date + ", Pet_Pay=" + Pet_Pay + ", Pet_Or_File=" + Pet_Or_File
+				+ ", Pet_Up_File=" + Pet_Up_File + ", Pet_Name=" + Pet_Name + ", Pet_LostDate=" + Pet_LostDate
+				+ ", Pet_Loc=" + Pet_Loc + ", Id=" + Id + ", Contact=" + Contact + ", PayCode=" + PayCode + "]";
 	}
-	
-	
 }

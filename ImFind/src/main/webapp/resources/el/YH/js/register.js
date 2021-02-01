@@ -221,3 +221,38 @@
 				  "099": "금융결제원"
 		}
 
+	// MJ Email chk
+	   function chkEmail(e){
+	      var email = e.target.value;
+	      
+	      
+	      $.ajax({
+	         url : './chkEmail',
+	         data : {'email' : email},
+	         beforeSend : function(xhr){
+	            if(e.target.value == ""){
+	               e.target.style = "border: 1px solid #ebebeb";
+	               e.target.innerText = '';
+	                xhr.abort();
+	            }
+	         },
+	         success : function(data){
+	            if(data == 'ok'){
+	               e.target.style = "border: 1px solid #A5FA52;";
+	               console.log(e.target)
+	               e.target.nextElementSibling.innerHTML = '사용가능한 이메일 입니다.'   
+	               
+	            }
+	            else{
+	            
+	               e.target.style = "border: 1px solid #F59991;";
+	               e.target.nextElementSibling.innerHTML = '중복된 이메일입니다.'
+	               e.target.value = ''; 
+	               e.target.setAttribute('placeholder', '새로운 이메일을 입력해 주세요.');
+	            }
+	         }, 
+	         error : function(){
+	            alert('email 중복검사 통신 실패')
+	         }
+	      })
+	   }

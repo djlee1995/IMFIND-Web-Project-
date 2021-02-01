@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.container {
+	width: 50vw;
+	margin: 0 auto;
+	padding-top : 100px;
+}
+
+.containerBtn{
+    display: flex;
+    justify-content: row;
+    
+}
+
+.section-mypage-title {
+	border-bottom: 4px solid black;
+	width: 100px;
+}
+
+.col-md-9 {
+	margin : auto 0;
+}
+
+div.table-container{
+	width : 73vw;
+	margin: 0 auto;
+}
+
+table#outout{
+	width : 80% !important;
+	font-size: 1.5rem !important;
+}
+
+a { 
+	text-decoration:none
+	
+}
+
+.btn btn-default btn-block {
+	display: flex;
+	justify-content: row;
+	width: 20px;
+	height: 20px;
+	
+}

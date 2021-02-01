@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 
@@ -40,16 +41,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 			ModelAndView modelAndView) throws Exception {
 		
 
-        logger.info("LoginInterceptor - {}", "login preHandle");
+        logger.info("LoginInterceptor - {}", "login postHandle");
         
 		HttpSession session = request.getSession();
 		Object loginUser =  request.getSession().getAttribute(LOGIN);
 		
 		if(loginUser != null) {
 
-			System.out.println("login post Handle id : " + (String)loginUser);
-			
-			
+			logger.info("login post Handle id : " + (String)loginUser);
+
 			if(!(StringUtils.isEmpty(request.getParameter("savePass")))) {
 				Cookie loginCookie = new Cookie(LOGIN_COOKIE, session.getId());
 				loginCookie.setPath("/imfind");
@@ -58,8 +58,5 @@ public class LoginInterceptor extends HandlerInterceptorAdapter implements Sessi
 				response.addCookie(loginCookie);
 			}
 		}
-		super.postHandle(request, response, handler, modelAndView);
-
 	}
-	
 }
