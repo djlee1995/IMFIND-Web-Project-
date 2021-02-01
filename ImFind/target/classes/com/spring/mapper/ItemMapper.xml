@@ -78,6 +78,7 @@ select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
 
   </update>
   <delete id="delete_data">
+
 	{CALL
      	BEGIN
      	delete from lostpost where lost_postnum = #{lost_PostNum};
@@ -86,7 +87,6 @@ select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
 	 	DELETE FROM liketo WHERE lost_postnum = #{lost_PostNum};
 	 	END
      }
-  	
 
   </delete>
     

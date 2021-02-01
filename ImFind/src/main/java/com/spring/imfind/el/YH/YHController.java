@@ -3,6 +3,7 @@ package com.spring.imfind.el.YH;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
+
+import com.spring.imfind.el.YS.ElVO;
 
 @Controller
 public class YHController {
@@ -302,7 +305,9 @@ public class YHController {
       else {
          return "email exists";
       }
-
    }
+   
+
+	 
 }
 

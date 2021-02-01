@@ -306,7 +306,103 @@
             }// error 끝.
           });// ajax 끝
    }
-   
+
+   function adjustmentList(){
+		
+	   $('#output').empty();
+	      
+       var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>정산관리</h1>'
+       //var form ='<tr><td width = "80px">회원ID</td><td width = "80px">주문번호</td><td width = "80px">결제금액</td><td width = "80px">결제상태</td><td width = "120px">결제승인시각</td><td width = "120px">결제승</td></tr>';
+       var form = '<tr>'
+ 			+'<td>글번호</td>'
+ 			+'<td>파인더</td>'
+ 			+'<td>거래상태</td>'
+ 			+'<td>거래완료일</td>'
+ 			+'<td>정산 금액</td>'
+ 			+'<td>정산 계좌</td>'
+ 			+'<td>은행</td>'
+ 			+'<td>계좌주</td>'
+ 			+'<td>정산 상태</td>'
+ 			+'<td>정산날짜</td>'
+			+'</td>'
+			
+       $('#output').append(title);
+       $('#output').append(form);
+      
+       $.ajax({
+          url : '/imfind/getAdjustmentList',
+          contentType : 'application/x-www-form-urlencoded:charset=utf-8',
+          
+          success : function(data){
+            $.each(data, function(index, item){
+               console.log(item)
+               
+     		  if(item.lost_PostNum == null){
+    			  postnum = item.pat_PostNum
+    			  href = './petinfo?Pet_PostNum='
+    		  }
+    		  else{
+    			  postnum = item.lost_PostNum
+    			  href = './iteminfo?lost_PostNum='
+    		  }
+    		  
+    		  if(item.adjustment_state == null){
+    			  adjustment_state = '미정산' + '<button type="button" value="승인" style="width:50px; height:30px;" onclick="giveMoeny()">정산</button></td>';
+    			  adjustment_date = '-'
+    		  }
+    		  else{
+    			  adjustment_state = '정산완료'
+   				  adjustment_date = moment(item.adjustment_date).format('YYYY-MM-DD');
+    		  }
+    		  
+    		  
+               var output='';
+               output += '<tr>'; 
+               output += '<td width = "80px">' + postnum+ '</td>';
+               output += '<td width = "80px">' + item.f_ID+ '</td>';
+               output += '<td width = "80px">' + item.deal_State + '</td>';
+               output += '<td width = "80px">' + item.Deal_Date + '</td>';
+               output += '<td width = "80px">' + item.pay_Amount + '</td>';
+               output += '<td width = "80px">' + item.account_Num + '</td>';
+               output += '<td width = "80px">' + item.bank + '</td>';
+               output += '<td width = "80px">' + item.account_holder + '</td>';
+               output += '<td width = "80px">' + adjustment_state + '</td>';
+               output += '<td width = "80px">' + adjustment_date + '</td>';
+               
+               output += '</tr>'
+               //console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
+               $('#output').append(output); //추가
+            }); //each 끝 
+            }, //success 끝
+            error:function(){
+                 alert("ajax통신 실패!!!");
+         }// error 끝.
+       });// ajax 끝
+   }
+   function giveMoeny(){
+	   
+	   document.querySelector('#output').addEventListener('click', function(e){
+		  	console.log(e.target)
+		  	var postNum = e.target.parentElement.parentElement.childNodes[0].innerText
+		  	var finder = e.target.parentElement.parentElement.childNodes[1].innerText
+		    alert('정산')
+		   
+		    $.ajax({
+	          url : '/imfind/giveMoney',
+	          contentType : 'application/x-www-form-urlencoded:charset=utf-8',
+	          data : {"Lost_PostNum" : postNum, "F_ID" : finder},
+	          success : function(data){
+	        	  console.log(data)
+	        	  window.location.href = './adminhome'
+	          },
+	          error : function(){
+	        	 
+	          } 
+		   
+		    });
+	   });
+   }
+
    </script>
    
    <style type="text/css">
@@ -358,6 +454,9 @@
     <div class="admin">
       <a href="javascript:memberList()">회원관리</a>
       <a href="javascript:payList()">결제관리</a>
+
+      <a href="javascript:adjustmentList()">정산관리</a>
+
    <div>전체<input type="radio" name="paymenu" value="total" onclick="payList()"checked>
    결제건<input type="radio" id="paid" name="paymenu" value="paid" onclick="paidList()">
    환불건<input type="radio" id="refund" value="refund" name="paymenu" value="refund" onclick="refundList()"></div>
@@ -422,4 +521,5 @@
        }).buttons().container().appendTo('#output_wrapper .col-md-6:eq(0)');
    });
 </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </html>

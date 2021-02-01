@@ -378,18 +378,24 @@
    margin-bottom: 5px;
   }
  .swiper-container.siren {
-      width: 200px;
+      width: 500px;
+      height: 100%;
+      margin : 0;
+   }
+ .swiper-container.siren2 {
+      width: 400px;
       height: 100%;
    }
-
- 
+ .swiper-slide.fh5co-blog.siren{
+ 	width : 500px;
+ } 
    </style>
    
 <script>
 
 function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
-   }
+}
 
 function getXY (getUserLocation){
    
@@ -458,7 +464,7 @@ function getListNearMe(item){
                                     +'<p>'+ item.lost_Loc +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
                                  +'</div>'  + '</a>';
-            parentNode.appendChild(colNode);
+            	parentNode.appendChild(colNode);
             });
       },
       error : function(data){
@@ -570,15 +576,24 @@ document.addEventListener('DOMContentLoaded', function(){
       slidesPerView: 1,
       direction : 'horizontal',
       loop : true,
-      spaceBetween: 10,
+      
+    }); 
+    
+    // swiper 초기화 시키기
+    var swiperSiren = new Swiper('.swiper-container.siren2',{
+       
+      slidesPerView: 1,
+      direction : 'horizontal',
+      loop : true,
+/*       spaceBetween: 10, */
 /*       observer: true, */
       
       pagination : {
-         el: '.swiper-pagination.siren',
+         el: '.swiper-pagination.siren2',
          clickable: true,
       },
     }); 
-
+    
     var result = getXY(getUserLocation);
     
 });
@@ -623,11 +638,13 @@ document.addEventListener('DOMContentLoaded', function(){
                         <%} %>
                     </div>
                  </div>
-                  <div class="swiper-container siren">
+
+                  <div class="swiper-container siren2">
                          <div class="swiper-wrapper siren">
-                               <%for(PetVO vo : petvo){ %>
-                     <div class="swiper-slide fh5co-blog siren">
-                           <div class="thumb">
+                            <%for(PetVO vo : petvo){ %>
+                     	    <div class="swiper-slide fh5co-blog siren">
+                            <div class="thumb">
+
                               <%if(vo.getPet_Up_File() == "0") {%>
                                  <img alt="" src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
                               <%}else{ %>
@@ -822,6 +839,7 @@ document.addEventListener('DOMContentLoaded', function(){
                	  <li><a href="./chart">chart</a></li>
                   <li><a href="#">if</a></li>
                   <li><a href="#">else</a></li>
+                  <li><a href="./test">약관</a></li>
                   <li><a href="https://www.lost112.go.kr/">Lost112</a></li>
                   <li><a href="https://www.seoul.go.kr/v2012/find.html">대중교통 통합분실물센터</a></li>
                </ul>

@@ -132,6 +132,7 @@ function reply(com_Num) {
 }
 
 function replyinsert(com_Num) {
+
    var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+''+'&pet_postnum='+Pet_PostNum+'';
    console.log(insertdata)
    $.ajax({
@@ -176,6 +177,7 @@ function replyList() {
 	    		   a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
 		             a+='아이디:'+value.id+'';
 		             a+='날짜:'+moment(value.re_date).format('YY-MM-DD HH:mm')+'</div>';
+
 	            $('#re_content'+value.com_num).append(a);
 	    	   }
 	       });

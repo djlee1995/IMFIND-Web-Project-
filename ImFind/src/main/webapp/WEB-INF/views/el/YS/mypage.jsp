@@ -74,8 +74,48 @@
                          <div class="row">
                             <div class="col"> &nbsp;<h4> ${kakaoLoginUser}  ${loginUser} </h4></div>
                             <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;"><a href="./modify">수정</a></button></div>
+
+                            <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;"><a href="./delete">회원탈퇴</a></button></div>
                             <div class="col" style="padding-left: 38px; padding-top:20px"><h4>나의 매너 점수</h4></div>
-                            <div class="col"><p style="padding-top: 28px;">★★★★★</p></div>
+                            <!------------------ 매너평가의 별점의 결과를 출력 하는 공간 START 1.28 연수----------------------------------->                
+							 <div class="col" ID=show_Grade_Rating> 
+							    <!--   <p>★★★★★</p>   -->
+							      <div class="grade">   
+								<div class="showGrade">
+									   <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
+									    width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
+									     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+								         <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+								         </path>         
+								       </svg>
+							          <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
+									    width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
+									     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+								         <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+								         </path>         
+								       </svg>
+							          <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
+									    width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
+									     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+								         <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+								         </path>         
+								       </svg>
+							          <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
+									    width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
+									     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+								         <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+								         </path>         
+								         </svg>
+							          <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
+									    width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
+									     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+								        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+								        </path>         
+								        </svg>     
+								</div>
+							</div>	
+							<!------------------ 매너평가의 별점의 결과를 출력 하는 공간 END ---------------------------->    
+
                             <div class="col"> &nbsp; </div>
                          </div>
                    </blockquote>
@@ -131,7 +171,9 @@
                   </div>
                 </div>    <!-- 202101240429_test -->
                 <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" id="input_grade" >파인더 평점 입력 완료</button> 
+
+                     <button type="button" class="btn btn-primary" id="input-grade" >파인더 평점 입력 완료</button> 
+
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
            </div>
@@ -147,9 +189,13 @@
          <div class="card">
              <div class="card-header p-2">
                <ul class="nav nav-pills">
-                 <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getItemList()" data-toggle="tab">분실물 작성글</button></li>
+               <!-- 1.28 은지 유희 -->
+				<li class="nav-item"><button class="btn btn-default btn-block"  onclick="getItemList()" data-toggle="tab">분실물 작성글</button></li>
+                 <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getCommentList()"data-toggle="tab">분실물 댓글</button></li>
                  <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getPetList()"data-toggle="tab">분실동물 작성글</button></li>
+                 <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getPetCommentList()"data-toggle="tab">분실동물 댓글</button></li>
                  <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getPayList()" data-toggle="tab">사례금 결제내역</button></li>
+                 <li class="nav-item"><button class="btn btn-default btn-block"  onclick="getMoeny()" data-toggle="tab">정산내역</button></li>
                </ul>
              </div>
              <!-- /.card-header -->

@@ -4,8 +4,14 @@
       var gu;
       var dong;
 jQuery(document).ready(function(){
-   listdata();
-    
+
+	if ( sessionStorage.length != ""){
+		ShowStorage();
+		listdata();
+	} else {
+		listdata();
+	}
+		 
    $(".js-example-basic-single").select2();
       
    
@@ -423,3 +429,30 @@ function enterkey() {
 		}
 }
 
+
+  function ShowStorage() { 
+	   
+	   var storage = document.getElementById("storage"); 
+	   
+	   arr = sessionStorage
+	   arr = JSON.parse(sessionStorage.getItem('test'));
+	   console.log(arr)
+	   storage.innerHTML = ""; 
+	   storage.innerHTML += '<div class="list">';
+	   storage.innerHTML += '<h5>최근 본 게시글</h5>';
+		  
+	   var i;
+	   for(i = 0; i < arr.length; i++) { 
+		 //for(arr[i]= i; arr[i] <= 5; arr[i]++) { 	   
+		   var img = arr[i].lost_up_file; // 세션 스토리지에 키값을 얻는다. 
+		   var title = arr[i].lost_Title;
+		   var postnum = arr[i].postnum;
+	
+		   storage.innerHTML += '<div class="historybox">';
+		   storage.innerHTML +='<tr><td><a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a></td></tr>';
+		   storage.innerHTML += title +'</br>';
+		   storage.innerHTML += '</div>';
+		// }	  
+	   }
+	   storage.innerHTML += '</div>';
+   }

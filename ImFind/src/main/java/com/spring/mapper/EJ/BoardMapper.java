@@ -2,6 +2,7 @@ package com.spring.mapper.EJ;
 import java.util.List;
 
 import com.spring.imfind.el.EJ.BoardVO;
+import com.spring.imfind.el.EJ.ComVO;
 import com.spring.imfind.el.EJ.LostComVO;
 import com.spring.imfind.el.EJ.MemberVO;
 import com.spring.imfind.el.EJ.PayVO;
@@ -44,5 +45,14 @@ public interface BoardMapper {
    public List<BoardVO> gethighsetLostPay() throws Exception;
    public List<PetVO> gethighsetPetPay() throws Exception;
    public int addPayBoardNum(BoardVO vo);
+
+   public BoardVO getPostNum(BoardVO vo) throws Exception;
+   public int addPayPetBoardNum(PetVO vo) throws Exception;
+   public PetVO getPetPostNum(PetVO boardvo) throws Exception;
+   
+ //은지 마이페이지 댓글 리스트
+   public List<ComVO> getCommentList(String id);
+   public List<ComVO> getPetCommentList(String id);
+   public int deleteMember(MemberVO membervo) throws Exception; //회원탈퇴
 }
 
