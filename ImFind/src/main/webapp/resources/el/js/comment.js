@@ -139,8 +139,8 @@ function reply(com_Num) {
 }
 
 function replyinsert(com_Num) {
-   var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+'';
-   console.log(insertdata)
+   var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+''+'&lost_postnum='+lost_PostNum+'';
+   console.log(lost_PostNum)
    $.ajax({
       url : '/imfind/reply_insert',
       type : 'POST',
@@ -172,7 +172,7 @@ function replyList() {
           var a='';
              a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
              a+='아이디:'+value.id+'';
-             a+='날짜:'+value.re_date+'';
+             a+='날짜:'+moment(value.re_date).format('YY-MM-DD HH:mm')+'';
            
              a+='<button type="button" onclick="replyupdate_form('+value.re_num+',\''+value.re_content+'\');">수정</button>';
             a+='<button type="button" onclick="replydelete('+value.re_num+');">삭제</button></div>';
@@ -180,7 +180,9 @@ function replyList() {
     	   }
     	   else{
     		   var a='';
-               a+='<div> ->'+value.re_content+'';
+    		   a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
+               a+='아이디:'+value.id+'';
+               a+='날짜:'+moment(value.re_date).format('YY-MM-DD HH:mm')+'</div>';
             $('#re_content'+value.com_num).append(a);
     	   }
        });

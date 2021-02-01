@@ -110,22 +110,7 @@ function img(){
 		    	if(data.length==0){
 		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
 			    	$('#like_cnt').text("0");
-	    			/* $.ajax({
-	    				    url: "./likeCount",
-	    				    //type : 'POST',
-	    				    data : {'lost_PostNum':lost_PostNum},
-	    				      async:false,
-	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-	    				      //dataType:'json',
-	    				    success: function(data) {
-	    				    	console.log(data)
-	    				    	
-	    				    
-	    				    },
-	    				    error: function(request, status, error){
-	    				      alert("좋아요 에러");
-	    				    }
-	    				  });*/
+	    			
 		    	}else{
 		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
 	    			 $.ajax({
@@ -145,6 +130,7 @@ function img(){
 	    				      alert("좋아요 에러");
 	    				    }
 	    				  });
+	    			 
 		    	 $.each(data,function(index,item) {
 		    		 
 		    		 if(loginUser==item.id && lost_PostNum == item.lost_PostNum){

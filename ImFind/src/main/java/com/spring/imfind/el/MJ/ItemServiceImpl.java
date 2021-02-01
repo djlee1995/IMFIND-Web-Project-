@@ -138,15 +138,16 @@ public class ItemServiceImpl implements ItemService {
 		int res = mapper.petupdate_data(vo);
 		return res;
 	}
-	//좋아요
+
+	// 좋아요
 	@Override
-	public int like_plus(int lost_PostNum,String id) {
+	public int like_plus(int lost_PostNum, String id) {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		return mapper.like_plus(lost_PostNum, id);
 	}
 
 	@Override
-	public int like_cancel(int lost_PostNum,String id) {
+	public int like_cancel(int lost_PostNum, String id) {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		return mapper.like_cancel(lost_PostNum, id);
 	}
@@ -161,6 +162,25 @@ public class ItemServiceImpl implements ItemService {
 	public int likeCount(int lost_PostNum) {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		return mapper.likeCount(lost_PostNum);
+	}
+
+	// 좋아요(pet)
+	@Override
+	public int pet_like_plus(int Pet_PostNum, String id) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		return mapper.pet_like_plus(Pet_PostNum, id);
+	}
+
+	@Override
+	public int pet_like_cancel(int Pet_PostNum, String id) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		return mapper.pet_like_cancel(Pet_PostNum, id);
+	}
+
+	@Override
+	public int pet_likeCount(int Pet_PostNum) {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		return mapper.pet_likeCount(Pet_PostNum);
 	}
 
 }

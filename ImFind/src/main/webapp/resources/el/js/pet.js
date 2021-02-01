@@ -237,8 +237,8 @@ function selectBtn() {
 }
        /* 민정 검색버튼 */
       document.querySelector('.btn').addEventListener('click', function click() {
-         var lost_Title = $("input[name=input-search]").val();
-         if (lost_Title ==""){
+         var Pet_Title = $("input[name=input-search]").val();
+         if (Pet_Title ==""){
             alert('검색어를 입력해주세요')
             return false;
          }//if 
@@ -249,6 +249,7 @@ function selectBtn() {
               //type : 'POST',
               success : function(data) {
             $('.card-wrapper').empty();
+            var output = '';
             $.each(data,function(index,item) {   
             	 if(item.pet_Up_File == '0'){
                      pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
@@ -289,8 +290,8 @@ function selectBtn() {
       //엔터
 function enterkey() {
     if (window.event.keyCode == 13) {
-       var pet_Title = $("input[name=input-search]").val();
-      if (pet_Title ==""){
+       var Pet_Title = $("input[name=input-search]").val();
+      if (Pet_Title ==""){
          alert('검색어를 입력해주세요')
          return false;
       }//if 
@@ -301,6 +302,7 @@ function enterkey() {
            //type : 'POST',
           success : function(data) {
             $('.card-wrapper').empty();
+            var output = '';
             $.each(data,function(index,item) {   
             	 if(item.pet_Up_File == '0'){
                      pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
@@ -315,7 +317,7 @@ function enterkey() {
                  pet_Loc = item.pet_Loc;
               }
                   formattedDate = getChangeDateString(item.pet_Re_Date)
-
+                 
                  output += '<div class="card-con">';
               output +=     '<a href = "./petinfo?Pet_PostNum='+item.pet_PostNum+'&getId='+item.id+'">';
               output +=       '<div class="photo">' + pet_Up_File +'</div>'

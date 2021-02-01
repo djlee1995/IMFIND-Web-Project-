@@ -107,8 +107,8 @@
         <selectKey keyProperty="re_num" order="BEFORE" resultType="int">
             select nvl(max(re_Num), 0)+1 from reply
         </selectKey>  
-          insert into reply (re_num,re_content,re_date,id,com_num)
-          values(#{re_num},#{re_content},sysdate,#{id},#{com_num})
+          insert into reply (re_num,re_content,re_date,id,com_num,lost_postnum)
+          values(#{re_num},#{re_content},sysdate,#{id},#{com_num},#{lost_postnum})
      </insert>
      
     <select id ="replyList"  resultType="replyVO">
@@ -155,8 +155,8 @@
         <selectKey keyProperty="re_num" order="BEFORE" resultType="int">
             select nvl(max(re_Num), 0)+1 from pet_reply
         </selectKey>  
-          insert into pet_reply (re_num,re_content,re_date,id,com_num)
-          values(#{re_num},#{re_content},sysdate,#{id},#{com_num})
+          insert into pet_reply (re_num,re_content,re_date,id,com_num,Pet_PostNum)
+          values(#{re_num},#{re_content},sysdate,#{id},#{com_num},#{pet_postnum})
      </insert>
      
     <select id ="pet_replyList"  resultType="replyVO">

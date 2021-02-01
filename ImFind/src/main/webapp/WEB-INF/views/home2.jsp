@@ -818,6 +818,8 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="col-md-4 col-md-push-1">
                <h4>Links</h4>
                <ul class="fh5co-footer-links">
+                  <li><a href="./child">아동</a></li>
+               	  <li><a href="./chart">chart</a></li>
                   <li><a href="#">if</a></li>
                   <li><a href="#">else</a></li>
                   <li><a href="https://www.lost112.go.kr/">Lost112</a></li>

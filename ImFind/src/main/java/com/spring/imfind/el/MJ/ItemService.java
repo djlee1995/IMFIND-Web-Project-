@@ -2,6 +2,8 @@ package com.spring.imfind.el.MJ;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.imfind.el.EJ.PetVO;
 
 public interface ItemService {
@@ -40,5 +42,11 @@ public interface ItemService {
 	public List<PetVO> getpetdata_info(int Pet_PostNum);
 
 	public int petupdate_data(PetVO vo);
+	
+	public int pet_like_plus(int Pet_PostNum,String id);
+
+	public int pet_like_cancel(int Pet_PostNum,String id);
+
+	public int pet_likeCount(int lost_PostNum);
 
 }
