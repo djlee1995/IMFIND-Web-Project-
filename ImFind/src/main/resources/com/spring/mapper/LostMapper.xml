@@ -69,7 +69,7 @@
              (SELECT #{x} v_x, #{y} v_y, 110979.309 r_x, 88907.949 r_y, 1500.000 v_z FROM dual)
         WHERE SQRT( POWER((v_x - x) * r_x, 2) +   POWER((v_y - y) * r_y, 2)) <![CDATA[ <= v_z and rownum < 50 ]]>
             AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
-            AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
+            AND y BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y order by lost_date desc
    </select>
 
 </mapper>

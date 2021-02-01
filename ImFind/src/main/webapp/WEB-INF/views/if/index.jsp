@@ -1,253 +1,325 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+   <!-- 실종아동 -->
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.net.URL"%>
+<%@page import="java.net.URLConnection"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.net.MalformedURLException"%>
+<%@page import="java.io.IOException"%>
+<!-- 실종아동 -->
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.net.URL"%>
+<%@page import="java.net.URLConnection"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.net.MalformedURLException"%>
+<%@page import="java.io.IOException"%>
 <!doctype html>
 <html lang="en">
 <head>
 <title>분실물 조회</title>
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- <link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
  --><link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+   rel="stylesheet">
+<link rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/if/css/style.css?after">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+<style>
+   /* MJ */
+.logoset{
+   display: flex;
+    justify-content: space-between;
+}
+.logonav{
+    background: white;
+}
+nav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    z-index: 100;
+}
+.top-logoset{
+    box-shadow: 0 2px 4px 0 hsl(0deg 0% 81% / 50%);
+    height: 73px !important;
+    display: flex;
+}
+.container-logoset{
+    width: 75vw;
+    margin: 0 auto;
+    padding: 0;
+}
+#logoimfindid{
+   padding: 5px 10px;
+    color: #000;
+}
+#logoimfindid{
+   text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Space Mono", Arial, serif;
+    color:#fff;
+    font-size: 31px;
+}
+#imfindspan{
+    color:blue;
+    position: relative;
+    font-size: 31px;
+    position: relative;
+    left: 168px;
+      font-weight: 700;
+    font-size: 42px;
+    bottom: 19px;
+}
+#logoimfindid > a{
+   font-family: "Space Mono", Arial, serif !important;
+   font-size: 42px;
+   padding: 29px 15px 15px 29px;
+    position: relative;
+    top: 22px;
+    right: 37px;
+   
+}
+.logoif,
+.logoesle,
+.logopolice,
+.logoetc,
+.logoselect,
+.logophone{
+   padding: 5px 10px;
+    color: #000;
+    font-family: "Noto sans KR", sans-serif;
+    font-size: 15px;
+    padding: 29px 15px 15px 29px;
+}
+.logomenuifelse{
+   display: flex;
+   float: right;
+    position: relative;
+    left: -47px;
+}
+}
+.manual > li {
+   text-transform: uppercase;
+    font-weight: 700;
+    font-size: 40px;
+    padding-left:1.5em;text-indent:-1.5em;
+    
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/if/css/style.css?after">
+}
+.h2o2 {
+   font-family: Roboto,Noto Sans KR, Arial, sans-serif;
+   margin: 39px;
+}
+.iseoulu{
+   padding: 0px 10px 10px 30px;
+   position: relative;
+    right: 11px;
+}
+   /* <!--FOOTER--> */
+
+.block-1 {
+   position: relative;
+    bottom: -17px;
+    left: 656px;
+}
+#link-3 {
+   position: relative;
+}
+.info11{
+   position: relative;
+   top: 104px;
+   left:270px;
+}
+.col-md-4 {
+   margin: 40px;
+}
+.miss-child{
+   width: 20%;
+   margin: 40px;
+   padding: 0 15px;
+}
+.col-box {
+   display: flex;
+   flex-direction: ROW;
+   
+   
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    /* line-height: 0em; */
+}
+
+.linkbox h4{
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+   line-height: 60px;
+}
+.contacebox h4{
+   margin: 0;
+    padding: 0;
+    font-weight: normal;
+   line-height: 60px;
+}
+.col-md-5{
+   margin: 40px;
+}
+.col-md-5 h4{
+   margin: 0;
+    padding: 0;
+    font-weight: normal;
+   line-height: 60px;
+   
+}
+</style>
 </head>
 <body>
 
-
-
-
-	<div class="wrapper d-flex align-items-stretch">
-		<!-- style="background-image: url(${pageContext.request.contextPath}/resources/if/images/bg_1.jpg); -->
-		
-		<nav id="sidebar" class="order-last" class="img">
-		
-			<div class="custom-menu">
-				<button type="button" id="sidebarCollapse" class="btn btn-primary">
-				</button>
-			</div>
-			
-			<div class="">
-				<h1>
-					<a href="#" class="logo">IF <span>분실물 조회</span></a>
-					<!-- <img style="cursor:pointer;" onclick="location.href='index'" width="30px" height="30px" src="./resources/if/images/find.jpg"> -->
-					
-				</h1>
-				<ul class="list-unstyled components mb-5">
-				<!-- 메뉴 버튼 추가시 li 태그 추가하면 됨. -->
-					<li class="active">
-						<a href="index.if"><span class="fa fa-map mr-3"></span>경찰청</a>
-					</li>
-					<li>
-						<a href="etc_index.if"><span class="fa fa-map mr-3"></span>etc</a>
-					</li>
-					<li>
-						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
-					</li>
-					<li>
-						<a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')"><span class="fa fa-phone mr-3"></span>핸드폰</a>
-					</li>
-				</ul>
-				<div class="police">
-				
-				<div class="manual">
-				<h4>이용방법</h4>
-				<li>마커이미지를 클릭하시면 공공기관 이름이 나와요!!</li>
-				<li>공공기관명을 클릭하면 해당 공공기관의 정보와 분실물이 나와요!!</li>
-				<li>주소 옆 이미지를 누르면 쉽게 길을 찾을 수  있어요!!</li>
-				<li>분실물을 누르면 해당 분실물의 상세 정보를 알 수 있어요!!</li>
-				</div>
-				
-				</div>
-				<!-- 조회 리스트 뿌려줄 공간 -->
-				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
-				<div class="nav-content" style="height:550px;">
-					<div class="movie"><iframe width="450" height="315" src="https://www.youtube.com/embed/3XYyHq2JBn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					</table>
-					</div>
-					<table id="output">
-					</table>
-				</div>
-
-				
-				
-			</div>
-			<div class="footer">
-				<img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
-				<img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
-			</div>
-		</nav>
-
-		<!-- Page Content  -->
-		<div id="content" >
-			<!-- 지도 -->
-			<div id="map" style="width:100%; height:100%;">
-			
-			
-			</div>
-		</div>
-	</div>
-	<!-- The Modal -->
-    <div id="myModal" class="modal">
- 
-      <!-- Modal content -->
-      <div class="modal-content" style="width:30%">
-      			<p><br /></p>
-                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">빠르게 물건을 찾고싶나요?</span></b></span></p>
-                <p style="text-align: center; line-height: 1.5;"> <img style="cursor:pointer;" onclick="location.href='index'" width="300px" height="300px" src="./resources/if/images/find.jpg"> <br /></p>
-                <p style="text-align: center; line-height: 1.5;"><span style="font-size: 14pt;"></span></p>
-                <p style="text-align: center; line-height: 1.5;"><b><span style="color: rgb(255, 0, 0); font-size: 14pt;">찾고싶으면 이미지를 클릭하세요!!</span></b></p>
-            <div class="pop_btn" onClick="close_pop();">
-                <span class="pop_bt"  style="font-size: 13pt; color:black;" >
-                     닫기
-                </span>
-            </div>
+   <nav class="logonav" role="logonavrole">
+      <div class="top-logoset">
+         <div class="container-logoset">
+            <div class="logoset">
+               <div class="logorow">
+                  <div class="logoimfind">
+                     <div id="logoimfindid" style="width: 90px;">
+                        <a href="./index.if">
+                        IMFIND
+                        <span id="imfindspan">.</span>
+                     </div>
+                  </div>
+               </div>
+                <div class="logomenuifelse">
+                   <div class="logoif">
+                      <a href="index.if">
+                         IF
+                      </a>
+                   </div>
+                   <div class="logoesle">
+                      <a href="./home.do">ELSE</a>
+                   </div>
+                   <div class="logopolice">
+                      <a href="index.if">경찰청</a>
+                   </div>
+                   <div class="logoetc">
+                      <a href="etc_index.if">etc</a>
+                   </div>
+                   <div class="logoselect">
+                      <a href="select.if">조회</a>
+                   </div>
+                  <div class="logophone">
+                     <a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')">핸드폰</a>
+                  </div>
+                </div>          
+            </div>             
+         </div>
       </div>
- 
-    </div>
-        <!--End Modal-->
-
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js" ></script> 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/main.js"></script>
-	 
-</body>
-
->>>>>>> ad770e57f7ddccdc6c80599f62592e4f58550ddd
-=======
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-<title>분실물 조회</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- <link type="text/css" href="style/jquery.jscrollpane.css" rel="stylesheet" media="all" />
- --><link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/if/css/style.css?after">
-</head>
-<body>
-
-
-
-
-	<div class="wrapper d-flex align-items-stretch">
-		<!-- style="background-image: url(${pageContext.request.contextPath}/resources/if/images/bg_1.jpg); -->
-		
-		<nav id="sidebar" class="order-last" class="img">
-		
-			<div class="custom-menu">
-				<button type="button" id="sidebarCollapse" class="btn btn-primary">
-				</button>
-			</div>
-			
-			<div class="">
-				<h1>
-					<a href="#" class="logo">IF <span>분실물 조회</span></a>
-					<!-- <img style="cursor:pointer;" onclick="location.href='index'" width="30px" height="30px" src="./resources/if/images/find.jpg"> -->
-					
-				</h1>
-				<ul class="list-unstyled components mb-5">
-				<!-- 메뉴 버튼 추가시 li 태그 추가하면 됨. -->
-					<li class="active">
-						<a href="index.if"><span class="fa fa-map mr-3"></span>경찰청</a>
-					</li>
-					<li>
-						<a href="etc_index.if"><span class="fa fa-map mr-3"></span>etc</a>
-					</li>
-					<li>
-						<a href="select.if"><span class="fa fa-list mr-3"></span>조회</a>
-					</li>
-					<li>
-						<a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')"><span class="fa fa-phone mr-3"></span>핸드폰</a>
-					</li>
-				</ul>
-				<div class="police">
-				
-				<div class="manual">
-				<h4>이용방법</h4>
-				<li>마커이미지를 클릭하시면 공공기관 이름이 나와요!!</li>
-				<li>공공기관명을 클릭하면 해당 공공기관의 정보와 분실물이 나와요!!</li>
-				<li>주소 옆 이미지를 누르면 쉽게 길을 찾을 수  있어요!!</li>
-				<li>분실물을 누르면 해당 분실물의 상세 정보를 알 수 있어요!!</li>
-				</div>
-				
-				</div>
-				<!-- 조회 리스트 뿌려줄 공간 -->
-				<!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
-				<div class="nav-content" style="height:550px;">
-					<div class="movie"><iframe width="450" height="315" src="https://www.youtube.com/embed/3XYyHq2JBn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>					</table>
-					</div>
-					<table id="output">
-					</table>
-				</div>
-
-				
-				
-			</div>
-			<div class="footer">
-				<img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG">
-				<img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG">
-			</div>
-		</nav>
-
-		<!-- Page Content  -->
-		<div id="content" >
-			<!-- 지도 -->
-			<div id="map" style="width:100%; height:100%;">
-			
-			
-			</div>
-		</div>
-	</div>
-	<!-- The Modal -->
-    <div id="myModal" class="modal">
- 
-      <!-- Modal content -->
-      <div class="modal-content" style="width:30%">
-      			<p><br /></p>
-                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">빠르게 물건을 찾고싶나요?</span></b></span></p>
-                <p style="text-align: center; line-height: 1.5;"> <img style="cursor:pointer;" onclick="location.href='index'" width="300px" height="300px" src="./resources/if/images/find.jpg"> <br /></p>
-                <p style="text-align: center; line-height: 1.5;"><span style="font-size: 14pt;"></span></p>
-                <p style="text-align: center; line-height: 1.5;"><b><span style="color: rgb(255, 0, 0); font-size: 14pt;">찾고싶으면 이미지를 클릭하세요!!</span></b></p>
-            <div class="pop_btn" onClick="close_pop();">
-                <span class="pop_bt"  style="font-size: 13pt; color:black;" >
-                     닫기
-                </span>
+   </nav>
+   <div class="wrapper d-flex align-items-stretch">
+      <!-- style="background-image: url(${pageContext.request.contextPath}/resources/if/images/bg_1.jpg); -->
+      <nav id="sidebar" class="order-last" class="img">
+         <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            </button>
+         </div>
+         <div class="" >
+            <!-- 조회 리스트 뿌려줄 공간 -->
+            <!-- 구역 표시때문에 border색 지정해줌 바꾸삼 -->
+            <div class="nav-content" style="height:835px;">
+             <div class="movie"><iframe width="450" height="315" src="https://www.youtube.com/embed/3XYyHq2JBn4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>               </table>
             </div>
+            <div class="iseouluset" style="box-shadow: 0 2px 4px 0 hsl(0deg 0% 81% / 50%);">
+               <div class="iseoulu" style="padding-left: 30px;">
+                  <img style="cursor:pointer;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG" title="경찰청 분실물 홈페이지로 이동합니다">
+                  <img style="cursor:pointer;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG" title="대중교총 분실물 홈페이지로 이동합니다">
+               </div>
+               <div class="police" >
+                  <div class="manual" >
+                     <h4 class="h2o2">이용방법</h4>
+                     <ul>
+                        <li> 주소 옆 이미지를 누르면 쉽게 길을 찾을 수 있어요.</li>
+                        <li> 이미지를 클릭하면 공공기관 이름이 나와요.</li>
+                        <li> 공공 기관명을 클릭하면 분실물 정보와 해당 기관을 확인할 수 있어요.</li>
+                        <li> 분실물을 선택하면 해당 분실물의 상세정보를 알 수 있어요.</li>
+                    </ul>
+                </div>
+               </div>
+           </div>
+               <table id="output" style="margin-left: 30px;">
+               </table>
+            </div>
+         </div>
+      </nav>
+      <!-- Page Content  -->
+      <div id="content" >
+         <!-- 지도 -->
+         <div id="map" style="width:100%; height:100%;">
+         </div>
       </div>
+   </div>
+   
+<!-- footer 시작 -->
+ <footer id="fh5co-footer" role="contentinfo" style="padding-top: 0px;padding-bottom: 0px;">
+      <div class="container" style="padding-bottom: 0px;">
+         
+         <div class="row row-pb-md" style="display:flex; margin-top: 0px; flex-wrap: nowrap; background-color: #efefef;">
+              <div class="col-md-4 ">  
+                  <img id="imfindlogo" src="${pageContext.request.contextPath}/resources/el/img/55.PNG" alt="" />
+              </div> 
+               <div class="col-box-set">
+                  <div class="col-box">  
+                       <div class="col-md-4 ">
+                          <div class="linkbox">
+                              <h4>Links</h4>
+                          </div>
+                           <ul class="fh5co-footer-links">
+                              <li><a href="index.if">if</a></li>
+                              <li><a href="./imfind">else</a></li>
+                              <li><a href="https://www.lost112.go.kr/">Lost112</a></li>
+                              <li><a href="https://www.seoul.go.kr/v2012/find.html">대중교통 통합분실물센터</a></li>
+                           </ul>
+                       </div>
+                 
+                        <div class="col-md-5 ">
+                           <div class="contacebox">
+                                 <h4>Contact Information</h4>
+                              </div>
+                           <ul class="fh5co-footer-links">
+                              <li>69, Jong-ro, Jongno-gu, Seoul, Republic of Korea YMCA </li>
+                           </ul>
+                        </div>
+                      </div>
+                     </div>
+               </div>
+            </div>     
+   </footer>
+<!— footer 끝 —>
+   
  
-    </div>
         <!--End Modal-->
-
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js" ></script> 
+   <script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js" ></script> 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/if/js/main.js"></script>
-	 
+   <script src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/if/js/main.js"></script>
+ 
 </body>
-
 </html>

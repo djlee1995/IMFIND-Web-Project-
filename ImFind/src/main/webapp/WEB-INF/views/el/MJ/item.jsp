@@ -222,7 +222,8 @@ section{
              <button class="selectBtn" onclick="selectBtn();">검색</button>
       </div> 
 
-      
+       <div id="storage"></div>
+       
       <div class="container1 cardLlst">
       
             <div class="card-wrapper">
