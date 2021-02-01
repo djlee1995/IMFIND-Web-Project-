@@ -27,13 +27,14 @@ public class ModifyController {
 	}	     
 	@RequestMapping(value="modify.do", produces="application/json; charset=UTF-8")
 		public String myinfo_update(LoginDTO dto) {
+		System.out.println("di");
 			Map<String, String> result = new HashMap<String, String>();
 			System.out.println(dto.toString());
 				dto.setAccount_holder(dto.getName());
 				int res = modifyService.updateMember(dto);
-				System.out.println(dto.toString());
+				System.out.println(res);
 				if(res == 1) {
-					return "home2";
+					return "el/YS/mypage";
 				}
 				else {
 					return "register";

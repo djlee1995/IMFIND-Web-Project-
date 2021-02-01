@@ -7,13 +7,6 @@ $("#datepicker").datepicker({
    
 });
 //  ------ 달력 js 끝 ------
-
-
-//  ------ 글 내용 js 시작 ------
-
-   
-
-   console.log(lost_PostNum)
    $.ajax({
       url: "datainfo.do", 
       //type: "POST",
@@ -34,73 +27,65 @@ $("#datepicker").datepicker({
       $('#datepicker').val(moment(data[0].lost_Date).format('YYYY-MM-DD'));
       $('#centerAddr2').val(data[0].lost_Loc);
       $('.title').val(data[0].lost_Title);
-
-      $('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
-      $('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
+      
+      $('#summernote').summernote({
+  		height :300,
+  		minHeight:null,
+  		maxHeight:null,
+  		focus:true,
+  		lang : "ko-KR",
+  		placeholder: '내용을 입력해주세요',
+  		toolbar: [
+             // [groupName, [list of button]]
+             ['Font Style', ['fontname']],
+             ['style', ['bold', 'italic', 'underline']],
+             ['font', ['strikethrough']],
+             ['fontsize', ['fontsize']],
+             ['color', ['color']],
+             ['para', ['paragraph']],
+             ['height', ['height']],
+             ['Insert', ['picture']],
+             ['Insert', ['link']],
+             ['Misc', ['fullscreen']]
+          ],
+  		callbacks: {
+  			//onImageUpload : function(files){
+  				//sendFile(files[0]);
+  			 onImageUpload: function(files, editor, welEditable) {
+  				 for (var i = files.length - 1; i >= 0; i--) {
+                      sendFile(files[i], this);
+                   }
+  			}
+  		}
+  	});
+  	
+  	function sendFile(file, el) {
+  		 console.log()
+  	       var form_data = new FormData();
+  	       form_data.append('file', file);
+  	   
+  	       $.ajax({
+  	         data: form_data,
+  	         type: "post",
+  	         url: './profileImage',
+  	         cache: false,
+  	         contentType: false,
+  	         enctype: 'multipart/form-data',
+  	         processData: false,
+  	         success: function(url) {
+  	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
+  	        	 	console.log(decodeURL)
+  	        		 $(el).summernote('editor.insertImage', url);
+  	         }
+  	       });
+  	     }
+  	$('#summernote').summernote('editor.pasteHTML', data[0].lost_Content);
+    $('#summernote').summernote('editor.pasteHTML',data[0].lost_Up_File);
+  	
       },
       error: function(e){console.log(e);}  
    });   
    
-   
-   function sendFile(file){
-      var data = new FormData();   
-      data.append("file",file);
-      $.ajax({
-         url: "./profileImage", //////여기 본인 주소! 
-         type: "POST",
-         enctype: 'multipart/form-data',
-         data: data,
-         cache: false,
-         contentType : false,
-         processData : false,
-         success: function(image){   
-         $('#summernote').summernote('insertImage',image);
-         },
-         error: function(e){console.log(e);}  
-      });   
-   }
-   
-// summernote 
-   $('#summernote').summernote({
-      height :300,
-      minHeight:null,
-      maxHeight:null,
-      focus:true,
-      lang : "ko-KR",
-      placeholder: '내용을 입력해주세요',
-      callbacks: {
-         
-          onImageUpload: function(files, editor, welEditable) {
-             for (var i = files.length - 1; i >= 0; i--) {
-                     sendFile(files[i], this);
-                  }
-         }
-      }
-   });
-   
-   function sendFile(file, el) {
-       console.log()
-          var form_data = new FormData();
-          form_data.append('file', file);
-      
-          $.ajax({
-            data: form_data,
-            type: "post",
-            url: './profileImage',
-            cache: false,
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function(url) {
-                  var decodeURL = decodeURIComponent(url, 'utf-8');
-                  console.log(decodeURL)
-                  $(el).summernote('editor.insertImage', url);
-            }
-          });
-        }
-   
-   
-
    
  //ready
 //  ------ 글 내용 js 끝 ------
@@ -340,8 +325,6 @@ $('#openModalBtn').on('click', function(){
 $('#closeModalBtn').on('click', function(){
    $('#modalBox').modal('hide');
 });
-   
-
 
 function getFormatDate(date){
     var year = date.getFullYear();

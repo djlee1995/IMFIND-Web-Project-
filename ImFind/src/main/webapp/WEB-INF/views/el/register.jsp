@@ -251,7 +251,7 @@
                             <input type="date" id="inputGroupBirth" style="height:38px; width:73%;"/>
                         </div>
                         
-                               <div class="input-group mb-1" style="width:100%; margin-bottom:0;"">
+                         <div class="input-group mb-1" style="width:100%; margin-bottom:0;"">
                              <div class="input-group-prepend">
                                <label class="input-group-text" for="inputGroupSelect01" style="margin:0; height:38px;">은행명</label>
                              </div>
@@ -260,7 +260,7 @@
                              </select>
                               <input type="hidden" name="bank"/>
                         </div>
-                        
+                        		<input type="hidden" name="account_holder"> <!-- 추가 1.28 민정 -->
                                 <input type="number" id="account" name="account_num" placeholder="계좌번호를 입력하세요" required>
                                 <div class="site-btn certification-api account"><div>인증</div></div>
                             </div>
@@ -342,6 +342,10 @@
                getName(e);
             }
             //event.target.style.background = 'rgb(255, 255, 255)';
+            
+            if(e.target.id == 'email'){ // 추가 1.28 민정
+                chkEmail(e);
+             }
       });
    });
     </script>   
@@ -351,6 +355,5 @@
    <script src="${pageContext.request.contextPath}/resources/el/YH/js/register.js"></script>
   <!-- 모든 페이지에 공통 적용되는 js 파일입니다.  -->
    <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
-
 
 </html>

@@ -150,9 +150,9 @@
       
       @media(max-width : 500px){
          .row.siren{
-		 	display: flex;
-		 	flex-direction:column;
-		 }
+          display: flex;
+          flex-direction:column;
+       }
       }
       
       @media(min-width : 1200px){
@@ -161,34 +161,34 @@
              max-height: 493px;
          }
          .row.siren{
-		 	display: flex;
-		 }
-		 div.thumb > img{
-		 	width : 200px;
-		 	max-height: 200px !important;
-		 	object-fit: scale-down;
-		 }
-		 .fh5co-blog.siren{
-		  	display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-right: 15px;
-			border : 1px solid rgb(238, 238, 238);
-		 }
-	   	.blog-text.siren{
-		  	max-height: 225px;
-			height: 199px;
-			width: 367px;
-			margin:0;
-		 }
+          display: flex;
+       }
+       div.thumb > img{
+          width : 200px;
+          max-height: 200px !important;
+          object-fit: scale-down;
+       }
+       .fh5co-blog.siren{
+           display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-right: 15px;
+         border : 1px solid rgb(238, 238, 238);
+       }
+         .blog-text.siren{
+           max-height: 225px;
+         height: 199px;
+         width: 367px;
+         margin:0;
+       }
       }
       section{
           position: relative;
           top: 76px;
       }
       section#first{
-      	background : #FBF7F2;
-		padding-top: 28px;
+         background : #FBF7F2;
+      padding-top: 28px;
       }
       footer{
          position : relative;
@@ -315,74 +315,80 @@
        min-height: 20vh;
     } */
     .banner{
-    	width: 100%;
-    	margin-left : 0 !important;
-    	height: 342px !important;
+       width: 100%;
+       margin-left : 0 !important;
+       height: 342px !important;
     }
     .fh5co-blog.lost{
-    	width:220px;
-    	max-height: 209.3px !important;
+       width:220px;
+       max-height: 209.3px !important;
     }
     .fh5co-blog.lost > a > img{
-    	width : 100%!important;
-    	object-fit : scale-down !important;
+       width : 100%!important;
+       object-fit : scale-down !important;
     }
     .slider-text-bg {
-    	min-height: 221px !important;
+       min-height: 221px !important;
     }
     .flex-control-nav{
-    	top: 290px;
+       top: 290px;
     }
     .container-btn{
-    	margin-top: 0;
-		z-index: 8;
-		position: relative;
+       margin-top: 0;
+      z-index: 8;
+      position: relative;
     }
     .container-btn > .row{
-    	display :flex;
-    	justify-content: space-between;
+       display :flex;
+       justify-content: space-between;
     }
     span.posted_on{
-    	margin-right:72px !important;
+       margin-right:72px !important;
     }
     .col-sm-3 > div.card{
-    	border:rgb(238, 238, 238);
+       border:rgb(238, 238, 238);
     }
      /*MJ footer*/
   .col-md-push-1{
-  	position: relative;
-  	top:50px;
+     position: relative;
+     top:50px;
   }
   .col-md-12{
-  	display : flex;
-  	justify-content: space-between;
+     display : flex;
+     justify-content: space-between;
   }
   #imfindlogo {
-  	width : 250px;
-  	height :180px;
-  	position: relative;
-	right: 250px;
-	top: 50px;
+     width : 250px;
+     height :180px;
+     position: relative;
+   right: 250px;
+   top: 50px;
   }
   .block {
-  	position: relative;
-	left: 436px;
-  	margin: 0 auto;
+     position: relative;
+   left: 436px;
+     margin: 0 auto;
   }
   .row row-pb-md {
-  	position: relative;
-  	height :300px;
+     position: relative;
+     height :300px;
   }
   #siren{
-  	width: 33px;
-	margin-bottom: 5px;
+     width: 33px;
+   margin-bottom: 5px;
   }
  .swiper-container.siren {
-      width: 200px;
+      width: 500px;
+      height: 100%;
+      margin : 0;
+   }
+ .swiper-container.siren2 {
+      width: 400px;
       height: 100%;
    }
-
- 
+ .swiper-slide.fh5co-blog.siren{
+ 	width : 500px;
+ } 
    </style>
    
 <script>
@@ -391,7 +397,7 @@ var x;
 var y;
 function doPopupopen() { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
-   }
+}
 
 function getXY (getUserLocation){
    
@@ -448,10 +454,10 @@ function getListNearMe(item){
                colNode.className = 'swiper-slide';
                
                if(item.lost_Up_File == '0'){
-            	   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+                  lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
                }
                else{
-            	   lost_up_file = item.lost_Up_File
+                  lost_up_file = item.lost_Up_File
                }
                
                colNode.innerHTML = '<div class="fh5co-blog lost">'
@@ -463,7 +469,7 @@ function getListNearMe(item){
                                     +'<p>'+ item.lost_Loc +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
                                  +'</div>'  + '</a>';
-            parentNode.appendChild(colNode);
+            	parentNode.appendChild(colNode);
             });
       },
       error : function(data){
@@ -575,15 +581,24 @@ document.addEventListener('DOMContentLoaded', function(){
       slidesPerView: 1,
       direction : 'horizontal',
       loop : true,
-      spaceBetween: 10,
+      
+    }); 
+    
+    // swiper 초기화 시키기
+    var swiperSiren = new Swiper('.swiper-container.siren2',{
+       
+      slidesPerView: 1,
+      direction : 'horizontal',
+      loop : true,
+/*       spaceBetween: 10, */
 /*       observer: true, */
       
       pagination : {
-         el: '.swiper-pagination.siren',
+         el: '.swiper-pagination.siren2',
          clickable: true,
       },
     }); 
-
+    
     var result = getXY(getUserLocation);
     
 });
@@ -592,105 +607,67 @@ document.addEventListener('DOMContentLoaded', function(){
 </head>
    
 <body>
-	<% List<BoardVO> boardvo = (List<BoardVO>)request.getAttribute("boardvo"); %>
-	<% List<PetVO> petvo = (List<PetVO>)request.getAttribute("petvo"); %>
-	
+   <% List<BoardVO> boardvo = (List<BoardVO>)request.getAttribute("boardvo"); %>
+   <% List<PetVO> petvo = (List<PetVO>)request.getAttribute("petvo"); %>
+   
    <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
-
 
 
 <root>
 <div class="page"></div>
-	<section id="first">
-		<div class="container-btn">
-			<div class="container">
-	        	<h3 style="font-family : 'Noto Sans KR', sans-serif">   
-	        		<img src="${pageContext.request.contextPath}/resources/el/images/siren.svg"  alt="" id="siren"/>
-		        	긴급 찾습니다!
-	           </h3>
-		        <div class="row siren">
-		        	<div class="swiper-container siren">
-		        		<div class="swiper-wrapper siren">
-		        			<%for(BoardVO vo : boardvo){ %>
-				         	<div class="swiper-slide fh5co-blog siren">
-				         		<div class="thumb">
-				         			<%if(vo.getLost_Up_File() == "0") {%>
-				         				<img src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
-				         			<%}else{ %>
-				         				<%=vo.getLost_Up_File() %>
-				         			<%} %>
-				         		</div>
-				         		<div class="blog-text siren">
-			                       <span class="posted_on"><%=vo.getLost_Date() %></span>
-			                       <h3><a href="#"><%=vo.getLost_Content() %></a></h3>
-			                       <p><%=vo.getLost_Loc() %></p>
-			                    </div>
-			         	   </div>
-			         	   <%} %>
-		        		</div>
-		        	</div>
-	         	   <div class="swiper-container siren">
-       	   			   <div class="swiper-wrapper siren">
-       	   			   		<%for(PetVO vo : petvo){ %>
-							<div class="swiper-slide fh5co-blog siren">
-				         		<div class="thumb">
-				         			<%if(vo.getPet_Up_File() == "0") {%>
-				         				<img alt="" src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
-				         			<%}else{ %>
-				         				<%=vo.getPet_Up_File() %>
-				         			<%} %>
-			         			</div>
-				         		<div class="blog-text siren">
-			                       <span class="posted_on"><%=vo.getPet_LostDate() %></span>
-			                       <h3><a href="#"><%=vo.getPet_Title() %></a></h3>
-			                       <p><%=vo.getPet_Loc() %></p>
-			                    </div>
-			         	   </div>
-			         	   <%} %>
-       	   			   </div>
-	         	   </div>
-	         	   
-				</div>
-			</div>
-        </div>
-	</section>
-   <!-- 메인 광고 표시 -->
-<!--    <aside id="fh5co-hero" class="js-fullheight">
-      <div class="flexslider js-fullheight">
-         <ul class="slides">
-               <li>
-                  <div class="overlay-gradient"></div>
-                  <div class="container-fluid">
-                     <div class="row">
-                        <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
-                           <div class="slider-text-inner">
-                              <h1>공공기관이 습득한 분실물<br> 찾기 </h1>
-                           <h2>경찰청 + 대중교통 + 택시 + 지하철 + 기타 <a href="http://freehtml5.co/" target="_blank"></a></h2>
-                           <p class="ct"><a href="index.if">이동하기 <i class="icon-arrow-right"></i></a></p>
+   <section id="first">
+      <div class="container-btn">
+         <div class="container">
+              <h3 style="font-family : 'Noto Sans KR', sans-serif">   
+                 <img src="${pageContext.request.contextPath}/resources/el/images/siren.svg"  alt="" id="siren"/>
+                 긴급 찾습니다!
+              </h3>
+              <div class="row siren">
+                 <div class="swiper-container siren">
+                    <div class="swiper-wrapper siren">
+                       <%for(BoardVO vo : boardvo){ %>
+                        <div class="swiper-slide fh5co-blog siren">
+                           <div class="thumb">
+                              <%if(vo.getLost_Up_File() == "0") {%>
+                                 <img src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
+                              <%}else{ %>
+                                 <%=vo.getLost_Up_File() %>
+                              <%} %>
                            </div>
-                        </div>       
-                     </div>
-                  </div>
-               </li>
-         <li style="background-image: url(images/img_bg_2.jpg);">
-               <div class="overlay-gradient"></div>
-               <div class="container-fluid">
-                  <div class="row">
-                     <div class="banner col-md-offset-3 col-md-pull-3 js-fullheight slider-text slider-text-bg">
-                        <div class="slider-text-inner">
-                           <h1>찾으시는 물건이 없나요?</h1>
-                           <h2>ImFind가 분실물 실시간 알람과 위치 기반<a href="http://freehtml5.co/" target="_blank"></a></h2>
-                           <p class="ct"><a href="/imfind/">이동하기 <i class="icon-arrow-right"></i></a></p>
+                           <div class="blog-text siren">
+                                <span class="posted_on"><%=vo.getLost_Date() %></span>
+                                <h3><a href="#"><%=vo.getLost_Content() %></a></h3>
+                                <p><%=vo.getLost_Loc() %></p>
+                             </div>
                         </div>
-                     </div>             
+                        <%} %>
+                    </div>
+                 </div>
+                  <div class="swiper-container siren2">
+                         <div class="swiper-wrapper siren">
+                            <%for(PetVO vo : petvo){ %>
+                     	    <div class="swiper-slide fh5co-blog siren">
+                            <div class="thumb">
+                              <%if(vo.getPet_Up_File() == "0") {%>
+                                 <img alt="" src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
+                              <%}else{ %>
+                                 <%=vo.getPet_Up_File() %>
+                              <%} %>
+                           </div>
+                           <div class="blog-text siren">
+                                <span class="posted_on"><%=vo.getPet_LostDate() %></span>
+                                <h3><a href="#"><%=vo.getPet_Title() %></a></h3>
+                                <p><%=vo.getPet_Loc() %></p>
+                             </div>
+                        </div>
+                        <%} %>
+                         </div>
                   </div>
-               </div>
-            </li>
-           </ul>
+                  
+            </div>
+         </div>
         </div>
-   </aside> -->
-   <!-- 메인 광고 표시 끝  -->
-   
+   </section>  
    <!-- 공공데이터 구역  -->
    <section>
       <div class="container-police" id="police">
@@ -863,6 +840,7 @@ document.addEventListener('DOMContentLoaded', function(){
                <ul class="fh5co-footer-links">
                   <li><a href="#">if</a></li>
                   <li><a href="#">else</a></li>
+                  <li><a href="./test">약관</a></li>
                   <li><a href="https://www.lost112.go.kr/">Lost112</a></li>
                   <li><a href="https://www.seoul.go.kr/v2012/find.html">대중교통 통합분실물센터</a></li>
                </ul>

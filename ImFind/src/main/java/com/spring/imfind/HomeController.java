@@ -27,50 +27,58 @@ import com.spring.imfind.imf.PoliceVO;
 @Controller
 public class HomeController {
 
-	@Autowired
-	LostService lostService;
-	@Autowired
-	ItemService itemService;
-	@Autowired
-	BoardService boardService;
+   @Autowired
+   LostService lostService;
+   @Autowired
+   ItemService itemService;
+   @Autowired
+   BoardService boardService;
 
-	@RequestMapping(value = "home.do", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView modelAndView) throws Exception { 
-		
-		List<BoardVO> list = boardService.gethighsetLostPay();
-		List<PetVO> list2 = boardService.gethighsetPetPay();
-		
-		modelAndView.addObject("petvo", list2);
-		modelAndView.addObject("boardvo", list);
-		modelAndView.setViewName("home2");
-		
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="getNearXY")
-	public @ResponseBody Map<String, Object> listByRadius(@RequestParam("x") String x, @RequestParam("y") String y){
+   @RequestMapping(value = "home.do", method = RequestMethod.GET)
+   public ModelAndView home(ModelAndView modelAndView) throws Exception { 
+      
+      List<BoardVO> list = boardService.gethighsetLostPay();
+      List<PetVO> list2 = boardService.gethighsetPetPay();
+      
+      modelAndView.addObject("petvo", list2);
+      modelAndView.addObject("boardvo", list);
+      modelAndView.setViewName("home2");
+      
+      return modelAndView;
+   }
+   
+   @RequestMapping(value="getNearXY")
+   public @ResponseBody Map<String, Object> listByRadius(@RequestParam("x") String x, @RequestParam("y") String y){
 
-		List<PoliceVO> vo = lostService.getSimpleList(x, y);
-		List<BoardVO> boardVO;
-		for (PoliceVO policeVO : vo) { 
-			/* System.out.println(policeVO.toString()); */
-			try { String[] info = policeVO.getInfo().split("분실하신"); policeVO.setInfo(info[0]); }
-			catch(Exception e) { continue; } 
-		}
-		
-		List<IndexLostPostDTO> itemVO = itemService.getItembyDate();
-		for (IndexLostPostDTO policeVO : itemVO) { 
-			/* System.out.println(policeVO.toString()); */
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("police", vo);
-		map.put("item", itemVO);
-		
-		return map;
+      List<PoliceVO> vo = lostService.getSimpleList(x, y);
+      List<BoardVO> boardVO;
+      for (PoliceVO policeVO : vo) { 
+         /* System.out.println(policeVO.toString()); */
+         try { String[] info = policeVO.getInfo().split("분실하신"); policeVO.setInfo(info[0]); }
+         catch(Exception e) { continue; } 
+      }
+      
+      List<IndexLostPostDTO> itemVO = itemService.getItembyDate();
+      for (IndexLostPostDTO policeVO : itemVO) { 
+         /* System.out.println(policeVO.toString()); */
+      }
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("police", vo);
+      map.put("item", itemVO);
+      
+      return map;
 
-	}
-	@RequestMapping(value = "police", method = RequestMethod.GET)
-	   public String police() { 
-	      return "police";
+   }
+   @RequestMapping(value = "police", method = RequestMethod.GET)
+      public String police() { 
+         return "police";
     }
+   
+   
+   
+   // 약관 테스트를 위한 맵핑입니다. 
+   @RequestMapping("/test")
+   public String home2() {
+      return "el/YS/clause";
+   }
 }

@@ -8,6 +8,7 @@
 
 <style>
 	.container-fluid{
+
 /* 		border: 1px solid black; */
 		width: 75vw;
 		margin: 0 auto;
@@ -25,6 +26,7 @@
 	.top-menu{
 	    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
 		height : 73px !important;
+
 	}
 </style>
 

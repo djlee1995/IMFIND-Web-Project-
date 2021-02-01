@@ -4,8 +4,14 @@
       var gu;
       var dong;
 jQuery(document).ready(function(){
-   listdata();
-    
+
+	if ( sessionStorage.length != ""){
+		ShowStorage();
+		listdata();
+	} else {
+		listdata();
+	}
+		 
    $(".js-example-basic-single").select2();
       
    
@@ -243,7 +249,19 @@ function fn_option(code, name){
 	      success : function(data) {
 		    $('#output').empty();
 		    $.each(data,function(index,item) {   
-		    	
+		    	if(item.lost_Up_File == '0'){
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					}
+					else{
+					   lost_up_file = item.lost_Up_File;
+					}
+					
+					if(item.lost_Loc == null){
+						lost_Loc = '';
+					}
+					else{
+						lost_Loc = item.lost_Loc;
+					}
 		       var output = '';
 		       
                formattedDate = getChangeDateString(item.lost_Re_Date)
@@ -278,14 +296,19 @@ function enterkey() {
     	   $('.card-wrapper').empty();
     	   $.each(data,function(index,item) {  
                var output = '';
-              
                if(item.lost_Up_File == '0'){
-            	   lost_up_file = '<img src="./resources/images/no_img.png"/>';
-               }
-               else{
-            	   lost_up_file = item.lost_Up_File;
-               }
-               
+				   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+				}
+				else{
+				   lost_up_file = item.lost_Up_File;
+				}
+				
+				if(item.lost_Loc == null){
+					lost_Loc = '';
+				}
+				else{
+					lost_Loc = item.lost_Loc;
+				}
               formattedDate = getChangeDateString(item.lost_Re_Date)
                
 	          output += '<div class="card">';
@@ -341,3 +364,30 @@ function enterkey() {
 		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 		}
 }
+
+  function ShowStorage() { 
+	   
+	   var storage = document.getElementById("storage"); 
+	   
+	   arr = sessionStorage
+	   arr = JSON.parse(sessionStorage.getItem('test'));
+	   console.log(arr)
+	   storage.innerHTML = ""; 
+	   storage.innerHTML += '<div class="list">';
+	   storage.innerHTML += '<h5>최근 본 게시글</h5>';
+		  
+	   var i;
+	   for(i = 0; i < arr.length; i++) { 
+		 //for(arr[i]= i; arr[i] <= 5; arr[i]++) { 	   
+		   var img = arr[i].lost_up_file; // 세션 스토리지에 키값을 얻는다. 
+		   var title = arr[i].lost_Title;
+		   var postnum = arr[i].postnum;
+	
+		   storage.innerHTML += '<div class="historybox">';
+		   storage.innerHTML +='<tr><td><a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a></td></tr>';
+		   storage.innerHTML += title +'</br>';
+		   storage.innerHTML += '</div>';
+		// }	  
+	   }
+	   storage.innerHTML += '</div>';
+   }

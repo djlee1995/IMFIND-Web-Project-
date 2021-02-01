@@ -250,7 +250,7 @@
    </div>
    
    <div class="container commentBox">
-		<jsp:include page="../EJ/comment.jsp" flush="true" />   
+		<jsp:include page="../EJ/pet_comment.jsp" flush="true" />   
    </div>
 </section>
 
@@ -266,7 +266,7 @@
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=services"></script>
-<script src="${pageContext.request.contextPath}/resources/el/js/iteminfo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/el/js/petinfo.js"></script>
 
  <!-- Header Section Begin -->
  <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>

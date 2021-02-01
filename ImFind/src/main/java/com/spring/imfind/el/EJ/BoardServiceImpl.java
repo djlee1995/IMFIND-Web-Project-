@@ -141,25 +141,96 @@ public class BoardServiceImpl implements BoardService {
 	
 		return res;
 	}
-
-   
-   // 유희 인덱스
    @Override
-   public List<BoardVO> gethighsetLostPay() throws Exception {
+   public int pet_replyInsert(replyVO vo) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_replyInsert(vo);
+   }
+
+   @Override
+   public List<replyVO> pet_replyList() throws Exception {
+      BoardMapper boardMapper = 
+            sqlSession.getMapper(BoardMapper.class);
+      return boardMapper.pet_replyList();
+   }
+
+   @Override
+   public int pet_replyDelete(int re_num) throws Exception {
+      BoardMapper boardMapper = 
+            sqlSession.getMapper(BoardMapper.class);
+      return boardMapper.pet_replyDelete(re_num);
+   }
+   @Override
+   public List<LostComVO> pet_commentList(int Lost_PostNum) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_commentList(Lost_PostNum);
+   }
+
+   @Override
+   public int pet_commentInsert(LostComVO comment) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_commentInsert(comment);
+   }
+
+   @Override
+   public int pet_commentUpdate(LostComVO comment) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_commentUpdate(comment);
+   }
+
+   @Override
+   public int pet_commentDelete(int Com_Num) throws Exception {
+      BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      return boardMapper.pet_commentDelete(Com_Num);
+   }
+
+@Override
+public int replyUpdate(replyVO vo) throws Exception {
+	BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.replyUpdate(vo);
+}
+
+@Override
+public int pet_replyUpdate(replyVO vo) throws Exception {
+	BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+
+      
+      return boardMapper.pet_replyUpdate(vo);
+}
+// 유희 인덱스
+@Override
+public List<BoardVO> gethighsetLostPay() throws Exception {
 	   BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 	   List<BoardVO> list = boardMapper.gethighsetLostPay();
 	   return list;
-   }
-   
-   @Override
-   public List<PetVO> gethighsetPetPay() throws Exception {
+}
+
+@Override
+public List<PetVO> gethighsetPetPay() throws Exception {
 	   BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 	   List<PetVO> list = boardMapper.gethighsetPetPay();
 	   return list;
-   }
-
+}
+	
+	//YH
 	@Override
 	public int addPayBoardNum(BoardVO vo) throws Exception {
 		BoardMapper boardMapper =
@@ -167,6 +238,55 @@ public class BoardServiceImpl implements BoardService {
 	    int res = boardMapper.addPayBoardNum(vo);
 		return res;
 	}
-   
-   
+	//YH
+	@Override
+	public BoardVO getPostNum(BoardVO boardvo) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	    BoardVO vo = boardMapper.getPostNum(boardvo);
+	    System.out.println("게시글 번호 : " + vo.getLost_PostNum());
+		return vo;
+	}
+
+	@Override
+	public int addPayPetBoardNum(PetVO vo) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+	    int res = boardMapper.addPayPetBoardNum(vo);
+		return res;
+	}
+
+	@Override
+	public PetVO getPetPostNum(PetVO boardvo) throws Exception {
+		BoardMapper boardMapper =
+				sqlSession.getMapper(BoardMapper.class);
+		PetVO vo = boardMapper.getPetPostNum(boardvo);
+	    System.out.println("게시글 번호 : " + vo.getPet_PostNum());
+		return vo;
+	}
+	@Override
+	public List<ComVO> getCommentList(String id) {
+		BoardMapper boardMapper=sqlSession.getMapper(BoardMapper.class);
+		List<ComVO> commentList = boardMapper.getCommentList(id);
+		//System.out.println(elseList2.toString());
+		
+		return commentList;
+	}
+	@Override
+	public List<ComVO> getPetCommentList(String id) {
+		BoardMapper boardMapper=sqlSession.getMapper(BoardMapper.class);
+		List<ComVO> commentList = boardMapper.getPetCommentList(id);
+		//System.out.println(elseList2.toString());
+		
+		return commentList;
+	}
+	@Override
+    public int deleteMember(MemberVO membervo) throws Exception {
+        BoardMapper boardMapper =
+            sqlSession.getMapper(BoardMapper.class);
+        int res = boardMapper.deleteMember(membervo);
+        
+        return res;
+    }
+	
 }

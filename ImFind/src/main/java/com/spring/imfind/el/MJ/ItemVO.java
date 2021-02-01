@@ -18,7 +18,7 @@ public class ItemVO {
    private int Lost_Pay;
    private String Lost_Item; 
    private String Lost_Loc;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
    private Date Lost_Date;
    private String Id;
    private int Contact;

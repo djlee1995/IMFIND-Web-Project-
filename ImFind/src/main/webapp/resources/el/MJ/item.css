@@ -1,9 +1,9 @@
 
   .row1{
-  	display: flex;
-  	flex-wrap: wrap;
-  	margin-right: -15px;
-  	margin-left: -15px;
+     display: flex;
+     flex-wrap: wrap;
+     margin-right: -15px;
+     margin-left: -15px;
   }
   
   #custom-search-input{
@@ -57,50 +57,50 @@
 }
 
 .dropdown-select {
-	border: center;
+   border: center;
 }
 
 #ajax-test-div{
    display: flex;
-	flex-wrap: wrap;
+   flex-wrap: wrap;
     margin: 0 auto; 
     /*  중앙정렬  */
     padding: 56px;
 }
  .single-latest-blog{
-	border: 1px solid gray; 
-	width:94;
-	height:95;
+   border: 1px solid gray; 
+   width:94;
+   height:95;
  }
 .ajax-test-width {
    width:198px;
 }
 
 .blog {
-	font-weight:bold;
-	font-size:15px;
-	margin-left:10px;
-	padding-top:10px;
-	padding-bottom: 20px;
+   font-weight:bold;
+   font-size:15px;
+   margin-left:10px;
+   padding-top:10px;
+   padding-bottom: 20px;
 }
 
 .pay {
-	font-size: 17px;
+   font-size: 17px;
     font-weight: 600;
     margin-left: 10px;
 }
 .petcontainer1{
-  	padding: 39px 0;
+     padding: 39px 0;
   }
   
   .petrow1{
- 	display: flex;
-  	flex-wrap: wrap;
-  	margin-right: -15px;
-  	margin-left: -15px;
+    display: flex;
+     flex-wrap: wrap;
+     margin-right: -15px;
+     margin-left: -15px;
   }
   #petcustom-search-input{
-	padding: 3px;
+   padding: 3px;
     border: solid 1px #E4E4E4;
     border-radius: 6px;
     background-color: #fff;
@@ -108,7 +108,7 @@
 }
 
 #petcustom-search-input input{
-	border: 0;
+   border: 0;
     box-shadow: none;
     width: 400px;
 }

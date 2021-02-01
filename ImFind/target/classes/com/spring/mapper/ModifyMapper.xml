@@ -6,7 +6,7 @@
 	<select id="getMember" resultType="MemberVO">
       SELECT * FROM member where id=#{id}
 	</select> 
-	<update id = "updateMember" parameterType="com.spring.imfind.el.YH.LoginDTO">
+	<update id = "updateMember">
 		update member set pw = #{pw}, name=#{name}, contact=#{contact}, email=#{email}, account_num=#{account_num}, bank=#{bank}, account_holder=#{account_holder} where id= #{id}
 	</update>
 </mapper> 

@@ -1,88 +1,68 @@
 package com.spring.imfind.el.YS;
 import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+// F_id, 하나 더 아마 grade
 public class ElVO {
 	private int Lost_PostNum;
-	private String Lost_Title;   /* ������ */
-	private String Lost_Content;  /* �۳��� */
+	private String Lost_Title;   
+	private String Lost_Content;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Re_Date; /* ��¥(���) */
-	private int Lost_Re_Count;  /* ��ȸ�� */
-	private String Lost_Or_File; /* QR���� */
-	private String Lost_Up_File;  /* UP���� */
-	private int Lost_Pay; /* ��ʱݾ� */
-	private String Lost_Item; /* �нǹ��� */
-	private String Lost_Loc;  /* �н���ġ */
+	private Date Lost_Re_Date; 
+	private int Lost_Re_Count;  
+	private String Lost_Or_File; 
+	private String Lost_Up_File; 
+	private int Lost_Pay; 
+	private String Lost_Item; 
+	private String Lost_Loc;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Date;  /* �нǳ�¥ */
-	private String Id;  /* ȸ��ID */
-	private int Contact; /* ����ó */
-	private int Com_Num; /* ��۹�ȣ */
-	private String Com_Content; /* ��۳��� */
+	private Date Lost_Date;  
+	private String Id;  
+	private int Contact; 
+	private int Com_Num; 
+	private String Com_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Com_Date; /* ��۳�¥ */
-	//private String Id; /* ȸ��ID */
-	//private int Lost_PostNum;  /* �нǹ��۹�ȣ */
-	private int Not_Num;/* ��۹�ȣ */
-	//private String Sent_id; /* ����ID */
-	private String Receive_id;  /* �޴�ID */
-	private String Not_Content;  /* �۳��� */
-	private String Not_Or_File; /* OR���� */
-	private String Not_Up_File; /* UP���� */
-	private int Pet_PostNum;   /* �ֿϵ����۹�ȣ */
-	private String Pet_Title;  /* ������ */
-	private String Pet_Content; /* �۳��� */
+	private Date Com_Date; 
+	private int Not_Num;
+	private String Receive_id;  
+	private String Not_Content;  
+	private String Not_Or_File; 
+	private String Not_Up_File; 
+	private int Pet_PostNum;   
+	private String Pet_Title;  
+	private String Pet_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pet_Re_Date; /* ��¥(���) */
-	private int Pet_Pay; /* ��ʱݾ� */
-	private String Pet_Or_File; /* QR���� */
-	private String Pet_Up_File; /* UP���� */
-	private String Pet_Name; /* �ֿϵ����̸� */
+	private Date Pet_Re_Date; 
+	private int Pet_Pay; 
+	private String Pet_Or_File; 
+	private String Pet_Up_File; 
+	private String Pet_Name; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pet_LostDate; /* �ֿϵ����нǳ�¥ */
-	private String Pet_Loc; /* �ֿϵ����н���ġ */
-	//private int Contact; /* ����ó */
-	//private String id;/* ȸ��ID */
-	private String Pw; /* PW */
-	private String Name; /* �̸� */
-	//private int Contact; /* ����ó */
-	private String Email; /* E-mail */
-	private int Acount_Num; /* ���¹�ȣ */
-	private String Bank; /* ������� */
-	private String Account_holder; /* ������ */
+	private Date Pet_LostDate; 
+	private String Pet_Loc; 
+	private String Pw; 
+	private String Name; 
+	private String Email; 
+	private int Acount_Num; 
+	private String Bank; 
+	private String Account_holder; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Join_date; /* ���Գ�¥ */
-	//�̾ �۾�
-	private String PayCode; /* �����ڵ� */
-	private int Pay_Amount; /* ��ʱݾ� */
-	private String Pay_Way; /* ������� */
-	private String Pay_State; /* �������� */
+	private Date Join_date; 
+	private String PayCode; 
+	private int Pay_Amount; 
+	private String Pay_Way; 
+	private String Pay_State; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pay_Date; /* �������� */
-	private String Deal_State; /* �ŷ����� */
+	private Date Pay_Date; 
+	private String Deal_State; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Deal_Date;/* �ŷ���¥ */
-	//private String Id; /* �н�ȸ��ID */
-	private String F_ID; /* FinderID */ //������ �Ǿ��� ������ �ʿ䰡 ���� ���� �ϴ� �д�. 
-	//private int Lost_PostNum; /* �нǹ��۹�ȣ */
-	//private int Pat_PostNum;/* �ֿϵ����۹�ȣ */
-	private int Pet_ComNum; /* �ֿϵ�����۹�ȣ */
-	private String Pet_ComContent; /* ��۳��� */
+	private Date Deal_Date;
+	private String F_Id; 
+	private int Pet_ComNum; 
+	private String Pet_ComContent; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pet_ComDate; /* ��۳�¥ */
-	private int grade;//member table의 평점 
-	public int getGrade() {
-		return grade;
-	}
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
-	public int getPet_PostNum() {
-		return Pet_PostNum;
-	}
-	public void setPet_PostNum(int pet_PostNum) {
-		Pet_PostNum = pet_PostNum;
-	}
+	private Date Pet_ComDate; 
+	private int grade;
 	public int getLost_PostNum() {
 		return Lost_PostNum;
 	}
@@ -208,6 +188,12 @@ public class ElVO {
 	}
 	public void setNot_Up_File(String not_Up_File) {
 		Not_Up_File = not_Up_File;
+	}
+	public int getPet_PostNum() {
+		return Pet_PostNum;
+	}
+	public void setPet_PostNum(int pet_PostNum) {
+		Pet_PostNum = pet_PostNum;
 	}
 	public String getPet_Title() {
 		return Pet_Title;
@@ -347,11 +333,11 @@ public class ElVO {
 	public void setDeal_Date(Date deal_Date) {
 		Deal_Date = deal_Date;
 	}
-	public String getF_ID() {
-		return F_ID;
+	public String getF_Id() {
+		return F_Id;
 	}
-	public void setF_ID(String f_ID) {
-		F_ID = f_ID;
+	public void setF_Id(String f_Id) {
+		F_Id = f_Id;
 	}
 	public int getPet_ComNum() {
 		return Pet_ComNum;
@@ -371,6 +357,12 @@ public class ElVO {
 	public void setPet_ComDate(Date pet_ComDate) {
 		Pet_ComDate = pet_ComDate;
 	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	@Override
 	public String toString() {
 		return "ElVO [Lost_PostNum=" + Lost_PostNum + ", Lost_Title=" + Lost_Title + ", Lost_Content=" + Lost_Content
@@ -386,8 +378,9 @@ public class ElVO {
 				+ ", Name=" + Name + ", Email=" + Email + ", Acount_Num=" + Acount_Num + ", Bank=" + Bank
 				+ ", Account_holder=" + Account_holder + ", Join_date=" + Join_date + ", PayCode=" + PayCode
 				+ ", Pay_Amount=" + Pay_Amount + ", Pay_Way=" + Pay_Way + ", Pay_State=" + Pay_State + ", Pay_Date="
-				+ Pay_Date + ", Deal_State=" + Deal_State + ", Deal_Date=" + Deal_Date + ", F_ID=" + F_ID
+				+ Pay_Date + ", Deal_State=" + Deal_State + ", Deal_Date=" + Deal_Date + ", F_Id=" + F_Id
 				+ ", Pet_ComNum=" + Pet_ComNum + ", Pet_ComContent=" + Pet_ComContent + ", Pet_ComDate=" + Pet_ComDate
 				+ ", grade=" + grade + "]";
 	}
+	
 }

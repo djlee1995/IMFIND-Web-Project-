@@ -1,12 +1,23 @@
+
 package com.spring.imfind.el.MJ;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.spring.imfind.el.EJ.PetVO;
 @Controller
 public class MJController {
@@ -25,6 +36,7 @@ public class MJController {
    public String updatepage() {
       return "el/MJ/updateitem";
    }
+ 
    @RequestMapping(value = "/deletepage", produces = "application/json;charset=UTF-8")
    public String deletepage(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
       itemService.delete_data(lost_PostNum);
@@ -63,19 +75,34 @@ public class MJController {
       Matcher match = pattern.matcher(content);
       String Lost_Up_File = null;
       String uploadPath = "C:\\Project\\WebProject\\upload\\";
+      //String uploadPath = "/Users/hongmac/Documents/upload/"; 
+
       if (match.find()) {
          Lost_Up_File = match.group(0);
+         vo.setLost_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
+
       }
-      vo.setLost_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
       // Lost_Content부분에 있는 태그들 자르기
-      vo.setLost_Content(vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-      String replace1 = vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-      String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-      vo.setLost_Content(replace2);
-      System.out.println("업데이트 vo2 " + vo);
-      itemService.update_data(vo);
-      System.out.println("업데이트 vo3 " + vo);
-      return "redirect:/item";
+      if (vo.getLost_Up_File() == null) {
+			System.out.println("Lost_Up_File"+Lost_Up_File);
+			String noimg = "0";
+			System.out.println(noimg);
+			vo.setLost_Up_File(noimg);
+			
+		}
+		//Lost_Content부분에 있는 태그들 자르기
+	    vo.setLost_Content(vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
+	    String replace1 = vo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
+	    String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
+	   // String replace4 = boardvo.getLost_Item().replaceAll("있음,", ""); // name
+	    vo.setLost_Content(replace2);
+	  
+	   // boardvo.setLost_Item(replace4);
+	    
+	    
+	    itemService.update_data(vo);
+	     
+	     return "redirect:/item";
    }
    // Pet
    @RequestMapping("/pet")
@@ -120,26 +147,5 @@ public class MJController {
       List<PetVO> list = itemService.getpetdata_info(Pet_PostNum);
       return list;
    }
-   @RequestMapping("/petupdate.do")
-   public String petupdate_data(PetVO vo) {
-      System.out.println("업데이트 vo " + vo);
-      Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
-      String content = vo.getPet_Content();
-      Matcher match = pattern.matcher(content);
-      String Pet_Up_File = null;
-      String uploadPath = "C:\\Project\\WebProject\\upload\\";
-      if (match.find()) {
-         Pet_Up_File = match.group(0);
-      }
-      vo.setPet_Up_File(Pet_Up_File); // 이미지 태그 Lost_Up_File에 삽입
-      // Lost_Content부분에 있는 태그들 자르기
-      vo.setPet_Content(vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
-      String replace1 = vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
-      String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
-      vo.setPet_Content(replace2);
-      System.out.println("업데이트 vo2 " + vo);
-      itemService.petupdate_data(vo);
-      System.out.println("업데이트 vo3 " + vo);
-      return "redirect:/pet";
-   }
+   
 }

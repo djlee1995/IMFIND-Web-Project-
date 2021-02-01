@@ -12,6 +12,8 @@ import com.spring.mapper.MJ.ItemMapper;
 
 @Service
 public class ItemServiceImpl implements ItemService{
+
+
    @Autowired
    private SqlSession sqlSession;
    
@@ -107,6 +109,7 @@ public class ItemServiceImpl implements ItemService{
       int res  = mapper.petupdate_data(vo);
       return res;
    }
+
 }
 
  

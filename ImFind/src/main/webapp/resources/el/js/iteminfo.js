@@ -1,3 +1,5 @@
+var arr = [];
+
 
 $(document).ready(function() {
    
@@ -37,12 +39,53 @@ $(document).ready(function() {
 		$('#id').text(data[0].id);
 		
 		
-		
+		alert(lost_up_file, data[0].lost_Tilte)
+		 
+		if(data[0].lost_Up_File == '0'){
+	       	 lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+	        }else{
+	       	 lost_up_file = data[0].lost_Up_File;
+	        }
+		let flag = false;
+		//최근 본 게시글 
+		const bookmark = {
+			lost_up_file : lost_up_file,
+			lost_Title : data[0].lost_Title,
+			postnum : lost_PostNum
+		}
+	
+			if(sessionStorage.getItem('test') == null){
+				arr.push(bookmark)
+				sessionStorage.setItem('test', JSON.stringify(arr))
+				let test = sessionStorage.getItem('test')
+				console.log(test)
+				// ShowStorage();
+			}else{
+				var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
+				  // now let's check if the stored value is an array
+				for (let i = 0; i < oldBKInfo.length; i++){
+					console.log(oldBKInfo[i].postnum)
+					
+					if (oldBKInfo[i].postnum == lost_PostNum ) {
+						alert('중복입니다')
+						flag = true;
+						break;
+					}
+				}
+				if(flag == false){
+					if(!(oldBKInfo instanceof Array))
+						oldBKInfo = [oldBKInfo]; // if not, create one
+						oldBKInfo.push(bookmark); // push a new student inside of it
+						sessionStorage.setItem("test", JSON.stringify(oldBKInfo));
+				}
+				
+			}			
       },
       error : function() {
          alert("ajax통신 실패2")
       }
    });
+	   
    
    
 	   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -89,7 +132,7 @@ $(document).ready(function() {
 	   $(location).attr("href", "deletepage?lost_PostNum="+lost_PostNum+"");
 	});
 	   
-	});
+});
 
 function getChangeDateString(originalDate){
 	

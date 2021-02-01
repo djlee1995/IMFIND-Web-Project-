@@ -32,28 +32,28 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
     
-        	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
-	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-	<!-- 폰트 어썸 css -->
+           <!-- Theme style  -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
+   <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">    -->
+   <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+   <!-- 폰트 어썸 css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <!-- Animate.css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
     <!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
-	
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
-	
-	<!-- Modernizr JS -->
-	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
-	
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+   <!-- Icomoon Icon Fonts-->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">
+   
+   <!-- Magnific Popup -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
+   <!-- Flexslider  -->
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
+   
+   <!-- Modernizr JS -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
+   
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css">
       
     
@@ -150,54 +150,54 @@
       align-items: center;
    }
    .site-btn-policy{
-   		margin : 0;
-   		width: 93%;
-		height: 39px;
-		border-radius: 3px;
+         margin : 0;
+         width: 93%;
+      height: 39px;
+      border-radius: 3px;
    }
    .site-btn.certification-api.account > div{
       margin-bottom : 14px;
    }
-   	.fh5co-nav{
-		position: fixed;
-		top: 0;
-		width: 100vw;
-		left: 0;
-		z-index: 100;
-		padding-right : 35px;
-		padding-right : 18px !important;
-		background : white;
-	}
-	.fh5co-nav #fh5co-logo{
-		font-size : 31px;
-	}
-	.fh5co-nav ul li a {
-		font-family: 'Noto Sans KR', sans-serif;
-		font-weigth : bold;
-	    font-size: 15px;
-	    padding: 29px 15px;
-	    color: rgba(0, 0, 0, 0.7);
-	    -webkit-transition: 0.5s;
-	    -o-transition: 0.5s;
-	    transition: 0.5s;
-	}
+      .fh5co-nav{
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      left: 0;
+      z-index: 100;
+      padding-right : 35px;
+      padding-right : 18px !important;
+      background : white;
+   }
+   .fh5co-nav #fh5co-logo{
+      font-size : 31px;
+   }
+   .fh5co-nav ul li a {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weigth : bold;
+       font-size: 15px;
+       padding: 29px 15px;
+       color: rgba(0, 0, 0, 0.7);
+       -webkit-transition: 0.5s;
+       -o-transition: 0.5s;
+       transition: 0.5s;
+   }
    .col-xs-2 {
-	    width: 16.66667%;
-	    padding-left:15px;
-	}
-	.col-xs-10 {
-	    width: 83.33333%;
-   	    padding-right:15px;
-	}
-	.fh5co-nav a {
-	    padding: 5px 10px;
-	    color: #000;
-	}
-	input::placeholder {
-	  color: gray;
-	  font-size : 0.8em;
-	  font-style: italic;
-	}
+       width: 16.66667%;
+       padding-left:15px;
+   }
+   .col-xs-10 {
+       width: 83.33333%;
+          padding-right:15px;
+   }
+   .fh5co-nav a {
+       padding: 5px 10px;
+       color: #000;
+   }
+   input::placeholder {
+     color: gray;
+     font-size : 0.8em;
+     font-style: italic;
+   }
 </style>
 
 <body onload="bankList();">
@@ -286,7 +286,8 @@
                             <div class="group-input" >
                                 <div class="site-btn policy" ><div>동의하기</div></div>
                             </div>
-                            <input type="hidden" name="join_date"/>
+                            <input type="hidden" name="account_holder" value="<%=vo.getId()%>">
+                       <!--      <input type="hidden" name="join_date"/> -->
                             <button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
                         </form>
                         <div class="switch-login">
