@@ -97,7 +97,13 @@ public class LostServiceImpl implements LostService {
 		s_select_place = lostMapper.s_select_place(city, gu);
 		return s_select_place;
 	}
-
+	public int chartcount(String kind) {
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		int res=lostMapper.chartcount(kind);
+		int res2=lostMapper.chartcount2(kind);
+		
+		return res+res2;
+	}
 	
 	// 유희
 	@Override

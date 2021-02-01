@@ -186,15 +186,16 @@
       div#file > img{
          width:100% !important;
       }
+
       .menu{
       	display : flex;
       	flex-direction : column;
       }
-      
-      
+
     </style> 
 </head>
 <body>
+
 	  <%
 	      String id = (String)session.getAttribute("loginUser");
 	      
@@ -207,8 +208,10 @@
    <div class="menu">
          <i class="fas fa-home fa-1x"></i>
          <a href="./item"><span style="font-size : 1.5rem;">목록으로</span></a>
+
          <a onclick="openChat();"><span style="font-size : 1.5rem;">채팅하기</span></a>
          <a href="./chat"><span style="font-size : 1.5rem;">나에게 온 채팅</span></a>
+
    </div>
    
    <div id="output"></div>   
@@ -219,10 +222,14 @@
          </div>
          <div class="infoText">
             <div class="head">
-               <h3 id="title"></h3>
+
+               <h3 id="title">
+               </h3>
+            
                <div>
                   <label for="id">등록자</label>
-                   <span id="id"></span>      
+                   <span id="id" class="getId"></span>      
+
                   <span id="lost_Re_Date"></span>
                </div>
             </div>
@@ -294,7 +301,6 @@
 	   var finder;
 	   
    })
-
 
 </script>
 

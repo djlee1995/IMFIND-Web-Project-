@@ -10,7 +10,9 @@ public interface ElService {
 	public int updatePay_Grade(ElVO elvo);
 	public int updatePay_GradePet(ElVO elvo);
 	public int insertGrade(ElVO elvo);
+
 	
 	// 연수 1.28
 	List<ElVO> getStarGrade(String F_Id); 
+
 }

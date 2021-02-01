@@ -392,10 +392,8 @@
    </style>
    
 <script>
-var code;
-var x;
-var y;
-function doPopupopen() { 
+
+function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
 }
 
@@ -422,16 +420,13 @@ function getListNearMe(item){
       async : false,
       success : function(data){
          
-         //console.log(data);
+         console.log(data);
          const parentNode = document.querySelector(".swiper-wrapper.first");
             data.police.forEach(function(item){
              console.log(item);
             const colNode = document.createElement('div');
             colNode.className = 'swiper-slide';
-            code=item.code;
-            x=item.x;
-            y=item.y;
-            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen();">클릭</button></div><div class="fh5co-blog">'
+            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen('+item.x+','+item.y+','+item.code+');">클릭</button></div><div class="fh5co-blog">'
                                 +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
                                 +'<div class="blog-text">'
                                     +'<span class="posted_on">' + item.lost_date + '</span>'
@@ -643,11 +638,13 @@ document.addEventListener('DOMContentLoaded', function(){
                         <%} %>
                     </div>
                  </div>
+
                   <div class="swiper-container siren2">
                          <div class="swiper-wrapper siren">
                             <%for(PetVO vo : petvo){ %>
                      	    <div class="swiper-slide fh5co-blog siren">
                             <div class="thumb">
+
                               <%if(vo.getPet_Up_File() == "0") {%>
                                  <img alt="" src="${pageContext.request.contextPath}/resources/el/images/no_img.png">
                               <%}else{ %>
@@ -838,6 +835,8 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="col-md-4 col-md-push-1">
                <h4>Links</h4>
                <ul class="fh5co-footer-links">
+                  <li><a href="./child">아동</a></li>
+               	  <li><a href="./chart">chart</a></li>
                   <li><a href="#">if</a></li>
                   <li><a href="#">else</a></li>
                   <li><a href="./test">약관</a></li>

@@ -1,5 +1,5 @@
 // 시군구동 검색 
-      var lost_Loc='';
+      var sigudong='';
       var si;
       var gu;
       var dong;
@@ -45,7 +45,7 @@ jQuery(document).ready(function(){
     if(si=='시/도 선택하세요'){
        si = "";
     }
-    lost_Loc=si
+    sigudong=si
     console.log(lost_Loc)
   });
   //시군구 변경시 행정동 옵션추가
@@ -65,7 +65,7 @@ jQuery(document).ready(function(){
        gu = "";
        
     }
-    lost_Loc=si+gu
+    sigudong=si+gu
     console.log(lost_Loc)
   });
   jQuery('#dong').change(function(){
@@ -79,39 +79,63 @@ jQuery(document).ready(function(){
        dong = "";
     }
    
-    lost_Loc=si+gu+dong
+    sigudong=si+gu+dong
     console.log(lost_Loc)
   });
 
 });
 function selectBtn() {
-
-   if(lost_Loc=='' && $("#payChk").is(":checked")==false){
+	
+   if(sigudong=='' && $('#payChk').is(":checked")==false){
         listdata();
    }
-   else if($("#payChk").is(":checked")==true){
+   else if($('#payChk').is(":checked")==true){
       $.ajax({
             url :'sido.do',
             //type : 'POST',
-            data : {'lost_Loc': lost_Loc },
-            async:false,
+            data : {'lost_Loc': sigudong },
+            //async:false,
             contentType: 'application/x-www-form-urlencoded;charset=utf-8',
             //dataType:'json',
             success: function(data){
-               $('#output').empty();
-               
-               $.each(data,function(index,item) {   
-                  if(item.lost_Pay!=0){
-                     var output = '';
-                     
-                     formattedDate = getChangeDateString(item.lost_Re_Date)
-                     output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-                     output +='<td>'+formattedDate+'</td>';
-                     output +='<td>'+item.lost_Title+'</td>';
-                     output +='<td>'+item.lost_Pay+'</td></tr>';
-                     $('#output').append(output);
-                     }
-               });
+            	$('.card-wrapper').empty();
+                var output = '';
+                
+                $.each(data,function(index,item) {   
+				
+ 					if(item.lost_Up_File == '0'){
+ 					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+ 					}
+ 					else{
+ 					   lost_up_file = item.lost_Up_File;
+ 					}
+ 					
+ 					if(item.lost_Loc == null){
+ 						lost_Loc = '';
+ 					}
+ 					else{
+ 						lost_Loc = item.lost_Loc;
+ 					}
+ 	              formattedDate = getChangeDateString(item.lost_Re_Date)
+ 		       if(item.lost_Pay != 0 ){
+ 				  console.log(item)
+ 				  output += '<div class="card-con">';
+ 				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
+ 				  output +=       '<div class="photo">' + lost_up_file +'</div>'
+ 				  output +=       '<div class="simpleinfo">'
+ 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
+ 				  output +=          '<div class="subinfo">'
+ 				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+ 				  output +=           '<div class="date">'+ formattedDate +'</div>'
+ 				  output +=         '</div>'
+ 				  output +=       '</div>'
+ 				  output +=       '<div class="loc">' + lost_Loc + '</div>'
+ 				  output +=     '</a>'
+ 				  output +=   '</div>'
+ 					  
+               		}
+		 }); 
+                $('.card-wrapper').append(output);
                },
                
             error : function() {
@@ -124,21 +148,49 @@ function selectBtn() {
       $.ajax({
             url :'sido.do',
             //type : 'POST',
-            data : {'lost_Loc': lost_Loc },
-            async:false,
+            data : {'lost_Loc': sigudong },
+            //async:false,
             contentType: 'application/x-www-form-urlencoded;charset=utf-8',
             //dataType:'json',
             success: function(data){
-               $('#output').empty();
-               $.each(data,function(index,item) {   
-                  var output = '';
-                  formattedDate = getChangeDateString(item.lost_Re_Date)
-                  output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-                  output +='<td>'+formattedDate+'</td>';
-                  output +='<td>'+item.lost_Title+'</td>';
-                  output +='<td>'+item.lost_Pay+'</td></tr>';
-                  $('#output').append(output);
-               });
+
+                $('.card-wrapper').empty();
+                var output = '';
+                
+                $.each(data,function(index,item) {   
+ 					if(item.lost_Up_File == '0'){
+ 					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+ 					}
+ 					else{
+ 					   lost_up_file = item.lost_Up_File;
+ 					}
+ 					
+ 					if(item.lost_Loc == null){
+ 						lost_Loc = '';
+ 					}
+ 					else{
+ 						lost_Loc = item.lost_Loc;
+ 					}
+ 	              formattedDate = getChangeDateString(item.lost_Re_Date)
+ 		              
+ 				  console.log(item)
+ 				  output += '<div class="card-con">';
+ 				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
+ 				  output +=       '<div class="photo">' + lost_up_file +'</div>'
+ 				  output +=       '<div class="simpleinfo">'
+ 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
+ 				  output +=          '<div class="subinfo">'
+ 				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+ 				  output +=           '<div class="date">'+ formattedDate +'</div>'
+ 				  output +=         '</div>'
+ 				  output +=       '</div>'
+ 				  output +=       '<div class="loc">' + lost_Loc + '</div>'
+ 				  output +=     '</a>'
+ 				  output +=   '</div>'
+ 					  
+                }); 
+                $('.card-wrapper').append(output);
+          
                },
                
             error : function() {
@@ -179,7 +231,7 @@ function listdata() {
 		              
 				  console.log(item)
 				  output += '<div class="card-con">';
-				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">';
+				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
 				  output +=       '<div class="photo">' + lost_up_file +'</div>'
 				  output +=       '<div class="simpleinfo">'
 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
@@ -247,9 +299,11 @@ function fn_option(code, name){
 	      data : { "lost_Title" : lost_Title },
 	      //type : 'POST',
 	      success : function(data) {
-		    $('#output').empty();
-		    $.each(data,function(index,item) {   
-		    	if(item.lost_Up_File == '0'){
+	    	  $('.card-wrapper').empty();
+              var output = '';
+              
+              $.each(data,function(index,item) {   
+					if(item.lost_Up_File == '0'){
 					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
 					}
 					else{
@@ -262,15 +316,25 @@ function fn_option(code, name){
 					else{
 						lost_Loc = item.lost_Loc;
 					}
-		       var output = '';
-		       
-               formattedDate = getChangeDateString(item.lost_Re_Date)
-		       output +='<tr><td><a href = "./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Up_File+'</td>';
-		       output +='<td>'+ formattedDate + '</td>';
-		       output +='<td>'+item.lost_Title+'</td>';
-		       output +='<td>'+item.lost_Pay+'</td></tr>';
-		       $('#output').append(output);
-		    });
+	              formattedDate = getChangeDateString(item.lost_Re_Date)
+		              
+				  console.log(item)
+				  output += '<div class="card-con">';
+				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
+				  output +=       '<div class="photo">' + lost_up_file +'</div>'
+				  output +=       '<div class="simpleinfo">'
+				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
+				  output +=          '<div class="subinfo">'
+				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="date">'+ formattedDate +'</div>'
+				  output +=         '</div>'
+				  output +=       '</div>'
+				  output +=       '<div class="loc">' + lost_Loc + '</div>'
+				  output +=     '</a>'
+				  output +=   '</div>'
+					  
+              }); 
+              $('.card-wrapper').append(output);
 		 },
 		 error : function() {
 		    alert("ajax 통신 실패!!!");
@@ -292,42 +356,42 @@ function enterkey() {
            data : { "lost_Title" : lost_Title },
            //type : 'POST',
           success : function(data) {
-        	  
-    	   $('.card-wrapper').empty();
-    	   $.each(data,function(index,item) {  
-               var output = '';
-               if(item.lost_Up_File == '0'){
-				   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-				}
-				else{
-				   lost_up_file = item.lost_Up_File;
-				}
-				
-				if(item.lost_Loc == null){
-					lost_Loc = '';
-				}
-				else{
-					lost_Loc = item.lost_Loc;
-				}
-              formattedDate = getChangeDateString(item.lost_Re_Date)
-               
-	          output += '<div class="card">';
-	          output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">';
-	          output +=       '<div class="photo">' + lost_up_file +'</div>'
-	          output +=       '<div class="simpleinfo">'
-	          output +=         '<div class="title">'+ item.lost_Title +'</div>'
-	          output +=          '<div class="subinfo">'
-	          output +=           '<div class="pay">' + item.lost_Pay + '</div>'
-	          output +=           '<div class="date">'+ formattedDate +'</div>'
-	          output +=         '</div>'
-	          output +=       '</div>'
-	          output +=       '<div class="loc"></div>'
-	          output +=     '</a>'
-	          output +=   '</div>'
-
-             $('.card-wrapper').append(output);
-             
-            });
+        	  $('.card-wrapper').empty();
+              var output = '';
+              
+              $.each(data,function(index,item) {   
+					if(item.lost_Up_File == '0'){
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					}
+					else{
+					   lost_up_file = item.lost_Up_File;
+					}
+					
+					if(item.lost_Loc == null){
+						lost_Loc = '';
+					}
+					else{
+						lost_Loc = item.lost_Loc;
+					}
+	              formattedDate = getChangeDateString(item.lost_Re_Date)
+		              
+				  console.log(item)
+				  output += '<div class="card-con">';
+				  output +=    '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
+				  output +=       '<div class="photo">' + lost_up_file +'</div>'
+				  output +=       '<div class="simpleinfo">'
+				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
+				  output +=          '<div class="subinfo">'
+				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="date">'+ formattedDate +'</div>'
+				  output +=         '</div>'
+				  output +=       '</div>'
+				  output +=       '<div class="loc">' + lost_Loc + '</div>'
+				  output +=     '</a>'
+				  output +=   '</div>'
+					  
+              }); 
+              $('.card-wrapper').append(output);
 
          },
          error : function() {
@@ -341,9 +405,9 @@ function enterkey() {
   function getChangeDateString(originalDate){
 
 	var fromNow = moment(originalDate).startOf('day').fromNow();
-	console.log(fromNow)
+	//console.log(fromNow)
 	var fromNowTrim = fromNow.substr(0, 2).trim();
-	console.log(fromNowTrim)
+	//console.log(fromNowTrim)
 	
 	if(fromNow.includes('days')){
 		if(fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4' || fromNowTrim == '5' || fromNowTrim == '6'  ){
@@ -365,6 +429,7 @@ function enterkey() {
 		}
 }
 
+
   function ShowStorage() { 
 	   
 	   var storage = document.getElementById("storage"); 
@@ -373,21 +438,20 @@ function enterkey() {
 	   arr = JSON.parse(sessionStorage.getItem('test'));
 	   console.log(arr)
 	   storage.innerHTML = ""; 
-	   storage.innerHTML += '<div class="list">';
-	   storage.innerHTML += '<h5>최근 본 게시글</h5>';
+	   //storage.innerHTML += '<div class="list">';
 		  
 	   var i;
 	   for(i = 0; i < arr.length; i++) { 
-		 //for(arr[i]= i; arr[i] <= 5; arr[i]++) { 	   
+		   
 		   var img = arr[i].lost_up_file; // 세션 스토리지에 키값을 얻는다. 
 		   var title = arr[i].lost_Title;
 		   var postnum = arr[i].postnum;
-	
-		   storage.innerHTML += '<div class="historybox">';
-		   storage.innerHTML +='<tr><td><a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a></td></tr>';
-		   storage.innerHTML += title +'</br>';
-		   storage.innerHTML += '</div>';
-		// }	  
+		   
+		   storage.innerHTML += '<div class="historybox">' 
+								   + '<a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a>'
+								   + '<div class="storage-board-title"><p>' + title +'</p></div>'
+								   + '</div>'
+		   
 	   }
-	   storage.innerHTML += '</div>';
+	   //storage.innerHTML += '</div>';
    }

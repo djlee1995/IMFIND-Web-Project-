@@ -306,7 +306,7 @@
             }// error 끝.
           });// ajax 끝
    }
-   
+
    function adjustmentList(){
 		
 	   $('#output').empty();
@@ -402,6 +402,7 @@
 		    });
 	   });
    }
+
    </script>
    
    <style type="text/css">
@@ -453,7 +454,9 @@
     <div class="admin">
       <a href="javascript:memberList()">회원관리</a>
       <a href="javascript:payList()">결제관리</a>
+
       <a href="javascript:adjustmentList()">정산관리</a>
+
    <div>전체<input type="radio" name="paymenu" value="total" onclick="payList()"checked>
    결제건<input type="radio" id="paid" name="paymenu" value="paid" onclick="paidList()">
    환불건<input type="radio" id="refund" value="refund" name="paymenu" value="refund" onclick="refundList()"></div>

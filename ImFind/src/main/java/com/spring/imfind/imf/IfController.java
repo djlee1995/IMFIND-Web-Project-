@@ -101,6 +101,20 @@ public class IfController {
 		List<EtcVO> s_select = lostService.s_select(city, gu, kind);
 		return s_select;
 	}
+	@RequestMapping(value = "/chartcount.if", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public int [] chartcount(@RequestParam(value = "kind[]" , required = false)String[] kind) {
+			
+		int[] res = new int[kind.length];
+		for(int i=0; i<kind.length; i++) {
+			
+			res[i] =  lostService.chartcount(kind[i]);
+			
+		}
+		
+		
+		return res;
+	}
 	
 }
 

@@ -74,6 +74,7 @@
                          <div class="row">
                             <div class="col"> &nbsp;<h4> ${kakaoLoginUser}  ${loginUser} </h4></div>
                             <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;"><a href="./modify">수정</a></button></div>
+
                             <div class="col" style="padding-top: 22px;"> <button type="button" id="memberModifyBtn" class="btn btn-default btn-block" style="padding-top:6px;"><a href="./delete">회원탈퇴</a></button></div>
                             <div class="col" style="padding-left: 38px; padding-top:20px"><h4>나의 매너 점수</h4></div>
                             <!------------------ 매너평가의 별점의 결과를 출력 하는 공간 START 1.28 연수----------------------------------->                
@@ -114,6 +115,7 @@
 								</div>
 							</div>	
 							<!------------------ 매너평가의 별점의 결과를 출력 하는 공간 END ---------------------------->    
+
                             <div class="col"> &nbsp; </div>
                          </div>
                    </blockquote>
@@ -169,7 +171,9 @@
                   </div>
                 </div>    <!-- 202101240429_test -->
                 <div class="modal-footer">
+
                      <button type="button" class="btn btn-primary" id="input-grade" >파인더 평점 입력 완료</button> 
+
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
            </div>

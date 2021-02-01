@@ -229,8 +229,7 @@ public List<PetVO> gethighsetPetPay() throws Exception {
 	   List<PetVO> list = boardMapper.gethighsetPetPay();
 	   return list;
 }
-	
-	//YH
+
 	@Override
 	public int addPayBoardNum(BoardVO vo) throws Exception {
 		BoardMapper boardMapper =
@@ -238,6 +237,7 @@ public List<PetVO> gethighsetPetPay() throws Exception {
 	    int res = boardMapper.addPayBoardNum(vo);
 		return res;
 	}
+
 	//YH
 	@Override
 	public BoardVO getPostNum(BoardVO boardvo) throws Exception {

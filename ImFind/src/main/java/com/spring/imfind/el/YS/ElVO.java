@@ -382,5 +382,5 @@ public class ElVO {
 				+ ", Pet_ComNum=" + Pet_ComNum + ", Pet_ComContent=" + Pet_ComContent + ", Pet_ComDate=" + Pet_ComDate
 				+ ", grade=" + grade + "]";
 	}
-	
+
 }

@@ -417,8 +417,10 @@ function pay(){
                      }
                   });
                      alert("결제성공!");   
+
                      document.querySelector('input[name="PayCode"]').value = result.PayCode;
                      alert(document.querySelector('input[name="PayCode"]').value)
+
                      
                      addboard();//전송
                      } // if 결제성공

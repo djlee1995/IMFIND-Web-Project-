@@ -1,4 +1,3 @@
-
 package com.spring.imfind;
 
 import java.util.HashMap;
@@ -7,6 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,12 +75,19 @@ public class HomeController {
       public String police() { 
          return "police";
     }
-   
-   
-   
+   @RequestMapping(value = "chart", method = RequestMethod.GET)
+   public String chart() { 
+      return "if/chart";
+ }
+   @RequestMapping(value = "child", method = RequestMethod.GET)
+   public String child() { 
+      return "child";
+ }
+	
    // 약관 테스트를 위한 맵핑입니다. 
    @RequestMapping("/test")
    public String home2() {
       return "el/YS/clause";
    }
 }
+ 

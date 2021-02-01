@@ -36,6 +36,7 @@ public interface BoardService {
    public List<BoardVO> gethighsetLostPay() throws Exception;
    public List<PetVO> gethighsetPetPay() throws Exception;
    public int addPayBoardNum(BoardVO vo) throws Exception;
+
    public BoardVO getPostNum(BoardVO boardvo) throws Exception;
    public int addPayPetBoardNum(PetVO vo) throws Exception;
    public PetVO getPetPostNum(PetVO boardvo) throws Exception;

@@ -45,6 +45,7 @@ public interface BoardMapper {
    public List<BoardVO> gethighsetLostPay() throws Exception;
    public List<PetVO> gethighsetPetPay() throws Exception;
    public int addPayBoardNum(BoardVO vo);
+
    public BoardVO getPostNum(BoardVO vo) throws Exception;
    public int addPayPetBoardNum(PetVO vo) throws Exception;
    public PetVO getPetPostNum(PetVO boardvo) throws Exception;

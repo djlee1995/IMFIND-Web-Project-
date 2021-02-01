@@ -157,26 +157,49 @@ section{
          align-items : center;
       }
       /* 요소 크기 */
+
       /* 은지 추가 */
-      #storage {
+      .storage-con{
+         overflow: hidden;
          position: fixed;
       	 border : 1px solid black;
       	 width: 100px;
       	 margin-left: 100px;
-      	 display: flex;
-      	flex-direction: column-reverse;
+      
+      	 border: 1px solid #e5e5e5;
+      	 border-radius: 4px;
+    	 margin-top: 9px;
+    	 padding: 3px 3px;
       }
-      #storage > a img {
+      #storage {
+      	 display: flex;
+      	 flex-direction: column-reverse;
+      } 
+      .historybox > a img {
          width: 90px !important;
          height : 90px;
-         object-fit:contain;
+         object-fit:cover;
+         border-radius: 4px;
       }
-      
-      
-      
-      
-      
-     
+
+       .storage-board-title > p{
+      	 font-size : 11px;
+      	 margin-bottom:0;
+      	 overflow:hidden;
+      	 width : 92px;
+      	 white-space:nowrap;
+      	 text-overflow:ellipsis;
+      	 max-height: 16px;
+      }
+	  .storage-title{
+	  	border-bottom: 1px solid #e5e5e5;
+	  }
+	  .storage-title > p {
+	  	margin-bottom:0;
+	  }
+	  .historybox{
+	  	margin-top : 5px;
+	  }
 </style>
 </head>
 <body>
@@ -218,19 +241,18 @@ section{
              <select class="js-example-basic-single" id="dong">
                   <option value="">읍/면/동 선택하세요</option>
              </select>
+
+             	
         </div>
+        	사례금<input type="checkbox" id="payChk">
+             <button class="selectBtn" onclick="selectBtn();">검색</button>
       </div> 
-
-<!-- 
-	   <div class="menu">
-         <button type="button" onclick="book();">클릭</button>	
-        -->	
-
-         <div id="storage"></div>
-  	  
-
-
-      
+		
+	   <div class="storage-con">
+		   <div class="storage-title"><p>최근 본 게시물</p></div>
+	       <div id="storage"></div>
+	   </div>
+       
       <div class="container1 cardLlst">
       
             <div class="card-wrapper">

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.imfind.el.EJ.PetVO;
+
 @Controller
 public class MJController {
    @Autowired
@@ -41,6 +42,68 @@ public class MJController {
    public String deletepage(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
       itemService.delete_data(lost_PostNum);
       return "redirect:/item";
+   }
+   //좋아요 기능 
+   @ResponseBody
+   @RequestMapping(value = "/likeChk", produces = "application/json;charset=UTF-8")
+   public List<ItemVO> likeChk() {
+	  
+      List<ItemVO> list = itemService.likeChk();
+      System.out.println(list);
+      return list;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likeCount", produces = "application/json;charset=UTF-8")
+   public int likeCount(@RequestParam(value = "lost_PostNum") int lost_PostNum) {
+	  
+      int res = itemService.likeCount(lost_PostNum);
+     
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likeplus", produces = "application/json;charset=UTF-8")
+   public int likeplus(@RequestParam(value = "lost_PostNum") int lost_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.like_plus(lost_PostNum,id);
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/likecancel", produces = "application/json;charset=UTF-8")
+   public int likecancel(@RequestParam(value = "lost_PostNum") int lost_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.like_cancel(lost_PostNum,id);
+      return res;
+   }
+ //좋아요 기능 (pet)
+   @ResponseBody
+   @RequestMapping(value = "/pet_likeChk", produces = "application/json;charset=UTF-8")
+   public List<ItemVO> pet_likeChk() {
+	  
+      List<ItemVO> list = itemService.likeChk();
+      System.out.println(list);
+      return list;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/pet_likeCount", produces = "application/json;charset=UTF-8")
+   public int pet_likeCount(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
+	  
+      int res = itemService.pet_likeCount(Pet_PostNum);
+     
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/pet_likeplus", produces = "application/json;charset=UTF-8")
+   public int pet_likeplus(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.pet_like_plus(Pet_PostNum,id);
+      return res;
+   }
+   @ResponseBody
+   @RequestMapping(value = "/pet_likecancel", produces = "application/json;charset=UTF-8")
+   public int pet_likecancel(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,@RequestParam(value = "id") String id) {
+	   System.out.println("체크2");
+	   int res = itemService.pet_like_cancel(Pet_PostNum, id);
+      return res;
    }
    @ResponseBody
    @RequestMapping(value = "/list.do", produces = "application/json;charset=UTF-8")

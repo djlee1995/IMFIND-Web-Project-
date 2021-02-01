@@ -281,6 +281,7 @@ public class EJController {
 				produces="application/json;charset=UTF-8")
 		private int replyUpdate(replyVO vo) throws Exception{
 			
+		   
 			return boardService.replyUpdate(vo);
 		}
 
@@ -374,6 +375,8 @@ public class EJController {
 		private int pet_commentDelete(@RequestParam(value="Com_Num") int Com_Num) throws Exception{
 			return boardService.pet_commentDelete(Com_Num);
 		}
+
+	   
 		
 		/*은지 마이페이지 댓글리스트*/
 		@ResponseBody

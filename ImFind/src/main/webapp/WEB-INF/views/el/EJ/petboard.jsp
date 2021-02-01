@@ -187,7 +187,9 @@
 <section>
    <div class="container">
       <form name="p_boardform" action="./petInsert" method="post" enctype="multipart/form-data">
+
    	     <input type="hidden" name="PayCode">
+
          <!-- 타이틀  -->
          <div class="item1">
             <h8>분실글 등록하기(애완동물)</h8>

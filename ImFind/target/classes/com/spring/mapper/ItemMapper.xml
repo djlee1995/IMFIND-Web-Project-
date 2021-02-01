@@ -1,35 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.MJ.ItemMapper">
+<!-- 좋아요기능 -->
+<insert id="like_plus">
+<selectKey keyProperty="likeno" order="BEFORE" resultType="int">
+            select nvl(max(likeno), 0)+1 from liketo
+        </selectKey>
+    insert into liketo (likeno,lost_postnum,id) values(#{likeno},#{lost_PostNum},#{id})
+  </insert>
+  
+  <delete id="like_cancel">
+    delete from liketo WHERE id=#{id} AND lost_postnum=#{lost_PostNum}
+  </delete>
+
+<select id="likeChk" resultType="ElVO">
+select * from liketo
+</select>
+<select id="likeCount" resultType="int">
+select count(*) from liketo where lost_postnum=#{lost_postnum}
+</select>
+<!-- 좋아요기능(pet) -->
+<insert id="pet_like_plus">
+<selectKey keyProperty="likeno" order="BEFORE" resultType="int">
+            select nvl(max(likeno), 0)+1 from liketo
+        </selectKey>
+    insert into liketo (likeno,pet_postnum,id) values(#{likeno},#{Pet_PostNum},#{id})
+  </insert>
+  
+  <delete id="pet_like_cancel">
+    delete from liketo WHERE id=#{id} AND Pet_PostNum=#{Pet_PostNum}
+  </delete>
+
+
+<select id="pet_likeCount" resultType="int">
+select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
+</select>
+
 <select id="getitem"   resultType="ItemVO">
-      
-      SELECT * FROM (
-          SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.lost_postnum ASC) AS RNUM
-          FROM lostpost p
-      )
-     <!--  WHERE RNUM BETWEEN ${Lost_PostNum} AND 10 
-       -->
-      <!-- WHERE <![CDATA[rnum >= #{1}]]> and <![CDATA[rnum <= #{12}]]> -->
-      
+
+     	select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is null ORDER BY lost_re_date desc
+
+
+</select>
+<select id="getitem2"   resultType="ItemVO">
+
+		select * from lostpost l where paycode is null ORDER BY lost_re_date desc
+
 </select>
 
 
 <select id="getItemservice" resultType="ItemVO"> 
-   SELECT * from lostpost  WHERE lost_title like '%' ||  #{keyword} || '%'
-
-<!--    <foreach 
-   collection="list" item='item' separator="or" close="order by lost_Title"> lost_Title=#{item} </foreach> 
-   </select> -->                                                     
-   <!-- 
-   <foreach item="item" index="index" collection="array"
-      open="(" separator="," close=")">
-       lost_Title=#{item} -->
- <!--  </foreach> -->
-  </select>
+     	select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is null and lost_title like '%' ||  #{keyword} || '%' ORDER BY lost_re_date desc
+     
+</select>
+<select id="getItemservice2" resultType="ItemVO"> 
+		select * from lostpost where paycode is null and lost_title like '%' ||  #{keyword} || '%' ORDER BY lost_re_date desc
+	
+</select>
   <select id="getSido" resultType="ItemVO"> 
-   SELECT * from lostpost  WHERE replace(lost_loc,' ','') like #{lost_Loc} || '%'
+
+     	select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is null and replace(lost_loc,' ','') like #{lost_Loc} || '%' ORDER BY lost_re_date desc
+
+  </select>
+  <select id="getSido2" resultType="ItemVO"> 
+
+		select * from lostpost where paycode is null and replace(lost_loc,' ','') like #{lost_Loc} || '%' ORDER BY lost_re_date desc
+	
   </select>
   <select id="getdata_info" resultType="ItemVO"> 
    SELECT * from lostpost where lost_postnum = #{lost_PostNum}
@@ -42,7 +79,14 @@
   </update>
   <delete id="delete_data">
 
-  	delete from lostpost where lost_postnum = #{lost_PostNum}
+	{CALL
+     	BEGIN
+     	delete from lostpost where lost_postnum = #{lost_PostNum};
+     	DELETE FROM re_comment WHERE lost_postnum = #{lost_PostNum};
+	 	DELETE FROM reply WHERE lost_postnum = #{lost_PostNum};
+	 	DELETE FROM liketo WHERE lost_postnum = #{lost_PostNum};
+	 	END
+     }
 
   </delete>
     
@@ -68,20 +112,35 @@
   </select>
   
 <!-- PET -->
-<delete id="petdelete_data">
-     delete from petpost where pet_postnum = #{Pet_PostNum}
-</delete>
 <select id="getPet"   resultType="PetVO">
-      SELECT * FROM (
-          SELECT p.*, ROW_NUMBER() OVER(ORDER BY p.pet_postnum ASC) AS RNUM
-          FROM petpost p)      
+select * from petpost l,pay p where l.paycode=p.paycode and deal_state is null ORDER BY pet_re_date desc
 </select>
 <select id="getPetservice" resultType="PetVO"> 
-   SELECT * from petpost  WHERE lost_title like '%' ||  #{keyword} || '%'
+select * from petpost l,pay p where l.paycode=p.paycode and deal_state is null and pet_title like '%' ||  #{keyword} || '%' ORDER BY pet_re_date desc
 </select>
 <select id="getPetSido" resultType="PetVO"> 
-   SELECT * from petpost  WHERE replace(pet_loc,' ','') like #{pet_Loc} || '%'
+select * from petpost l,pay p where l.paycode=p.paycode and deal_state is null and replace(pet_loc,' ','') like #{pet_Loc} || '%' ORDER BY pet_re_date desc
 </select>
+<select id="getPet2"   resultType="PetVO">
+select * from petpost l where paycode is null ORDER BY pet_re_date desc    
+</select>
+<select id="getPetservice2" resultType="PetVO"> 
+select * from petpost where paycode is null and pet_title like '%' ||  #{keyword} || '%' ORDER BY pet_re_date desc
+</select>
+<select id="getPetSido2" resultType="PetVO"> 
+select * from petpost where paycode is null and replace(pet_loc,' ','') like #{pet_Loc} || '%' ORDER BY pet_re_date desc
+</select>
+<delete id="petdelete_data">
+
+{CALL
+     	BEGIN
+     	delete from petpost where pet_postnum = #{Pet_PostNum};
+     	DELETE FROM re_comment where pet_postnum = #{Pet_PostNum};
+	 	DELETE FROM reply where pet_postnum = #{Pet_PostNum};
+	 	DELETE FROM liketo where pet_postnum = #{Pet_PostNum};
+	 	END
+     }
+</delete>
  <select id="getpetdata_info" resultType="PetVO"> 
    SELECT * from petpost where pet_postnum = #{Pet_PostNum}
 </select>
