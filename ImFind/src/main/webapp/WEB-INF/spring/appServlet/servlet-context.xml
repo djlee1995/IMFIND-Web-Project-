@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -58,15 +60,26 @@
 			<mapping path="/petboard"></mapping>
 			<mapping path="/mypage"></mapping>
 			<mapping path="/comment_insert"></mapping>
+			<mapping path="/socket"></mapping>
+			<mapping path="/chat"></mapping>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
 	</interceptors>
 	<!--인터셉터 설정 끝 유희 -->
 	
-
 	<context:component-scan base-package="com.spring.imfind" />
 	
+	<!-- websocket에 사용할 핸들러 객체 생성   sockethandler 생성함.-->
+	<beans:bean id="replyEchoHandler" class="com.spring.imfind.el.Socket.replyEchoHandler"/>
+		<websocket:handlers>
+			<websocket:mapping handler="replyEchoHandler" path="/reply"/>
+			<websocket:handshake-interceptors>
+				<beans:bean class="com.spring.imfind.el.Socket.HandShakeInterceptor"></beans:bean>
+			</websocket:handshake-interceptors>
+		</websocket:handlers>
+	</beans:beans>
 	
 	
-</beans:beans>
+
+

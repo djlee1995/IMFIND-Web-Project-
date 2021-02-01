@@ -187,6 +187,9 @@
 <section>
    <div class="container">
       <form name="p_boardform" action="./petInsert" method="post" enctype="multipart/form-data">
+
+   	     <input type="hidden" name="PayCode">
+
          <!-- 타이틀  -->
          <div class="item1">
             <h8>분실글 등록하기(애완동물)</h8>
@@ -260,7 +263,7 @@
          <div class="item10"><h6>사례금</h6>
          <!-- 모달을 열기 위한 버튼 data-toggle="modal" data-target="#myModal" -->
          <button type="button" onClick="return inputcheck()" >결제하기</button></div>
-      
+
          <!-- 모달 영역 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">

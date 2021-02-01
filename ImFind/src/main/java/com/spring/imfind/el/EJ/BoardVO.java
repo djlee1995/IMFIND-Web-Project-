@@ -1,4 +1,3 @@
-
 package com.spring.imfind.el.EJ;
 
 import java.util.Date;
@@ -104,4 +103,5 @@ public class BoardVO {
 				+ Lost_Up_File + ", Lost_Pay=" + Lost_Pay + ", Lost_Item=" + Lost_Item + ", Lost_Loc=" + Lost_Loc
 				+ ", Lost_Date=" + Lost_Date + ", Id=" + Id + "]";
 	}
+
 }

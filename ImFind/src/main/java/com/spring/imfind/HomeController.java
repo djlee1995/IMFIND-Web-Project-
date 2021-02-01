@@ -1,4 +1,3 @@
-
 package com.spring.imfind;
 
 import java.util.HashMap;
@@ -84,10 +83,11 @@ public class HomeController {
    public String child() { 
       return "child";
  }
-	/*
-	 * @CrossOrigin("*")
-	 * 
-	 * @GetMapping("http://www.safe182.go.kr/api/lcm/amberListTForm.do") public
-	 * String get(@PathVariable String value) { return value; }
-	 */
+	
+   // 약관 테스트를 위한 맵핑입니다. 
+   @RequestMapping("/test")
+   public String home2() {
+      return "el/YS/clause";
+   }
 }
+ 

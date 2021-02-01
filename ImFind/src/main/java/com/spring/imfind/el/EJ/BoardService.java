@@ -37,4 +37,12 @@ public interface BoardService {
    public List<PetVO> gethighsetPetPay() throws Exception;
    public int addPayBoardNum(BoardVO vo) throws Exception;
 
+   public BoardVO getPostNum(BoardVO boardvo) throws Exception;
+   public int addPayPetBoardNum(PetVO vo) throws Exception;
+   public PetVO getPetPostNum(PetVO boardvo) throws Exception;
+   
+   //은지 마이페이지 댓글 리스트
+   public List<ComVO> getCommentList(String id);
+   public List<ComVO> getPetCommentList(String id);
+   public int deleteMember(MemberVO membervo) throws Exception; //회원탈퇴
 }

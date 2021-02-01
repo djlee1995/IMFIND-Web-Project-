@@ -24,6 +24,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<!-- 웹소켓을 위한 설정 -->
+	<async-supported>true</async-supported>
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

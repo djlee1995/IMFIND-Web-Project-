@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -155,6 +157,23 @@ section{
          align-items : center;
       }
       /* 요소 크기 */
+
+      /* 은지 추가 */
+      #storage {
+         position: fixed;
+      	 border : 1px solid black;
+      	 width: 100px;
+      	 margin-left: 100px;
+      	 display: flex;
+      	flex-direction: column-reverse;
+      }
+      #storage > a img {
+         width: 90px !important;
+         height : 90px;
+         object-fit:contain;
+      }
+      
+
 </style>
 </head>
 <body>
@@ -196,15 +215,12 @@ section{
              <select class="js-example-basic-single" id="dong">
                   <option value="">읍/면/동 선택하세요</option>
              </select>
+
              	
         </div>
         	사례금<input type="checkbox" id="payChk">
              <button class="selectBtn" onclick="selectBtn();">검색</button>
       </div> 
-
-
-
-
 
       
       <div class="container1 cardLlst">
@@ -222,7 +238,7 @@ section{
          </div>
       </div>
    </section>
-   
+
    
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    
@@ -259,12 +275,13 @@ section{
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
    <!-- Flexslider -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
-   <!-- Magnific Popup -->
+   <!— Magnific Popup —>
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
    <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
-   <!-- Main -->
+   <!— Main —>
    <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
    <script src="${pageContext.request.contextPath}/resources/el/YH/select2/js/select2.min.js" /></script>
     
+
 </body>
 </html>

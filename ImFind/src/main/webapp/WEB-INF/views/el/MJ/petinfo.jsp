@@ -250,9 +250,11 @@
    </div>
    
    <div class="container commentBox">
+
 		<jsp:include page="../EJ/pet_comment.jsp" flush="true" >
 		 	<jsp:param name="getId" value=""/>
 		</jsp:include>   
+
    </div>
 </section>
 

@@ -78,9 +78,11 @@ public class EJController {
             boardvo.setLost_Pay(replace3);
         }
         
+        //YH
 	    boardService.itemInsert(boardvo);
-	    //pay 테이블에 게시글번호 입력하기
-	   //boardService.addPayBoardNum(boardvo);
+	    BoardVO postNum = boardService.getPostNum(boardvo);
+	    boardvo.setLost_PostNum(postNum.getLost_PostNum());
+	    boardService.addPayBoardNum(boardvo);
 	     
 	     return "redirect:/item";		
 	}
@@ -136,7 +138,7 @@ public class EJController {
 	}
 	
 	@RequestMapping("petInsert")
-	public String petInsert(PetVO petvo){
+	public String petInsert(PetVO petvo) throws Exception{
 		Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
 		System.out.println("pattetn="+ pattern);
 		String content = petvo.getPet_Content();
@@ -181,6 +183,10 @@ public class EJController {
         }
         
 	    boardService.petInsert(petvo);
+	    PetVO postNum = boardService.getPetPostNum(petvo);
+	    System.out.println("게시글번호입니다 " + postNum);
+	    petvo.setPet_PostNum(postNum.getPet_PostNum());
+	    boardService.addPayPetBoardNum(petvo);
 	     
 	    // return "redirect:/item";		
 		
@@ -275,6 +281,7 @@ public class EJController {
 				produces="application/json;charset=UTF-8")
 		private int replyUpdate(replyVO vo) throws Exception{
 			
+		   
 			return boardService.replyUpdate(vo);
 		}
 
@@ -369,4 +376,52 @@ public class EJController {
 			return boardService.pet_commentDelete(Com_Num);
 		}
 
+	   
+		
+		/*은지 마이페이지 댓글리스트*/
+		@ResponseBody
+		@RequestMapping(value = "/getCommentList", 
+				produces = "application/json;charset=UTF-8")
+		public List<ComVO>getCommentList(@RequestParam(value="id") String id) {
+			List<ComVO> commentList = boardService.getCommentList(id);
+			System.out.println("commentlist="+ commentList.toString());
+			
+			
+			return commentList;
+		}
+		@ResponseBody
+		@RequestMapping(value = "/getPetCommentList", 
+				produces = "application/json;charset=UTF-8")
+		public List<ComVO>getPetCommentList(@RequestParam(value="id") String id) {
+			List<ComVO> commentList = boardService.getPetCommentList(id);
+			System.out.println("commentlist="+ commentList.toString());
+			
+			
+			return commentList;
+		}
+		// 회원탈퇴
+		@RequestMapping("/delete")
+		public String delete() {
+			
+			return "el/EJ/deletepage";
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="/deleteMember")
+		private Map<String, String> deleteMember(MemberVO membervo) throws Exception{
+			
+			 System.out.println("member11"+membervo.toString());
+			 Map<String, String> map = new HashMap<String, String>();
+			 int res = boardService.deleteMember(membervo);
+			 System.out.println("탈퇴 여부 : " + res);
+			 
+			 if (res == 1){
+				 map.put("res", "success");
+				 return map;
+			 } else {
+				 map.put("res", "fail");
+				 return map;
+			 }
+		
+		}
 }
