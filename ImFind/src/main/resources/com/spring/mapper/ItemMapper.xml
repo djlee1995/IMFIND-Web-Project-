@@ -147,6 +147,37 @@ select * from petpost where paycode is null and replace(pet_loc,' ','') like #{p
 <update id="petupdate_data"> 
    update petpost set pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name} where pet_postnum = #{Pet_PostNum} 
 </update>  
+<select id="lost_pay_rank" resultType="ItemVO">
+SELECT *
+  FROM ( SELECT l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount,l.lost_re_date
+           FROM lostpost l, pay p  where l.paycode = p.paycode
+         ORDER BY p.pay_amount desc,l.lost_postnum desc
+        )
+WHERE rownum=1;
 
+</select>
+<select id="pet_pay_rank" resultType="PetVO">
+SELECT *
+  FROM ( SELECT l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount,l.pet_re_date
+           FROM petpost l, pay p  where l.paycode = p.paycode
+         ORDER BY p.pay_amount desc,l.pet_postnum desc
+        )
+WHERE rownum=1;
+
+</select>
+<select id="lost_like_rank" resultType="ItemVO">
+SELECT *
+  FROM ( select lost_postnum ,count(lost_postnum)as count from liketo group by lost_postnum order by count desc
+        )
+WHERE rownum=1;
+
+</select>
+<select id="pet_like_rank" resultType="PetVO">
+SELECT *
+  FROM ( select pet_postnum ,count(pet_postnum)as count from liketo group by pet_postnum order by count desc
+        )
+WHERE rownum=1;
+
+</select>
   
 </mapper>
