@@ -153,7 +153,7 @@ SELECT *
            FROM lostpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.lost_postnum desc
         )
-WHERE rownum=1;
+WHERE rownum=1
 
 </select>
 <select id="pet_pay_rank" resultType="PetVO">
@@ -162,21 +162,21 @@ SELECT *
            FROM petpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.pet_postnum desc
         )
-WHERE rownum=1;
+WHERE rownum=1
 
 </select>
-<select id="lost_like_rank" resultType="ItemVO">
-SELECT *
+<select id="lost_like_rank" resultType="int">
+SELECT lost_postnum
   FROM ( select lost_postnum ,count(lost_postnum)as count from liketo group by lost_postnum order by count desc
         )
-WHERE rownum=1;
+WHERE rownum=1
 
 </select>
-<select id="pet_like_rank" resultType="PetVO">
-SELECT *
+<select id="pet_like_rank" resultType="int">
+SELECT pet_postnum
   FROM ( select pet_postnum ,count(pet_postnum)as count from liketo group by pet_postnum order by count desc
         )
-WHERE rownum=1;
+WHERE rownum=1
 
 </select>
   

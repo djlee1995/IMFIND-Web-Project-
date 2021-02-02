@@ -187,26 +187,29 @@ public class ItemServiceImpl implements ItemService{
 	//사례금 랭크
 	@Override
 	public List<ItemVO> lost_pay_rank(ItemVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		return mapper.lost_pay_rank(vo);
 	}
 	//사례금 랭크(pet)
 	@Override
 	public List<PetVO> pet_pay_rank(PetVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		
+		return mapper.pet_pay_rank(vo);
 	}
 	//좋아요 랭크
 	@Override
-	public List<ItemVO> lost_like_rank(ItemVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ItemVO> lost_like_rank() {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		int lost_PostNum = mapper.lost_like_rank();
+		return mapper.getdata_info(lost_PostNum);
 	}
 	//좋아요 랭크(pet)
 	@Override
-	public List<PetVO> pet_like_rank(PetVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PetVO> pet_like_rank() {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		int Pet_PostNum = mapper.pet_like_rank();	
+		return mapper.getpetdata_info(Pet_PostNum);
 	}
 
 }

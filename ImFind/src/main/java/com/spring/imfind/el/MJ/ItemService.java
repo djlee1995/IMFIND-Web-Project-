@@ -56,9 +56,9 @@ public interface ItemService {
 	public List<PetVO> pet_pay_rank(PetVO vo);
 
 	// 좋아요 랭크
-	public List<ItemVO> lost_like_rank(ItemVO vo);
+	public List<ItemVO> lost_like_rank();
 
 	// 좋아요 랭크(pet)
-	public List<PetVO> pet_like_rank(PetVO vo);
+	public List<PetVO> pet_like_rank();
 
 }

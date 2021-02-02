@@ -68,7 +68,7 @@ public interface ItemMapper {
 	//사례금 랭크(pet)
 	List<PetVO> pet_pay_rank(PetVO vo);
 	//좋아요 랭크
-	List<ItemVO> lost_like_rank(ItemVO vo);
+	int lost_like_rank();
 	//좋아요 랭크(pet)
-	List<PetVO> pet_like_rank(PetVO vo);
+	int pet_like_rank();
 }
