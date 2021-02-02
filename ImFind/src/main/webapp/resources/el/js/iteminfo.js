@@ -10,11 +10,11 @@ $(document)
 					console.log(lost_PostNum)
 
 					var mapContainer = document.getElementById('map'), // 지도를
-																		// 표시할
-																		// div
+					// 표시할
+					// div
 					mapOption = {
 						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의
-																				// 중심좌표
+						// 중심좌표
 						level : 3
 					// 지도의 확대 레벨
 					};
@@ -128,9 +128,9 @@ function info() {
 						if (flag == false) {
 							if (!(oldBKInfo instanceof Array))
 								oldBKInfo = [ oldBKInfo ]; // if not, create
-															// one
+							// one
 							oldBKInfo.push(bookmark); // push a new student
-														// inside of it
+							// inside of it
 							sessionStorage.setItem("test", JSON
 									.stringify(oldBKInfo));
 						}
@@ -372,3 +372,4 @@ function getChangeDateString(originalDate) {
 		// $('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 	}
 }
+

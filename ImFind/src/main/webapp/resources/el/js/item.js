@@ -4,7 +4,7 @@
       var gu;
       var dong;
 jQuery(document).ready(function(){
-
+	
 	if ( sessionStorage.length != ""){
 		ShowStorage();
 		listdata();
@@ -41,7 +41,7 @@ jQuery(document).ready(function(){
       //trigger를 이용해 change 실행
       jQuery('#sigugun').trigger('change');
     }
-    si = $('#sido :selected').text();
+    si = $('#sido:selected').text();
     if(si=='시/도 선택하세요'){
        si = "";
     }
@@ -87,7 +87,7 @@ jQuery(document).ready(function(){
 function selectBtn() {
 	
    if(sigudong=='' && $('#payChk').is(":checked")==false){
-        listdata();
+       listdata();
    }
    else if($('#payChk').is(":checked")==true){
       $.ajax({
@@ -125,7 +125,7 @@ function selectBtn() {
  				  output +=       '<div class="simpleinfo">'
  				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
  				  output +=          '<div class="subinfo">'
- 				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+ 				  output +=           '<div class="pay">사례금 ' + item.lost_Pay + '원' +'</div>'
  				  output +=           '<div class="date">'+ formattedDate +'</div>'
  				  output +=         '</div>'
  				  output +=       '</div>'
@@ -133,7 +133,7 @@ function selectBtn() {
  				  output +=     '</a>'
  				  output +=   '</div>'
  					  
-               		}
+           	  }
 		 }); 
                 $('.card-wrapper').append(output);
                },
@@ -180,7 +180,7 @@ function selectBtn() {
  				  output +=       '<div class="simpleinfo">'
  				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
  				  output +=          '<div class="subinfo">'
- 				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+ 				  output +=           '<div class="pay">사례금 ' + item.lost_Pay + '원' +'</div>'
  				  output +=           '<div class="date">'+ formattedDate +'</div>'
  				  output +=         '</div>'
  				  output +=       '</div>'
@@ -236,7 +236,7 @@ function listdata() {
 				  output +=       '<div class="simpleinfo">'
 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
 				  output +=          '<div class="subinfo">'
-				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="pay">사례금 ' + item.lost_Pay + '원' +'</div>'
 				  output +=           '<div class="date">'+ formattedDate +'</div>'
 				  output +=         '</div>'
 				  output +=       '</div>'
@@ -287,7 +287,7 @@ function fn_option(code, name){
            });
         };
    //<!-- 민정 검색버튼 -->
-  document.querySelector('.btn').addEventListener('click', function click() {
+  document.querySelector('.selectBtn.key').addEventListener('click', function click() {
 		 var lost_Title = $("input[name=input-search]").val();
 		 if (lost_Title ==""){
 		    alert('검색어를 입력해주세요')
@@ -325,7 +325,7 @@ function fn_option(code, name){
 				  output +=       '<div class="simpleinfo">'
 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
 				  output +=          '<div class="subinfo">'
-				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="pay">사례금 ' + item.lost_Pay + '원' +'</div>'
 				  output +=           '<div class="date">'+ formattedDate +'</div>'
 				  output +=         '</div>'
 				  output +=       '</div>'
@@ -382,7 +382,7 @@ function enterkey() {
 				  output +=       '<div class="simpleinfo">'
 				  output +=         '<div class="title">'+ item.lost_Title +'</div>'
 				  output +=          '<div class="subinfo">'
-				  output +=           '<div class="pay">' + item.lost_Pay + '원' +'</div>'
+				  output +=           '<div class="pay">사례금 ' + item.lost_Pay + '원' +'</div>'
 				  output +=           '<div class="date">'+ formattedDate +'</div>'
 				  output +=         '</div>'
 				  output +=       '</div>'
@@ -438,21 +438,21 @@ function enterkey() {
 	   arr = JSON.parse(sessionStorage.getItem('test'));
 	   console.log(arr)
 	   storage.innerHTML = ""; 
-	   storage.innerHTML += '<div class="list">';
-	   storage.innerHTML += '<h5>최근 본 게시글</h5>';
+	   //storage.innerHTML += '<div class="list">';
 		  
 	   var i;
 	   for(i = 0; i < arr.length; i++) { 
-		 //for(arr[i]= i; arr[i] <= 5; arr[i]++) { 	   
+		   
 		   var img = arr[i].lost_up_file; // 세션 스토리지에 키값을 얻는다. 
 		   var title = arr[i].lost_Title;
 		   var postnum = arr[i].postnum;
-	
-		   storage.innerHTML += '<div class="historybox">';
-		   storage.innerHTML +='<tr><td><a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a></td></tr>';
-		   storage.innerHTML += title +'</br>';
-		   storage.innerHTML += '</div>';
-		// }	  
+		   
+		   storage.innerHTML += '<div class="historybox">' 
+								   + '<a href = "./iteminfo?lost_PostNum='+postnum+'">'+img+'</a>'
+								   + '<div class="storage-board-title"><p>' + title +'</p></div>'
+								   + '</div>'
+		   
 	   }
-	   storage.innerHTML += '</div>';
+	   //storage.innerHTML += '</div>';
+
    }

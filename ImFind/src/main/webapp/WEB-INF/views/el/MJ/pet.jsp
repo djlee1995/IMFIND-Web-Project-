@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css"> <!-- 지우면 안됨 -->
 
 <!-- 조회페이지 css (mj) -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/MJ/item.css?after" type="text/css">
 <!-- Bootstrap cdn 설정  for 페이징  -->   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">   
@@ -70,17 +70,17 @@ section{
    .photo > img{
       width: 100% !important;
       height : 175px;
-      object-fit:contain;
+      object-fit:cover;
       border : none;
+      border-radius: 11px;
    }
-   .card-con{
-      border : 
-   }
+
    .subinfo{
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-top: 3px;
+      font-size: 12px;
    }
    div.date{
       margin-right:5px;
@@ -97,6 +97,7 @@ section{
    div.loc{
       padding-top: 6px;
       margin-left: 10px;
+      font-size: 12px;
    }
    .selectBox{
       position: relative;
@@ -127,7 +128,6 @@ section{
       .card-con{
          width: 180px;
          height: 265px;
-         border : 1px solid rgb(238, 238, 238);;
          margin:7px;
       }
       
@@ -152,7 +152,62 @@ section{
       justify-content: center;
       align-items : center;
    }
+    .simpleinfo > .title{
+    	 overflow:hidden;
+      	 width : 160px;
+      	 white-space:nowrap;
+      	 text-overflow:ellipsis;
+      }
    /* 요소 크기 */
+   
+    /* 은지 추가 */
+      .storage-con{
+         overflow: hidden;
+         position: fixed;
+      	 border : 1px solid black;
+      	 width: 100px;
+      	 margin-left: 100px;
+      
+      	 border: 1px solid #e5e5e5;
+      	 border-radius: 4px;
+    	 margin-top: 76px;
+    	 padding: 3px 3px;
+      }
+      #storage {
+      	 display: flex;
+      	 flex-direction: column-reverse;
+      } 
+      .historybox > a img {
+         width: 90px !important;
+         height : 90px;
+         object-fit:cover;
+         border-radius: 4px;
+      }
+
+       .storage-board-title > p{
+      	 font-size : 11px;
+      	 margin-bottom:0;
+      	 overflow:hidden;
+      	 width : 92px;
+      	 white-space:nowrap;
+      	 text-overflow:ellipsis;
+      	 max-height: 16px;
+      }
+	  .storage-title{
+	  	border-bottom: 1px solid #e5e5e5;
+	  }
+	  .storage-title > p {
+	  	margin-bottom:0;
+	  }
+	  .historybox{
+	  	margin-top : 5px;
+	  }
+	  .loc{
+	  	 overflow:hidden;
+      	 width : 160px;
+      	 white-space:nowrap;
+      	 text-overflow:ellipsis;
+	  }
 </style>
 </head>
 <body>
@@ -164,12 +219,14 @@ section{
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
  <div id="preloder">
       <div class="loader"></div>
-   </div>
-   <section>
+  </div>
+
+<section>
+   
    <!-- <div class="container1"> -->
    <div class="container1 searchbar">
       <div class="row1">
-         <div id="custom-search-input">
+       <!--   <div id="custom-search-input">
             <div class="input-group col-md-12">
                <input type="text" class="input-lg" name="input-search" 
                   onKeypress="enterkey();" placeholder="search.." > 
@@ -179,12 +236,12 @@ section{
                   </button>
                </span>
             </div>
-         </div>
+         </div> -->
       </div>
    </div>
    
    <div class="container1 selectBox">
-       <div class = "petsi">
+     <!--   <div class = "petsi">
           <select class="js-example-basic-single" id="petsido">
                <option value="">시/도 선택하세요</option>
           </select>
@@ -193,14 +250,57 @@ section{
           </select>
           <select class="js-example-basic-single" id="petdong">
                <option value="">읍/면/동 선택하세요</option>
-          </select>
-     </div>
+          </select> -->
+     </div>    
+      <div class="storage-con">
+		   <div class="storage-title"><p>최근 본 게시물</p></div>
+	       <div id="storage"></div>
+	   </div>
+	
+      <div class="container1 searchbar2">
+      	<label for="input-search" class="input-label">
+			<div class="input-con">
+				<div class="input-key">키워드</div>
+				<div style="display:flex;">
+					<input type="text" id="input-search" placeholder="어떤 분실물을 찾으시나요?"/>
+					<button class="selectBtn key" type="button" ><i class="fas fa-search" style="color:white;"></i></button>
+				</div>
+			</div>
+      	</label>
+      	<div class="input-loc-con">
+      		<div class="con">
+		      	<div class="input-con loc">
+					<div class="input-loc-title">위치</div>
+					<div class="input-loc">
+						<div class = "petsi">
+			                <select class="js-example-basic-single" id="petsido" style="width:130px;">
+				                <option value="" style="font-weight:200; font-style:italic;">시/도 선택하세요</option>
+				             </select>
+				             <select class="js-example-basic-single" id="petsigugun" style="width:130px;">
+				                  <option value="" style="font-weight:200; font-style:italic;">시/군/구 선택하세요</option>
+				             </select>
+				             <select class="js-example-basic-single" id="petdong" style="width:130px;">
+				                  <option value="" style="font-weight:200; font-style:italic;">읍/면/동 선택하세요</option>
+				             </select>
+				        </div>
+					</div>
+				</div>
+		      	<div class="input-con pay">
+					<div class="input-loc-title">사례금</div>
+					<div class="input-loc pay">
+						<!-- <i class="fas fa-hands-helping" style="color:gray;"></i> -->
+						<input type="checkbox" id="payChk" class="bb"/>
+						<label for="payChk" class="bb" >사례금</label>
+						<!-- <input type="checkbox" id="payChk"> -->
+					</div>
+				</div>
+				<div class="bt">
+	       			<button class="selectBtn" onclick="selectBtn();"><i class="fas fa-search" style="color:white;"></i></button>
+				</div>
+      		</div>
+      	 </div>
+      </div>
 
-     사례금<input type="checkbox" id="payChk">
-             <button class="selectBtn" onclick="selectBtn();">검색</button>
-
-   </div>
-  
   <div class="container1 cardList">
         <div class="card-wrapper">
         
