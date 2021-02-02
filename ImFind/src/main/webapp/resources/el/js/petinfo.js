@@ -57,12 +57,13 @@ function info() {
 				$('#petupdate').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th>');
 			}
 			if($.trim(data[0].pet_Up_File) == '0'){
-	        	
+				 pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
 	        	 $('#file').html('<img src="./resources/el/images/no_img.png"/>');
-				}
+			}
 			else{
+				pet_Up_File = data[0].pet_Up_File;
 				 $('#file').html(data[0].pet_Up_File);
-				}
+			}
 				formattedDate = getChangeDateString(data[0].pet_Re_Date)
 				loc=data[0].pet_Loc
 				$('#lost_Re_Date').text(formattedDate);
@@ -73,7 +74,44 @@ function info() {
 				$('#loc').text(data[0].pet_Loc);
 				$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
 				$('#id').text(data[0].id);
-			},
+				
+				
+				// 최근 본 게시글
+				let flag = false;
+				const bookmark = {
+					lost_up_file : pet_Up_File,
+					lost_Title : data[0].pet_Title,
+					postnum : Pet_PostNum
+				}
+
+				if (sessionStorage.getItem('test') == null) {
+					arr.push(bookmark)
+					sessionStorage.setItem('test', JSON.stringify(arr))
+					let test = sessionStorage.getItem('test')
+					console.log(test)
+					// ShowStorage();
+				} else {
+					var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
+					// now let's check if the stored value is an array
+					for (let i = 0; i < oldBKInfo.length; i++) {
+						console.log(oldBKInfo[i].postnum)
+
+						if (oldBKInfo[i].postnum == Pet_PostNum) {
+							alert('중복입니다')
+							flag = true;
+							break;
+						}
+					}
+					if (flag == false) {
+						if (!(oldBKInfo instanceof Array))
+							oldBKInfo = [ oldBKInfo ]; // if not, create
+														// one
+						oldBKInfo.push(bookmark); // push a new student
+													// inside of it
+						sessionStorage.setItem("test", JSON.stringify(oldBKInfo));
+					}
+				}
+		},
 		error : function() {
 			alert("ajax통신 실패2")
 		}

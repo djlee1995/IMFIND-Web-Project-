@@ -79,10 +79,15 @@ public class EJController {
         }
         
         //YH
-	    boardService.itemInsert(boardvo);
-	    BoardVO postNum = boardService.getPostNum(boardvo);
-	    boardvo.setLost_PostNum(postNum.getLost_PostNum());
-	    boardService.addPayBoardNum(boardvo);
+        boardService.itemInsert(boardvo);
+        try {
+        	BoardVO postNum = boardService.getPostNum(boardvo);
+        	boardvo.setLost_PostNum(postNum.getLost_PostNum());
+        	boardService.addPayBoardNum(boardvo);
+        }
+        catch(Exception e){
+        	
+        }
 	     
 	     return "redirect:/item";		
 	}
@@ -183,11 +188,15 @@ public class EJController {
         }
         
 	    boardService.petInsert(petvo);
-	    PetVO postNum = boardService.getPetPostNum(petvo);
-	    System.out.println("게시글번호입니다 " + postNum);
-	    petvo.setPet_PostNum(postNum.getPet_PostNum());
-	    boardService.addPayPetBoardNum(petvo);
-	     
+	    try {
+	    	PetVO postNum = boardService.getPetPostNum(petvo);
+	    	System.out.println("게시글번호입니다 " + postNum);
+	    	petvo.setPet_PostNum(postNum.getPet_PostNum());
+	    	boardService.addPayPetBoardNum(petvo);
+	    }
+	     catch(Exception e) {
+	    	 
+	     }
 	    // return "redirect:/item";		
 		
 		return "redirect:/pet";
