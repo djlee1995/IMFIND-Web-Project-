@@ -160,5 +160,5 @@ public class AdminController {
    public String admintest_adjustmentList() {
       return "el/YS/admintest_adjustmentList";
    }
-   
+
 }

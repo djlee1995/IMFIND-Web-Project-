@@ -453,6 +453,5 @@ function enterkey() {
 								   + '</div>'
 		   
 	   }
-	   //storage.innerHTML += '</div>';
-
-   }
+//storage.innerHTML += '</div>';
+}

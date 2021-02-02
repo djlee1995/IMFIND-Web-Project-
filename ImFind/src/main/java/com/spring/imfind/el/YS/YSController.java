@@ -175,8 +175,8 @@ public class YSController {
 		}
 		return avg;
 	}
-
 	 @RequestMapping("/admintest") public String afterLoginHeader() {
-	     return "el/YS/admintest"; }
-
+	     return "el/YS/admintest";
+	     }
 }
+

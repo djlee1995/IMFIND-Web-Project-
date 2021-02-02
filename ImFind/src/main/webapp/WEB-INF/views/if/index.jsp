@@ -23,14 +23,17 @@
 	href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap"
 	rel="stylesheet">
 <style>
+
 /* MJ */
 .logoset {
 	display: flex;
 	justify-content: space-between;
 }
+
 .logonav {
 	background: white;
 }
+
 nav {
 	position: fixed;
 	top: 0;
@@ -38,20 +41,24 @@ nav {
 	left: 0;
 	z-index: 100;
 }
+
 .top-logoset {
 	box-shadow: 0 2px 4px 0 hsl(0deg 0% 81%/ 50%);
 	height: 73px !important;
 	display: flex;
 }
+
 .container-logoset {
 	width: 75vw;
 	margin: 0 auto;
 	padding: 0;
 }
+
 #logoimfindid {
 	padding: 5px 10px;
 	color: #000;
 }
+
 #logoimfindid {
 	text-transform: uppercase;
 	font-weight: 700;
@@ -59,6 +66,7 @@ nav {
 	color: #fff;
 	font-size: 31px;
 }
+
 #imfindspan {
 	color: blue;
 	position: relative;
@@ -69,6 +77,7 @@ nav {
 	font-size: 42px;
 	bottom: 73px;
 }
+
 #logoimfindid>a {
 	font-family: "Space Mono", Arial, serif !important;
 	font-size: 42px;
@@ -77,6 +86,7 @@ nav {
 	top: -3px;
 	right: 35px;
 }
+
 .logoif, .logoesle, .logopolice, .logoetc, .logoselect, .logophone {
 	padding: 5px 10px;
 	color: #000;
@@ -84,16 +94,23 @@ nav {
 	font-size: 15px;
 	padding: 29px 15px 15px 29px;
 }
+
 .logomenuifelse {
 	display: flex;
 	float: right;
 	position: relative;
 	left: -47px;
 }
+
 }
 .manual {
 	margin-top: 20px;
 }
+
+.manual {
+	margin-top: 20px;
+}
+
 .manual>li {
 	text-transform: uppercase;
 	font-weight: 700;
@@ -101,13 +118,16 @@ nav {
 	padding-left: 1.5em;
 	text-indent: -1.5em;
 }
+
 .h2o2 {
 	font-family: Roboto, Noto Sans KR, Arial, sans-serif;
 }
+
 .iseoulu {
 	padding: 0px 10px 10px 30px;
 	position: relative;
 	right: 11px;
+
 }
 /* <!--FOOTER--> */
 .col-md-12 {
