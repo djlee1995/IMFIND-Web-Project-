@@ -53,7 +53,7 @@ function getItemList(){
          var output=' ' ;         
              output += '<tr>';            
              output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//번호//id 부여하고 경고발생
-             output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목            
+             output += '<td class="mypage-line"><a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">'+item.lost_Title+'</a></td>';//제목            
              output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
              output += '<input type="hidden" value="'+ item.paycode + '">' // 결제코드
              output += '<td class="mypage-line">'+ moment(item.lost_Re_Date).format('YY-MM-DD')+'</td>';//등록날짜                       
@@ -105,7 +105,7 @@ function getPetList(){
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
-            output += '<td class="mypage-line">'+item.pet_Title+'</td>';//제목            
+            output += '<td class="mypage-line"><a href="./petinfo?Pet_PostNum='+item.pet_PostNum+'&getId='+item.id+'">'+item.pet_Title+'</a></td>';//제목            
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
             output += '<td class="mypage-line">'+ moment(item.pet_LostDate).format('YY-MM-DD')+'</td>';//등록날짜          
             output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
@@ -148,7 +148,7 @@ function getCommentList(){
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
-            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line"><a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">'+item.re_content+'</a></td>';//댓글내용        
             output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜
             //output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
             output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
@@ -232,7 +232,7 @@ function getPetCommentList(){
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
-            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line"><a href="./petinfo?Pet_PostNum='+item.lost_PostNum+'&getId='+item.id+'">'+item.re_content+'</td>';//댓글내용        
             output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜  
             output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
             output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
