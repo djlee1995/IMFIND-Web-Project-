@@ -33,7 +33,7 @@
 	    var imageSrc3 ="./resources/if/images/subway.png", // 마커이미지의 주소입니다    
 	    imageSize3 = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
 	    imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-	 var img2 = '<image width=44px; height=49px; src="./resources/if/images/subway.png">';
+	 var img2 = '<image width=35px; height=35px; src="./resources/if/images/subway.png">';
 
 	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	    var markerImage3 = new kakao.maps.MarkerImage(imageSrc3, imageSize3, imageOption3);
@@ -121,14 +121,15 @@ $('#dataBtn').click(function(){
 		async:false,  
 		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 		success : function(data){
+			$('.manual').empty();
 			$('.movie').empty();
 			$('.police').empty();
-			$('#output').empty();
+			$('.tableif').empty();
 			$.each(data, function(index,item){
-				var output = '';
-				output +='<tr style="font-size: large; font-weight:bold;"><td width="150px">'+item.depplace +'</td>';
-				output +='<td><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
-				$('#output').append(output);
+				var output = '<div align="center" class="output">';
+				output +='<img width="150px"; height="150px"; src="'+ item.photo + '">';
+				output +='<p><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></p></div>';
+				$('.tableif').append(output);
 	
 			});
 			    					       
@@ -148,11 +149,15 @@ $('#dataBtn').click(function(){
 			async:false,  
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			success : function(data){
+				$('.manual').empty();
+				$('.movie').empty();
+				$('.police').empty();
+				$('.tableif').empty();
 				$.each(data, function(index,item){
-					var output = '';
-					output +='<tr style="font-size: large; font-weight:bold;"><td>'+item.depplace +'</td>';
-					output +='<td><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
-					$('#output').append(output);
+					var output = '<div align="center" class="output">';
+					output +='<img width="150px"; height="150px"; src="./resources/el/images/no_img.png">';
+					output +='<p><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></p></div>';
+					$('.tableif').append(output);
 		
 				});
 				    					       
@@ -173,7 +178,7 @@ $('#dataBtn').click(function(){
 			async:false,  
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			success : function(data){
-				
+				$('.manual').empty();
 				/*map.panTo(new kakao.maps.LatLng(data[0].y, data[0].x));*/
 				
 				 for(var i=0; i<data.length; i++){
@@ -222,7 +227,7 @@ $('#dataBtn').click(function(){
 			async:false,  
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			success : function(data){
-			
+				$('.manual').empty();
 				 for(var i=0; i<data.length; i++){
 					
 					 var marker = new kakao.maps.Marker({
@@ -277,21 +282,21 @@ $(document).on('click', '.p_info_data', function(event){
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
-			$('#output').empty();
+			$('.tableif').empty();
 			$('.police').empty();
 			var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'",""';
 			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img+data[0].depplace+img+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
+			$('.manual').empty();
 			map.setCenter(new kakao.maps.LatLng(data[0].y, data[0].x));
 			map.setLevel(level = 2);
 			$.each(data, function(index,item){
-				var output = '';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_date + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
-				output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo + '"></td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.info.substring(2) + '</td></tr>';
-				$('#output').append(output);
+				var output = '<div  class="info_data">';
+				output +='<p> 습득 날짜:'+ item.lost_date + '</p>';
+				output +='<p>'+ item.item + '</p>';
+				output +='<img src="'+ item.photo + '">';
+				output +='<p>'+item.info.substring(2) +'</p></div>';
+				$('.tableif').append(output);
 	
 			});
 			},
@@ -318,21 +323,19 @@ $(document).on('click', '.s_info_data', function(event){
 		//dataType:'json',
 		success: function(data){
 			$('.police').empty();
-			$('#output').empty();
+			$('.tableif').empty();
 			var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'","",""';
 			var place ='<br><p style="font-size: x-large; font-weight:bold;">'+img2+data[0].depplace+img2+'</p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 			$('.police').append(place);
 			map.setCenter(new kakao.maps.LatLng(data[0].x, data[0].y));
 			map.setLevel(level = 2);
 			$.each(data, function(index,item){
-				var output = '';
-				output +='<tr style="font-size: large;"><td>'+ item.lost_date + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.state +'</td></tr>';
-				output +='<tr style="font-size: large;"><td>'+ item.info + '</td></tr>';
-				
-				$('#output').append(output);
+				var output = '<div  class="info_data">';
+				output +='<p> 습득 날짜:'+ item.lost_date + '</p>';
+				output +='<p>'+ item.item + '</p>';
+				output +='<img src="./resources/el/images/no_img.png">';
+				output +='<p>'+item.info.substring(2) +'</p></div>';
+				$('.tableif').append(output);
 	
 			});
 			},

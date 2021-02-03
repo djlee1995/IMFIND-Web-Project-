@@ -71,4 +71,5 @@ public interface ItemMapper {
 	int lost_like_rank();
 	//좋아요 랭크(pet)
 	int pet_like_rank();
+
 }
