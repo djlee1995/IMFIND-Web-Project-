@@ -3798,7 +3798,7 @@ ol {
 	padding-right: 15px;
 }
 
-.register-form form .register-btn,
+/* .register-form form .register-btn, */
 .register-form form .login-btn,
 .login-form form .register-btn,
 .login-form form .login-btn {
@@ -3837,11 +3837,11 @@ ol {
 	margin-bottom: 8px;
 }
 
-.login-form .group-input .gi-more {
+.login-form .group-input . {
 	overflow: hidden;
 }
 
-.login-form .group-input .gi-more label {
+.login-form .group-input . label {
 	position: relative;
 	cursor: pointer;
 	padding-left: 28px;
@@ -3850,20 +3850,20 @@ ol {
 	float: left;
 }
 
-.login-form .group-input .gi-more label input {
+.login-form .group-input . label input {
 	position: absolute;
 	visibility: hidden;
 }
 
-.login-form .group-input .gi-more label input:checked~span {
+.login-form .group-input . label input:checked~span {
 	border-color: #6C6C6C;
 }
 
-.login-form .group-input .gi-more label input:checked~span:after {
+.login-form .group-input . label input:checked~span:after {
 	border-color: #6c6c6c;
 }
 
-.login-form .group-input .gi-more label .checkmark {
+.login-form .group-input . label .checkmark {
 	position: absolute;
 	left: 0;
 	top: 4px;
@@ -3873,7 +3873,7 @@ ol {
 	border-radius: 2px;
 }
 
-.login-form .group-input .gi-more label .checkmark:after {
+.login-form .group-input . label .checkmark:after {
 	left: 2px;
 	top: -2px;
 	width: 13px;
@@ -3885,7 +3885,7 @@ ol {
 	transform: rotate(127deg);
 }
 
-.login-form .group-input .gi-more .forget-pass {
+.login-form .group-input . .forget-pass {
 	float: right;
 	line-height: 20px;
 	margin-top: -2px;

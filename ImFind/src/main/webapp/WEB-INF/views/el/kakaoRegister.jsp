@@ -56,8 +56,7 @@
 
 <!-- 유희 css -->
 <style>
-
-   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+ @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
    .notosanskr * { 
          font-family: 'Noto Sans KR', sans-serif;
@@ -96,11 +95,12 @@
       background : #317AE1;
    }
 
- 	.grid-form{
-		display : grid;
-		grid-template-columns: 0.4fr 1fr !important;
-		grid-template-rows : 150px 80px 80px 205px 100px 100px;
-	} 
+    .grid-form{
+      display : grid;
+      grid-template-columns: 0.4fr 1fr !important;
+      /* grid-template-rows : 80px 150px 80px 80px 205px 100px 100px !important; */
+      grid-template-rows :150px 80px 80px 205px 100px 100px !important;
+   } 
    .register-form form .group-input label, .login-form form .group-input label{
       font-size : 14px !important;;
 /*       //width : 80%; */
@@ -131,7 +131,7 @@
       font-family: 'Noto Sans KR', sans-serif;
    }
    div.site-btn:nth-child(4){
-      width: 93;
+      width: 93%;
       position: relative;
       left: -10px;
       height: 19%;
@@ -139,61 +139,86 @@
       text-align: center;
       background : #317AE1;
    }
-   .site-btn.certification-api.account,
+   .site-btn.certification-api.account, 
    .site-btn.policy{
       display : flex;
       justify-content: center;
       align-items: center;
    }
    .site-btn-policy{
-   		margin : 0;
-   		width: 93%;
-		height: 39px;
-		border-radius: 3px;
+         margin : 0;
+         width: 93%;
+      height: 39px;
+      border-radius: 3px;
    }
    .site-btn.certification-api.account > div{
       margin-bottom : 14px;
    }
-   	.fh5co-nav{
-		position: fixed;
-		top: 0;
-		width: 100vw;
-		left: 0;
-		z-index: 100;
-		padding-right : 35px;
-		padding-right : 18px !important;
-		background : white;
-	}
-	.fh5co-nav #fh5co-logo{
-		font-size : 31px;
-	}
-	.fh5co-nav ul li a {
-		font-family: 'Noto Sans KR', sans-serif;
-		font-weigth : bold;
-	    font-size: 15px;
-	    padding: 29px 15px;
-	    color: rgba(0, 0, 0, 0.7);
-	    -webkit-transition: 0.5s;
-	    -o-transition: 0.5s;
-	    transition: 0.5s;
-	}
+      .fh5co-nav{
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      left: 0;
+      z-index: 100;
+      padding-right : 35px;
+      padding-right : 18px !important;
+      background : white;
+   }
+   .fh5co-nav #fh5co-logo{
+      font-size : 31px;
+   }
+   .fh5co-nav ul li a {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weigth : bold;
+       font-size: 15px;
+       padding: 29px 15px;
+       color: rgba(0, 0, 0, 0.7);
+       -webkit-transition: 0.5s;
+       -o-transition: 0.5s;
+       transition: 0.5s;
+   }
    .col-xs-2 {
-	    width: 16.66667%;
-	    padding-left:15px;
-	}
-	.col-xs-10 {
-	    width: 83.33333%;
-   	    padding-right:15px;
-	}
-	.fh5co-nav a {
-	    padding: 5px 10px;
-	    color: #000;
-	}
-	input::placeholder {
-	  color: gray;
-	  font-size : 0.8em;
-	  font-style: italic;
-	}
+       width: 16.66667%;
+       padding-left:15px;
+   }
+   .col-xs-10 {
+       width: 83.33333%;
+       padding-right:15px;
+   }
+   .fh5co-nav a {
+       padding: 5px 10px;
+       color: #000;
+   }
+   input::placeholder {
+     color: gray;
+     font-size : 0.8em;
+     font-style: italic;
+   }
+   .site-btn.certification-api.account {
+     witdh: 52px;
+     height: 36px;
+   }
+   #account {
+     witdh: 160px;
+   }
+   .account_box {
+     display: flex;
+     margin-right: 22px;
+   }
+   .input-group.mb-1 {
+     width: 305px;
+   }
+   .input-group.mb-1 {
+   	 display: flex;
+   }
+   #inputGroupBirth {
+    margin: 0px; 
+   }
+   .site-btn.register-btn {
+     width: 221px;
+     height: 46px;
+     margin-left: 130px;
+   }
 </style>
 <body onload="bankList();">
 
@@ -224,7 +249,7 @@
                                 <label for="pass" >Password *</label>
                             </div>
                             <div class="group-input">
-                                <input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required>
+                                <input type="password" id="pass" placeholder="비밀번호를 입력해주세요" style="margin-bottom: 4px;" name="pw" autocomplete="false" required>
                                 <input type="password" id="pass2" placeholder="비밀번호 확인을 위해 다시 한 번 입력해주세요" autocomplete="false" required>
                                 <span style="font-size:0.7rem;">최소 8자리 이상 <br> 영어 대문자, 소문자, 숫자, 특수문자 중 3종류 조합</span>
                             </div> 
@@ -239,31 +264,35 @@
                             </div>
                             <div class="group-input">
                                 <input type="text" id="email" name="email" required>
+                                <span style="font-size : 0.5rem"></span>
                             </div>
                             <div class="group-input label">
                                 <label for="account">계좌인증 *</label>
                             </div>
                          
-                            <div class="group-input account" style="padding:0; margin-bottom : 0;">
-	                            <div class="input-group mb-1" style="width:100%; margin-bottom:0;">
-	                            	 <div class="input-group-prepend">
-									    <label class="input-group-text" for="inputGroupBirth" style="margin:0; height:38px;">생년월일</label>
-									 </div>
-									 <input type="date" id="inputGroupBirth" style="height:38px; width:73%;"/>
-								</div>
+                           <div class="group-input account" style="padding:0; margin-bottom : 0;">
+                               <div class="input-group mb-1" style="margin-bottom:0; width: 303px;">
+	                            	 <div class="input-group-prepend" style="height:38px; width: 66px; ">
+                               		  <label class="input-group-text" for="inputGroupBirth" style="margin:0; height:38px; padding-left: 6px; width: 65px;">생년월일</label>
+                           		   </div>
+                                      <input type="date" id="inputGroupBirth" style="height:38px;width: 238px;"/>
+                               </div>
 								
-                            	<div class="input-group mb-1" style="width:100%; margin-bottom:0;"">
+                            	<div class="input-group mb-1" style="margin-bottom:0;">
 									  <div class="input-group-prepend">
 									    <label class="input-group-text" for="inputGroupSelect01" style="margin:0; height:38px;">은행명</label>
 									  </div>
-									  <select class="custom-select" id="inputGroupSelect01" style="height:38px; width:140px;" required onchange="getBank();">
-									    <option selected id="defaultOption" disabled selected>Choose...</option>
+									  <select class="custom-select" id="inputGroupSelect01" style="height:38px; width:140px; padding-left: 22px; margin-right: 2px;" required onchange="getBank();">
+									    <option selected id="defaultOption" disabled selected>선택</option>
 									  </select>
 								 	  <input type="hidden" name="bank"/>
 								</div>
 								
-                                <input type="number" id="account" name="account_num" placeholder="계좌번호를 입력하세요" required>
-                                <div class="site-btn certification-api account"><div>인증</div></div>
+                                <div class="account_box">
+		                             <input type="hidden" name="account_holder"> <!-- 추가 1.28 민정 -->
+		                               <input type="number" id="account" name="account_num" style="margin-right: 0px;" placeholder="계좌번호를 입력하세요" required>
+		                               <div class="site-btn certification-api account" style="margin-right: 3px;"><div>인증</div></div>
+		                        </div>
                             </div>
                            
                             <div class="group-input label">
@@ -273,12 +302,7 @@
                               	 <input type="tel" id="phone" name="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
   								 <small>형식: 010-1234-5678</small><br><br>
                             </div>
-                            <div class="group-input label">
-                                <label for="policy">개인정보 제공동의 *</label>
-                            </div>
-                            <div class="group-input" >
-                                <div class="site-btn policy" ><div>동의하기</div></div>
-                            </div>
+                           
                             <input type="hidden" name="join_date"/>
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
                         </form>
