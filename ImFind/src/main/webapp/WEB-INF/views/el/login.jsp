@@ -51,6 +51,8 @@
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
 <style>
+.link-tag find-pw{
+}
 .fh5co-nav ul li a {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weigth : bold;
