@@ -219,4 +219,5 @@
     <delete id="deleteMember">
      	DELETE FROM member WHERE id = #{id} and pw = #{pw}
     </delete>
+
 </mapper>

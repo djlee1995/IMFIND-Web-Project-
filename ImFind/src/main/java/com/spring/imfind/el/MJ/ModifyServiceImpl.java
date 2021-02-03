@@ -23,4 +23,5 @@ public class ModifyServiceImpl implements ModifyService{
 		int result = mapper.updateMember(vo);
 		return result;
 	}
+
 }

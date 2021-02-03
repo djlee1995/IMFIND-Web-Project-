@@ -10,15 +10,16 @@
 * 	Template Style 
 *
 * ======================================================= */
+/*
 body {
-  font-family: "Space Mono", Arial, serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
   color: #828282;
   background: #fff;
 }
-
+*/
 #page {
   position: relative;
   overflow-x: hidden;
@@ -47,7 +48,7 @@ body {
 }
 
 a {
-  color: #317AE1;
+  /*color: #317AE1;*/
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -64,7 +65,7 @@ p {
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
-  font-family: "Space Mono", Arial, serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
 }
@@ -93,7 +94,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
   text-transform: uppercase;
   font-weight: 700;
-  font-family: "Space Mono", Arial, serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .fh5co-nav #fh5co-logo a span {
   color: #317AE1;
@@ -1139,7 +1140,7 @@ h1, h2, h3, h4, h5, h6, figure {
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
-  font-family: "Space Mono", Arial, serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 16px;
   font-weight: 400;
   -webkit-border-radius: 30px;

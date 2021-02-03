@@ -1,3 +1,4 @@
+
 var loc;
 $(document).ready(function() {
 	console.log(loginUser)

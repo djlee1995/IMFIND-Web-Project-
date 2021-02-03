@@ -73,20 +73,70 @@
 	}
 	
 	#deltitle {
-		margin: 400px 0 0 370px;
+		margin: 200px 0 0 370px;
+		display: flex;
+		justify-content: row;
+	}
+	
+	.deltitle1 {
+		margin-top: 42px;
+		margin-left: 10px;
 	}
 	
 	.agree_check {
-		align: center;
+		/* align: center; */
+		padding-left: 300px;
+		margin-bottom: 10px;
 	}
 	
 	.button_area {
 		padding: 20px 0 0 680px;
+		display: flex;
+		justify-content: row;
+	}
+	
+	.pass {
+		width: 200px;
+		height: 35px;
+	}
+	
+	.pwchktitle{
+	    margin-top: 20px;
+	    margin-left: 663px;
 	}
 	
 	.pwchk {
-		margin-left: 370px;
+		margin-left: 661px;
+		margin-top: 10px;
+		display: flex;
+		justify-content: row;
 	}
+	
+	.pwbox {
+		margin-right: 10px;
+	}
+	
+	.btn.btn-block.bg-gradient-secondary {
+	    display: block;
+	    width: 60px;
+	    color: #fff;
+	    background-color: #dc3545;
+	    border-color: #dc3545;
+	    box-shadow: none;
+	    display: block; 
+	    font-family: 'Noto Sans KR', sans-serif;
+}
+	.btn.btn-block.bg-gradient-danger {
+		color: #fff;
+	    background-color: #6c757d;
+	    border-color: #6c757d;
+	    box-shadow: none;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    width: 60px;
+	    
+	}
+	
+	
 </style>
 	
 </head>
@@ -97,8 +147,12 @@
 	
  	 <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> 
  	 <div id="deltitle"> 
- 	 	<h1>회원탈퇴</h1>
- 	 	<h5>회원탈퇴를 하기전 아래 유의사항을 꼭 확인해 주시기 바랍니다.</h5>
+ 	 	<div class="deltitle1">
+ 	 		<h1>회원탈퇴</h1>
+ 	 	</div>
+ 	 	<div class="deltitle1">
+ 	 		<h5 style="margin-top: 41px;">회원탈퇴를 하기전 아래 유의사항을 꼭 확인해 주시기 바랍니다.</h5>
+ 	 	</div>
  	 </div>     
 	
 	 <div class="notice">
@@ -116,7 +170,7 @@
 				<p>삭제하시기 바랍니다.</p>
 			</li>
 		</ol>
-		<div class="agree_check">
+		<div class="agree_check" >
 		   <input type="radio" id="radio_y" name="radio" value="Y">
 		   <label for="radio_y" class="marginr10">동의합니다.</label>
 		   <input type="radio" id="radio_n" name="radio" value="N" checked="">
@@ -124,17 +178,26 @@
 		</div>
 	 </div>
 	
-	<div class="pwchk">
+	<div class="pwchktitle" >
 		<h5>회원탈퇴를 위해 비밀번호를 입력해주세요.</h5>
-		<input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required>
-		<button type="button" onclick="return chkEqualpw()">확인</button>
 	</div>
-	 <div class="button_area">
-		<div class="alignc">
-			<button class="btn save" title="탈퇴하기" onclick="return deleteMember()">
+	<div class="pwchk">
+		<div class="pwbox"> 
+			<input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required style="width: 200px; height: 35px;">
+		</div>
+		<div class="pwok">
+		<button type="button" class="btn btn-block btn-secondary" onclick="return chkEqualpw()" style="width: 50px; height: 35px; font-family: 'Noto Sans KR', sans-serif;">확인</button>
+		</div>
+	</div>
+	
+	<div class="button_area">
+		<div class="del_suc">
+			<button class="btn btn-block btn-secondary" title="탈퇴하기" onclick="return deleteMember()" style="width: 86px;  font-family: 'Noto Sans KR', sans-serif;">
 				<span>탈퇴하기</span>
 			</button>
-			<button class="btn cancel" title="취소" onclick="javascript:location.href='/home.do'">
+		</div>
+		<div class="del_cancel">	
+			<button class="btn btn-block bg-gradient-secondary" title="취소" onclick="javascript:location.href='/home.do'" style="width: 86px;">
 				<span>취소</span>
 			</button>
 		</div>									
@@ -157,11 +220,9 @@
 				success : function(data){
 					alert(data)
 					if(data == 'unpass'){
-
 						pw.setAttribute("style", " border: 1px solid red;");
 						
 						if(document.getElementsByClassName('warn').length == 0){
-
 							const warn_id = document.createElement('div');
 							
 							warn_id.className = 'warn';

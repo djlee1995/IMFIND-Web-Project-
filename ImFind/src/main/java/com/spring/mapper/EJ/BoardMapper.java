@@ -1,3 +1,4 @@
+
 package com.spring.mapper.EJ;
 import java.util.List;
 
@@ -55,4 +56,5 @@ public interface BoardMapper {
    public List<ComVO> getPetCommentList(String id);
    public int deleteMember(MemberVO membervo) throws Exception; //회원탈퇴
 }
+
 

@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.EJ;
 import java.util.Date;
 public class PetVO {
@@ -100,4 +101,5 @@ public class PetVO {
 				+ ", Pet_Up_File=" + Pet_Up_File + ", Pet_Name=" + Pet_Name + ", Pet_LostDate=" + Pet_LostDate
 				+ ", Pet_Loc=" + Pet_Loc + ", Id=" + Id + ", Contact=" + Contact + ", PayCode=" + PayCode + "]";
 	}
+
 }
