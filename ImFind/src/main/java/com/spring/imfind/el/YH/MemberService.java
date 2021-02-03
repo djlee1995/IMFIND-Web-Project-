@@ -1,4 +1,5 @@
 
+
 package com.spring.imfind.el.YH;
 
 import org.springframework.stereotype.Service;
@@ -16,4 +17,5 @@ public interface MemberService {
 	public LoginDTO getLoginDTO(String id);
 	//MJ Email chk
 	   public int CheckEmail(String email);
+
 }

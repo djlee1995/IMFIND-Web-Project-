@@ -25,3 +25,4 @@ public interface LostService {
 	public List<PoliceVO> getSimpleList(String x, String y);
 
 }
+

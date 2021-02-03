@@ -47,5 +47,4 @@ public interface BoardService {
    public List<ComVO> getPetCommentList(String id);
    public int deleteMember(MemberVO membervo) throws Exception; //회원탈퇴
 
-
 }

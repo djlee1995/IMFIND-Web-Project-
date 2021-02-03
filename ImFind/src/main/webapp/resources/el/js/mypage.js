@@ -35,9 +35,12 @@ $(document).ready(function(){
 //분실글 목록
 function getItemList(){
    $('#output').empty(); 
+   $('#mypgform').empty();
    $('#input-grade').attr('id', 'input-grade');
    
-   var form = '<tr><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
+   var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실물품 게시판 > 분실물 작성글 </h4>'
+   var form = '<tr style="text-align: center;"><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
+   $('#mypgform').append(title);
    $('#output').append(form);
     
    $.ajax({
@@ -53,15 +56,15 @@ function getItemList(){
              output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목            
              output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
              output += '<input type="hidden" value="'+ item.paycode + '">' // 결제코드
-             output += '<td class="mypage-line">'+item.lost_Re_Date+'</td>';//등록날짜                       
-             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-default btn-block">수정</button></td>';                
-             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-default btn-block">삭제</button></td>';   
+             output += '<td class="mypage-line">'+ moment(item.lost_Re_Date).format('YY-MM-DD')+'</td>';//등록날짜                       
+             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
+             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-block bg-gradient-danger">삭제</button></td>';   
              
              if(item.deal_State=='completed'){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
      
@@ -84,10 +87,13 @@ function getItemList(){
 //분실동물 목록
 function getPetList(){
     $('#output').empty(); 
+    $('#mypgform').empty();
     $('#input-grade').attr('id', 'input-grade-pet')
     
-    var form = '<tr><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
-     $('#output').append(form);
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실동물 게시판 > 분실동물 작성글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
+    $('#mypgform').append(title); 
+    $('#output').append(form);
     
     $.ajax({
       url:'/imfind/getPetElsedata.do',
@@ -101,15 +107,15 @@ function getPetList(){
             output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
             output += '<td class="mypage-line">'+item.pet_Title+'</td>';//제목            
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
-            output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';    
+            output += '<td class="mypage-line">'+ moment(item.pet_LostDate).format('YY-MM-DD')+'</td>';//등록날짜          
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';    
             
             if(item.deal_State=='completed'){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
         
@@ -124,8 +130,12 @@ function getPetList(){
 //내가 쓴 댓글 목록 - 은지 1.28
 function getCommentList(){
     $('#output').empty(); 
+    $('#mypgform').empty();
     
-    var form = '<tr><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실물 게시판 > 분실물 댓글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    
+    $('#mypgform').append(title);
     $('#output').append(form);
     
     $.ajax({
@@ -139,11 +149,11 @@ function getCommentList(){
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
             output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
-            output += '<td class="mypage-line">'+item.com_Date+'</td>';//등록날짜
+            output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜
             //output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+//            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
             $('#output').append(output);
@@ -157,9 +167,12 @@ function getCommentList(){
 //결제내역 목록
 function getPayList(){
    $('#output').empty(); 
+   $('#mypgform').empty();
    
-   var form = '<tr><td>결제일자</td><td>결제금액</td><td>결제방법</td><td>결제상태</td><td>환불요청</td></tr>';
-     $('#output').append(form);
+   var title= '<h4 style="font-weight: 300; padding-left: 9px;">개인정보 > 결제내역 </h4>'
+   var form = '<tr style="text-align: center;"><td>결제일자</td><td>결제금액</td><td>결제방법</td><td>결제상태</td><td>환불요청</td></tr>';
+   $('#mypgform').append(title); 
+   $('#output').append(form);
      
     $.ajax({
       url:'/imfind/getElsePaydata.do',
@@ -177,15 +190,15 @@ function getPayList(){
              
              if (item.pay_State == 'paid') {
                 output += '<td class="mypage-line">결제완료</td>';
-                output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn" >환불요청</button></td>';    
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn" >환불요청</button></td>';    
              } 
              if (item.pay_State == 'refund') {
                 output += '<td class="mypage-line">환불접수</td>';
-                output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn2" >환불접수중</button></td>'; 
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn2" >환불접수중</button></td>'; 
              } 
              if (item.pay_State == 'cancel') {
                 output += '<td class="mypage-line">환불완료</td>';
-                output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn3" >환불완료</button></td>'; 
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn3" >환불완료</button></td>'; 
              }
              output += '</tr>';
              $('#output').append(output);
@@ -199,8 +212,12 @@ function getPayList(){
 //내가 쓴 댓글 목록(동물) - 1.28 은지
 function getPetCommentList(){
     $('#output').empty(); 
+    $('#mypgform').empty();
     
-    var form = '<tr><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실동물 게시판 > 분실동물 댓글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    
+    $('#mypgform').append(title);
     $('#output').append(form);
     
     $.ajax({
@@ -216,10 +233,10 @@ function getPetCommentList(){
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
             output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
-            output += '<td class="mypage-line">'+item.com_Date+'</td>';//등록날짜  
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block"><a href="/imfind/#.do">삭제</button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜  
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+//            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
             $('#output').append(output);
@@ -429,7 +446,7 @@ function myfunction2 (){
             var output_WhoReplied= '';
             
             $.each(data, function(index, item){   
-               output_WhoReplied += '<input type="radio" name="finder" value="'+ item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
+               output_WhoReplied += '<input type="radio" id="f-radio" name="finder" value="'+item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
             });
             $('#output_WhoReplied').append(output_WhoReplied);
          },
@@ -451,7 +468,7 @@ function myfunction2 (){
             var output_WhoReplied= '';
             
             $.each(data, function(index, item){   
-               output_WhoReplied += '<input type="radio" name="finder" value="'+ item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
+               output_WhoReplied += '<input type="radio" id="f-radio" name="finder" value="'+ item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
             });
             $('#output_WhoReplied').append(output_WhoReplied);
          },
@@ -472,7 +489,7 @@ document.addEventListener('click', function(e){
       alert(1111)
       grade_insert_btn();
    }
-   if(e.target.className == 'btnWhoGetStar-pet'){
+   if(e.target.className == 'btnWhoGetStar-pet btn btn-default btn-block'){
 	   lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
 	   getElseWhoRepliedPet(lostPostNum);
    }
@@ -579,14 +596,19 @@ function grade_insert_btnPet (){
 function getMoeny(){
 	  alert('정산내역')
 	  $('#output').empty(); 
+	  $('#mypgform').empty();
 	  
+	  var title= '<h4 style="font-weight: 300; padding-left: 9px;">개인정보 > 정산내역 </h4>'
+	 
+      $('#mypgform').append(title);	  
+	    
 	  $.ajax({
 	         url:'/imfind/getMoneyList',
 	         data: {"id" : user},
 	         contentType : 'application/json',
 	         datatype:'json',
 	         success:function(data){
-	        	  var output = '<tr>'
+	        	  var output = '<tr style="text-align: center;">'
 	        		  			+'<td>글번호</td>'
 	        		  			+'<td>거래자</td>'
 	        		  			+'<td>거래완료일</td>'
@@ -645,4 +667,5 @@ function getMoeny(){
 	     });
 	     //기본이벤트 제거 
 	     event.preventDefault();
+
 }

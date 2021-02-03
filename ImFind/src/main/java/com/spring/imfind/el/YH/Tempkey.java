@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 import java.util.Random;
@@ -40,4 +41,3 @@ public class Tempkey {
         return sb.toString();
     }
 }
-

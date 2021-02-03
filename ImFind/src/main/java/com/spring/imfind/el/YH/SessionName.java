@@ -14,3 +14,4 @@ public interface SessionName {
 	static final String SENDER = "sender";
 	static final String RECIEVER = "reciever";
 }
+

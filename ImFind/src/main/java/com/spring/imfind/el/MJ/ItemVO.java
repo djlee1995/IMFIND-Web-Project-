@@ -1,4 +1,3 @@
-
 package com.spring.imfind.el.MJ;
 
 import java.util.Date;
@@ -144,6 +143,5 @@ public class ItemVO {
 				+ Lost_Item + ", Lost_Loc=" + Lost_Loc + ", Lost_Date=" + Lost_Date + ", Id=" + Id + ", Contact="
 				+ Contact + "]";
 	}
-
 
 }

@@ -8,7 +8,6 @@
 
 <style>
 	.container-fluid{
-
 /* 		border: 1px solid black; */
 		width: 75vw;
 		margin: 0 auto;
@@ -26,7 +25,6 @@
 	.top-menu{
 	    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
 		height : 73px !important;
-
 	}
 </style>
 
@@ -35,14 +33,21 @@
 		<div class="container-fluid main-nav">
 			<div class="row">
 				<div class="col-xs-2">
-					<div id="fh5co-logo" ><a href="./">ImFind<span>.</span></a></div>
+					<div id="fh5co-logo" style="margin-top: 10px;"><a href="./home.do">ImFind<span>.</span></a></div>
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li class="active"><a href="index.if">if</a></li>
-						<li><a href="./home.do">ELSE</a></li>
-							<li class="has-dropdown">
-							<a href="./itemboard">분실물 등록 <i class="fas fa-sort-down"></i></a>
+						<li class="has-dropdown">
+							<a href="#">습득물 조회 <i class="fas fa-sort-down"></i></a>
+							<ul class="dropdown">
+								<li><a href="index.if">경찰청</a></li>
+								<li><a href="etc_index.if">etc</a></li>
+								<li><a href="select.if">검색</a></li>
+								<li> <a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')">핸드폰찾기</a></li>
+							</ul>
+						</li>
+						<li class="has-dropdown">
+							<a href="#">분실물 등록 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
 								<li><a href="./itemboard">물건</a></li>
 								<li><a href="./petboard">동물</a></li>
@@ -76,5 +81,3 @@
 		</div>
 	</div>
 </nav>
-   
-   
