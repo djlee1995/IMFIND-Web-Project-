@@ -1,3 +1,4 @@
+
 package com.spring.mapper.MJ;
 
 import java.util.List;
@@ -62,5 +63,14 @@ public interface ItemMapper {
 	int pet_like_cancel(@Param("Pet_PostNum") int Pet_PostNum, @Param("id") String id);
 
 	int pet_likeCount(int lost_PostNum);
+	
+	//사례금 랭크
+	List<ItemVO> lost_pay_rank(ItemVO vo);
+	//사례금 랭크(pet)
+	List<PetVO> pet_pay_rank(PetVO vo);
+	//좋아요 랭크
+	int lost_like_rank();
+	//좋아요 랭크(pet)
+	int pet_like_rank();
 
 }

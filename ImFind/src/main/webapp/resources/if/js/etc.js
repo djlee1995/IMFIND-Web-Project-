@@ -31,7 +31,7 @@ var markers=[];
  var imageSrc ="./resources/if/images/subway.png", // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
- var img = '<image width=44px; height=49px; src="./resources/if/images/subway.png">';
+ var img = '<image width=35px; height=35px; src="./resources/if/images/subway.png">';
 
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -151,18 +151,20 @@ function etc() {
 					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 					//dataType:'json',
 					success: function(data){
+						$('.manual').empty();
 						$('.movie').empty();					
 						$('.police').empty();
-						$('#output').empty();
+						$('.tableif').empty();
 						
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace.replace(/(\s*)/g, "")+','+data[0].x+','+data[0].y+'",""';
 						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
-							var output = '';
-							output +='<tr style="font-size: large; font-weight:bold;"><td><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></td>';
-							output +='<td>'+item.state+'</td></tr>';
-							$('#output').append(output);
+							console.log(data[0])
+							var output = '<div align="center" class="output">';
+							output +='<img width="150px"; height="150px"; src="./resources/el/images/no_img.png">';
+							output +='<p><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></p></div>';
+							$('.tableif').append(output);
 				
 						});
 						},
@@ -188,16 +190,15 @@ function etc() {
 						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 						//dataType:'json',
 						success: function(data){
-							$('#output').empty();
-							
+							$('.tableif').empty();
+							$('.manual').empty();
 							$.each(data, function(index,item){
-								var output = '';
-								output +='<tr style="font-size: large;"><td>'+ item.lost_date + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.state +'</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.info + '</td></tr>';
-								$('#output').append(output);
+								var output = '<div  class="info_data">';
+								output +='<p> 습득 날짜:'+ item.lost_date + '</p>';
+								output +='<p>'+ item.item + '</p>';
+								output +='<img src="./resources/el/images/no_img.png">';
+								output +='<p>'+item.info.substring(2) +'</p></div>';
+								$('.tableif').append(output);
 					
 							});
 							},

@@ -67,6 +67,5 @@ public class ComVO {
 				+ ", Lost_PostNum=" + Lost_PostNum + ", re_num=" + re_num + ", re_content=" + re_content + ", re_date="
 				+ re_date + "]";
 	}
-	
-	
+
 }

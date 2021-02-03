@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.EJ;
 
 import java.util.List;
@@ -45,4 +46,5 @@ public interface BoardService {
    public List<ComVO> getCommentList(String id);
    public List<ComVO> getPetCommentList(String id);
    public int deleteMember(MemberVO membervo) throws Exception; //회원탈퇴
+
 }

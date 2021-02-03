@@ -667,4 +667,5 @@ function getMoeny(){
 	     });
 	     //기본이벤트 제거 
 	     event.preventDefault();
+
 }

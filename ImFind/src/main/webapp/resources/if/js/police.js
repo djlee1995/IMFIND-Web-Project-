@@ -153,15 +153,16 @@ function police() {
 					success: function(data){
 						$('.movie').empty();
 						$('.police').empty();
-						$('#output').empty();
+						$('.tableif').empty();
+						$('.manual').empty();
 						var link ='"https://map.kakao.com/link/to/'+data[0].depplace+','+data[0].y+','+data[0].x+'",""';
 						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/p_lostlist.if class=p_lostlist_data id='+data[0].placeid+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
-							var output = '';
-							output +='<tr style="font-size: large; font-weight:bold;"><td><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></td></tr>';
-							output +='<tr><td><img width="150px"; height="150px"; src="'+ item.photo + '"></td></tr>';
-							$('#output').append(output);
+							var output = '<div align="center" class="output">';
+							output +='<img width="150px"; height="150px"; src="'+ item.photo + '">';
+							output +='<p><a href=/imfind/p_info.if class=p_info_data id='+item.code+'>'+item.item +'</a></p></div>';
+							$('.tableif').append(output);
 				
 						});
 						},
@@ -187,17 +188,15 @@ function police() {
 						contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 						//dataType:'json',
 						success: function(data){
-							$('#output').empty();
-							
+							$('.tableif').empty();
+							$('.manual').empty();
 							$.each(data, function(index,item){
-								var output = '';
-								output +='<tr style="font-size: large;"><td>'+ item.lost_date + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.kind + '</td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.item + '</td></tr>';
-								output +='<tr><td><img width="300px"; height="300px"; src="'+ item.photo + '"></td></tr>';
-								output +='<tr style="font-size: large;"><td>'+ item.info.substring(2) + '</td></tr>';
-								$('#output').append(output);
-					
+								var output = '<div  class="info_data">';
+								output +='<p> 습득 날짜:'+ item.lost_date + '</p>';
+								output +='<p>'+ item.item + '</p>';
+								output +='<img src="'+ item.photo + '">';
+								output +='<p>'+item.info.substring(2) +'</p></div>';
+								$('.tableif').append(output);
 							});
 							},
 							
@@ -215,4 +214,3 @@ function police() {
 			 
 			
 }
-

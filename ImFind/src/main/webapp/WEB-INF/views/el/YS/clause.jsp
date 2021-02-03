@@ -7,9 +7,7 @@
         *{
             font-family:'malgun gothic';
 }
-
         #content.cols-d { width: 583px; min-width: 583px; }
-
         .f { position: relative; margin: 0 Auto; padding: 0 Auto; color: #666; }      /*  margin: 0;  */ 
         .f p { width: 100%; margin: 0 0 13px; font-size: 1.3em; text-align:center;margin-top:20px;}
         .f p:after { content: ""; display: block; overflow: hidden; clear: both; height: 0; }    

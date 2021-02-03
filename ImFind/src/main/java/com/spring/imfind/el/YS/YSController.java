@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YS;
 
 import java.util.HashMap;
@@ -176,6 +177,7 @@ public class YSController {
 		return avg;
 	}
 	 @RequestMapping("/admintest") public String afterLoginHeader() {
-	     return "el/YS/admintest"; }
-
+	     return "el/YS/admintest";
+	     }
 }
+

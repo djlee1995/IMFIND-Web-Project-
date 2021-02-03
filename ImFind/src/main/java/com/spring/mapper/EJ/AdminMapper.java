@@ -1,3 +1,4 @@
+
 package com.spring.mapper.EJ;
 
 import java.util.List;
@@ -12,3 +13,4 @@ public interface AdminMapper {
 	public List<PayVO> getRefundList();
 	public int updatePaystate(PayVO payVO);
 }
+

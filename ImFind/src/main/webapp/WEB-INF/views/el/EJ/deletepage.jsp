@@ -126,7 +126,6 @@
 	    display: block; 
 	    font-family: 'Noto Sans KR', sans-serif;
 }
-
 	.btn.btn-block.bg-gradient-danger {
 		color: #fff;
 	    background-color: #6c757d;
@@ -221,11 +220,9 @@
 				success : function(data){
 					alert(data)
 					if(data == 'unpass'){
-
 						pw.setAttribute("style", " border: 1px solid red;");
 						
 						if(document.getElementsByClassName('warn').length == 0){
-
 							const warn_id = document.createElement('div');
 							
 							warn_id.className = 'warn';

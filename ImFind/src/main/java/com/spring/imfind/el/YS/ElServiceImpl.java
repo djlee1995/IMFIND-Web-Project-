@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YS;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
@@ -88,4 +89,5 @@ public class ElServiceImpl implements ElService{
 		List<ElVO> list =elMapper.getStarGrade(F_Id);
 		return list;		
 	}
+
 }

@@ -60,7 +60,6 @@
 <!-- 유희 css -->
 <style>
    @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
    .notosanskr * { 
          font-family: 'Noto Sans KR', sans-serif;
    }
@@ -90,14 +89,12 @@
       display: flex;
       align-items: center;
       flex-wrap:wrap;
-
    }
    .site-btn.policy{
       margin : 0 auto;
       display : block;
       background : #317AE1;
    }
-
     .grid-form{
       display : grid;
       grid-template-columns: 0.4fr 1fr !important;

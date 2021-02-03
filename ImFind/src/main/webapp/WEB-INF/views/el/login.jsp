@@ -125,20 +125,16 @@ div.container-fluid:nth-child(1) > div:nth-child(1) {
     position: relative;
     top: -15px;
 }
-
-
 .login-form h2, .group-input id {
 	/* font-family: "Space Mono", Arial, serif; */
 	font-family: 'Noto Sans KR', sans-serif;
 }	
-
 .loginBtn {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-
 .gi-more {
 	display: flex;
     justify-content: space-between;
