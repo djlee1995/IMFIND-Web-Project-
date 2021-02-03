@@ -1,5 +1,5 @@
-
 var loc;
+var arr = [];
 $(document).ready(function() {
 	console.log(loginUser)
 
@@ -67,9 +67,9 @@ function info() {
 			}
 				formattedDate = getChangeDateString(data[0].pet_Re_Date)
 				loc=data[0].pet_Loc
-				$('#lost_Re_Date').text(formattedDate);
+				$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
 				$('#pet').text(data[0].pet_Name);
-				$('#title').html(data[0].pet_Title+'<a href="javascript: like_func();"><img id="like_img" width="30px"></a><span id="like_cnt"></span>');
+				$('#title').html(data[0].pet_Title+'<div id="like-con"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></div>');
 				$('#content').html(data[0].pet_Content);
 				$('#pay').text(data[0].pet_Pay);
 				$('#loc').text(data[0].pet_Loc);
@@ -98,7 +98,7 @@ function info() {
 						console.log(oldBKInfo[i].postnum)
 
 						if (oldBKInfo[i].postnum == Pet_PostNum) {
-							alert('중복입니다')
+							//alert('중복입니다')
 							flag = true;
 							break;
 						}
@@ -291,4 +291,3 @@ function getChangeDateString(originalDate){
 		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 	}
 }	
-

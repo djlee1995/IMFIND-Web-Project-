@@ -8,7 +8,7 @@
    <head>
    <meta charset="UTF-8">
 
-   <title>분실글 등록하기(애완동물)</title>
+   <title>분실글 수정하기(애완동물)</title>
    
          <!-- Google Font -->
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">

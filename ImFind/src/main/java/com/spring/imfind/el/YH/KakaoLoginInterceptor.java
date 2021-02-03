@@ -59,7 +59,7 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 			   LoginDTO dto = memberService.getLoginDTO((String)kakaoLoginUser);
 			   session.setAttribute(MEMBERINFO, dto);
 			   
-			   response.sendRedirect("/home.do");
+			   //response.sendRedirect("/home.do");
 			   return;
 
 			}

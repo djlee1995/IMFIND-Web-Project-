@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     commentList();
     replyList();
@@ -13,7 +12,28 @@ $(document).ready(function(){
              $('#counter').html("(200 / 최대 200자)");
           }
        });
+    
+    // 비밀댓글 자물쇠 변경
+    document.querySelector('#Secret_Com').addEventListener('click', function(){
+		   const elem = document.querySelector('.fa-unlock');
+		   const unlock = document.querySelector('.fa-lock');
+		   
+		   const chkBox = document.querySelector('#Secret_Com:checked');
+		   
+		   if(chkBox != null){
+			   elem.classList.remove('fa-unlock');
+			   elem.classList.add('fa-lock');
+			   elem.style.color = 'red';
+		   }
+		   else{
+			   
+			   unlock.classList.remove('fa-lock');
+			   unlock.classList.add('fa-unlock');
+			   unlock.style.color = 'gray';
+		   }
+	   });
     });
+
 
 $('[name=commentInsertBtn]').click(function(){//댓글 등록 버튼 클릭시
    console.log('진입')
@@ -69,14 +89,12 @@ function commentInsert(insertData){
 function commentUpdateForm(com_Num, com_Content){
    
    var a ='';
-   
-   a += '<div>';
+   a += '<div class="content">';
    a += '<input type="text" name="content_'+com_Num+'" value="'+com_Content+'"/>';
-   a += '<button type="button" onclick="commentUpdate('+com_Num+');">수정</button> ';
+   a += '<button type="button" onclick="commentUpdate('+com_Num+');"><i class="fas fa-cut"></i>수정</button> ';
    a += '<button type="button" onclick="commentList();">취소</button>';
    a += '<button type="button" onclick="reply();">댓글</button>';
    a += '</div>';
-   
    $('#commentContent'+com_Num).html(a);
 }
 
@@ -125,9 +143,9 @@ function commentDelete(com_Num){
 //동준 대댓글
 function reply(com_Num) {
    var text='';
-      text+='<input type="text" name="re_content'+com_Num+'" value=""/>';
-      text+='<button type="button" onclick="replyinsert('+com_Num+');">등록</button>';
-      text+='<button type="button" onclick="">취소</button>';
+      text+='<input type="text" name="re_content'+com_Num+'" value=""/>'
+      	  +'<div class="com2"><div class="reply-con"><button type="button" onclick="replyinsert('+com_Num+');">등록</button>'
+      	  +'<button type="button" onclick="">취소</button></div></div>';
    $('#reply'+com_Num+'').html(text);
 
 }
@@ -164,20 +182,20 @@ function replyList() {
 	       $.each(data, function(key, value){
 	    	   console.log(value.id)
 	    	   if(value.id==id){
-	          var a='';
-	             a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
-	             a+='아이디:'+value.id+'';
-	             a+='날짜:'+moment(value.re_date).format('YY-MM-DD HH:mm')+'';
-	           
-	             a+='<button type="button" onclick="replyupdate_form('+value.re_num+',\''+value.re_content+'\');">수정</button>';
-	            a+='<button type="button" onclick="replydelete('+value.re_num+');">삭제</button></div>';
+    		    var a='';
+                a+='<div class="recom-id">&#8627; '+value.id+'</div>';
+                a+='<div class="replyList" id="replyList'+value.re_num+'">'+ '<div class="com-con"><div class="recom-box">' + value.re_content+'</div>';
+                a+='<div class="recom-date">'+moment(value.re_date).format('YY-MM-DD HH:mm')+'</div></div>';
+              
+                a+='<div class="btn-con"><button type="button" onclick="replyupdate_form('+value.re_num+',\''+value.re_content+'\');"><i class="fas fa-cut"></i>수정</button>';
+                a+='<button type="button" onclick="replydelete('+value.re_num+');"><i class="fas fa-trash-alt"></i>삭제</button></div></div>';
 	          $('#re_content'+value.com_num).append(a);
 	    	   }
 	    	   else{
 	    		   var a='';
-	    		   a+='<div class="replyList" id="replyList'+value.re_num+'"> ->'+value.re_content+'';
-		             a+='아이디:'+value.id+'';
-		             a+='날짜:'+moment(value.re_date).format('YY-MM-DD HH:mm')+'</div>';
+	    		   a+='<div class="recom-id">&#8627; '+value.id+'</div>';
+	    		   a+='<div class="replyList" id="replyList'+value.re_num+'">' + '<div class="com-con"><div class="recom-box">' + value.re_content+'</div>';
+	               a+='<div class="recom-date">'+moment(value.re_date).format('YY-MM-DD HH:mm')+'</div></div>';
 
 	            $('#re_content'+value.com_num).append(a);
 	    	   }
@@ -190,9 +208,9 @@ function replyList() {
 	}
 function replyupdate_form(re_num,re_content) {
 	var b='';
-		b+='<input class="replyupdate_form" id="replyupdate_form'+re_num+'" type="text" value="'+re_content+'">';
-		b+='<button type="button" onclick="replyupdate('+re_num+');">수정</button>';
-		b+='<button type="button" onclick="replyList();">취소</button>';
+	b+='<input class="replyupdate_form" id="replyupdate_form'+re_num+'" type="text" value="'+re_content+'">';
+	b+='<button type="button" onclick="replyupdate('+re_num+');"><i class="fas fa-cut"></i>수정</button>';
+	b+='<button type="button" onclick="replyList();">취소</button>';
 		$('#replyList'+re_num).html(b)
 }
 function replyupdate(re_num) {

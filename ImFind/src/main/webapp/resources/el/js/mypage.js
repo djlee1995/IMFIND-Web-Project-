@@ -108,8 +108,8 @@ function getPetList(){
             output += '<td class="mypage-line"><a href="./petinfo?Pet_PostNum='+item.pet_PostNum+'&getId='+item.id+'">'+item.pet_Title+'</a></td>';//제목            
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
             output += '<td class="mypage-line">'+ moment(item.pet_LostDate).format('YY-MM-DD')+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';    
+            output += '<td class="mypage-line"><button type="button" id="updateBtn" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" id="deleteBtn" class="btn btn-block bg-gradient-danger">삭제<</button></td>';    
             
             if(item.deal_State=='completed'){
                 output +='<td class="mypage-line">거래확정</td>';
@@ -120,6 +120,12 @@ function getPetList(){
              output += '</tr>';
         
             $('#output').append(output);
+            $('#updateBtn').click(function(){
+                $(location).attr("href", "petupdatepage?Pet_PostNum="+item.pet_PostNum+"");              
+             });
+              $('#deleteBtn').click(function(){
+                $(location).attr("href", "petdeletepage?Pet_PostNum="+item.pet_PostNum+"");
+              });
         });
       },
        error:function(){
@@ -151,12 +157,18 @@ function getCommentList(){
             output += '<td class="mypage-line"><a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">'+item.re_content+'</a></td>';//댓글내용        
             output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜
             //output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" id="updateBtn" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" id="deleteBtn" class="btn btn-block bg-gradient-danger">삭제</button></td>';                
 //            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
             $('#output').append(output);
+            $('#updateBtn').click(function(){
+                $(location).attr("href", "iteminfo?lost_PostNum="+item.lost_PostNum+"&getId="+item.id+"");              
+             });
+              $('#deleteBtn').click(function(){
+                $(location).attr("href", "iteminfo?lost_PostNum="+item.lost_PostNum+"&getId="+item.id+"");
+              });
         });
       },
        error:function(){
@@ -234,12 +246,18 @@ function getPetCommentList(){
             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
             output += '<td class="mypage-line"><a href="./petinfo?Pet_PostNum='+item.lost_PostNum+'&getId='+item.id+'">'+item.re_content+'</td>';//댓글내용        
             output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜  
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
-            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" id="updateBtn" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
+            output += '<td class="mypage-line"><button type="button" id="deleteBtn" class="btn btn-block bg-gradient-danger">삭제</button></td>';                
 //            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
             output += '</tr>';
         
             $('#output').append(output);
+            $('#updateBtn').click(function(){
+                $(location).attr("href", "iteminfo?lost_PostNum="+item.lost_PostNum+"&getId="+item.id+"");              
+             });
+              $('#deleteBtn').click(function(){
+                $(location).attr("href", "iteminfo?lost_PostNum="+item.lost_PostNum+"&getId="+item.id+"");
+              });
         });
       },
        error:function(){

@@ -6,6 +6,8 @@ import com.spring.imfind.el.YS.ElVO;
 public interface ElMapper {
 	List<ElVO> getElsedata(String id);
 	List<ElVO> getPetElsedata(String id);
+	List<ElVO> getElsedata2(String id);
+	List<ElVO> getPetElsedata2(String id);
 	List<ElVO> getElsePaydata(String id);
 	List<ElVO> getElseWhoReplied(int param);
 	List<ElVO> getElseWhoRepliedPet(int param);

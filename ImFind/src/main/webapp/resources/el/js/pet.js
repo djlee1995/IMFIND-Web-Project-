@@ -1,4 +1,3 @@
-
 // 시군구동 검색 
 var sigudong = '';
 var si;
@@ -280,7 +279,7 @@ function listdata() {
 }
 /* 민정 검색버튼 */
 document.querySelector('.selectBtn.key').addEventListener('click',function click() {
-	var Pet_Title = $("#input-search").val();
+	var Pet_Title = $("input#input-search").val();
 	if (Pet_Title == "") {
 		alert('검색어를 입력해주세요')
 		return false;
@@ -348,7 +347,7 @@ document.querySelector('.selectBtn.key').addEventListener('click',function click
 // 엔터
 function enterkey() {
 	if (window.event.keyCode == 13) {
-		var Pet_Title = $("#input-search").val();
+		var Pet_Title = $("input#input-search").val();
 		if (Pet_Title == "") {
 			alert('검색어를 입력해주세요')
 			return false;

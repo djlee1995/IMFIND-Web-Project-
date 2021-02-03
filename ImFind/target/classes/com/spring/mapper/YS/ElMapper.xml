@@ -8,11 +8,17 @@
        SELECT * FROM lostpost lost 
        		JOIN pay ON lost.lost_postnum =  pay.lost_postnum 
        		WHERE lost.id = #{id}   
+   </select>
+   <select id="getElsedata2" parameterType="String" resultType="ElVO">      
+       select * from lostpost where id= #{id} and paycode is null   
    </select>     
    <select id="getPetElsedata" parameterType="String" resultType="ElVO">      
       SELECT * FROM petpost lost 
        		JOIN pay ON lost.pet_postnum = pay.pet_postnum 
        		WHERE lost.id = #{id}     
+   </select>
+   <select id="getPetElsedata2" parameterType="String" resultType="ElVO">      
+      select * from petpost where id= #{id} and paycode is null     
    </select>  
    <select id="getElsePaydata" parameterType="String" resultType="ElVO">      
       SELECT * FROM Pay where id = #{id, jdbcType=VARCHAR}    

@@ -1,9 +1,12 @@
 
 package com.spring.imfind.el.YS;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spring.imfind.el.EJ.PetVO;
 import com.spring.mapper.YS.ElMapper;
 @Service("elService")
 public class ElServiceImpl implements ElService{
@@ -11,19 +14,24 @@ public class ElServiceImpl implements ElService{
 	private SqlSession sqlSession;
 	@Override
 	public List<ElVO> getElsedata(String id) {
-		List<ElVO>elseList=null;
+		
 		ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
-		elseList=elMapper.getElsedata(id);
-		System.out.println(elseList.toString());
-		return elseList;
+		List<ElVO>elseList1=elMapper.getElsedata(id);
+		List<ElVO>elseList2=elMapper.getElsedata2(id);
+		List<ElVO> List = new ArrayList<>();
+		List.addAll(elseList1);
+		List.addAll(elseList2);
+		return List;
 	}
 	@Override
 	public List<ElVO> getPetElsedata(String id) {
-				List<ElVO>petelseList=null;
 				ElMapper elMapper=sqlSession.getMapper(ElMapper.class);
-				petelseList=elMapper.getPetElsedata(id);
-				System.out.println(petelseList.toString());
-				return petelseList;
+				List<ElVO>elseList1=elMapper.getPetElsedata(id);
+				List<ElVO>elseList2=elMapper.getPetElsedata2(id);
+				List<ElVO> List = new ArrayList<>();
+				List.addAll(elseList1);
+				List.addAll(elseList2);
+				return List;
 	}
 	@Override
 	public List<ElVO> getElsePaydata(String id) {

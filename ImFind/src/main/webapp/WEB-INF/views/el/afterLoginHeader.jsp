@@ -68,7 +68,7 @@
 								    </c:when>
 								    <c:when test="${user eq 'admin'}">
 										<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
-										<li class="btn-cta"><a href="./adminhome"><span >관리자페이지</span></a></li> 		
+										<li class="btn-cta"><a href="./admintest"><span >관리자페이지</span></a></li> 		
 								    </c:when>
 								    <c:otherwise>
 										<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 

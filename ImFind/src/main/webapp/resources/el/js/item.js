@@ -1,6 +1,5 @@
-
 // 시군구동 검색 
-      var sigudong;
+      var sigudong='';
       var si;
       var gu;
       var dong;
@@ -9,10 +8,8 @@ jQuery(document).ready(function(){
 	if ( sessionStorage.length != ""){
 		ShowStorage();
 		listdata();
-		
 	} else {
 		listdata();
-		
 	}
 		 
    $(".js-example-basic-single").select2();
@@ -43,14 +40,13 @@ jQuery(document).ready(function(){
       jQuery('#sigugun option:eq(1)').attr('selected', 'selected');
       //trigger를 이용해 change 실행
       jQuery('#sigugun').trigger('change');
-      
     }
     si = $('#sido :selected').text();
     if(si=='시/도 선택하세요'){
        si = "";
     }
     sigudong=si
-    console.log(sigudong)
+    console.log(lost_Loc)
   });
   //시군구 변경시 행정동 옵션추가
   jQuery('#sigugun').change(function(){
@@ -70,7 +66,7 @@ jQuery(document).ready(function(){
        
     }
     sigudong=si+gu
-    console.log(sigudong)
+    console.log(lost_Loc)
   });
   jQuery('#dong').change(function(){
     var sido = jQuery('#sido option:selected').val();
@@ -84,7 +80,7 @@ jQuery(document).ready(function(){
     }
    
     sigudong=si+gu+dong
-    console.log(sigudong)
+    console.log(lost_Loc)
   });
 
 });
@@ -219,7 +215,7 @@ function listdata() {
                
                $.each(data,function(index,item) {   
 					if(item.lost_Up_File == '0'){
-						lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+					   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
 					}
 					else{
 					   lost_up_file = item.lost_Up_File;
@@ -246,7 +242,8 @@ function listdata() {
 				  output +=       '</div>'
 				  output +=       '<div class="loc">' + lost_Loc + '</div>'
 				  output +=     '</a>'
-				  output +=   '</div>' 
+				  output +=   '</div>'
+					  
                }); 
                $('.card-wrapper').append(output);
          },
@@ -291,7 +288,7 @@ function fn_option(code, name){
         };
    //<!-- 민정 검색버튼 -->
   document.querySelector('.selectBtn.key').addEventListener('click', function click() {
-		 var lost_Title = $("#input-search").val();
+		 var lost_Title = $("input#input-search").val();
 		 if (lost_Title ==""){
 		    alert('검색어를 입력해주세요')
 		    return false;
@@ -347,7 +344,7 @@ function fn_option(code, name){
       //엔터
 function enterkey() {
     if (window.event.keyCode == 13) {
-       var lost_Title = $("#input-search").val();
+       var lost_Title = $("input#input-search").val();
       if (lost_Title ==""){
          alert('검색어를 입력해주세요')
          return false;

@@ -1,4 +1,3 @@
-
 var loc;
 var arr = [];
 
@@ -121,7 +120,7 @@ function info() {
 							console.log(oldBKInfo[i].postnum)
 
 							if (oldBKInfo[i].postnum == lost_PostNum) {
-								alert('중복입니다')
+								//alert('중복입니다')
 								flag = true;
 								break;
 							}
@@ -140,11 +139,8 @@ function info() {
 					console.log(data)
 					formattedDate = getChangeDateString(data[0].lost_Re_Date)
 					loc = data[0].lost_Loc;
-					$('#lost_Re_Date').text(formattedDate);
-					$('#title')
-							.html(
-									data[0].lost_Title
-											+ '<a href="javascript: like_func();"><img id="like_img" width="30px"></a><span id="like_cnt"></span>');
+					$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
+					$('#title').html(data[0].lost_Title+ '<div id="like-con"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></div>');
 					$('#content-body-text').html(data[0].lost_Content);
 					/* $('#file').html(data[0].lost_Up_File); */
 					$('#file').html(lost_up_file);
@@ -373,4 +369,3 @@ function getChangeDateString(originalDate) {
 		// $('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 	}
 }
-

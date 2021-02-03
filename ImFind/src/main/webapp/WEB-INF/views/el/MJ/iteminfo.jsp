@@ -36,16 +36,19 @@
       .infoText{
          padding-left: 10px;
          margin-left:18px;
-      
+      	 height: 100%;
       }
       .container.iteminfo{
          padding-left:0;
       }
-      .head > h3{
-         text-align: center;
-         padding-top: 11px;
-          font-family: 'Noto Sans KR', sans-serif !important;
-          font-weight: 550 !important;
+      .head > p{
+        font-size: 2.2rem;
+	    text-align: start;
+	    padding-top: 11px;
+	    font-family: 'Noto Sans KR', sans-serif !important;
+	    font-weight: 200 !important;
+	    color: black;
+	    margin-bottom: 9px;
       }
       .head > div > label{
          padding : 0;
@@ -53,11 +56,21 @@
       }
       .infoBody{
          margin: 15px 0 0 0;
-         background: #f7f9fa;
          height: 225px;
+         border-bottom : 1px solid rgb(238, 238, 238);
+         border-top : 1px solid rgb(238, 238, 238);
+         display: flex;
+		 flex-wrap: wrap;
+		 padding : 12px 0 10px 0;
+      }
+      .infoBody > div { 
+      	width:76%;
       }
       .container.detailInfo{
          padding-left : 0;
+      }
+      div#loc{
+      	height: auto;
       }
       /* section 가로 크기 */
       @media(min-width: 1900px){
@@ -81,21 +94,26 @@
       @media(min-width: 1200px){
          .container.iteminfo{
             display : flex;
-            height: 340px;
+            height: 300px;
          }
    
          #file{
-            width: 50%;
+            height: 100%;
+    		width: 38%;
          }   
          #file img{
             width:100%;
             height: 100%;
+            border-radius: 11px;
+    		object-fit: cover;
          }
          .infoText{
             display: flex;
             flex-direction:column;
-            width:50%;
+            width:59%;
+         	height: 100%;
             margin:0;
+            margin-left: 21px;
          }
          .menu{
             position: fixed;
@@ -120,7 +138,38 @@
          #comment-form{
             width:100%;
          }
-         
+         .like-con{
+         	width:50%;
+         	height:56px;
+         }
+         .like-btn{
+         	border: none;
+		    width: 99%;
+		    height: 48px;
+		    border-radius: 3px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+         }
+         .like-btn > p { 
+         	margin : 0;
+         }
+         .like-group{
+         	display:flex;
+		    justify-content: center;
+		    align-items: center;
+		    margin-top: 12px;
+         }
+         ._12xcxtl{
+         	border-top: 1px solid #DDDDDD !important;
+         	margin: 8px 0;
+         }
+         p#title{
+         	display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 0;
+         }
       }
       @media(max-width: 500px){
          .container.iteminfo{
@@ -135,20 +184,29 @@
          }
       }
       .head{
-         border-bottom : .2px solid rgba(0, 0, 0, .3);
          height: 100px;
+         margin-top:-7px;
       }
       .head > div >p{
          margin-bottom : 0;
          width : 40px;
       }
-      #id{
-         margin-right : 202px;
+	  #id{
+		margin-right: 47px;
+	  }
+      #id, 
+      #lost_Re_Date{
+      	font-size:14px;
+      	font-weight:100;
+      }
+      .fa-user,
+      .fa-calendar-alt{
+      	font-size:14px;
       }
       
       div.infoBody > label{
          margin-right : 30px;
-         font-size : 2rem;
+         font-size : 17px;
       }
       div.infoBody > span{
          font-size : 2rem;
@@ -186,12 +244,35 @@
       div#file > img{
          width:100% !important;
       }
-
+	  icon-con > div > label{
+	  	margin-bottom:0;
+	  }
       .menu{
       	display : flex;
       	flex-direction : column;
       }
-
+	 #like_img{
+	 	font-size: 17px;
+		color: gray;
+		margin-right:9px;
+		margin-bottom:2px;
+	 }
+	 #like-con {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid rgb(238, 238, 238);
+		padding: 0 10px;
+		border-radius: 7px;
+		height: 31px;
+	}
+	 #like-con > span{
+	 	font-size:2rem;
+	 }
+	.icon-con{
+		display:flex;
+	    align-items:center;
+	}
     </style> 
 </head>
 <body>
@@ -208,59 +289,61 @@
    <div class="menu">
          <i class="fas fa-home fa-1x"></i>
          <a href="./item"><span style="font-size : 1.5rem;">목록으로</span></a>
-
-         <a onclick="openChat();"><span style="font-size : 1.5rem;">채팅하기</span></a>
-         <a href="./chat"><span style="font-size : 1.5rem;">나에게 온 채팅</span></a>
-
    </div>
    
    <div id="output"></div>   
    <div class="container iteminfo">
 <!--          <div id="update"></div> -->
          <div id="file">
-            
          </div>
          <div class="infoText">
             <div class="head">
-
-               <h3 id="title">
-               </h3>
-            
-               <div>
-                  <label for="id">등록자</label>
-                   <span id="id" class="getId"></span>      
-
-                  <span id="lost_Re_Date"></span>
+               <p id="title">
+               </p>
+			   <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
+               <div class="icon-con">
+	               	<div>
+	                  <label for="id"><i class="fas fa-user"></i></label>
+	                   <span id="id" class="getId"></span>      
+	               	</div>
+	                <span id="lost_Re_Date"></span>
                </div>
-            </div>
+            </div>       
             <div class="infoBody">
-               <label for="pay">사례금</label>
-               <span id="pay"></span>
+               <label for="pay" style="margin-right: 53px;">사례금</label>
+               <div id="pay"></div>
                <label for="lostdate">분실 날짜</label>
-               <span id="lostdate"></span>
+               <div id="lostdate"></div>
                <label for="loc">분실 위치</label>
-               <span id="loc"></span>      
-            
+               <div id="loc"></div>
             </div>
+             <div class="like-group">
+	           	<div class="like-con">
+	           		<a href="javascript:like_func();" class="like-btn"><i class="far fa-thumbs-up"></i> <p>올리기</p></a>
+	           	</div>
+	           	<div class="like-con">
+	           		<a class="like-btn" href="#comm"><i class="far fa-comment-dots"></i> <p>연락하기</p></a>
+	           	</div>
+             </div>      
          </div>
    </div>
    
    <div class="container detailInfo">
          <div id="content">
-            <div class="content-head">
-               <div><h3 style="font-family:'Noto Sans KR', sans-serif !important;">분실 정보</h3></div>
-            </div>
             <div id="content-body">
+               <h3 style="font-size: 24px; font-family: 'Noto Sans KR', sans-serif">분실정보</h3>
+               <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
                <p id="content-body-text"></p>
             </div>
          </div>
          <div class="container-map">
              <h3 style="margin-left:20px; font-size:24px; font-family:'Noto Sans KR', sans-serif !important;">분실위치</h3>
+             <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
           <div id="map" style="width:799px; height:340px; margin:16px 5px 0 15px;"></div>
          </div>
    </div>
    
-   <div class="container commentBox">
+   <div class="container commentBox" id="comm">
       <jsp:include page="../EJ/comment.jsp" flush="true" />   
    </div>
 </section>
@@ -278,7 +361,6 @@
 
 <script>
    var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
-
    var loginUser='<%=(String)session.getAttribute("loginUser")%>'
    
    function openChat(e){
@@ -301,7 +383,6 @@
 	   var finder;
 	   
    })
-
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=services"></script>

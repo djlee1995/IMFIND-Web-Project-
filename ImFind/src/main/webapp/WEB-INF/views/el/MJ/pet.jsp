@@ -65,7 +65,6 @@ section{
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
 /* YH */
    .photo > img{
       width: 100% !important;
@@ -74,7 +73,6 @@ section{
       border : none;
       border-radius: 11px;
    }
-
    .subinfo{
       display: flex;
       justify-content: space-between;
@@ -183,7 +181,6 @@ section{
          object-fit:cover;
          border-radius: 4px;
       }
-
        .storage-board-title > p{
       	 font-size : 11px;
       	 margin-bottom:0;
@@ -262,8 +259,8 @@ section{
 			<div class="input-con">
 				<div class="input-key">키워드</div>
 				<div style="display:flex;">
-					<input type="text" onkeyup="enterkey();" id="input-search" placeholder="어떤 분실물을 찾으시나요?"/>
-					<button class="selectBtn key" type="button" ><i class="fas fa-search" style="color:white;"></i></button>
+					<input type="text" id="input-search" placeholder="어떤 분실물을 찾으시나요?"/>
+					<button class="selectBtn key" type="button"  onkeyup="enterkey();"><i class="fas fa-search" style="color:white;"></i></button>
 				</div>
 			</div>
       	</label>
