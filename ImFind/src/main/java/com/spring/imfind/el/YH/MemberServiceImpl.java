@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 import org.apache.ibatis.session.SqlSession;
@@ -86,6 +87,29 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("stat�Դϴ� " + state);
 		return state;
 	}
-	
+
+	@Override
+	public LoginDTO getLoginDTO(String id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		LoginDTO loginDto = memberMapper.getLoginDTO(id);
+		return loginDto;
+	}
+	  //MJ Email chk
+	   @Override
+	   public int CheckEmail(String email) {
+	      
+	      MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+	      int count = memberMapper.checkEmail(email);
+	      int state = 0;
+	      
+	      if(count == 0) {
+	         state = 1;
+	      }
+	      else {
+	         state = -1;
+	      }
+	      
+	      return state;
+	   }
 
 }

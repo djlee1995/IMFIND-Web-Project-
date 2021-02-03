@@ -3,6 +3,7 @@ package com.spring.imfind.el.YH;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
+
+import com.spring.imfind.el.YS.ElVO;
 
 @Controller
 public class YHController {
@@ -72,10 +75,13 @@ public class YHController {
 		String loginUser = (String)session.getAttribute("loginUser");
 		String kakaoLoginUser = (String)session.getAttribute("kakaoLoginUser");
 		
+		session.removeAttribute("loginUser");
+		session.removeAttribute("kakaoLoginUser");
+		
 		if(loginUser != null) {
 			session.removeAttribute("loginUser");
 		}
-		else if(kakaoLoginUser != null) {
+		if(kakaoLoginUser != null) {
 			session.removeAttribute("kakaoLoginUser");
 		}
 		
@@ -145,8 +151,10 @@ public class YHController {
         
         System.out.println("kakao_id : " + kakao_id);
         
+        
         String email = (String) kakao_account.get("email");
         session.setAttribute("kakaoLoginUser", kakao_id);
+        session.setAttribute("loginUser", kakao_id);
         
         return "redirect:/home.do";
 	}
@@ -286,4 +294,20 @@ public class YHController {
 		return "";
 	}
 	
+	// MJ Email chk
+   @RequestMapping("/chkEmail")
+   public @ResponseBody String chkEmail(@RequestParam String email) {
+      
+      int state = memberService.CheckEmail(email);
+      if(state == 1) {
+         return "ok";
+      }
+      else {
+         return "email exists";
+      }
+   }
+   
+
+	 
 }
+

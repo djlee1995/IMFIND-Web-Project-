@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 		Object kakaoUser = session.getAttribute(KAKAO_LOGIN);
 		
 		if(kakaoUser != null) {
+			System.out.println("카카오 아이디 세션서 지움");
 			session.removeAttribute(KAKAO_LOGIN);
 		}
 		return super.preHandle(request, response, handler);
@@ -36,27 +38,31 @@ public class KakaoLoginInterceptor extends HandlerInterceptorAdapter implements 
 	/*
 	 * 카카오 로그인 -  ȸ에 회원정보 없으면 register 화면으로 이동한다. 
 	 * */
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-	    logger.info("KakaoLoginInterceptor - {}", "kakao posthandle");
+	    logger.info("KakaoLoginInterceptor - {}", "kakao posthandle in");
 	    
 		HttpSession session = request.getSession();
 		Object kakaoLoginUser =  request.getSession().getAttribute(KAKAO_LOGIN);
 		
 		if(kakaoLoginUser != null) {
 			
-			System.out.println("�α����� ���� : " + (String)kakaoLoginUser);
+			System.out.println("로그인한 카카오 유저: " + (String)kakaoLoginUser);
 			
 			int res = memberService.kakaoLoginCheck((String)kakaoLoginUser);
-			if(res != 1) {
-				response.sendRedirect("/imfind/kakaoRegister");
-				super.postHandle(request, response, handler, modelAndView);
+			if(res == 1) {
+			   logger.info("KakaoLoginInterceptor - {}", "DB에 회원정보 있는 카카오 로그인 사용자.");
+			   
+			   LoginDTO dto = memberService.getLoginDTO((String)kakaoLoginUser);
+			   session.setAttribute(MEMBERINFO, dto);
+			   
+			   response.sendRedirect("/home.do");
+			   return;
+
 			}
 		}
-		super.postHandle(request, response, handler, modelAndView);
 	}
-
-
 }

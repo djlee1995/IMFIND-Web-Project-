@@ -111,19 +111,22 @@ input#code-pw::placeholder{
 .input-code-pw{
 	display : none;
 }
+/*
 .give-me{
 	border-radius: 2rem;
 	border : 1px solid #81d4fa;
 	width : 80%;
-	height : 7vh;
+	/*height : 7vh;*/
 	margin-bottom : 13px;
 	text-align: center; 
     padding: 14px;
+    margin-top: 40px;
 }
 .give-me:hover{
 	background : #81d4fa;
 	cursor : pointer;
 }
+*/
 .give-me.name, .give-me.email{
 	height : 4vh;
 }
@@ -166,8 +169,37 @@ span[name="head-pw"]{
 .link-tag{
     margin: 6px auto;
     width: 17%;
-    font-size: .6rem;
+    font-size: 1rem;
     cursor : pointer;
     text-decoration : underline;
     color : #537EFF;
+}
+.register-login-section.spad{
+	padding-top : 90px;
+}
+
+.loginBtn {
+	display: flex;
+	justify-content: center;
+}
+
+.find-btn-container > .find-btn.id {
+	width: 90px;
+	height: 30px;
+	margin-top:10px;
+}
+
+.find-btn-container > .find-btn.pw {
+	width: 90px;
+	height: 30px;
+}
+
+.link-tag.find-id {
+	margin-left: 153px;
+	margin-top: 4px;
+	width: 90px;
+}
+
+.find-id {
+	margin-top: 36px;
 }

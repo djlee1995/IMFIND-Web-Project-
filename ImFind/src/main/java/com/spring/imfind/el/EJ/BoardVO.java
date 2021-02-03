@@ -8,14 +8,13 @@ public class BoardVO {
 	private String Lost_Content; // 글내용
 	private Date Lost_Re_Date; // 등록날짜
 	private int Lost_Re_Count;  // 조회수
-	private String Lost_Or_File; // QR파일
 	private String Lost_Up_File; // UP파일
-	private int Lost_Pay; // 사례금
+	private String Lost_Pay; // 사례금
 	private String Lost_Item; // 분실물명
 	private String Lost_Loc; // 분실위치
 	private String Lost_Date; // 분실날짜
 	private String Id; // 회원ID
-	private int Contact; // 연락처
+	private String PayCode;
 	
 	public int getLost_PostNum() {
 		return Lost_PostNum;
@@ -47,22 +46,22 @@ public class BoardVO {
 	public void setLost_Re_Count(int lost_Re_Count) {
 		Lost_Re_Count = lost_Re_Count;
 	}
-	public String getLost_Or_File() {
-		return Lost_Or_File;
-	}
-	public void setLost_Or_File(String lost_Or_File) {
-		Lost_Or_File = lost_Or_File;
-	}
+//	public String getLost_Or_File() {
+//		return Lost_Or_File;
+//	}
+//	public void setLost_Or_File(String lost_Or_File) {
+//		Lost_Or_File = lost_Or_File;
+//	}
 	public String getLost_Up_File() {
 		return Lost_Up_File;
 	}
-	public void setLost_Up_File(String lost_Up_File) {
-		Lost_Up_File = lost_Up_File;
+	public String setLost_Up_File(String lost_Up_File) {
+		return Lost_Up_File = lost_Up_File;
 	}
-	public int getLost_Pay() {
+	public String getLost_Pay() {
 		return Lost_Pay;
 	}
-	public void setLost_Pay(int lost_Pay) {
+	public void setLost_Pay(String lost_Pay) {
 		Lost_Pay = lost_Pay;
 	}
 	public String getLost_Item() {
@@ -89,20 +88,20 @@ public class BoardVO {
 	public void setId(String id) {
 		Id = id;
 	}
-	public int getContact() {
-		return Contact;
+	
+	public String getPayCode() {
+		return PayCode;
 	}
-	public void setContact(int contact) {
-		Contact = contact;
+	public void setPayCode(String payCode) {
+		PayCode = payCode;
 	}
 	
 	@Override
 	public String toString() {
 		return "BoardVO [Lost_PostNum=" + Lost_PostNum + ", Lost_Title=" + Lost_Title + ", Lost_Content=" + Lost_Content
-				+ ", Lost_Re_Date=" + Lost_Re_Date + ", Lost_Re_Count=" + Lost_Re_Count + ", Lost_Or_File="
-				+ Lost_Or_File + ", Lost_Up_File=" + Lost_Up_File + ", Lost_Pay=" + Lost_Pay + ", Lost_Item="
-				+ Lost_Item + ", Lost_Loc=" + Lost_Loc + ", Lost_Date=" + Lost_Date + ", Id=" + Id + ", Contact="
-				+ Contact + "]";
+				+ ", Lost_Re_Date=" + Lost_Re_Date + ", Lost_Re_Count=" + Lost_Re_Count + ", Lost_Up_File="
+				+ Lost_Up_File + ", Lost_Pay=" + Lost_Pay + ", Lost_Item=" + Lost_Item + ", Lost_Loc=" + Lost_Loc
+				+ ", Lost_Date=" + Lost_Date + ", Id=" + Id + "]";
 	}
-	
+
 }

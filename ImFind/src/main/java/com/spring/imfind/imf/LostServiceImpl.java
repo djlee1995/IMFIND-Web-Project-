@@ -1,3 +1,4 @@
+
 package com.spring.imfind.imf;
 
 import java.util.HashMap;
@@ -96,15 +97,21 @@ public class LostServiceImpl implements LostService {
 		s_select_place = lostMapper.s_select_place(city, gu);
 		return s_select_place;
 	}
-
+	public int chartcount(String kind) {
+		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
+		int res=lostMapper.chartcount(kind);
+		int res2=lostMapper.chartcount2(kind);
+		
+		return res+res2;
+	}
 	
 	// 유희
 	@Override
-	public List<PoliceVO> getSimpleList() {
+	public List<PoliceVO> getSimpleList(String x, String y) {
 		
 		List<PoliceVO> s_select_place = null;
 		LostMapper lostMapper = sqlSession.getMapper(LostMapper.class);
-		s_select_place = lostMapper.getSimpleList();
+		s_select_place = lostMapper.getSimpleList(x, y);
 		return s_select_place;
 	}
 

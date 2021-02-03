@@ -1,252 +1,670 @@
-  //=--------------------------------
-     // 데이터 불러오기 START
-    //목록 
+// 연수 1.28
+var params;
+ var show_Grade_Star;
+ var showScore;
+
+$(document).ready(function(){
+   getItemList();
+   $.ajax({
+       url:'/imfind/getStarGrade.do',
+       type:'POST',
+       contentType:'application/x-www-form-urlencoded;charset=utf-8',
+       data: {'F_Id' : user},
+       success:function(data){
+      	 show_Grade_Star = data;
+       },
+		error:function(){
+			alert("매너 평가 점수를 출력하지 못했습니다.");			
+	   },
+       complete : function(){ 
+        	starfunction ();
+       },
+   });		
+});
+
+//데이터 불러오기 END -----------------------------------------------연수 1.28-----------------------------------------------
+//매너평가등급:출력 (별점) 
+	  function starfunction (){    
+		var rating=$('.grade .showGrade');
+		rating.each(function(){
+		showScore = show_Grade_Star ;
+		$(this).find('svg:nth-child(-n+'+showScore+')').css({color:'#F05522'});  		
+	});  	
+};
+
+//분실글 목록
+function getItemList(){
+   $('#output').empty(); 
+   $('#mypgform').empty();
+   $('#input-grade').attr('id', 'input-grade');
+   
+   var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실물품 게시판 > 분실물 작성글 </h4>'
+   var form = '<tr style="text-align: center;"><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
+   $('#mypgform').append(title);
+   $('#output').append(form);
     
-	$(document).ready(function(){
-		
-		$('#output').empty(); 
-		
-		$.ajax({
-			url:'/imfind/getElsedata.do',
-			type:'POST',
-			contentType:'application/x-www-form-urlencoded;charset=utf-8',
-			
-			success:function(data){
-				$.each(data, function(index, item){	
-					console.log('i :' + index);
-					var output=' ' ;
-					output += '<tr>';				
-					output += '<td class="mypage-line"  id="gotStar">'+'&nbsp;'+'&nbsp;'+item.lost_PostNum+'&nbsp;'+'</td>';//번호
-					output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목				
-					output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
-					output += '<td class="mypage-line">'+item.lost_Re_Date+'</td>';//등록날짜 					
-					output += '<td class="mypage-line"><button type="button" class="btn btn-outline-primary" a href="/imfind/#.do">수정</button></td>'; 
-					
-					output += '<td class="mypage-line"><button type="button" class="btn btn-outline-primary" a href="/imfind/#.do">삭제</button></td>'; 
-					output += '<td class="mypage-line"><button type="button" id="btnWhoGetStar" Zclass="btn btn-outline-primary" data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
-					output += '</tr>';
-					console.log("output:"+output); 
-					$('#output').append(output);
-					
-				
-				});
-			},
-			error:function(){
-				alert("ajax통신 실패1!!!");			
-			},
-			complete : function(){ //등록글이 없으면, 페이지네이션이 계산할 tr카운팅수가 없으므로 무조건 수행 해도 상관 없다.
-				 myfunction();  //위에 each가 반복문으로 계속 돌아 가니까 한번 돌때 마다. 카운팅하기때문이 주의!!!  그래서 밖으로 나옴. 페이지네이셔 호출! 
-			}
-		});	
-		/* 작성글 DB불러오기 + 작성글 DB페이징 섹션 _END  */
-		/*------------------------------------------------------------------------------------------------------------------*/
-		/* 결제내역 DB불러오기 + 결제내역 DB페이징 섹션 START */
-		$('#output_pay').empty(); 
-			
-			$.ajax({
-				url:'/imfind/getElsePaydata.do',
-				type:'POST',
-				contentType:'application/x-www-form-urlencoded;charset=utf-8',
-				
-				success:function(data){
-					$.each(data, function(index, item){	
-						console.log(item);
-						var output_pay=' ' ;
-						output_pay += '<tr>';				
-						output_pay += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+item.pay_Date+'&nbsp;'+'</td>';//결제일자
-						output_pay += '<td class="mypage-line">'+item.pay_Amount+'</td>';//결제금액(사례금액)				
-						output_pay += '<td class="mypage-line">'+item.pay_Way+'</td>';//결제방법
-						output_pay += '<td class="mypage-line">'+item.pay_State+'</td>';//결제상태				
-						output_pay += '<td class="mypage-line"><button type="button" class="btn btn-outline-primary">환불요청</button></td>'; 	
-						output_pay += '</tr>';
-						console.log("output_pay:"+ output_pay);
-						$('#output_pay').append(output_pay);
-					});
-				},
-					error:function(){
-						alert("ajax통신 실패2!!!");			
-					},
-					
-					complete : function(){ //등록글이 없으면, 페이지네이션이 계산할 tr카운팅수가 없으므로 무조건 수행 해도 상관 없다.
-						 myfunction2();  //위에 each가 반복문으로 계속 돌아 가니까 한번 돌때 마다. 카운팅하기때문이 주의!!!  그래서 밖으로 나옴. 페이지네이셔 호출! 
-					}
-				
-			});
-			/* 결제내역 DB불러오기 + 결제내역 DB페이징 섹션 END */
-			//-------------------------------------------------------
-		});		
-// 데이터 불러오기 END ----------------------------------------------------------------------------------------------
-     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-   //분실물 글 목록의 페이지네이션 
-    				function myfunction (){
-    			
+   $.ajax({
+      url:'/imfind/getElsedata.do',
+      type:'POST',
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+         console.log(item)
+         var output=' ' ;         
+             output += '<tr>';            
+             output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//번호//id 부여하고 경고발생
+             output += '<td class="mypage-line">'+item.lost_Title+'</td>';//제목            
+             output += '<td class="mypage-line">'+item.lost_Pay+'</td>';//사례금
+             output += '<input type="hidden" value="'+ item.paycode + '">' // 결제코드
+             output += '<td class="mypage-line">'+ moment(item.lost_Re_Date).format('YY-MM-DD')+'</td>';//등록날짜                       
+             output += '<td class="mypage-line"><button id="updateBtn" type="button" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
+             output += '<td class="mypage-line"><button id="deleteBtn" type="button"class="btn btn-block bg-gradient-danger">삭제</button></td>';   
+             
+             if(item.deal_State=='completed'){
+                output +='<td class="mypage-line">거래확정</td>';
+             }  
+             else{
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+             }
+             output += '</tr>';
+     
+             $('#output').append(output);
+             
+             $('#updateBtn').click(function(){
+                $(location).attr("href", "updatepage?lost_PostNum="+item.lost_PostNum+"");              
+             });
+              $('#deleteBtn').click(function(){
+                $(location).attr("href", "deletepage?lost_PostNum="+item.lost_PostNum+"");
+              });
+         });
+      },
+       error:function(){
+          alert("ajax통신 실패1!!!");         
+      },
+    });  
+}  
 
-							/* 변수 생성 
-							- rowPerPage 페이지당 보여줄 개수 5
-							- rows 가로행의 tr  개수
-							- rowsCount 개수 
-							- pageCount 페이지네이션 개수=총 데이터/페이지당 보여줄 개수
-							- numbers
-							콘솔에서 pageCount 찍어서 확인해보기 
-							*/
-								var rowsPerPage = 5,
-									/*rows= $('#my-table100 tbody tr'), 헤드가 테이블이랑 하나  */
-									rows= $('#output tr'), /* => 헤드를 나누었을 때 : Soo: 반응형으로 나중에 바꾸면 헤드 다시 하나로 합치고 윗줄로 바꾸자. (202101071138)*/
-									rowsCount=rows.length, 
-									pageCount=Math.ceil(rowsCount/rowsPerPage),
-									numbers=$('#numbers_mypage_post1');  
-									
-								console.log('row 개수 : ' + rowsCount);
-								console.log('pageCount IFELSE0107 ='+ pageCount);
-								console.log('rowsPerPage IFELSE0107 ='+ rowsPerPage);
-								/* 페이지네이션 li를 생성 반복문*/
-								for(var i=1; i <= pageCount; i++){
-									
-									console.log('페이징 번호 : ' + i);
-									numbers.append('<li><a href="">' + i + '</a></li>');
-									//numbers.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
-								}
-								
-								//<li class="page-item"><a class="page-link" href="#">2</a></li>
-								
-								//#numbers li:first-child a
-								numbers.find('li:first-child a').addClass('active');
-								
-								//페이지네이션 함수 displayRows
-								function displayRows(idx){
-									var start =(idx -1)*rowsPerPage;//시작인덱스
-										end = start + rowsPerPage; //끝인덱스
-									
-									rows.hide();
-									rows.slice(start, end).show();
-									//<tr>전체가 rows에 저장되있으니까		
-								//그것의 범위(시작인덱스, 끝인덱스)로 지정해서 자르고.보여준다.();
-									}
-								displayRows(1);//열자 마자는 숫자1
-								
-								//페이지네이션 클릭시 보여주기 
-								/*클릭한 그 a tag에 active 추가 하고 
-									클릭한 그 요소에 그 내용 그 숫자를 함수 displayRows의
-									매개변수 지정.*/
-								
-								numbers.find('li').click(function(e){
-									e.preventDefault();
-									numbers.find('li a').removeClass('active');
-									$(this).find('a').addClass('active');
-									var index = $(this).index()+1;
-									console.log('index ='+ index ); 
-									displayRows(index);
-								});
-							
-								console.log('================================================')
-							};
-					 
-    /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/	
-	/*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-	//결제 목록 페이지 네이션 						   
-		    				function myfunction2 (){
-		    			
-
-									/* 변수 생성 
-									- rowPerPage 페이지당 보여줄 개수 5
-									- rows 가로행의 tr  개수
-									- rowsCount 개수  해당 테이블 더미데이터 총 건수
-									- pageCount 페이지네이션 개수=총 데이터 tr 건수 / 페이지당 보여줄 수/
-									- numbers
-									콘솔에서 pageCount 확인!!!
-									*/
-										var rowsPerPage = 3,
-											/*rows= $('#my-table100 tbody tr'), 헤드가 테이블이랑 하나  */
-											rows= $('#output_pay tr'), /* => 헤드를 나누었을 때 : Soo: 반응형으로 나중에 바꾸면 헤드 다시 하나로 합치고 윗줄로 바꾸자. (202101071138)*/
-											rowsCount=rows.length, 
-											pageCount=Math.ceil(rowsCount/rowsPerPage),
-											numbers=$('#numbers_mypage_post2');  
-											
-										console.log('row 개수 : ' + rowsCount);
-										console.log('pageCount IFELSE0107 ='+ pageCount);
-										console.log('rowsPerPage IFELSE0107 ='+ rowsPerPage);
-										/* 페이지네이션 li를 생성 반복문*/
-										for(var i=1; i <= pageCount; i++){
-											
-											console.log('페이징 번호 : ' + i);
-											numbers.append('<li><a href="">' + i + '</a></li>');
-											//numbers.append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
-										}
-										
-										//<li class="page-item"><a class="page-link" href="#">2</a></li>
-										
-										//#numbers li:first-child a
-										numbers.find('li:first-child a').addClass('active');
-										
-										//페이지네이션 함수 displayRows
-										function displayRows(idx){
-											var start =(idx -1)*rowsPerPage;//시작인덱스
-												end = start + rowsPerPage; //끝인덱스
-											
-											rows.hide();
-											rows.slice(start, end).show();
-											//<tr>전체가 rows에 저장되있으니까		
-										//그것의 범위(시작인덱스, 끝인덱스)로 지정해서 자르고.보여준다();
-											}
-										displayRows(1);//열자 마자는 숫자1
-										
-										//페이지네이션 클릭시 보여주기 
-										/*클릭한 그 a tag에 active 추가 하고 
-											클릭한 그 요소에 그 내용 그 숫자를 함수 displayRows의
-											매개변수 지정.*/
-										
-										numbers.find('li').click(function(e){
-											e.preventDefault();
-											numbers.find('li a').removeClass('active');
-											$(this).find('a').addClass('active');
-											var index = $(this).index()+1;
-											console.log('index ='+ index ); 
-											displayRows(index);
-										});
-									
-										console.log('================================================')
-									};
-							 
-					  
-    /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-    /*테스트 페이징(DB값이 아닌 html로 만든 테이블의 페이징 아래 )*/
-    /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-    /*테스트 페이징(DB값이 아닌 html로 만든 테이블의 페이징 아래 )*/
-   //평점 만들기 시도 
-
-   /*클래스명 rating마다 할일을 변수로 !!!*/
-$(function(){
-//var rating = $('.rating'); //상/하 별점 표시하기 및 별점 주기 모두 적용됨.
-	var rating = $('.review .rating'); //별점표시하기 영역으로만 한정 (부모 .리뷰 안의 .레이팅으로 한정 했기 때문.)
-//각 각 할 일이니까 each 로~! 
-
-
-	
-	//(2 )id로 제한 하기 (별점주기)
-	
-	var userScore = $('#makeStar');
-	userScore.change(function(){
-		 //var userScoreNum = $(this).value(); //js
-		var userScoreNum = $(this).val();
-		console.log('userScoreNum:'+userScoreNum);
-		//userScore.find('.rating').find('svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
-		$('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
-		$('.make_star svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
-	}); 
-		
-	$('.make_star svg').click(function(){
-		var targetNum = $(this).index()+1 ;
-		console.log('targetNum:'+ targetNum);
-		$('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
-		$('.make_star svg:nth-child(-n+'+ targetNum + ')').css({color:'#F05522'});
-	});
-	
-	
- }); 
-
-    //------------------------------------------------------------------------------------------------------------------------------
+//분실동물 목록
+function getPetList(){
+    $('#output').empty(); 
+    $('#mypgform').empty();
+    $('#input-grade').attr('id', 'input-grade-pet')
     
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실동물 게시판 > 분실동물 작성글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>제목</td><td>사례금</td><td>등록날짜</td><td>수정</td><td>삭제</td><td>거래완료</td></tr>';
+    $('#mypgform').append(title); 
+    $('#output').append(form);
     
+    $.ajax({
+      url:'/imfind/getPetElsedata.do',
+      type:'POST',
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+          console.log(item)
+         var output=' ' ;
+            output += '<tr>';            
+            output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
+            output += '<td class="mypage-line">'+item.pet_Title+'</td>';//제목            
+            output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
+            output += '<td class="mypage-line">'+ moment(item.pet_LostDate).format('YY-MM-DD')+'</td>';//등록날짜          
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';    
+            
+            if(item.deal_State=='completed'){
+                output +='<td class="mypage-line">거래확정</td>';
+             }  
+             else{
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+             }
+             output += '</tr>';
+        
+            $('#output').append(output);
+        });
+      },
+       error:function(){
+          alert("ajax통신 실패1pet!!");         
+       },   
+   });  
+}
+//내가 쓴 댓글 목록 - 은지 1.28
+function getCommentList(){
+    $('#output').empty(); 
+    $('#mypgform').empty();
     
-    /*-------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	   
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실물 게시판 > 분실물 댓글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    
+    $('#mypgform').append(title);
+    $('#output').append(form);
+    
+    $.ajax({
+      url:'/imfind/getCommentList',
+      type:'POST',
+      data: {'id' : user},
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+         var output=' ' ;
+            output += '<tr>';            
+            output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
+            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜
+            //output += '<td class="mypage-line">'+item.pet_Re_Date+'</td>';//등록날짜          
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+//            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            output += '</tr>';
+        
+            $('#output').append(output);
+        });
+      },
+       error:function(){
+          alert("ajax통신 실패1pet!!");         
+       },   
+   });  
+}
+//결제내역 목록
+function getPayList(){
+   $('#output').empty(); 
+   $('#mypgform').empty();
+   
+   var title= '<h4 style="font-weight: 300; padding-left: 9px;">개인정보 > 결제내역 </h4>'
+   var form = '<tr style="text-align: center;"><td>결제일자</td><td>결제금액</td><td>결제방법</td><td>결제상태</td><td>환불요청</td></tr>';
+   $('#mypgform').append(title); 
+   $('#output').append(form);
+     
+    $.ajax({
+      url:'/imfind/getElsePaydata.do',
+      type:'POST',
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+         $.each(data, function(index, item){   
+           var output=' ' ;
+              output += '<tr>';            
+              output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ moment(item.pay_Date).format('YY-MM-DD')+'&nbsp;'+'</td>';//결제일자
+              output += '<td class="mypage-line">'+item.pay_Amount+'</td>';//결제금액(사례금액)    
+             '<td class="mypage-line"><input type="hidden" class="payCode" value="'+ item.payCode +'"></td>';//결제코드 
+             output += '<td class="mypage-line">카카오페이</td>';//결제방법
+             output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+item.pay_State+'</td>';//결제상태        
+             
+             if (item.pay_State == 'paid') {
+                output += '<td class="mypage-line">결제완료</td>';
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn" >환불요청</button></td>';    
+             } 
+             if (item.pay_State == 'refund') {
+                output += '<td class="mypage-line">환불접수</td>';
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn2" >환불접수중</button></td>'; 
+             } 
+             if (item.pay_State == 'cancel') {
+                output += '<td class="mypage-line">환불완료</td>';
+                output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn3" >환불완료</button></td>'; 
+             }
+             output += '</tr>';
+             $('#output').append(output);
+       });
+     },
+     error:function(){
+        alert("ajax통신 실패2!!!");         
+    }
+ });
+}    
+//내가 쓴 댓글 목록(동물) - 1.28 은지
+function getPetCommentList(){
+    $('#output').empty(); 
+    $('#mypgform').empty();
+    
+    var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실동물 게시판 > 분실동물 댓글 </h4>'
+    var form = '<tr style="text-align: center;"><td>글번호</td><td>댓글내용</td><td>등록날짜</td><td>수정</td><td>삭제</td></tr>';
+    
+    $('#mypgform').append(title);
+    $('#output').append(form);
+    
+    $.ajax({
+      url:'/imfind/getPetCommentList',
+      type:'POST',
+      data: {'id' : user},
+      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+      success:function(data){
+        $.each(data, function(index, item){   
+        	console.log(item)
+        
+         var output=' ' ;
+            output += '<tr>';            
+            output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//글번호
+            output += '<td class="mypage-line">'+item.re_content+'</td>';//댓글내용        
+            output += '<td class="mypage-line">'+ moment(item.com_Date).format('YY-MM-DD')+'</td>';//등록날짜  
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-secondary"><a href="/imfind/#.do">수정</a></button></td>';                
+            output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger"><a href="/imfind/#.do">삭제</a></button></td>';                
+//            output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            output += '</tr>';
+        
+            $('#output').append(output);
+        });
+      },
+       error:function(){
+          alert("ajax통신 실패1pet!!");         
+       },   
+   });  
+}
+//환불 신청
+document.addEventListener('click', function(event){
+     console.log(event.target)
+     
+   if(event.target.id == 'refundBtn'){
+      alert("환불신청 후 취소가 불가합니다.");
+       
+   var paycode = event.target.parentElement.parentElement.childNodes[2].firstChild.value;
+      console.log(paycode)
+   var params =  {'Id' : user, 'PayCode' : paycode};
+       
+   $.ajax({
+     url :"el/refund",
+     data :JSON.stringify(params),
+     type : 'POST',
+     contentType : 'application/json',
+     success : function(data){
+      if(data == 1) 
+         alert("환불신청완료");
+      $('#output').empty(); 
+      $.ajax({
+        url:'/imfind/getElsePaydata.do',
+         type:'POST',
+         contentType:'application/x-www-form-urlencoded;charset=utf-8',
+         success:function(data){
+           $.each(data, function(index, item){   
+           var output=' ' ;
+               output += '<tr>';            
+               output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ moment(item.pay_Date).format('YY-MM-DD')+'&nbsp;'+'</td>';//결제일자
+               output += '<td class="mypage-line">'+item.pay_Amount+'</td>';//결제금액(사례금액)    
+               output += '<td class="mypage-line"><input type="hidden" id="payCode" value="'+item.payCode+'"></td>';//결제금액(사례금액) 
+              output += '<td class="mypage-line">카카오페이</td>';//결제방법
+              output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+item.pay_State+'</td>';//결제상태              
+              if (item.pay_State == 'paid') {
+                 output += '<td class="mypage-line">결제완료</td>';
+                 output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn" >환불요청</button></td>';    
+              } 
+              if (item.pay_State == 'refund') {
+                 output += '<td class="mypage-line">환불접수</td>';
+                 output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn2" >환불접수중</button></td>'; 
+              } 
+              if (item.pay_State == 'cancel') {
+                 output += '<td class="mypage-line">환불완료</td>';
+                 output += '<td class="mypage-line"><button type="button" class="btn btn-default btn-block" id="refundBtn3" >환불완료</button></td>'; 
+              }
+              output += '</tr>';
+              $('#output').append(output);
+          });
+       },
+       error:function(){
+         alert("ajax통신 실패2!!!");         
+       },
+     });
+     },
+     error : function(data){
+      alert("실패!");
+     }
+    });
+   }
+})
+
+//환불신청후 버튼 이벤트
+document.addEventListener('click', function(event){
+   console.log(event.target)
+   if(event.target.id == 'refundBtn2'){
+     alert("접수중입니다");
+   }
+});
+
+var params;
+function myfunction (){             
+
+   var rowsPerPage = 5,                           
+   rows= $('#output tr'), 
+   rowsCount=rows.length, 
+   pageCount=Math.ceil(rowsCount/rowsPerPage),
+   numbers=$('#numbers_mypage_post1');  
+       
+   console.log('row 개수 : ' + rowsCount);
+   console.log('pageCount IFELSE0107 ='+ pageCount);
+   console.log('rowsPerPage IFELSE0107 ='+ rowsPerPage);
+   
+   /* 페이지네이션 li 생성 반복문*/
+   for(var i=1; i <= pageCount; i++){
+       
+      console.log('페이징 번호 : ' + i);
+      numbers.append('<li><a href="">' + i + '</a></li>');
+       
+    }
+    numbers.find('li:first-child a').addClass('active');
+    
+    //페이지네이션 함수 displayRows
+    function displayRows(idx){
+       var start =(idx -1)*rowsPerPage;//시작인덱스
+       end = start + rowsPerPage; //끝인덱스
+       
+       rows.hide();
+       rows.slice(start, end).show();
+    }
+    displayRows(1);//열자 마자는 숫자1
+    
+    //페이지네이션 클릭시 보여주기 
+    numbers.find('li').click(function(e){
+       e.preventDefault();
+       numbers.find('li a').removeClass('active');
+       $(this).find('a').addClass('active');
+       var index = $(this).index()+1;
+       console.log('index ='+ index ); 
+       displayRows(index);
+    });
+};
+   //반려 동물 찾기 글 목록 페이지 네이션 
+ function myfunction_Petpage (){
+     
+      var rowsPerPage = 5,                              
+      rows= $('#output_PetPost tr'),
+      rowsCount=rows.length, 
+      pageCount=Math.ceil(rowsCount/rowsPerPage),
+      numbers=$('#mypage_post_pet');  
+          
+       /* 페이지네이션 li 생성 반복문*/
+      for(var i=1; i <= pageCount; i++){
+          
+          console.log('페이징 번호 : ' + i);
+          numbers.append('<li><a href="">' + i + '</a></li>');
+          
+      }
+      numbers.find('li:first-child a').addClass('active');
+       
+       //페이지네이션 함수 displayRows
+      function displayRows(idx){
+          var start =(idx -1)*rowsPerPage;//시작인덱스
+          end = start + rowsPerPage; //끝인덱스
+          rows.hide();
+          rows.slice(start, end).show();
+      }
+          displayRows(1);//열자 마자는 숫자1
+
+          numbers.find('li').click(function(e){
+          e.preventDefault();
+          numbers.find('li a').removeClass('active');
+          $(this).find('a').addClass('active');
+          var index = $(this).index()+1;
+          console.log('index ='+ index ); 
+          displayRows(index);
+       });
+};
+//결제 목록 페이지 네이션                      
+function myfunction2 (){
+
+   var rowsPerPage = 3,                                 
+   rows= $('#output_pay tr'), 
+   rowsCount=rows.length, 
+   pageCount=Math.ceil(rowsCount/rowsPerPage),
+   numbers=$('#numbers_mypage_post2');  
+
+   /* 페이지네이션 li 생성*/
+   for(var i=1; i <= pageCount; i++){
+      console.log('페이징 번호 : ' + i);
+      numbers.append('<li><a href="">' + i + '</a></li>');
+   }
+    numbers.find('li:first-child a').addClass('active');
+  
+    //페이지네이션 함수 displayRows
+    function displayRows(idx){
+        var start =(idx -1)*rowsPerPage;//시작인덱스
+        end = start + rowsPerPage; //끝인덱스
+     
+        rows.hide();
+        rows.slice(start, end).show();
+     }
+     displayRows(1);//열자 마자는 숫자1
+  
+     numbers.find('li').click(function(e){
+        e.preventDefault();
+        
+        numbers.find('li a').removeClass('active');
+        $(this).find('a').addClass('active');
+        var index = $(this).index()+1;
+         displayRows(index);
+     });
+};
+                      
+
+// 대화한 파인더 목록 출력, 별점 평가         
+   var lostPostNum;     
+   function myfunction3 (lostPostNum){
+      $.ajax({
+         url:'/imfind/getElseWhoReplied.do',//여기에 sql을 join으로 lostpost_table이랑 lost_com?을 써서 부르자. 
+         type:'POST',
+         data:{"params" : lostPostNum},//서버로 선택된 행의 lostpostNo를 넘기겠.
+         contentType:'application/x-www-form-urlencoded;charset=utf-8',
+         dataType: 'json',
+         success:function(data){
+
+            $('#output_WhoReplied').empty(); 
+            var output_WhoReplied= '';
+            
+            $.each(data, function(index, item){   
+               output_WhoReplied += '<input type="radio" id="f-radio" name="finder" value="'+item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
+            });
+            $('#output_WhoReplied').append(output_WhoReplied);
+         },
+         error:function(){
+            alert("ajax통신 실패4!!!");         
+         },
+      });                     
+   };
+   function getElseWhoRepliedPet (lostPostNum){
+      $.ajax({
+         url:'/imfind/getElseWhoRepliedPet.do',//여기에 sql을 join으로 lostpost_table이랑 lost_com?을 써서 부르자. 
+         type:'POST',
+         data:{"params" : lostPostNum},//서버로 선택된 행의 lostpostNo를 넘기겠.
+         contentType:'application/x-www-form-urlencoded;charset=utf-8',
+         dataType: 'json',
+         success:function(data){
+
+            $('#output_WhoReplied').empty(); 
+            var output_WhoReplied= '';
+            
+            $.each(data, function(index, item){   
+               output_WhoReplied += '<input type="radio" id="f-radio" name="finder" value="'+ item.id +'">'+item.id+'</br>';//댓글을 단 파인더   
+            });
+            $('#output_WhoReplied').append(output_WhoReplied);
+         },
+         error:function(){
+            alert("ajax통신 실패4!!!");         
+         },
+      });                     
+   };
+       
+// 파인더 평가, 거래완료
+document.addEventListener('click', function(e){
+
+   if(e.target.className == 'btnWhoGetStar'){
+       lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
+       myfunction3(lostPostNum);
+   }
+   if(e.target.id == 'input-grade'){
+      alert(1111)
+      grade_insert_btn();
+   }
+   if(e.target.className == 'btnWhoGetStar-pet btn btn-default btn-block'){
+	   lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
+	   getElseWhoRepliedPet(lostPostNum);
+   }
+   if(e.target.id == 'input-grade-pet'){
+	      alert(1111)
+	      grade_insert_btnPet();
+	   }
+});
+
+
+ var targetNum;
+ $(function(){
+     var rating = $('.review .rating'); //별점표시하기 영역으로만 한정 (부모 .리뷰 안의 .레이팅으로 한정 했기 때문.)
+     var userScore = $('#makeStar');
+     
+     userScore.change(function(){
+        var userScoreNum = $(this).val();
+        console.log('userScoreNum:'+userScoreNum);
+        
+         $('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
+         $('.make_star svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
+     }); 
+                 
+      $('.make_star svg').click(function(){
+          targetNum = $(this).index()+1 ;
+          console.log('targetNum:'+ targetNum);
+          $('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
+          $('.make_star svg:nth-child(-n+'+ targetNum + ')').css({color:'#F05522'});
+       });      
+  }); 
+
+   //모달_파인더 평가 요청 커멘드 버튼 
+function grade_insert_btn (){         
+   
+     params = $('#output_WhoReplied input[name="finder"]:checked').val();
+     console.log('checkboxValue;)===>'+params);
+     
+     var str = "";
+     str += params + "님을 선택하셨습니다." ;
+     $('#finder_name').append(str);
+     
+     alert('params ' + params);   
+     alert('targetNum ' + targetNum)
+     alert('user ' + user);
+   
+     data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Lost_PostNum" : lostPostNum};                         
+     // 서버로 전송
+     $.ajax({
+         url:'/imfind/insertGrade.do',
+         type:'POST',
+         data: JSON.stringify(data),
+         contentType : 'application/json',
+         datatype:'json',
+         success:function(retVal){
+        	 console.log("retVal " + retVal.res)
+            if(retVal.res=="OK"){
+            	window.location.href='./mypage'
+          }
+            else{
+               alert("파인더평가가 완료 되지 않았습니다.insertFail");
+             }
+         },
+         error:function(){
+            alert("ajax통신 실패!!!");                
+         }
+     });
+     //기본이벤트 제거 
+     event.preventDefault();
+};              
+//동물 모달_파인더 평가 요청 커멘드 버튼 
+function grade_insert_btnPet (){         
+     alert('동물 모달')
+     params = $('#output_WhoReplied input[name="finder"]:checked').val();
+     
+     alert('params ' + params);   
+     alert('targetNum ' + targetNum)
+     alert('user ' + user);
+   
+     data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Pet_PostNum" : lostPostNum};                         
+     // 서버로 전송
+     $.ajax({
+         url:'/imfind/insertGradePet.do',
+         type:'POST',
+         data: JSON.stringify(data),
+         contentType : 'application/json',
+         datatype:'json',
+         success:function(retVal){
+        	 console.log("retVal " + retVal.res)
+            if(retVal.res=="OK"){
+            	window.location.href='./mypage'
+          }
+            else{
+               alert("파인더평가가 완료 되지 않았습니다.insertFail");
+             }
+         },
+         error:function(){
+            alert("ajax통신 실패!!!");                
+         }
+     });
+     //기본이벤트 제거 
+     event.preventDefault();
+};  
+
+function getMoeny(){
+	  alert('정산내역')
+	  $('#output').empty(); 
+	  $('#mypgform').empty();
+	  
+	  var title= '<h4 style="font-weight: 300; padding-left: 9px;">개인정보 > 정산내역 </h4>'
+	 
+      $('#mypgform').append(title);	  
+	    
+	  $.ajax({
+	         url:'/imfind/getMoneyList',
+	         data: {"id" : user},
+	         contentType : 'application/json',
+	         datatype:'json',
+	         success:function(data){
+	        	  var output = '<tr style="text-align: center;">'
+	        		  			+'<td>글번호</td>'
+	        		  			+'<td>거래자</td>'
+	        		  			+'<td>거래완료일</td>'
+	        		  			+'<td>정산 금액</td>'
+	        		  			+'<td>정산 계좌</td>'
+	        		  			+'<td>은행</td>'
+	        		  			+'<td>계좌주</td>'
+	        		  			+'<td>정산 상태</td>'
+	        		  			+'<td>정산날짜</td>'
+        		  			+'</td>'
+	        	  
+	        	  $.each(data, function(index, item){   
+	        		  alert('총신 성공')
+	        		  console.log(item)
+	        		  
+	        		  var adjustment_state;
+	        		  var adjustment_date;
+	        		  
+	        		  if(item.lost_PostNum == null){
+	        			  postnum = item.pat_PostNum
+	        			  href = './petinfo?Pet_PostNum='
+	        		  }
+	        		  else{
+	        			  postnum = item.lost_PostNum
+	        			  href = './iteminfo?lost_PostNum='
+	        		  }
+	        		  
+	        		  if(item.adjustment_state == null){
+	        			  adjustment_state = '정산 진행중';
+	        			  adjustment_date = '-'
+	        		  }else{
+	        			  adjustment_state = item.adjustment_state
+	        			  adjustment_date = moment(item.adjustment_date).format('YY-MM-DD HH:MM:SS')
+	        		  }
+	        		  
+	        		  
+	        		  
+	                     output += '<tr>';            
+	                     output += '<a href="'+ href+postnum +'"><td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ postnum +'</td></a>';//글번호 
+	                     output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ item.id +'</td>';//글번호 
+	                     output += '<td class="mypage-line">'+ item.Deal_Date +'</td>';// 정산날짜
+	                     output += '<td class="mypage-line"><input type="hidden" id="payCode" value="'+ item.pay_Amount+'">' + item.pay_Amount +'</td>' //정산금액
+	                     output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+ item.account_Num + '">'+ item.account_Num +'</td>' //정산계좌         
+	                     output += '<td class="mypage-line">'+ item.bank +'</td>';//은행
+	                     output += '<td class="mypage-line">'+ item.account_holder +'</td>';//계좌주
+	                     output += '<td class="mypage-line">'+ adjustment_state +'</td>';// 정산상태
+	                     output += '<td class="mypage-line">'+ adjustment_date +'</td>';// 정산날짜
+
+	                     output += '</tr>';
+	                     $('#output').append(output);
+	                 });
+	         },
+	         error:function(){
+	            alert("ajax통신 실패!!!");                
+	         }
+	     });
+	     //기본이벤트 제거 
+	     event.preventDefault();
+}

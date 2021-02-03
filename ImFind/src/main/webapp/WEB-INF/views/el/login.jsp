@@ -37,7 +37,7 @@
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css">
 
 	<!-- Modernizr JS -->
 	<script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>
@@ -46,14 +46,104 @@
 	
     <!-- 유희 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/YH/css/login.css?after" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css">
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css"> --%>
 </head>
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
 <style>
- .row{
- 
- }
+.fh5co-nav ul li a {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weigth : bold;
+    font-size: 15px;
+    padding: 29px 15px;
+    color: rgba(0, 0, 0, 0.7);
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.text.map{
+	display : flex;
+	justify-content : flex;
+	align-items : flex;
+}
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	.notosanskr * { 
+		font-family: 'Noto Sans KR', sans-serif;
+}
+#username,
+#pass{
+    height: 40px !important;
+    border-radius: 3px;
+}
+.site-btn.login-btn{
+    height: 45px !important;
+    border-radius: 7px;
+	font-family: 'Noto Sans KR', sans-serif;
+	text-align: center;
+	font-size: 15px;
+}
+.kakao{
+	display: flex;
+	justify-centent: center;
+}
+/* .kakabtn{
+	display : flex;
+	justify-content : center;
+} */
+.top-menu{
+    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
+	height : 88px !important;
+}
+div.container-fluid:nth-child(1) > div:nth-child(1){
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 8px;
+	position: relative;
+	top: -15px;
+}
+.fh5co-nav{
+	padding-right : 18px !important;
+	width : 101vw;
+}		
+.col-xs-2{
+	padding-left: 15px;
+}
+.col-xs-10{
+	margin-right : 15px !important;
+}
+body > nav > div > div > div > div.col-xs-10.text-right.menu-1{
+	padding-left : 15px
+/* 	width : 1220px; */
+    width: 83.33333% !important;
+}
+div.container-fluid:nth-child(1) > div:nth-child(1) {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    margin-bottom: 8px;
+    position: relative;
+    top: -15px;
+}
+
+
+.login-form h2, .group-input id {
+	/* font-family: "Space Mono", Arial, serif; */
+	font-family: 'Noto Sans KR', sans-serif;
+}	
+
+.loginBtn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.gi-more {
+	display: flex;
+    justify-content: space-between;
+    color: black;
+}
 </style>
 
 <body>
@@ -63,7 +153,7 @@
     </div>
 
     <!-- Header Section Begin -->
-   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>
+   	<jsp:include page="${request.contextPath}/el/header"></jsp:include>		
     <!-- Header End -->
 	
 	<!-- 아이디 찾기, 비밀번호 찾기 선택 모달창 -->
@@ -71,7 +161,7 @@
 		<div class="modal_box-1">
 			<div class="container-1">
 		     	<div class="fas-con 1"><i class="fas fa-times close" id="close"></i></div>
-				<div class="give-me id">아이디 찾기</div>
+				<div class="give-me id" style=" margin-top: 67px;  margin-bottom:20px;" >아이디 찾기</div>
 				<div class="give-me pw">비밀번호 찾기</div>
 			</div>
 		</div>
@@ -80,9 +170,9 @@
 	<div class="modal_overlay-2 hidden">
 		<div class="modal_box-1" style="width:24vw;">
 			<div class="container-1">
-				<div class="modal-header">
+				<div class="modal-header" style="font-weight: 400;">
 					<i class="fas fa-chevron-left"></i>
-					<span name="head">아이디 찾기</span>
+					<span name="head" >아이디 찾기</span>
 			     	<div class="fas-con"><i class="fas fa-times close" id="close"></i></div>
 				</div>
 				<form action="" method="POST" id="getID">
@@ -103,7 +193,7 @@
 				            <button type="button" class="input-code-id find-btn" id="submit-btn-1" >인증하기</button>
 			            </div>
 					</div>
-		            <div class="link-tag find-pw">비밀번호 찾기</div>
+		            <div class="link-tag find-pw" style="width: 90px;">비밀번호 찾기</div>
 				</form>
 			</div>
 		</div>
@@ -130,7 +220,7 @@
 			                <input type="text" id="code-pw" class="input-code-pw first" placeholder="인증번호를 입력하세요"/>
 			                <div id="code-pw-inputfield" class="input-code-pw first timer"></div>
 			            </div>
-			            <div class="find-btn-container">
+			            <div class="find-btn-container" style="margin-top: 10px;">
 				            <button type="button" class="find-btn pw" >인증번호 발송</button>
 				            <button type="button" class="input-code-pw find-btn" id="submit-btn-2" >인증하기</button>
 			            </div>
@@ -147,37 +237,44 @@
   <div class="register-login-section spad">
       <div class="container">
           <div class="row">
-              <div class="col-lg-6 offset-lg-3">
+              <div class="col-lg-4 offset-lg-3" style="margin:0 auto; top:105px;">
                   <div class="login-form">
-                      <h2>Login</h2>
+                      <h2 style="font-size:3rem;">Login</h2>
                       <form action="#" id="loginForm">
                			<!-- 아이디, 비번 입력  -->
-                          <div class="group-input id">
+                          <div class="group-input id" style="font-weight: 700;">
                               <label for="username">ID *</label>
                               <input type="text" id="username">
                           </div>
-                          <div class="group-input pass">
+                          <div class="group-input pass" style="font-weight: 700;">
                               <label for="pass">Password *</label>
                               <input type="password" id="pass">
                           </div>
-                          <div class="group-input gi-check">
+                          <div class="group-input gi-check" style="font-weight: 700;">
                               <div class="gi-more">
-                                  <label for="save-pass">
-                                      Save Password
-                                      <input type="checkbox" id="savePass" name="savePass">
-                                      <span class="checkmark"></span>
+                                  <label for="save-pass" style="padding-left: 0px;">
+                                     <a href="./register" class="or-login" style="color: black; font-size: 1rem; font-weight: 400;">회원가입</a>
+                                     <!--  <input type="checkbox" id="savePass" name="savePass">  -->
+                                    <!--   <span class="checkmark"></span> -->
                                   </label>
                                   <!-- 아이디, 비밀번호 찾기 -->
-                                  <span class="forget-pass">Forget your ID/Password</span>
+                                <!--   <span class="forget-pass">Forget your ID / Password</span> -->
+                                  <span class="forget-pass" style="font-weight: 400;">아이디/비밀번호 찾기</span>
                               </div>
                           </div> 
                           <!-- 로그인 버튼 -->
-                          <button type="submit" class="site-btn login-btn">로그인</button>
-                          <img id="kakao-login-btn" src="${pageContext.request.contextPath}/resources/el/img/kakao_login_medium_wide.png" alt="" />
+               			  <div class="loginBtn">	
+	                          <button type="submit" class="site-btn login-btn" style="width:300px; margin-bottom: 10px; text-align:center;">로  그  인</button>
+	                          <div class="kakao">
+		                          <div class="kakaobtn">
+			                          <img id="kakao-login-btn" src="${pageContext.request.contextPath}/resources/el/img/kakao_login_medium_wide.png" alt="" />
+		                          </div>
+	                          </div>
+                          </div>
                       </form>
-                      <div class="switch-login">
+                      <!-- <div class="switch-login">
                           <a href="./register" class="or-login">회원가입</a>
-                      </div>
+                      </div> -->
                   </div>
               </div>
           </div>

@@ -1,3 +1,4 @@
+
 package com.spring.imfind.el.YH;
 
 public class LoginDTO {
@@ -5,8 +6,8 @@ public class LoginDTO {
 	private String pw;
 	private String contact;
 	private String email;
-	private String account_num; // ���¹�ȣ
-	private String account_holder; // ������
+	private String account_num; 
+	private String account_holder; 
 	private String bank;
 	private String join_date;
 	private String name;

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html lang="kr">
-
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Fashi Template">
@@ -11,366 +13,276 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>I'm Find</title>
 
-<!-- Google Font --
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+   <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
 
-    <!-- Css Styles -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/nice-select.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/jquery-ui.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/css/style.css"
-	type="text/css">
+    
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css"> <!-- 지우면 안됨 -->
+
 <!-- 조회페이지 css (mj) -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
-<!-- Bootstrap cdn 설정  for 페이징  -->	
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">	
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">	
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/MJ/item.css" type="text/css">
+<!-- Bootstrap cdn 설정  for 페이징  -->   
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">   
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">   
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>   
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <link href="${pageContext.request.contextPath}/resources/el/YH/select2/css/select2.css"  rel="stylesheet" />
+
+  
 <style>
 #paging-head{
 position : fixed;
 z-index : 100;
 }
+.dropbtn {
+  background-color: #ea2129;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+section{
+   position: relative;
+   top: 180px;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+   /* YH */
+      .photo > img{
+         width: 100% !important;
+         height : 175px;
+         object-fit:contain;
+         border : none;
+      }
+      .card-con{
+         border : 
+      }
+      .subinfo{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding-top: 3px;
+      }
+      div.date{
+         margin-right:5px;
+      }
+      div.title{
+         margin: 7px 0 0 10px;
+         color : black;
+         font-weight: 500;
+         font-size:14px !important;
+      }
+      div.card-con > a{
+         text-decoration:none;
+      }
+      div.loc{
+         padding-top: 6px;
+         margin-left: 10px;
+      }
+      .selectBox{
+         position: relative;
+         top: -34px;
+         display: flex;
+         justify-content: center;
+      }
+      /* section 가로 크기 */
+      @media(min-width: 1700px){
+         .searchbar,
+         .selectBox,
+         .cardList{
+            width: 50vw;
+            margin: 0 auto;
+         }
+      }
+      @media(min-width: 1200px){
+         .searchbar,
+         .selectBox,
+         .cardLlst{
+            width: 64vw;
+            margin: 0 auto;
+         }
+         .card-wrapper{
+            display:flex;
+            flex-wrap:wrap;
+         }
+         .card-con{
+            width: 180px;
+            height: 265px;
+            border : 1px solid rgb(238, 238, 238);
+            margin:7px;
+         }
+         
+      }
+      @media(max-width: 500px){
+         .searchbar,
+         .selectBox,
+         .cardList{
+            width: 100vw;
+            margin: 0 auto;
+         }
+      }
+      .container1.searchbar{
+         position: relative;
+         top: -53px;
+      }
+      .card-wrapper{
+         margin : 0 auto;
+      }
+      .cardList{
+         display : flex;
+         justify-content: center;
+         align-items : center;
+      }
+      /* 요소 크기 */
+
+      /* 은지 추가 */
+      #storage {
+         position: fixed;
+      	 border : 1px solid black;
+      	 width: 100px;
+      	 margin-left: 100px;
+      	 display: flex;
+      	flex-direction: column-reverse;
+      }
+      #storage > a img {
+         width: 90px !important;
+         height : 90px;
+         object-fit:contain;
+      }
+      
+
 </style>
 </head>
-
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
 
-	<!-- Header Section Begin -->
-	<header class="header-section">
-		<div class="header-top">
-			<div class="container">
-				<div class="ht-left">
-					<div class="mail-service">
-						<i class=" fa fa-envelope"></i> hello.colorlib@gmail.com
-					</div>
-					<div class="phone-service">
-						<i class=" fa fa-phone"></i> +65 11.188.888
-					</div>
-				</div>
-				<div class="ht-right">
-					<a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-					<div class="lan-selector">
-						<!-- 이미지 못 찾는 영역  
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select> -->
-					</div>
-					<div class="top-social">
-						<a href="#"><i class="ti-facebook"></i></a> <a href="#"><i
-							class="ti-twitter-alt"></i></a> <a href="#"><i
-							class="ti-linkedin"></i></a> <a href="#"><i class="ti-pinterest"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="inner-header">
-				<div class="row">
-					<div class="col-lg-2 col-md-2">
-						<div class="logo">
-							<a href="./index"> <img
-								src="${pageContext.request.contextPath}/resources/el/img/logo.png"
-								alt="">
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-7 col-lg-7">
-						<div class="advanced-search">
-							<button type="button" class="category-btn">All
-								Categories</button>
-							<form action="#" class="input-group">
-								<input type="text" placeholder="What do you need?">
-								<button type="button">
-									<i class="ti-search"></i>
-								</button>
-							</form>
-						</div>
-					</div>
-					<div class="col-lg-3 text-right col-lg-3">
-						<ul class="nav-right">
-							<li class="heart-icon"><a href="#"> <i
-									class="icon_heart_alt"></i> <span>1</span>
-							</a></li>
-							<li class="cart-icon"><a href="#"> <i
-									class="icon_bag_alt"></i> <span>3</span>
-							</a>
-								<div class="cart-hover">
-									<div class="select-items">
-										<table>
-											<tbody>
-												<tr>
-													<td class="si-pic"><img
-														src="${pageContext.request.contextPath}/resources/el/img/select-product-1.jpg"
-														alt=""></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-												<tr>
-													<td class="si-pic"><img
-														src="${pageContext.request.contextPath}/resources/el/img/select-product-2.jpg"
-														alt=""></td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close"><i class="ti-close"></i></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="select-total">
-										<span>total:</span>
-										<h5>$120.00</h5>
-									</div>
-									<div class="select-button">
-										<a href="#" class="primary-btn view-card">VIEW CARD</a> <a
-											href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-									</div>
-								</div></li>
-							<li class="cart-price">$150.00</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="nav-item">
-			<div class="container">
-				<div class="nav-depart">
-					<div class="depart-btn">
-						<i class="ti-menu"></i> <span>All departments</span>
-						<ul class="depart-hover">
-							<li class="active"><a href="#">Women’s Clothing</a></li>
-							<li><a href="#">Men’s Clothing</a></li>
-							<li><a href="#">Underwear</a></li>
-							<li><a href="#">Kid's Clothing</a></li>
-							<li><a href="#">Brand Fashion</a></li>
-							<li><a href="#">Accessories/Shoes</a></li>
-							<li><a href="#">Luxury Brands</a></li>
-							<li><a href="#">Brand Outdoor Apparel</a></li>
-						</ul>
-					</div>
-				</div>
-				<nav class="nav-menu mobile-menu">
-					<ul>
-						<li><a href="./index">Home</a></li>
-						<li><a href="./shop">Shop</a></li>
-						<li><a href="#">Collection</a>
-							<ul class="dropdown">
-								<li><a href="#">Men's</a></li>
-								<li><a href="#">Women's</a></li>
-								<li><a href="#">Kid's</a></li>
-							</ul></li>
-						<li><a href="./blog">Blog</a></li>
-						<li><a href="./contact">Contact</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="dropdown">
-								<li><a href="./blog-details">Blog Details</a></li>
-								<li><a href="./shopping-cart">Shopping Cart</a></li>
-								<li><a href="./check-out">Checkout</a></li>
-								<li><a href="./faq">Faq</a></li>
-								<li><a href="./register">Register</a></li>
-								<li><a href="./login">Login</a></li>
-							</ul></li>
-					</ul>
-				</nav>
-				<div id="mobile-menu-wrap"></div>
-			</div>
-		</div>
-	</header>
-	<!-- Header End -->
+   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
 
-	<!-- <div class="container1"> -->
-	<div class="container1">
-		<div class="row1">
-			<div id="custom-search-input">
-				<div class="input-group col-md-12">
-					<input type="text" class="input-lg" name="input-search" 
-						onKeypress="enterkey();" placeholder="search.."/ > 
-						<span class="input-group-btn" >
-						<button class="btn" type="button" >
-							<i class="ti-search"></i>
-						</button>
-					</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="dropdown">
-			<select id="sido" name="sido">
-			<option value="시/도를 선택하세요">시/도를 선택하세요</option>
-			</select>
-			<select id="sigu" name="sigu">
-			<option value="시/군/구를 선택하세요">시/군/구를 선택하세요</option>
-			</select>
- 			<select id="umd" name="dong">
- 			<option value="읍/면/동을 선택하세요">읍/면/동을 선택하세요</option>
- 			</select>
- 			 <i class="fa fa-caret-dow`n icon"></i>
-			<button type="submit" id="select-btn">검색</button>
-		</div>
+    <!-- Header End -->
+   <!-- Page Preloder -->
+   <div id="preloder">
+      <div class="loader"></div>
+   </div>
+   <div class="page"></div>
+   <section>
+      <!-- <div class="container1"> -->
+      <div class="container1 searchbar">
+         <div class="row1">
+            <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                  <input type="text" class="input-lg" name="input-search" 
+                     onKeypress="enterkey();" placeholder="search.."/ > 
+                     <span class="input-group-btn" >
+                     <button class="btn" type="button" >
+                        <i class="ti-search"></i>
+                     </button>
+                  </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+     <div class="container1 selectBox">
+          <div class = "si">
+                <select class="js-example-basic-single" id="sido">
+                <option value="">시/도 선택하세요</option>
+             </select>
+             <select class="js-example-basic-single" id="sigugun">
+                  <option value="">시/군/구 선택하세요</option>
+             </select>
+             <select class="js-example-basic-single" id="dong">
+                  <option value="">읍/면/동 선택하세요</option>
+             </select>
 
-	<div class="card-list-con">
-		<div id="ajax-test-div" style="width: 70vw;">
-	</div>
-	<nav aria-label="...">
-  <ul class="pagination pagination-sm" id = "numbers_mypage_post1">
-  </ul>
-	</nav>
-	</div>
+             	
+        </div>
+        	사례금<input type="checkbox" id="payChk">
+             <button class="selectBtn" onclick="selectBtn();">검색</button>
+      </div> 
 
-	
-	<!-- Footer Section Begin -->
-	<footer class="footer-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="footer-left">
-						<div class="footer-logo">
-							<a href="#"><img
-								src="${pageContext.request.contextPath}/resources/el/img/footer-logo.png"
-								alt=""></a>
-						</div>
-						<ul>
-							<li>Address: 60-49 Road 11378 New York</li>
-							<li>Phone: +65 11.188.888</li>
-							<li>Email: hello.colorlib@gmail.com</li>
-						</ul>
-						<div class="footer-social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-								class="fa fa-instagram"></i></a> <a href="#"><i
-								class="fa fa-twitter"></i></a> <a href="#"><i
-								class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 offset-lg-1">
-					<div class="footer-widget">
-						<h5>Information</h5>
-						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Serivius</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2">
-					<div class="footer-widget">
-						<h5>My Account</h5>
-						<ul>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Contact</a></li>
-							<li><a href="#">Shopping Cart</a></li>
-							<li><a href="#">Shop</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="newslatter-item">
-						<h5>Join Our Newsletter Now</h5>
-						<p>Get E-mail updates about our latest shop and special
-							offers.</p>
-						<form action="#" class="subscribe-form">
-							<input type="text" placeholder="Enter Your Mail">
-							<button type="button">Subscribe</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright-reserved">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="copyright-text">
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</div>
-						<div class="payment-pic">
-							<img
-								src="${pageContext.request.contextPath}/resources/el/img/payment-method.png"
-								alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer Section End -->
+       <div id="storage"></div>
+       
+      <div class="container1 cardLlst">
+      
+            <div class="card-wrapper">
+               
+            </div>
+         <div class="card-list-con">
+            <div>
+               <table id="output" border="1" align="center"></table>
+            </div>
+            <page aria-label="...">
+                <ul class="pagination pagination-sm" id = "numbers_mypage_post1"></ul>
+            </page>
+         </div>
+      </div>
+   </section>
 
-	<!-- Js Plugins -->
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
-	<!--게시글 등록 js 시작-MJ -->
-        <script src="${pageContext.request.contextPath}/resources/el/js/item.js"></script>
-        <!--게시글 등록 js 끝-<J -->
-	
+   
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   
+   <!-- Js Plugins -->
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
+
+   <!--게시글 조회 js 시작-MJ -->
+       <script src="${pageContext.request.contextPath}/resources/el/js/item.js"></script>
+   <!--게시글 조회 js 끝-MJ -->
+   <!--게시글 조회 행정동js 시작-MJ -->
+        <script src="${pageContext.request.contextPath}/resources/el/js/hangjungdong.js"></script>
+   <!--게시글 조회 행정동js 끝-MJ -->
+         <!-- jQuery Easing -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <!-- Waypoints -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+   <!-- Flexslider -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+   <!— Magnific Popup —>
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+   <!— Main —>
+   <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/el/YH/select2/js/select2.min.js" /></script>
+    
+
 </body>
-
-
 </html>

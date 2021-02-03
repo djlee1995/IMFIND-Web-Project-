@@ -1,88 +1,68 @@
 package com.spring.imfind.el.YS;
-
 import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+// F_id, í•˜ë‚˜ ë” ì•„ë§ˆ grade
 public class ElVO {
 	private int Lost_PostNum;
-	private String Lost_Title;   /* ±ÛÁ¦¸ñ */
-	private String Lost_Content;  /* ±Û³»¿ë */
+	private String Lost_Title;   
+	private String Lost_Content;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Re_Date; /* ³¯Â¥(µî·Ï) */
-	private int Lost_Re_Count;  /* Á¶È¸¼ö */
-	private String Lost_Or_File; /* QRÆÄÀÏ */
-	private String Lost_Up_File;  /* UPÆÄÀÏ */
-	private int Lost_Pay; /* »ç·Ê±İ¾× */
-	private String Lost_Item; /* ºĞ½Ç¹°¸í */
-	private String Lost_Loc;  /* ºĞ½ÇÀ§Ä¡ */
+	private Date Lost_Re_Date; 
+	private int Lost_Re_Count;  
+	private String Lost_Or_File; 
+	private String Lost_Up_File; 
+	private int Lost_Pay; 
+	private String Lost_Item; 
+	private String Lost_Loc;  
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Lost_Date;  /* ºĞ½Ç³¯Â¥ */
-	private String Id;  /* È¸¿øID */
-	private int Contact; /* ¿¬¶ôÃ³ */
-	
-	
-	private int Com_Num; /* ´ñ±Û¹øÈ£ */
-	private String Com_Content; /* ´ñ±Û³»¿ë */
+	private Date Lost_Date;  
+	private String Id;  
+	private int Contact; 
+	private int Com_Num; 
+	private String Com_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Com_Date; /* ´ñ±Û³¯Â¥ */
-	//private String Id; /* È¸¿øID */
-	//private int Lost_PostNum;  /* ºĞ½Ç¹°±Û¹øÈ£ */
-	
-	private int Not_Num;/* ´ñ±Û¹øÈ£ */
-	//private String Sent_id; /* º¸³½ID */
-	private String Receive_id;  /* ¹Ş´ÂID */
-	private String Not_Content;  /* ±Û³»¿ë */
-	private String Not_Or_File; /* ORÆÄÀÏ */
-	private String Not_Up_File; /* UPÆÄÀÏ */
-	
-	
-	private int Pat_PostNum;   /* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */
-	private String Pat_Title;  /* ±ÛÁ¦¸ñ */
-	private String Pat_Content; /* ±Û³»¿ë */
+	private Date Com_Date; 
+	private int Not_Num;
+	private String Receive_id;  
+	private String Not_Content;  
+	private String Not_Or_File; 
+	private String Not_Up_File; 
+	private int Pet_PostNum;   
+	private String Pet_Title;  
+	private String Pet_Content; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_Re_Date; /* ³¯Â¥(µî·Ï) */
-	private int Pat_Pay; /* »ç·Ê±İ¾× */
-	private String Pat_Or_File; /* QRÆÄÀÏ */
-	private String Pat_Up_File; /* UPÆÄÀÏ */
-	private String Pat_Name; /* ¾Ö¿Ïµ¿¹°ÀÌ¸§ */
+	private Date Pet_Re_Date; 
+	private int Pet_Pay; 
+	private String Pet_Or_File; 
+	private String Pet_Up_File; 
+	private String Pet_Name; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_LostDate; /* ¾Ö¿Ïµ¿¹°ºĞ½Ç³¯Â¥ */
-	private String Pat_Loc; /* ¾Ö¿Ïµ¿¹°ºĞ½ÇÀ§Ä¡ */
-	
-	//private int Contact; /* ¿¬¶ôÃ³ */
-	
-	//private String id;/* È¸¿øID */
-	private String Pw; /* PW */
-	private String Name; /* ÀÌ¸§ */
-	//private int Contact; /* ¿¬¶ôÃ³ */
-	private String Email; /* E-mail */
-	private int Acount_Num; /* °èÁÂ¹øÈ£ */
-	private String Bank; /* ±İÀ¶±â°ü */
-	private String Account_holder; /* °èÁÂÁÖ */
+	private Date Pet_LostDate; 
+	private String Pet_Loc; 
+	private String Pw; 
+	private String Name; 
+	private String Email; 
+	private int Acount_Num; 
+	private String Bank; 
+	private String Account_holder; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Join_date; /* °¡ÀÔ³¯Â¥ */
-	//ÀÌ¾î¼­ ÀÛ¾÷
-	private String PayCode; /* °áÁ¦ÄÚµå */
-	private int Pay_Amount; /* »ç·Ê±İ¾× */
-	private String Pay_Way; /* °áÁ¦¹æ¹ı */
-	private String Pay_State; /* °áÁ¦»óÅÂ */
+	private Date Join_date; 
+	private String PayCode; 
+	private int Pay_Amount; 
+	private String Pay_Way; 
+	private String Pay_State; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pay_Date; /* °áÁ¦ÀÏÀÚ */
-	private String Deal_State; /* °Å·¡»óÅÂ */
+	private Date Pay_Date; 
+	private String Deal_State; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Deal_Date;/* °Å·¡³¯Â¥ */
-	//private String Id; /* ºĞ½ÇÈ¸¿øID */
-	private String F_Id; /* FinderID */ //ÅëÇÕÀÌ µÇ¾ú±â ‹š¹®¿¡ ÇÊ¿ä°¡ ¾ø±ä °£µ¥ ÀÏ´Ü µĞ´Ù. 
-	//private int Lost_PostNum; /* ºĞ½Ç¹°±Û¹øÈ£ */
-	//private int Pat_PostNum;/* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */
-	
-	private int Pat_ComNum; /* ¾Ö¿Ïµ¿¹°´ñ±Û¹øÈ£ */
-	private String Pat_ComContent; /* ´ñ±Û³»¿ë */
+	private Date Deal_Date;
+	private String F_Id; 
+	private int Pet_ComNum; 
+	private String Pet_ComContent; 
 	@JsonFormat(pattern="YYYY.MM.dd")
-	private Date Pat_ComDate; /* ´ñ±Û³¯Â¥ */
-	//private String Id; /* È¸¿øID */
-	//private int Pat_PostNum;/* ¾Ö¿Ïµ¿¹°±Û¹øÈ£ */	
+	private Date Pet_ComDate; 
+	private int grade;
 	public int getLost_PostNum() {
 		return Lost_PostNum;
 	}
@@ -209,65 +189,65 @@ public class ElVO {
 	public void setNot_Up_File(String not_Up_File) {
 		Not_Up_File = not_Up_File;
 	}
-	public int getPat_PostNum() {
-		return Pat_PostNum;
+	public int getPet_PostNum() {
+		return Pet_PostNum;
 	}
-	public void setPat_PostNum(int pat_PostNum) {
-		Pat_PostNum = pat_PostNum;
+	public void setPet_PostNum(int pet_PostNum) {
+		Pet_PostNum = pet_PostNum;
 	}
-	public String getPat_Title() {
-		return Pat_Title;
+	public String getPet_Title() {
+		return Pet_Title;
 	}
-	public void setPat_Title(String pat_Title) {
-		Pat_Title = pat_Title;
+	public void setPet_Title(String pet_Title) {
+		Pet_Title = pet_Title;
 	}
-	public String getPat_Content() {
-		return Pat_Content;
+	public String getPet_Content() {
+		return Pet_Content;
 	}
-	public void setPat_Content(String pat_Content) {
-		Pat_Content = pat_Content;
+	public void setPet_Content(String pet_Content) {
+		Pet_Content = pet_Content;
 	}
-	public Date getPat_Re_Date() {
-		return Pat_Re_Date;
+	public Date getPet_Re_Date() {
+		return Pet_Re_Date;
 	}
-	public void setPat_Re_Date(Date pat_Re_Date) {
-		Pat_Re_Date = pat_Re_Date;
+	public void setPet_Re_Date(Date pet_Re_Date) {
+		Pet_Re_Date = pet_Re_Date;
 	}
-	public int getPat_Pay() {
-		return Pat_Pay;
+	public int getPet_Pay() {
+		return Pet_Pay;
 	}
-	public void setPat_Pay(int pat_Pay) {
-		Pat_Pay = pat_Pay;
+	public void setPet_Pay(int pet_Pay) {
+		Pet_Pay = pet_Pay;
 	}
-	public String getPat_Or_File() {
-		return Pat_Or_File;
+	public String getPet_Or_File() {
+		return Pet_Or_File;
 	}
-	public void setPat_Or_File(String pat_Or_File) {
-		Pat_Or_File = pat_Or_File;
+	public void setPet_Or_File(String pet_Or_File) {
+		Pet_Or_File = pet_Or_File;
 	}
-	public String getPat_Up_File() {
-		return Pat_Up_File;
+	public String getPet_Up_File() {
+		return Pet_Up_File;
 	}
-	public void setPat_Up_File(String pat_Up_File) {
-		Pat_Up_File = pat_Up_File;
+	public void setPet_Up_File(String pet_Up_File) {
+		Pet_Up_File = pet_Up_File;
 	}
-	public String getPat_Name() {
-		return Pat_Name;
+	public String getPet_Name() {
+		return Pet_Name;
 	}
-	public void setPat_Name(String pat_Name) {
-		Pat_Name = pat_Name;
+	public void setPet_Name(String pet_Name) {
+		Pet_Name = pet_Name;
 	}
-	public Date getPat_LostDate() {
-		return Pat_LostDate;
+	public Date getPet_LostDate() {
+		return Pet_LostDate;
 	}
-	public void setPat_LostDate(Date pat_LostDate) {
-		Pat_LostDate = pat_LostDate;
+	public void setPet_LostDate(Date pet_LostDate) {
+		Pet_LostDate = pet_LostDate;
 	}
-	public String getPat_Loc() {
-		return Pat_Loc;
+	public String getPet_Loc() {
+		return Pet_Loc;
 	}
-	public void setPat_Loc(String pat_Loc) {
-		Pat_Loc = pat_Loc;
+	public void setPet_Loc(String pet_Loc) {
+		Pet_Loc = pet_Loc;
 	}
 	public String getPw() {
 		return Pw;
@@ -359,23 +339,29 @@ public class ElVO {
 	public void setF_Id(String f_Id) {
 		F_Id = f_Id;
 	}
-	public int getPat_ComNum() {
-		return Pat_ComNum;
+	public int getPet_ComNum() {
+		return Pet_ComNum;
 	}
-	public void setPat_ComNum(int pat_ComNum) {
-		Pat_ComNum = pat_ComNum;
+	public void setPet_ComNum(int pet_ComNum) {
+		Pet_ComNum = pet_ComNum;
 	}
-	public String getPat_ComContent() {
-		return Pat_ComContent;
+	public String getPet_ComContent() {
+		return Pet_ComContent;
 	}
-	public void setPat_ComContent(String pat_ComContent) {
-		Pat_ComContent = pat_ComContent;
+	public void setPet_ComContent(String pet_ComContent) {
+		Pet_ComContent = pet_ComContent;
 	}
-	public Date getPat_ComDate() {
-		return Pat_ComDate;
+	public Date getPet_ComDate() {
+		return Pet_ComDate;
 	}
-	public void setPat_ComDate(Date pat_ComDate) {
-		Pat_ComDate = pat_ComDate;
+	public void setPet_ComDate(Date pet_ComDate) {
+		Pet_ComDate = pet_ComDate;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	@Override
 	public String toString() {
@@ -385,17 +371,16 @@ public class ElVO {
 				+ Lost_Item + ", Lost_Loc=" + Lost_Loc + ", Lost_Date=" + Lost_Date + ", Id=" + Id + ", Contact="
 				+ Contact + ", Com_Num=" + Com_Num + ", Com_Content=" + Com_Content + ", Com_Date=" + Com_Date
 				+ ", Not_Num=" + Not_Num + ", Receive_id=" + Receive_id + ", Not_Content=" + Not_Content
-				+ ", Not_Or_File=" + Not_Or_File + ", Not_Up_File=" + Not_Up_File + ", Pat_PostNum=" + Pat_PostNum
-				+ ", Pat_Title=" + Pat_Title + ", Pat_Content=" + Pat_Content + ", Pat_Re_Date=" + Pat_Re_Date
-				+ ", Pat_Pay=" + Pat_Pay + ", Pat_Or_File=" + Pat_Or_File + ", Pat_Up_File=" + Pat_Up_File
-				+ ", Pat_Name=" + Pat_Name + ", Pat_LostDate=" + Pat_LostDate + ", Pat_Loc=" + Pat_Loc + ", Pw=" + Pw
+				+ ", Not_Or_File=" + Not_Or_File + ", Not_Up_File=" + Not_Up_File + ", Pet_PostNum=" + Pet_PostNum
+				+ ", Pet_Title=" + Pet_Title + ", Pet_Content=" + Pet_Content + ", Pet_Re_Date=" + Pet_Re_Date
+				+ ", Pet_Pay=" + Pet_Pay + ", Pet_Or_File=" + Pet_Or_File + ", Pet_Up_File=" + Pet_Up_File
+				+ ", Pet_Name=" + Pet_Name + ", Pet_LostDate=" + Pet_LostDate + ", Pet_Loc=" + Pet_Loc + ", Pw=" + Pw
 				+ ", Name=" + Name + ", Email=" + Email + ", Acount_Num=" + Acount_Num + ", Bank=" + Bank
 				+ ", Account_holder=" + Account_holder + ", Join_date=" + Join_date + ", PayCode=" + PayCode
 				+ ", Pay_Amount=" + Pay_Amount + ", Pay_Way=" + Pay_Way + ", Pay_State=" + Pay_State + ", Pay_Date="
 				+ Pay_Date + ", Deal_State=" + Deal_State + ", Deal_Date=" + Deal_Date + ", F_Id=" + F_Id
-				+ ", Pat_ComNum=" + Pat_ComNum + ", Pat_ComContent=" + Pat_ComContent + ", Pat_ComDate=" + Pat_ComDate
-				+ "]";
+				+ ", Pet_ComNum=" + Pet_ComNum + ", Pet_ComContent=" + Pet_ComContent + ", Pet_ComDate=" + Pet_ComDate
+				+ ", grade=" + grade + "]";
 	}
-	
-	
+
 }
