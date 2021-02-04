@@ -9,5 +9,6 @@ public interface AdminService {
 	public List<PayVO> getPaidList();
 	public List<PayVO> getRefundList();
 	public int updatePaystate(PayVO payVO);
+	public List<PayVO> getCancleList();
 }
 

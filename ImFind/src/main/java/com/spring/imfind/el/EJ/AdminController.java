@@ -64,7 +64,7 @@ public class AdminController {
    @RequestMapping(value = "/adminpaid2", produces = "application/json;charset=UTF-8")
    @ResponseBody
    public HashMap<String, Object> pay_paid2(PayVO payvo) {
-      List<PayVO> paylist = adminService.getPayList();
+      List<PayVO> paylist = adminService.getPaidList();
       System.out.println("paylist="+ paylist.toString());      
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("data", paylist);      
@@ -77,6 +77,26 @@ public class AdminController {
       System.out.println("paylist="+ paylist.toString());
       
       return paylist;
+   }
+   @RequestMapping(value = "/adminrefund2", produces = "application/json;charset=UTF-8")
+   @ResponseBody
+   public HashMap<String, Object> pay_refund2(PayVO payvo) {
+      List<PayVO> paylist = adminService.getRefundList();
+     // System.out.println("paylist="+ paylist.toString());
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      map.put("data", paylist); 
+      System.out.println(map);
+      return map;
+   }
+   @RequestMapping(value = "/admincancleList", produces = "application/json;charset=UTF-8")
+   @ResponseBody
+   public HashMap<String, Object> admincancel(PayVO payvo) {
+      List<PayVO> paylist = adminService.getCancleList();
+     // System.out.println("paylist="+ paylist.toString());
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      map.put("data", paylist); 
+      System.out.println(map);
+      return map;
    }
    
    @RequestMapping(value = "/adminrefund", produces = "application/json;charset=UTF-8")
@@ -160,5 +180,14 @@ public class AdminController {
    public String admintest_adjustmentList() {
       return "el/YS/admintest_adjustmentList";
    }
-
+ //./admintest_adjustmentList
+   @RequestMapping("/admintest_adjustmentList2")
+   public String admintest_adjustmentList2() {
+      return "el/YS/admintest_adjustmentList";
+   }
+   @RequestMapping("/admintest_cancelList")
+   public String admintest_cancelList() {
+      return "el/YS/admintest_cancelList";
+   }
+   
 }

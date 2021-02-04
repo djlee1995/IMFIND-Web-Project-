@@ -46,11 +46,11 @@ var markers=[];
             var lat = position.coords.latitude, // 위도
                 lon = position.coords.longitude; // 경도
             
-            var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                message = '내 위치'; // 인포윈도우에 표시될 내용입니다
+            var locPosition = new kakao.maps.LatLng(lat, lon) // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                
             
             // 마커와 인포윈도우를 표시합니다
-            displayMarker(locPosition, message);
+            displayMarker(locPosition);
                 
           });
         
@@ -69,18 +69,15 @@ var markers=[];
         var marker = new kakao.maps.Marker({ 
         	image: markerImage2,
             map: map, 
-            position: locPosition
+            position: locPosition,
+            title :'내 위치'
         }); 
         
        
 
-        // 인포윈도우를 생성합니다
-        var infowindows = new kakao.maps.InfoWindow({
-            content : '<span style="width:100px;padding-left:50px;font-weight:bold;">내 위치</span>'
-        });
         
-        // 인포윈도우를 마커위에 표시합니다 
-        infowindows.open(map, marker);
+        
+        
         // 지도 중심좌표를 접속위치로 변경합니다
         map.setCenter(locPosition);
             
@@ -192,7 +189,7 @@ function police() {
 							$('.manual').empty();
 							$.each(data, function(index,item){
 								var output = '<div  class="info_data">';
-								output +='<p> 습득 날짜:'+ item.lost_date + '</p>';
+								output +='<p> 습득 날짜: &nbsp; '+ item.lost_date + '</p>';
 								output +='<p>'+ item.item + '</p>';
 								output +='<img src="'+ item.photo + '">';
 								output +='<p>'+item.info.substring(2) +'</p></div>';

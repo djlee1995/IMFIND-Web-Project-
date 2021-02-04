@@ -17,11 +17,15 @@
 	</select>
 	
 	<select id="getRefundList" resultType="com.spring.imfind.el.EJ.PayVO">
-        SELECT * FROM PAY WHERE Pay_State = 'refund' OR Pay_State = 'cancel' ORDER BY Pay_State desc
+        SELECT * FROM PAY WHERE Pay_State = 'refund' ORDER BY Pay_State desc
     </select>
 	
 	 <update id = "updatePaystate" parameterType="PayVO">
 		 update Pay set Pay_State = #{Pay_State}, Cancel_Date = TO_DATE(sysdate,'yy-MM-dd HH24:mi') where Id=#{Id} AND PayCode=#{PayCode}
 	 </update>
+	 
+	 <select id="getCancleList" resultType="com.spring.imfind.el.EJ.PayVO">
+        SELECT * FROM PAY WHERE Pay_State = 'cancel' ORDER BY Pay_State desc
+    </select>
 	 
 </mapper>

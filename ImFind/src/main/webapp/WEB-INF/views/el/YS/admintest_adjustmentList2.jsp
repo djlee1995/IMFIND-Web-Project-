@@ -148,7 +148,7 @@
             data : {"Lost_PostNum" : postNum, "F_ID" : finder},
             success : function(data){
                console.log(data)
-               window.location.href = './adminhome'
+               
             },
             error : function(){
               
@@ -349,7 +349,6 @@
 									결제관리 <i class="fas fa-angle-left right"></i>
 								</p>
 						</a>
-						
 							<ul class="nav nav-treeview">
 								<li class="nav-item"><a href="./admintest_payList"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
@@ -386,9 +385,7 @@
 										<p>정산완료 리스트</p>
 								</a></li>
 							</ul></li>
-						
-					
-					</ul>	<!-- 정산 사이트 메뉴 마암 -->
+						<!-- 정산 사이트 메뉴 마암 -->
 				</nav>
 				<!-- /.sidebar-menu -->
 			</div>
@@ -553,15 +550,7 @@
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script>
-  $(function () {
-  /*   $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    }); */
-   
-  });
-</script>
+
 
 
 </html>

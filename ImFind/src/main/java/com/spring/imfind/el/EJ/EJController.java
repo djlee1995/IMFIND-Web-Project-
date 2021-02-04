@@ -45,7 +45,8 @@ public class EJController {
 		System.out.println("match=" + match);
 		String Lost_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
-	    String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+		 String uploadPath = "C:\\Project\\WebProject\\upload\\";
+	    //String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
 
 
 		if(match.find()){ 
@@ -96,6 +97,7 @@ public class EJController {
 	      response.setContentType("text/html;charset=utf-8");
 	     // String uploadPath = "/Users/hongmac/Documents/upload/";
 	      String uploadPath = "C:\\Project\\WebProject\\upload\\";
+	    //String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
 	      PrintWriter out = response.getWriter();
           String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
           
@@ -147,7 +149,7 @@ public class EJController {
 		String pet_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
 		String uploadPath = "C:\\Project\\WebProject\\upload\\";
-
+		//String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
 		if(match.find()){ 
 			pet_Up_File = match.group(0); 
 		}

@@ -54,5 +54,13 @@ public class AdiminServiceImpl implements AdminService {
 	
 		return res;
 	}
+	
+	@Override
+	public List<PayVO> getCancleList(){
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		List<PayVO> paylist = adminMapper.getCancleList();
+		
+		return paylist;
+	}
 }
 

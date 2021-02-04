@@ -222,6 +222,7 @@
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>결제완료 리스트</p>
 								</a></li>
+								
 								<li class="nav-item"><a href="./admintest_refundList"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>환불거래 리스트</p>
@@ -285,7 +286,7 @@
 							<!-- Default box -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">결제상태 리스트</h3>
+									<h3 class="card-title">환불완료 리스트</h3>
 								</div>
 								<div class="card-tools">
 
@@ -369,30 +370,27 @@
 	<script>
 		$(function() {
 			$('#output').empty();
-			payList();
-			
+			refundList();
+
 		});
 
-		function payList() {
+		function refundList() {
 			$('#output').empty();
-
-			var form = '<thead><tr><th>회원ID</th><th>주문번호</th><th>결제금액</th><th>결제상태</th><th>결제승인시각</th></tr></thead><tbody>';
+			var form = '<thead><tr><th>회원ID</th><th>주문번호</th><th>결제금액</th><th>결제상태</th><th>결제승인시각</th><th>환불완료날짜</th></tr></thead><tbody>';
 			$('#output').append(form);
-
 			$("#output").DataTable({
 				paging : true,
 				"pageLength" : 10,
 				pagingType : "simple_numbers",
-				"search": {
-				    "caseInsensitive": false
-				  },
-
+				 "search": {
+					    "caseInsensitive": false
+					  },
 				"ajax" : {
-					"url" : "/imfind/adminpay2",
+					"url" : "/imfind/admincancleList",
 					"type" : "POST",
 					"dataSrc" : function(res) {
-						console.log("결제리스트" + res)
 						var data = res.data;
+						console.log(data)
 						return data;
 					}
 				},
@@ -406,14 +404,15 @@
 					"data" : "pay_State"
 				}, {
 					"data" : "pay_Date"
-				},
+				},  {
+					"data" : "cancel_Date"
+				}
 
 				]
 
 			});
 
 		};
-
 	</script>
 </body>
 </html>
