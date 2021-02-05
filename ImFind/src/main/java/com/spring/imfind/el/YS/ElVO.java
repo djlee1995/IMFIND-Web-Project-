@@ -1,6 +1,8 @@
-
 package com.spring.imfind.el.YS;
 import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 // F_id, 하나 더 아마 grade
@@ -8,7 +10,7 @@ public class ElVO {
 	private int Lost_PostNum;
 	private String Lost_Title;   
 	private String Lost_Content;  
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Lost_Re_Date; 
 	private int Lost_Re_Count;  
 	private String Lost_Or_File; 
@@ -16,13 +18,13 @@ public class ElVO {
 	private int Lost_Pay; 
 	private String Lost_Item; 
 	private String Lost_Loc;  
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Lost_Date;  
 	private String Id;  
 	private int Contact; 
 	private int Com_Num; 
 	private String Com_Content; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Com_Date; 
 	private int Not_Num;
 	private String Receive_id;  
@@ -32,13 +34,13 @@ public class ElVO {
 	private int Pet_PostNum;   
 	private String Pet_Title;  
 	private String Pet_Content; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Pet_Re_Date; 
 	private int Pet_Pay; 
 	private String Pet_Or_File; 
 	private String Pet_Up_File; 
 	private String Pet_Name; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Pet_LostDate; 
 	private String Pet_Loc; 
 	private String Pw; 
@@ -47,21 +49,21 @@ public class ElVO {
 	private int Acount_Num; 
 	private String Bank; 
 	private String Account_holder; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Join_date; 
 	private String PayCode; 
 	private int Pay_Amount; 
 	private String Pay_Way; 
 	private String Pay_State; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Pay_Date; 
 	private String Deal_State; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Deal_Date;
 	private String F_Id; 
 	private int Pet_ComNum; 
 	private String Pet_ComContent; 
-	@JsonFormat(pattern="YYYY.MM.dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Pet_ComDate; 
 	private int grade;
 	public int getLost_PostNum() {

@@ -8,7 +8,16 @@
   margin: 0 auto;
   max-width:1850px !important; /*1250px*/
 }
- 
+ #fh5co-logo {
+    font-size: 31px;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+}
  
  
  </style>
@@ -49,7 +58,6 @@
 	 
      $('#output').empty();
     
-   //  var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>결제관리</h1>'
      var form ='<thead><tr>'
      		+'<th>글번호</th>'
      		+'<th>파인더</th>'
@@ -60,38 +68,28 @@
      		+'<th>은행</th>'
      		+'<th>계좌주</th>'
      		+'<th>정산 상태</th>'
-     		+'<th>정산날짜</th>'
+     	
      		+'</tr></thead><tbody>';
     
-    // $('#output').append(title);
      $('#output').append(form);
     
      $.ajax({
-        url : '/imfind/getAdjustmentList',
+        url : '/imfind/getAdjustmentList2',
        contentType : 'application/x-www-form-urlencoded:charset=utf-8',
        success : function(data){
            $.each(data, function(index, item){
               console.log(item)
               
-            if(item.lost_PostNum == null){
-              postnum = item.pat_PostNum
-              href = './petinfo?Pet_PostNum='
+            if(item.lost_PostNum == null || item.lost_PostNum ==0){
+              postnum = item.pet_PostNum
+              adjustment_state = '미정산' + '<button type="button" class="btn btn-outline-primary" value="승인"  onclick="giveMoenyPet()">정산</button></td>';
+
            }
            else{
               postnum = item.lost_PostNum
-              href = './iteminfo?lost_PostNum='
+              adjustment_state = '미정산' + '<button type="button" class="btn btn-outline-primary" value="승인"  onclick="giveMoeny()">정산</button></td>';
            }
-           
-           if(item.adjustment_state == null){
-              adjustment_state = '미정산' + '<button type="button" value="승인" style="width:50px; height:30px;" onclick="giveMoeny()">정산</button></td>';
-              adjustment_date = '-'
-           }
-           else{
-              adjustment_state = '정산완료'
-                adjustment_date = moment(item.adjustment_date).format('YYYY-MM-DD');
-           }
-           
-           
+            
               var output='';
               output += '<tr>'; 
               output += '<td>' + postnum+ '</td>';
@@ -103,33 +101,15 @@
               output += '<td>' + item.bank + '</td>';
               output += '<td>' + item.account_holder + '</td>';
               output += '<td>' + adjustment_state + '</td>';
-              output += '<td>' + adjustment_date + '</td>';
+            
               
               output += '</tr>'
-              //console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
               $('#output').append(output); //추가
            }); //each 끝 
            }, //success 끝
            error:function(){
                 alert("ajax통신 실패!!!");
-       },// error 끝.
-          /* complete : function(){ //등록글이 없으면, 페이지네이션이 계산할 tr카운팅수가 없으므로 무조건 수행 해도 상관 없다.
-				// myfunction();  //위에 each가 반복문으로 계속 돌아 가니까 한번 돌때 마다. 카운팅하기때문이 주의!!!  그래서 밖으로 나옴. 페이지네이셔 호출! 
-			     $('.dataTables_empty').remove()	
-        	  var tfoot ='</tbody><tfoot><tr>'
-        		  +'<th>글번호</th>'
-           		+'<th>파인더</th>'
-           		+'<th>거래상태</th>'
-           		+'<th>거래완료일</th>'
-           		+'<th>정산 금액</th>'
-           		+'<th>정산 계좌</th>'
-           		+'<th>은행</th>'
-           		+'<th>계좌주</th>'
-           		+'<th>정산 상태</th>'
-           		+'<th>정산날짜</th>'
-        	  +'</tr></tfoot>';
-        	  $('#output').append( tfoot );
-			}, */
+       },
           
      });// ajax 끝
  };
@@ -140,7 +120,7 @@
           console.log(e.target)
           var postNum = e.target.parentElement.parentElement.childNodes[0].innerText
           var finder = e.target.parentElement.parentElement.childNodes[1].innerText
-         alert('정산')
+        
         
          $.ajax({
             url : '/imfind/giveMoney',
@@ -148,7 +128,7 @@
             data : {"Lost_PostNum" : postNum, "F_ID" : finder},
             success : function(data){
                console.log(data)
-               
+               adjustmentList();
             },
             error : function(){
               
@@ -157,6 +137,30 @@
          });
      });
   };
+  
+  function giveMoenyPet(){
+	     
+	     document.querySelector('#output').addEventListener('click', function(e){
+	          console.log(e.target)
+	          var postNum = e.target.parentElement.parentElement.childNodes[0].innerText
+	          var finder = e.target.parentElement.parentElement.childNodes[1].innerText
+	         
+	        
+	         $.ajax({
+	            url : '/imfind/giveMoneyPet',
+	            contentType : 'application/x-www-form-urlencoded:charset=utf-8',
+	            data : {"pet_PostNum" : postNum, "F_ID" : finder},
+	            success : function(data){
+	               console.log(data)
+	               adjustmentList();
+	            },
+	            error : function(){
+	              
+	            } 
+	        
+	         });
+	     });
+	  };
  </script>
 </head>
 <%-- 
@@ -184,147 +188,26 @@
 <body class="hold-transition sidebar-mini layout-boxed">
 <!-- Site wrapper -->
 <div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
+		<!-- Navbar -->
+		<nav
+			class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			
+		</nav>
+		<!-- /.navbar -->
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<div id="fh5co-logo"><a href="./home.do">ImFind<span>.</span></a></div>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
-           class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
+			<!-- Sidebar -->
+			<div class="sidebar">
 				<!-- Sidebar user (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
 						<img
-							src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/user2-160x160.jpg"
+							src="${pageContext.request.contextPath}/resources/el/Admin_dist/img/user1.png"
 							class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
@@ -399,13 +282,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Boxed Layout</h1>
+            <h1>관리자페이지</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">관리자페이지</a></li>
               <li class="breadcrumb-item"><a href="#">결제관리</a></li>
-              <li class="breadcrumb-item active">정산  리스트  수정중</li>
+              <li class="breadcrumb-item active">미정산리스트</li>
             </ol>
           </div>
         </div>
@@ -420,7 +303,7 @@
             <!-- Default box -->
             <div class="card">
               <div class="card-header">
-                	<h3 class="card-title">정산관리</h3>
+                	<h3 class="card-title">미정산 관리</h3>
 				</div>
                 <div class="card-tools">
                 
@@ -471,9 +354,7 @@
 <!-- Site wrapper -->
             <!--   </div> -->
               <!-- /.card-body -->
-              <div class="card-footer">
-                Footer
-              </div>
+             
               <!-- /.card-footer-->
             </div>
             <!-- /.card -->
@@ -485,23 +366,6 @@
     </div>
   <!-- /.content-wrapper -->
 </div>
-
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.5
-    </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
- <!--  </div> -->
-<!-- ./wrapper -->
-
 
   
   

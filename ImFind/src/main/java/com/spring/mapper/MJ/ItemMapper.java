@@ -1,4 +1,3 @@
-
 package com.spring.mapper.MJ;
 
 import java.util.List;
@@ -38,6 +37,7 @@ public interface ItemMapper {
 
 	// YH
 	List<IndexLostPostDTO> getItembyDate();
+	List<IndexLostPostDTO> getPetItembyDate();
 
 	// PET
 	int petdelete_data(int Pet_PostNum);

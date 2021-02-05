@@ -1,15 +1,19 @@
 
 package com.spring.imfind.el.EJ;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 public class PetVO {
 	private String Pet_PostNum; // 글번호
 	private String Pet_Title; // 글제목
 	private String Pet_Content; // 글내용
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date Pet_Re_Date; // 등록날짜
 	private String Pet_Pay; //사례금
 	private String Pet_Or_File; // QR파일
 	private String Pet_Up_File; // UP파일
 	private String Pet_Name; // 애완동물 이름
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private String Pet_LostDate; //동물 분실 날짜
 	private String Pet_Loc; // 동물 분실 위치
 	private String Id; // 회원 ID

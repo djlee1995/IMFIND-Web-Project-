@@ -116,11 +116,11 @@ public class PayDTO {
 	public void setF_ID(String f_ID) {
 		F_ID = f_ID;
 	}
-	public int getPat_PostNum() {
+	public int getPet_PostNum() {
 		return Pet_PostNum;
 	}
-	public void setPat_PostNum(int pat_PostNum) {
-		Pet_PostNum = pat_PostNum;
+	public void setPet_PostNum(int pet_PostNum) {
+		Pet_PostNum = pet_PostNum;
 	}
 	public String getPet_Title() {
 		return Pet_Title;

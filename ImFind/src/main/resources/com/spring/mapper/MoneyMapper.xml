@@ -11,12 +11,11 @@
 		    WHERE pay.f_id = #{id} AND deal_state='completed'
 	</select>
 	
-	<select id="getAdjustmentList" parameterType="String"  resultType="PayDTO">
-	 	SELECT * FROM lostpost lost 
-		    INNER JOIN pay ON lost.lost_postnum =  pay.lost_postnum 
-		    INNER JOIN member ON pay.f_id = member.id
-		    WHERE deal_state='completed'
+	<select id="getAdjustmentList"  resultType="PayDTO">
+	 	select * from pay p ,member m where p.f_id = m.id and deal_state = 'completed' and adjustment_state = 'finished'
 	</select>
+	<select id="getAdjustmentList2" resultType="PayDTO">
+SELECT * FROM pay p ,member m where p.f_id = m.id and deal_state = 'completed' and pay_state not in ('cancel')and adjustment_state is null</select>
 	
 	<update id ="giveMoney" parameterType="PayDTO" >
 		UPDATE pay 
@@ -28,7 +27,7 @@
 		UPDATE pay 
 			SET ADJUSTMENT_STATE = 'finished', 
 				ADJUSTMENT_DATE = sysdate
-				WHERE f_id = #{F_ID} And Pet_PostNum = #{Pet_PostNum}
+				WHERE f_id = #{F_ID} And Pet_PostNum = #{pet_PostNum}
 	</update>
 	
 </mapper>

@@ -69,6 +69,12 @@ public class ItemServiceImpl implements ItemService{
 		List<IndexLostPostDTO> List = mapper.getItembyDate();
 		return List;
 	}
+	@Override
+	public List<IndexLostPostDTO> getPetItembyDate() {
+		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+		List<IndexLostPostDTO> List = mapper.getPetItembyDate();
+		return List;
+	}
 
 	@Override
 	public int update_data(ItemVO vo) {
@@ -212,4 +218,3 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 }
-

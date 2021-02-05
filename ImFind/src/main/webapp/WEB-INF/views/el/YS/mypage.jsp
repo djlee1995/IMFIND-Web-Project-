@@ -48,9 +48,9 @@
    <script>
       var user = '${loginUser}';
         
-      $('#memberModifyBtn').click(function(){
+  /*     $('#memberModifyBtn').click(function(){
            $(location).attr("href", "/imfind/modify");
-      });
+      }); */
    </script>
    
    
@@ -69,8 +69,8 @@
    </div> 
   
   <div class="mypg_content">
-	   <div class="bg-light border-right" id="sidebar-wrapper" style=" width:200px; margin-left:189px; margin-top:150px;">
-	      <div class="col" style="padding-top: 10px;"><h4> ${kakaoLoginUser}  ${loginUser}   님 환영합니다.</h4></div>
+	   <div class="bg-light border-right" id="sidebar-wrapper" style=" width:200px; margin-top:150px;">
+	      <div class="col" style="padding-top: 10px; padding-left: 60px;"><h4> ${kakaoLoginUser}  ${loginUser}   님 </h4></div>
 	      <div class="col" style="PADDING-LEFT: 50PX; padding-top: 5px;"><h5> 나의 매너점수</h5></div>
 	      <div class="col" ID=show_Grade_Rating> 
 	      	 <div class="grade" style="padding-bottom: 25px;">  	
@@ -110,25 +110,33 @@
 	      </div>   
 	     
 	      <div class="list-group list-group-flush">   
-	        <div class="col"><h4 style="font-weight: 100;">분실물품 게시판</h4></div>
-	        <a href="javascript:getItemList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">분실물 작성글</a>
-	        <a href="javascript:getCommentList();" class="list-group-item list-group-item-action bg-light"style="padding-left: 25px;">분실물 댓글</a>
-	        <div class="col"><h4 style="font-weight: 100;">분실동물 게시판</h4></div>
-	        <a href="javascript:getPetList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">분실동물 작성글</a>
-	        <a href="javascript:getPetCommentList();" class="list-group-item list-group-item-action bg-light"style="padding-left: 25px;">분실동물 댓글</a>
-	        <div class="col"><h4 style="font-weight: 100;">개인정보</h4></div>
-	        <a href="./modify" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">개인정보수정</a>
-	        <a href="javascript:getPayList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">결제내역</a>
-	        <a href="javascript:getMoeny();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">정산내역</a>
-	        <a href="./delete" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">회원탈퇴</a>
-	      </div>
-   		</div>
+	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
+	        	<h4 style="font-weight: 400;">분실물품 게시판</h4>
+	        </div>
+	        	<a href="javascript:getItemList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">분실물 작성글</a>
+	        	<a href="javascript:getCommentList();" class="list-group-item list-group-item-action bg-light"style="padding-left: 25px;">분실물 댓글</a>
+	        	
+	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
+	        	<h4 style="font-weight: 400;">분실동물 게시판</h4>
+	        </div>
+	       	 	<a href="javascript:getPetList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">분실동물 작성글</a>
+	        	<a href="javascript:getPetCommentList();" class="list-group-item list-group-item-action bg-light"style="padding-left: 25px;">분실동물 댓글</a>
+	        
+	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
+	        	<h4 style="font-weight: 400;">개인정보</h4>
+	        </div>
+		        <a href="./modify" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">개인정보수정</a>
+		        <a href="javascript:getPayList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">결제내역</a>
+		        <a href="javascript:getMoeny();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">정산내역</a>
+		        <a href="./delete" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">회원탈퇴</a>
+	        </div>
+   		  </div> 
    
 		   <!-- <div class="col-md-6" > -->
 	    <div class="section-mypage-title" >          
     		  <div class="mypg_container" style="margin-top: 169px; margin-left: 50px;"><h1>My Page</h1></div>
 
-	         <div class="mypg-card" style="width: 800px; margin-top: 80px;">
+	         <div class="mypg-card" style="width: 800px; margin-top: 50px;">
 	            <table id="mypgform"></table>
 	            <div class="table-container" style=" margin-left: 50px;">
 	            <table id="output" class="table table-bordered table-hover display" style="font-size:1.5rem; width:918px;"></table>

@@ -235,7 +235,7 @@
                     <div class="register-form" style="height: 850px;">
                         <h2 style="font-size:1.5rem;">개인정보수정</h2>
                         
-                        <form action="./processJoin" class="grid-form" method="post">
+                        <form action="./modify.do" class="grid-form" method="post">
                             <div class="group-input label">
                                 <label for="username">ID *</label>
                             </div>
@@ -313,23 +313,14 @@
                        <!--      <input type="hidden" name="join_date"/> -->
                             <button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
                         </form>
-                        <div class="switch-login">
-                            <a href="./login" class="or-login">Or Login</a>
-                        </div>
+                        
                     </div>
                 </div>
           </div>
         </div>
     </div>
 <!-- 3-legged  -->
-<form id="authorizeFrm" name="authorizeFrm" method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" target="_authForm">
-       <input type="hidden" name="client_id" value="1245365a-f9f6-4ad8-b86d-fb42f8a9deb8"/>
-       <input type="hidden" name="scope" value="login inquiry transfer"/>
-       <input type="hidden" name="redirect_uri" value="http://localhost:8080/imfind/"/>
-       <input type="hidden" name="auth_type" value="0"/>
-       <input type="hidden" name="response_type" value="code"/>
-       <input type="hidden" name="state" value="12345678901234567890123456789012"/>
-</form>
+
 <!-- Register Form Section End -->
   
     

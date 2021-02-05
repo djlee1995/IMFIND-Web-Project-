@@ -103,6 +103,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 5px 10px;
   color: #000;
 }
+
 @media screen and (max-width: 768px) {
   .fh5co-nav .menu-1 {
     display: none;
@@ -1337,5 +1338,3 @@ h1, h2, h3, h4, h5, h6, figure {
 .js .animate-box {
   opacity: 0;
 }
-
-/*# sourceMappingURL=style.css.map */

@@ -42,7 +42,7 @@
 							<ul class="dropdown">
 								<li><a href="index.if">경찰청</a></li>
 								<li><a href="etc_index.if">etc</a></li>
-								<li><a href="select.if">검색</a></li>
+								<li><a href="select.if">지역으로 찾기</a></li>
 								<li> <a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')">핸드폰찾기</a></li>
 							</ul>
 						</li>

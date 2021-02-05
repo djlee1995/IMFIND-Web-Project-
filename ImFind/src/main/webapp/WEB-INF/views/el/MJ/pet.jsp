@@ -122,6 +122,7 @@ section{
       .card-wrapper{
          display:flex;
          flex-wrap:wrap;
+         padding: 0 61px;
       }
       .card-con{
          width: 180px;
@@ -223,31 +224,11 @@ section{
    <!-- <div class="container1"> -->
    <div class="container1 searchbar">
       <div class="row1">
-       <!--   <div id="custom-search-input">
-            <div class="input-group col-md-12">
-               <input type="text" class="input-lg" name="input-search" 
-                  onKeypress="enterkey();" placeholder="search.." > 
-                  <span class="input-group-btn" >
-                  <button class="btn" type="button" >
-                     <i class="ti-search"></i>
-                  </button>
-               </span>
-            </div>
-         </div> -->
+
       </div>
    </div>
    
    <div class="container1 selectBox">
-     <!--   <div class = "petsi">
-          <select class="js-example-basic-single" id="petsido">
-               <option value="">시/도 선택하세요</option>
-          </select>
-          <select class="js-example-basic-single" id="petsigugun">
-               <option value="">시/군/구 선택하세요</option>
-          </select>
-          <select class="js-example-basic-single" id="petdong">
-               <option value="">읍/면/동 선택하세요</option>
-          </select> -->
      </div>    
       <div class="storage-con">
 		   <div class="storage-title"><p>최근 본 게시물</p></div>

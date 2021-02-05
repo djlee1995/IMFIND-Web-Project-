@@ -9,7 +9,6 @@
 
 /*------------------------------------------------------------------
 [Table of contents]
-
 1.  Template default CSS
 	1.1	Variables
 	1.2	Mixins
@@ -24,7 +23,6 @@
 8.  Logo Carousel
 9.  Contact
 10.  Footer
-
 -------------------------------------------------------------------*/
 
 /*----------------------------------------*/
@@ -34,11 +32,11 @@
 html,
 body {
 	height: 100%;
-	font-family: "Muli", sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
-
+/*	
 h1,
 h2,
 h3,
@@ -48,33 +46,27 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "Muli", sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
-
 h1 {
 	font-size: 70px;
 }
-
 h2 {
 	font-size: 36px;
 }
-
 h3 {
 	font-size: 30px;
 }
-
 h4 {
 	font-size: 24px;
 }
-
 h5 {
 	font-size: 18px;
 }
-
 h6 {
 	font-size: 16px;
 }
-
+*/
 p {
 	font-size: 16px;
 	font-family: "Muli", sans-serif;

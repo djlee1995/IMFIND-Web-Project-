@@ -4,6 +4,7 @@
 <%@ page import="com.spring.imfind.el.YH.LoginDTO"%>
 <%@ page import="com.spring.imfind.el.EJ.BoardVO"%>
 <%@ page import="com.spring.imfind.el.EJ.PetVO"%>
+<%@ page import="com.spring.imfind.el.MJ.ItemVO"%>
 <%@ page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -11,9 +12,7 @@
 <html>
 <!-- Header Section Begin -->
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after"
-	type="text/css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css"> --%>
 <!-- Header End -->
 
 <!-- swiper 플러그인 -->
@@ -24,6 +23,20 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+<%
+	List<BoardVO> boardvo = (List<BoardVO>) request.getAttribute("boardvo");
+	List<PetVO> petvo = (List<PetVO>) request.getAttribute("petvo");
+	//lost_pay_rank
+    List<ItemVO> list3 = (List<ItemVO>) request.getAttribute("lost_pay_rank");
+    //pet_pay_rank
+    List<PetVO> list4 = (List<PetVO>) request.getAttribute("pet_pay_rank");
+    //lost_like_rank
+    List<ItemVO> lostRank = (List<ItemVO>) request.getAttribute("lost_like_rank");
+    //pet_like_rank
+    List<PetVO> petRank = (List<PetVO>) request.getAttribute("pet_like_rank");
+%>
 
 <style>
 .box {
@@ -33,30 +46,31 @@
 	left: 50%;
 	padding-top: 50px;
 }
-
 .flexslider.js-fullheight {
 	width: 50vw;
 }
-
 .slides {
 	width: 200%;
 }
-
+.swiper-container2 > #swiper-wrapper > div.swiper-slide{
+	width:100%;
+}
+#slide-1,
+#slide-2{
+	width: 100%;
+}
 @media screen and (max-width: 992px) {
 	.box {
 		width: 100vw;
 		left: 0;
 	}
 }
-
 .li-group {
 	padding-left: 50px;
 }
-
 .li-group>ul {
 	list-style: none;
 }
-
 .li-group>ul>li {
 	min-height: 40px !important;
 	border: none;
@@ -67,28 +81,22 @@
 	float: left;
 	font-size: 2.3rem;
 }
-
 .li-group>ul>li:hover {
 	transform: scale(1.2);
 	tarnsition: transform 1s;
 }
-
 .li-group>ul>li>a {
 	color: black;
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 .flex-active-slide>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>ul:nth-child(1)>li
 	{
 	background: white;
 }
-
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
 .notosanskr * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 nav {
 	position: fixed;
 	top: 0;
@@ -97,19 +105,15 @@ nav {
 	z-index: 100;
 	padding-right: 35px;
 }
-
 aside {
 	padding-top: 6.76%;
 }
-
 .fh5co-nav #fh5co-logo {
 	font-size: 31px;
 }
-
 #fh5co-services {
 	margin-top: 195px !important;
 }
-
 .overlay {
 	position: absolute;
 	bottom: 28px;
@@ -121,30 +125,24 @@ aside {
 	height: 95.03%;
 	padding: 0;
 }
-
 .services:hover .overlay {
 	height: 100%;
 }
-
 div.col-lg-3:hover .overlay {
 	height: 100%;
 	z-index: 1000;
 }
-
 div.col-lg-3 {
 	height: 100%;
 	padding: 0 7px 0 7px;
 }
-
 #fh5co-blog>div>div.row {
 	margin: 0 auto;
 }
-
 .title {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 74px;
 }
-
 .fh5co-nav ul li a {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weigth: bold;
@@ -155,29 +153,26 @@ div.col-lg-3 {
 	-o-transition: 0.5s;
 	transition: 0.5s;
 }
-
 .fh5co-blog .blog-text {
 	padding: 16px !important;
 	margin-top: 1px;
+	font-size: 1.5rem;
 	max-height: 146px;
 	overflow: hidden;
 	vertical-align: top;
 	text-overflow: ellipsis;
 	word-break: break-word;
-	/*          white-space:nowrap; */
+	border-radius:11px;
 }
-
 .blog-text, #fh5co-blog>div>div>div>div>div>h3, h2, p {
 	font-family: 'Noto Sans KR', sans-serif !important;
 }
-
 @media ( max-width : 500px) {
 	.row.siren {
 		display: flex;
 		flex-direction: column;
 	}
 }
-
 @media ( min-width : 1200px) {
 	.col-lg-3 {
 		width: 20%;
@@ -189,7 +184,7 @@ div.col-lg-3 {
 	div.thumb>img {
 		width: 200px;
 		max-height: 200px !important;
-		object-fit: scale-down;
+		object-fit: cover;
 	}
 	.fh5co-blog.siren {
 		display: flex;
@@ -205,34 +200,28 @@ div.col-lg-3 {
 		margin: 0;
 	}
 }
-
 section {
 	position: relative;
 	top: 76px;
 }
-
 section#first {
 	background: #FBF7F2;
 	padding-top: 28px;
 }
-
 footer {
 	position: relative;
 	top: 300px;
 }
-
 .fh5co-blog .img-responsive, .police-photo {
 	object-fit: contain;
 	overflow: hidden;
 	height: 182px !important;
 }
-
 .text.map {
 	display: flex;
 	justify-content: flex;
 	align-items: flex;
 }
-
 div.container-fluid:nth-child(1)>div:nth-child(1) {
 	display: flex;
 	justify-content: center;
@@ -241,22 +230,18 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 	position: relative;
 	top: -15px;
 }
-
 .fh5co-nav {
 	padding-right: 18px !important;
 	background: white;
 }
-
 .swiper-container {
 	width: 100%;
 	height: 340px;
 }
-
 .swiper-container.row {
 	width: 100%;
 	height: 320px;
 }
-
 .arrow-container {
 	display: flex;
 	justify-content: center;
@@ -264,61 +249,52 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 	position: relative;
 	top: -175px;
 }
-
 .arrow-next, .arrow-prev, .arrow-next2, .arrow-prev2 {
 	margin: 0 595px;
 	color: rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 }
-
 .swipe-slide {
 	box-shadow: 0 2px 4px 0 hsla(0, 0%, 80.8%, .5);
 }
-
 .hidden-panel {
 	opacity: 100%;
 }
-
 .hidden-panel:hover {
 	opacity: 0%;
 	background: black;
 	width: 100%;
 	height: 100%;
 }
-
 /* 인덱스 css 다시하기 */
 .container-police, .container-poeplelost, .container-animal,
 	.container-btn {
 	width: 75vw;
 	margin: 0 auto;
 }
-
 @media ( min-width : 1900px) {
 	.container-police, .container-poeplelost, .container-animal {
-		width: 62vw;
+		width: 60vw;
 		margin: 0 auto;
 	}
 }
-
 #fh5co-blog {
 	padding-top: 0;
 	padding-bottom: 16px;
+	
 }
 /* 경찰청 분실물 row */
 .container-police>div:nth-child(1)>div:nth-child(1) {
 	margin: 0 auto;
-	width: 100%;
+	width: 1170pw;
 	padding: 0;
 }
-
 .col-md-8.col-md-offset-2.text-center.fh5co-heading {
 	margin-bottom: 16px;
 }
-
 .cover {
 	opacity: 0; /* for demo purpose  */
 }
-
 .stack-top {
 	z-index: 9;
 	background: rgba(36, 49, 70, 0.76);
@@ -330,11 +306,9 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 	top: 4px;
 	left: 0;
 }
-
 .cover:hover {
 	opacity: 0.6;
 }
-
 h3.lost-title>a {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1.5rem;
@@ -353,40 +327,34 @@ h3.lost-title>a {
 	margin-left: 0 !important;
 	height: 342px !important;
 }
-
 .fh5co-blog.lost {
-	width: 220px;
+	max-width: 220px;
 	max-height: 209.3px !important;
 }
-
 .fh5co-blog.lost>a>img {
 	width: 100% !important;
-	object-fit: scale-down !important;
+    object-fit: cover !important;
+    border-radius: 11px;
+    height: 200px;
 }
-
 .slider-text-bg {
 	min-height: 221px !important;
 }
-
 .flex-control-nav {
 	top: 290px;
 }
-
 .container-btn {
 	margin-top: 0;
 	z-index: 8;
 	position: relative;
 }
-
 .container-btn>.row {
 	display: flex;
 	justify-content: space-between;
 }
-
 span.posted_on {
 	margin-right: 72px !important;
 }
-
 .col-sm-3>div.card {
 	border: rgb(238, 238, 238);
 }
@@ -395,12 +363,10 @@ span.posted_on {
 	position: relative;
 	top: 50px;
 }
-
 .col-md-12 {
 	display: flex;
 	justify-content: space-between;
 }
-
 #imfindlogo {
 	width: 250px;
 	height: 180px;
@@ -408,230 +374,90 @@ span.posted_on {
 	right: 250px;
 	top: 50px;
 }
-
 .block {
 	position: relative;
 	left: 436px;
 	margin: 0 auto;
 }
-
 .row row-pb-md {
 	position: relative;
 	height: 300px;
 }
-
 #siren {
 	width: 33px;
 	margin-bottom: 5px;
 }
-
 .swiper-container.siren {
 	width: 500px;
 	height: 100%;
 	margin: 0;
 }
-
 .swiper-container.siren2 {
 	width: 400px;
 	height: 100%;
 }
-
 .swiper-slide.fh5co-blog.siren {
 	width: 500px;
 }
-
 div.container-left {
 	width: 45%;
 	height: 700px;
 	float: left;
 	box-sizing: border-box;
-	background: #ff0;
 	float: left;
 }
-
 div.container-right {
 	width: 45%;
 	height: 700px;
 	float: right;
 	box-sizing: border-box;
-	background: #0ff;
+	margin-top: 3%;
 }
-/* .swiper-container2{
-	width: 45%;
-	height: 300px;
-} */
 .slider-box {
 	width: 100%
 }
-
 .swiper-container2 {
-	width: 45%;
+	width: 100%;
 	height: 100%;
 }
 .like_rank{
-	align:center;
 	margin-top:30px;
 	height: 40%;
+    display: flex;
+    flex-direction: column;
 }
 .pay_rank{
 	align-items:center;
 	height: 40%;
+    display: flex;
+    flex-direction: column;
 }
-/* .like_rank_lost{
-	display: grid;
-	width: 150px;
-	height: 150px;
-} */
-
-/* /* .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-
-      /* Center slide text vertically */
-display
-
-
-:
-
- 
-
--webkit-box
-
-
-;
-display
-
-
-:
-
- 
-
--ms-flexbox
-
-
-;
-display
-
-
-:
-
- 
-
--webkit-flex
-
-
-;
-display
-
-
-:
-
- 
-
-flex
-
-
-;
--webkit-box-pack
-
-
-:
-
- 
-
-center
-
-
-;
--ms-flex-pack
-
-
-:
-
- 
-
-center
-
-
-;
--webkit-justify-content
-
-
-:
-
- 
-
-center
-
-
-;
-justify-content
-
-
-:
-
- 
-
-center
-
-
-;
--webkit-box-align
-
-
-:
-
- 
-
-center
-
-
-;
--ms-flex-align
-
-
-:
-
- 
-
-center
-
-
-;
--webkit-align-items
-
-
-:
-
- 
-
-center
-
-
-;
-align-items
-
-
-:
-
- 
-
-center
-
-
-;
+.photo{
+	width: 120px !important;
 }
-*
-/ */
+.photo > img{
+	width : 100% !important;
+	border-radius:11px;
+}
+.title{
+	font-size:15px !important;
+}
+.img-responsive{
+	border-radius:11px;
+	width:220px;
+	height:200px;
+}
 </style>
 
 <script>
-
+var lostLikeTime = getChangeDateString('<%=lostRank.get(0).getLost_Date() %>'); 
+document.querySelector('#like_rank > div:nth-child(1) > div > a > div.simpleinfo > div.subinfo > div.date');
+var PetLikeTime = getChangeDateString('<%=petRank.get(0).getPet_LostDate() %>'); 
+var LostPayTime = getChangeDateString('<%=list3.get(0).getLost_Date() %>'); 
+var PetPayTime = getChangeDateString('<%=list4.get(0).getPet_LostDate() %>');
 function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
 }
-
 function getXY (getUserLocation){
    
    if('geolocation' in navigator) {
@@ -655,15 +481,14 @@ function pay_rank(){
 	      success : function(item){
 	    	  console.log(item[0])
 	    	  var output='';
-	    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
-	                                + item[0].lost_Up_File
-	                                +'<div class="blog-text">'
-	                                    +'<span class="posted_on">' + item[0].lost_Re_Date + '</span>'
-	                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
-	                                    +'<h3 class="lost-title"><a href="#">' + item[0].lost_Title +'</a></h3>'
-	                                    +'<p>'+ item[0].lost_Loc +'</p></div></div>';
-	    		  $('#pay_rank').append(output);
-
+    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
+                                + item[0].lost_Up_File
+                                +'<div class="blog-text">'
+                                    +'<span class="posted_on">' + moment(item[0].pet_Re_Date).format('YY-MM-DD') + '</span>' 
+                                    +'<span class="comment"><a href="">0 <i class="icon-speech-bubble"></i></a></span>'         
+                                    +'<h3 class="lost-title"><a href="#">' + item[0].lost_Title +'</a></h3>'
+                                    +'<p>'+ item[0].lost_Loc +'</p></div></div>';
+    		  $('#pay_rank').append(output);
 	     	 }    
 	   });
 	 $.ajax({
@@ -672,14 +497,14 @@ function pay_rank(){
 	      success : function(item){
 	    	  console.log(item[0])
 	    	  var output='';
-	    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
-	                                + item[0].pet_Up_File
-	                                +'<div class="blog-text">'
-	                                    +'<span class="posted_on">' + item[0].pet_Re_Date + '</span>'
-	                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
-	                                    +'<h3 class="lost-title"><a href="#">' + item[0].pet_Title +'</a></h3>'
-	                                    +'<p>'+ item[0].pet_Loc +'</p></div></div>';
-	    		  $('#pay_rank').append(output);
+    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
+                                + item[0].pet_Up_File
+                                +'<div class="blog-text">'
+                                    +'<span class="posted_on">' + moment(item[0].pet_Re_Date).format('YY-MM-DD') + '</span>'  
+                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
+                                    +'<h3 class="lost-title"><a href="#">' + item[0].pet_Title +'</a></h3>'
+                                    +'<p>'+ item[0].pet_Loc +'</p></div></div>';
+    		  $('#pay_rank').append(output);
 	     	 }    
 	   });
 }
@@ -689,7 +514,6 @@ function getListNearMe(item){
       data : {'x' : item.x, 'y' : item.y},
       async : false,
       success : function(data){
-
          const parentNode = document.querySelector(".swiper-wrapper.first");
             data.police.forEach(function(item){
             
@@ -698,52 +522,66 @@ function getListNearMe(item){
             colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen('+item.x+','+item.y+','+item.code+');">클릭</button></div><div class="fh5co-blog">'
                                 +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
                                 +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + item.lost_date + '</span>'
-                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
+                                    +'<span class="posted_on">' + moment(item.lost_date).format('YY-MM-DD') + '</span>'       
                                     +'<h3 class="lost-title"><a href="#">' + item.item +'</a></h3>'
                                     +'<p>'+ item.depplace +'</p>'
                                           +'<p style="margin-bottom : 0;">' + item.info + '</p>'
                                  +'</div></div>';
-
             parentNode.appendChild(colNode);  
             
          });   
-            
-         
+            // 물건 swiper-slide
             data.item.forEach(function(item){
                const parentNode = document.querySelector(".swiper-wrapper.lost");
-               
-           
                const colNode = document.createElement('div');
                colNode.className = 'swiper-slide';
-               
                if(item.lost_Up_File == '0'){
                   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
                }
                else{
                   lost_up_file = item.lost_Up_File
                }
-               
-               colNode.innerHTML = '<div class="fh5co-blog lost">'
-                                +'<a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">'+ lost_up_file
-                                +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + item.Lost_Date + '</span>'
-                                    +'<span class="comment"><a href="">' + item.commentTotalCnt +'<i class="icon-speech-bubble"></i></a></span>'         
+               colNode.innerHTML = '<a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">'+ '<div class="fh5co-blog lost">'
+	                                + lost_up_file
+	                                +'<div class="blog-text">'
+                                    +'<span class="posted_on">' + moment(item.Lost_Date).format('YY-MM-DD') + '</span>' 
+                                    +'<span class="comment">' + item.commentTotalCnt +' <i class="icon-speech-bubble"></i></span>'         
                                     +'<h3>' + item.lost_Title + '</h3>'
-                                    +'<p>'+ item.lost_Loc +'</p>'
-                                          +'<p style="margin-bottom : 0;">' + item.lost_Content + '</p>'
-                                 +'</div>'  + '</a>';
+                                    +'<p class="pLoc">'+ item.lost_Loc +'</p>'
+                                 	+'</div>'  + '</a>';
                parentNode.appendChild(colNode);
             });
+            // 동물 swiper-slide
+            data.pet.forEach(function(item){
+            	
+            	console.log(item)
+                const parentNode = document.querySelector(".swiper-wrapper.pet");
+                const colNode = document.createElement('div');
+                colNode.className = 'swiper-slide';
+                if(item.pet_Up_File == '0'){
+                   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
+                }
+                else{
+                   lost_up_file = item.pet_Up_File
+                }
+                colNode.innerHTML = '<a href="./iteminfo?lost_PostNum='+ item.pet_PostNum +'">'+ '<div class="fh5co-blog lost">'
+ 	                                + lost_up_file
+ 	                                +'<div class="blog-text">'
+                                     +'<span class="posted_on">' + moment(item.pet_LostDate).format('YY-MM-DD') + '</span>'
+                                     +'<span class="comment">' + item.commentTotalCnt +' <i class="icon-speech-bubble"></i></span>'         
+                                     +'<h3>' + item.pet_Title + '</h3>'
+                                     
+                                     +'<p class="pLoc">'+ item.pet_Loc +'</p>'
+                                  	+'</div>'  + '</a>';
+                parentNode.appendChild(colNode);
+             });
       },
       error : function(data){
          alert('실패')
       }            
    });
 }
-
 function getUserLocation(coords){
-
     //ajax 시작
    $.ajax({
       url : 'https://dapi.kakao.com/v2/local/geo/coord2regioncode.json',
@@ -754,7 +592,6 @@ function getUserLocation(coords){
       success : function(data){
          //호출 성공하면 작성할 내용
             if(data.documents.length != 0 ){ // 값이 있으면
-
             var result = data.documents[0]
             
             var item =  {'city' : result.region_1depth_name,
@@ -773,24 +610,30 @@ function getUserLocation(coords){
        getListNearMe(coords);
    });   
 }
+//유희 추가함
+function getChangeDateString(originalDate) {
+	var fromNow = moment(originalDate).startOf('day').fromNow();
+	console.log(fromNow)
+	var fromNowTrim = fromNow.substr(0, 2).trim();
+	console.log(fromNowTrim)
+	if (fromNow.includes('days')) {
+		if (fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4'
+				|| fromNowTrim == '5' || fromNowTrim == '6') {
+			return fromNowTrim + '일전';
+			// $('#lost_Re_Date').text(fromNow +'일전');
+		} else {
+			return moment(originalDate).format('YYYY-MM-DD');
+			// $('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));
+		}
+	} else if (fromNow == 'a day ago') {
+		return '어제';
+		// $('#lost_Re_Date').text('어제');
+	} else if (fromNow.includes('hours')) {
+		return fromNowTrim + '시간 전';
+		// $('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
+	}
+}
 document.addEventListener('DOMContentLoaded', function(){
-	//pay_rank();
-	 var swiper = new Swiper('.swiper-container2', {
-		 slidesPerView: 1,
-	      spaceBetween: 1,
-	      centeredSlides: false,
-	      observer: false,
-	      autoplay: {
-	        delay: 2500,
-	        disableOnInteraction: false,
-	        
-	      },
-	      pagination: {
-	        el: '.swiper-pagination',
-	        clickable: true,
-	      },
-	     
-	    });
     
     // swiper 초기화 시키기
     var mySwiper1 = new Swiper('.swiper-container.police',{
@@ -803,10 +646,10 @@ document.addEventListener('DOMContentLoaded', function(){
       autoplay : {
          delay : 2500,
       },
-      pagination : {
+/*       pagination : {
          el: '.swiper-pagination.first',
          type: 'progressbar',
-      },
+      }, */
     
       navigation : {
          nextEl: '.arrow-next',
@@ -883,17 +726,11 @@ document.addEventListener('DOMContentLoaded', function(){
     var result = getXY(getUserLocation);
     
 });
-
 </script>
 </head>
 
 <body>
-	<%
-		List<BoardVO> boardvo = (List<BoardVO>) request.getAttribute("boardvo");
-	%>
-	<%
-		List<PetVO> petvo = (List<PetVO>) request.getAttribute("petvo");
-	%>
+
 
 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
 
@@ -901,42 +738,108 @@ document.addEventListener('DOMContentLoaded', function(){
 	<root>
 	<div class="page"></div>
 	<section id="first">
-		<div class="container-btn">
 			<div class="container">
 				<div class="container-left">
-					<div class="swiper-container2">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">Slide 1</div>
-							<div class="swiper-slide">Slide 2</div>
-
-
+				<div id="fh5co-hero" class="js-fullheight">
+						<div class="flexslider js-fullheight top">
+							<ul class="slides" style="width:100%;">
+								<li style="width: 100%;">
+									<div class="js-fullheight slider-text slider-text-bg">
+										<div class="imgcrop">
+											<div class="img-con">
+												<img src="./resources/el/images/IMFIND.jpg" alt="" style="top:-111px;"> 
+											</div>
+										</div>
+									</div>
+								</li>
+								<li style="width: 100%;">
+									<div class="js-fullheight slider-text slider-text-bg">
+										<div class="imgcrop">
+											<div class="img-con">
+												<img src="./resources/el/images/imf.jpg" alt="" >
+											</div>
+										</div>
+									</div>
+								</li>
+						  	</ul>
 						</div>
-
-						<div class="swiper-pagination"></div>
-
-
 					</div>
 				</div>
-
 				<div class="container-right">
+					<div class="like-rank-title"><h2>많은 사람들이 찾기를 바라고 있어요!</h2></div>
 					<div id="like_rank" class="like_rank"> 
-						<div class="like_rank_lost" style="float:left;width:50%;height:87%;background-Color:#F2FFFF">
-						aa
+						<div class="like_rank_lost" style="float:left;width:100%;height:87%;">
+							<div class="rank-card-con">
+								<a href="./iteminfo?lost_PostNum=3222">
+									<div class="photo">
+										<%=lostRank.get(0).getLost_Up_File() %>
+									</div>
+									<div class="simpleinfo">
+										<div class="title"><%=lostRank.get(0).getLost_Title() %></div>
+										<div class="subinfo">
+											<div class="pay"><%=lostRank.get(0).getLost_Pay() %>원</div>
+											<div class="date"><%=lostRank.get(0).getLost_Date() %></div>
+										</div>
+										<div class="loc"><%=lostRank.get(0).getLost_Loc() %></div>
+									</div>
+								</a>
+							</div>
 						</div>
-						<div class="like_rank_lost" style="clear:right;float:right;width:50%;height:87%;background-Color:#FFF2FF">
-						bb
+						<div class="like_rank_lost" style="clear:right;float:right;width:100%;height:87%;">
+							<div class="rank-card-con">
+								<a href="./iteminfo?lost_PostNum=3222">
+									<div class="photo">
+										<%=petRank.get(0).getPet_Up_File() %>
+									</div>
+									<div class="simpleinfo">
+										<div class="title"><%=petRank.get(0).getPet_Title() %></div>
+										<div class="subinfo">
+											<div class="pay"><%=petRank.get(0).getPet_Pay() %>원</div>
+											<div class="date"><%=petRank.get(0).getPet_LostDate() %></div>
+										</div>
+										<div class="loc"><%=petRank.get(0).getPet_Loc() %></div>
+									</div>
+								</a>
+							</div>
 						</div>
 					</div>
 					<div class="pay_rank">
-						<div class="like_rank_lost" style="float:left;width:50%;height:87%;background-Color:#FFFFF2">
-						cc
+						<div class="pay_rank-title"><h2>간절하게 찾고 있어요!</h2></div>
+						<div class="like_rank_lost" style="float:left;width:100%;height:87%;">
+							<div class="card-con">
+									<a href="./iteminfo?lost_PostNum=3222">
+										<div class="photo">
+											<%=list3.get(0).getLost_Up_File() %>
+										</div>
+										<div class="simpleinfo">
+											<div class="title"><%=list3.get(0).getLost_Title() %></div>
+											<div class="subinfo">
+												<div class="pay"><%=list3.get(0).getLost_Pay() %>원</div>
+												<div class="date"><%=list3.get(0).getLost_Date() %></div>
+											</div>
+											<div class="loc"><%=list3.get(0).getLost_Loc() %></div>
+										</div>
+									</a>
+								</div>
 						</div>
-						<div class="like_rank_lost" style="clear:right;float:right;width:50%;height:87%;background-Color:#EFEFEF">
-						dd
+						<div class="like_rank_lost" style="clear:right;float:right;width:100%;height:87%;">
+								<div class="card-con">
+								<a href="./iteminfo?lost_PostNum=3222">
+									<div class="photo">
+										<%=list4.get(0).getPet_Up_File() %>
+									</div>
+									<div class="simpleinfo">
+										<div class="title"><%=list4.get(0).getPet_Title() %></div>
+										<div class="subinfo">
+											<div class="pay"><%=list4.get(0).getPet_Pay() %>원</div>
+											<div class="date"><%=list4.get(0).getPet_LostDate() %></div>
+										</div>
+										<div class="loc"><%=list4.get(0).getPet_Loc() %></div>
+									</div>
+								</a>
+							</div>
 						</div>
 					 </div> 
-
-
 				</div>
 			</div>
 	</section>
@@ -953,7 +856,6 @@ document.addEventListener('DOMContentLoaded', function(){
 					</div>
 					<div class="swiper-container police">
 						<div class="swiper-wrapper first"></div>
-						<div class="swiper-pagination first"></div>
 					</div>
 				</div>
 				<div class="arrow-container">
@@ -986,7 +888,7 @@ document.addEventListener('DOMContentLoaded', function(){
 					</div>
 					<div class="swiper-container lost">
 						<div class="swiper-wrapper lost"></div>
-						<div class="swiper-pagination second"></div>
+						<!-- <div class="swiper-pagination second"></div> -->
 					</div>
 				</div>
 				<div class="arrow-container">
@@ -1003,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	<!-- 분실물 구역 끝 --> <!-- 동물 분실 시작 -->
 	<section>
 		<div class="container-animal" id="animal">
-			<div id="fh5co-blog" class="section lostpost">
+			<div id="fh5co-blog" class="section petpost">
 				<div class="container">
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -1011,113 +913,9 @@ document.addEventListener('DOMContentLoaded', function(){
 							<p>사용자의 현재 위치에서 분실신고된 반려동물입니다.</p>
 						</div>
 					</div>
-					<div class="row swiper-container">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="fh5co-blog animate-box">
-									<a href="#"><img class="img-responsive"
-										src="/imfind/resources/home/images/blog-1.jpg" alt=""></a>
-									<div class="blog-text">
-										<span class="posted_on">Nov. 15th</span> <span class="comment"><a
-											href="">21<i class="icon-speech-bubble"></i></a></span>
-										<h3>
-											<a href="#">구찌</a>
-										</h3>
-										<p>명동</p>
-										<p style="margin-bottom: 0;">답십리지구대에서는 [2020.12.20]
-											[주민등록증(화이트(흰)색)]을 습득/보관 하였습니다.</p>
-										<!-- <a href="#" class="btn btn-primary">Read More</a> -->
-									</div>
-								</div>
-							</div>
+					<div class="row swiper-container pet">
+						<div class="swiper-wrapper pet" >
 						</div>
-						<div class="swiper-pagination"></div>
 					</div>
 				</div>
 				<div class="arrow-container">
@@ -1132,53 +930,31 @@ document.addEventListener('DOMContentLoaded', function(){
 		</div>
 	</section>
 	<!-- 동물 분실 끝 --> </root>
-	<!-- footer 시작 -->
+	<!-- footer 시작 -->	
 	<footer id="fh5co-footer" role="contentinfo"
-		style="padding-top: 0px; padding-bottom: 0px;">
-		<div class="container" style="padding-bottom: 0px;">
-			<div class="row row-pb-md" style="margin-top: 0px;">
-				<div class="col-md-4 col-md-push-2">
-					<img id="imfindlogo"
-						src="${pageContext.request.contextPath}/resources/el/img/55.PNG"
-						alt="" />
-				</div>
-				<div class="col-md-4 col-md-push-1">
-					<h4>Links</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="./child">아동</a></li>
-						<li><a href="./chart">chart</a></li>
-						<li><a href="#">if</a></li>
-						<li><a href="#">else</a></li>
-						<li><a href="./test">약관</a></li>
-						<li><a href="https://www.lost112.go.kr/">Lost112</a></li>
-						<li><a href="https://www.seoul.go.kr/v2012/find.html">대중교통
-								통합분실물센터</a></li>
-					</ul>
-				</div>
-				<div class="col-md-4 col-md-push-1">
-					<h4>Contact Information</h4>
-					<ul class="fh5co-footer-links">
-						<li>69, Jong-ro, Jongno-gu, Seoul, Republic of Korea YMCA <br>
-					</ul>
-				</div>
-			</div>
-			<div class="row copyright">
-				<p>
-					<small class="block">&copy; 2016 Free HTML5. All Rights
-						Reserved.</small> <small class="block">Designed by <a
-						href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo
-						Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
-				</p>
-				<p>
-			</div>
-		</div>
-	</footer>
+		style="padding-top: 0px; padding-bottom: 0px; height: 130px;">
+		<div class="container" style="display: flex; padding-bottom: 0px;">
+			<div class="iseoulu" style="display: flex; margin-top: 30px;">
+			
+                <img style="cursor:pointer; width:200px;height:60px;" onclick="window.open('https://www.lost112.go.kr/','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/p_mark.PNG" title="경찰청 분실물 홈페이지로 이동합니다">
+                <img style="margin-left: 30px; cursor:pointer; width:200px;height:60px;" onclick="window.open('https://www.seoul.go.kr/main/index.jsp','','height=800px, width=800px')" width="45%" height="80px" src="./resources/if/images/s_mark.PNG" title="대중교총 분실물 홈페이지로 이동합니다">
+            </div>
+            
+				<div class="col-md-4 col-md-push-1" style="margin-bottom: 50px; margin-left: 229px;">
+						<h3 style="margin-bottom: 0px;">
+						IMFIND</h3>
+					<div class="fh5co-footer-links" style="color: gray; width: 400px;">
+						<p>69, Jong-ro, Jongno-gu, Seoul, Republic of Korea YMCA <br></p>
+					</div>
+				</div> 
+			
+	 	</div>
+	</footer>  
 	<!-- footer 끝 -->
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-
 
 	<!-- Header Section Begin -->
 	<jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include>
@@ -1186,4 +962,3 @@ document.addEventListener('DOMContentLoaded', function(){
 
 </body>
 </html>
-

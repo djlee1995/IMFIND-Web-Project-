@@ -183,7 +183,7 @@ public class AdminController {
  //./admintest_adjustmentList
    @RequestMapping("/admintest_adjustmentList2")
    public String admintest_adjustmentList2() {
-      return "el/YS/admintest_adjustmentList";
+      return "el/YS/admintest_adjustmentList2";
    }
    @RequestMapping("/admintest_cancelList")
    public String admintest_cancelList() {

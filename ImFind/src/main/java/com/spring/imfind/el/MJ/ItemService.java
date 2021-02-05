@@ -29,6 +29,7 @@ public interface ItemService {
 
 	// YH
 	public List<IndexLostPostDTO> getItembyDate();
+	public List<IndexLostPostDTO> getPetItembyDate();
 
 	// PET
 	public int petdelete_data(int Pet_PostNum);

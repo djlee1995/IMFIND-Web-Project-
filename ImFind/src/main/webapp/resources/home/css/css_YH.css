@@ -132,3 +132,77 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 	position: relative;
 	top: -15px;
 }
+.icon-speech-bubble{
+	margin-left:2px;
+}
+.posted_on{
+	margin-bottom:0;
+}
+.fh5co-blog .blog-text h3{
+	margin-bottom:5px;
+	font-size:16px;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+}
+
+p.pLoc{
+	margin-bottom:5px !important;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	
+}
+div.swiper-slide > div > div > p{
+	margin-bottom:5px !important;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+}
+div.fh5co-blog lost > #swiper-wrapper> div > div > div > h3{
+	font-size:1rem;
+}
+div.container-police > #fh5co-blog > div.container{
+	width:1170px;
+}
+.flexslider.js-fullheight.top{
+	width: 30vw;
+}
+#fh5co-hero > div > ul.slides > li > div > img{
+	width:512px;
+}
+#fh5co-hero,
+#fh5co-hero.flexslider,
+#fh5co-hero.flexslider.slider-text-bg,
+#fh5co-hero .flexslider .slider-text-bg,
+#fh5co-hero > div > ul.slides > li.flex-active-slide > div
+{
+	height: 640px !important;
+	background: none !important;
+}
+.flexslider{
+	background: none !important;
+}
+.slider-text-bg{
+	background: none !important;
+}
+.img-con{
+	width:100%;
+	overflow:hidden;
+    height: 453px;
+    overflow: hidden;
+    border-radius:11px;
+}
+.imgcrop{
+	padding: 15% 0;
+}
+.img-con > img{
+    position: relative;
+    top: -100px;
+}
+div.like_rank_lost > div > a{
+	display:flex;
+}

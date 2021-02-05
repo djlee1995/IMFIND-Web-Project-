@@ -1,4 +1,3 @@
-
 package com.spring.imfind.el.EJ;
 
 import java.io.File;
@@ -45,8 +44,7 @@ public class EJController {
 		System.out.println("match=" + match);
 		String Lost_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
-		 String uploadPath = "C:\\Project\\WebProject\\upload\\";
-	    //String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+	    String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
 
 
 		if(match.find()){ 
@@ -80,10 +78,15 @@ public class EJController {
         }
         
         //YH
-	    boardService.itemInsert(boardvo);
-	    BoardVO postNum = boardService.getPostNum(boardvo);
-	    boardvo.setLost_PostNum(postNum.getLost_PostNum());
-	    boardService.addPayBoardNum(boardvo);
+        try {
+        	boardService.itemInsert(boardvo);
+        	BoardVO postNum = boardService.getPostNum(boardvo);
+        	boardvo.setLost_PostNum(postNum.getLost_PostNum());
+        	boardService.addPayBoardNum(boardvo);
+        }
+        catch(Exception e) {
+        	
+        }
 	     
 	     return "redirect:/item";		
 	}
@@ -97,7 +100,6 @@ public class EJController {
 	      response.setContentType("text/html;charset=utf-8");
 	     // String uploadPath = "/Users/hongmac/Documents/upload/";
 	      String uploadPath = "C:\\Project\\WebProject\\upload\\";
-	    //String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
 	      PrintWriter out = response.getWriter();
           String storedFileName = UUID.randomUUID().toString().replaceAll("-", "");
           
@@ -149,7 +151,7 @@ public class EJController {
 		String pet_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
 		String uploadPath = "C:\\Project\\WebProject\\upload\\";
-		//String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+
 		if(match.find()){ 
 			pet_Up_File = match.group(0); 
 		}
@@ -183,12 +185,16 @@ public class EJController {
             String replace6 = petvo.getPet_Pay().replaceAll(",", "");
             petvo.setPet_Pay(replace6);
         }
-        
-	    boardService.petInsert(petvo);
-	    PetVO postNum = boardService.getPetPostNum(petvo);
-	    System.out.println("게시글번호입니다 " + postNum);
-	    petvo.setPet_PostNum(postNum.getPet_PostNum());
-	    boardService.addPayPetBoardNum(petvo);
+        try {
+        	boardService.petInsert(petvo);
+        	PetVO postNum = boardService.getPetPostNum(petvo);
+        	System.out.println("게시글번호입니다 " + postNum);
+        	petvo.setPet_PostNum(postNum.getPet_PostNum());
+        	boardService.addPayPetBoardNum(petvo);
+        }
+        catch(Exception e) {
+        	
+        }
 	     
 	    // return "redirect:/item";		
 		

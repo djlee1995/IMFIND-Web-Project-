@@ -126,6 +126,7 @@ section{
          .card-wrapper{
             display:flex;
             flex-wrap:wrap;
+            padding: 0 61px;
          }
          .card-con{
             width: 180px;
@@ -219,17 +220,6 @@ section{
       <!-- <div class="container1"> -->
       <div class="container1 searchbar">
          <div class="row1">
-          <!--   <div id="custom-search-input">
-               <div class="input-group col-md-12">
-                  <input type="text" class="input-lg" name="input-search" 
-                     onKeypress="enterkey();" placeholder="search.."/ > 
-                     <span class="input-group-btn" >
-                     <button class="btn" type="button" >
-                        <i class="ti-search"></i>
-                     </button>
-                  </span>
-               </div>
-            </div> -->
          </div>
       </div>
       

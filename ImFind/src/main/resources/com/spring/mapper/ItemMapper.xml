@@ -93,9 +93,6 @@ select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
   
   <!-- 유희 -->
   <select id="getItembyDate" resultType="IndexLostPostDTO">
-<!--        SELECT * FROM 
-          (SELECT * FROM lostpost ORDER BY lost_date asc)
-       WHERE <![CDATA[ rownum < 15 ]]>   -->
        SELECT 
              LOST_POSTNUM, 
              LOST_TITLE, 
@@ -109,6 +106,21 @@ select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
      FROM lostpost 
      WHERE <![CDATA[ rownum < 15 ]]>
      ORDER BY lost_date 
+  </select>
+    <!-- 유희 -->
+  <select id="getPetItembyDate" resultType="IndexLostPostDTO">
+       SELECT 
+             PET_POSTNUM, 
+             PET_TITLE, 
+             PET_CONTENT, 
+             PET_UP_FILE, 
+             PET_PAY, 
+             PET_LOC, 
+             PET_LOSTDATE, ID,
+         (SELECT COUNT(*) AS cnt FROM pet_comment WHERE petpost.PET_POSTNUM = pet_comment.lost_postnum) as CommentTotalCnt 
+     FROM petpost 
+     WHERE <![CDATA[ rownum < 15 ]]>
+     ORDER BY PET_LOSTDATE 
   </select>
   
 <!-- PET -->
@@ -149,7 +161,7 @@ select * from petpost where paycode is null and replace(pet_loc,' ','') like #{p
 </update>  
 <select id="lost_pay_rank" resultType="ItemVO">
 SELECT *
-  FROM ( SELECT l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount,l.lost_re_date
+  FROM ( SELECT l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount lost_pay,l.lost_re_date lost_date
            FROM lostpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.lost_postnum desc
         )
@@ -158,7 +170,7 @@ WHERE rownum=1
 </select>
 <select id="pet_pay_rank" resultType="PetVO">
 SELECT *
-  FROM ( SELECT l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount,l.pet_re_date
+  FROM ( SELECT l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount pet_pay,l.pet_re_date pet_lostdate
            FROM petpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.pet_postnum desc
         )

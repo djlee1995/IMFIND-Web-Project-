@@ -32,6 +32,18 @@ public class MoenyServiceImpl implements MoneyService {
 		int res = mapper.giveMoney(vo);
 		return res;
 	}
+	@Override
+	public int giveMoneyPet(PayDTO vo) {
+		MoneyMapper mapper = sqlSession.getMapper(MoneyMapper.class);
+		int res = mapper.giveMoneyPet(vo);
+		return res;
+	}
+	@Override
+	public List<PayDTO> getAdjustmentList2() {
+		MoneyMapper mapper = sqlSession.getMapper(MoneyMapper.class);
+		List<PayDTO> dto = mapper.getAdjustmentList2();
+		return dto;
+	}
 	
 }
 
