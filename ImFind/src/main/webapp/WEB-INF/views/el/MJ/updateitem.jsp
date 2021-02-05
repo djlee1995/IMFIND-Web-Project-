@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <!DOCTYPE html>
@@ -31,21 +31,30 @@
       
          <!-- datepicker 파일 - 은지 - -->
          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/EJ/datepicker/air-datepicker/dist/css/datepicker.min.css">
-         
-         <!-- Css Styles -->
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/elegant-icons.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/owl.carousel.min.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/nice-select.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/slicknav.min.css" type="text/css">
-          <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/style.css" type="text/css"> 
-               
+              
+            <!-- 헤더 -->
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+         <!-- Animate.css -->
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/animate.css">
+         <!-- Icomoon Icon Fonts-->
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/icomoon.css">   
+         <!-- Magnific Popup -->
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/magnific-popup.css">
+         <!-- Flexslider  -->
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/flexslider.css">
+            <!-- Theme style  -->
+         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/style.css?after">
+         <!-- Modernizr JS -->
+         <script src="${pageContext.request.contextPath}/resources/home/js/modernizr-2.6.2.min.js"></script>    
+          
    </head>
 <body>
+<!-- 헤더시작 -->
 
+<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+<!-- 헤더 끝 -->
 
-
+<section style="height:150vh;">
    <!-- 분실물 등록 게시판 은지 -->
    <div class="container">
       <form name="boardform" action="./update.do" method="post" enctype="multipart/form-data">
@@ -54,7 +63,7 @@
       <!-- 타이틀  -->
 
          <div class="item1">
-            <h8>분실글 등록하기(물품)</h8>
+            <h8>분실글 수정하기(물품)</h8>
             <h8>* 필수입력사항</h8>
          </div>
          
@@ -137,27 +146,28 @@
 
       </form>
    </div>
+</section>   
    <script>
 var lost_PostNum =<%=request.getParameter("lost_PostNum") %>
-
 console.log(lost_PostNum+1)
-
 var loginUser='<%=(String)session.getAttribute("loginUser")%>'
-
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
       <!--게시글 등록 js 시작-은지 -->
       <script src="${pageContext.request.contextPath}/resources/el/js/update_item.js"></script>
       <!--게시글 등록 js 끝-은지 -->
       
-      <!-- -->
-      <script src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script> 
-       <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script> 
+      <!-- jQuery Easing -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+   <!-- Waypoints -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+   <!-- Flexslider -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+   <!-- Magnific Popup -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+   <!-- Main -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
        
        <!-- 아임포트 시작-->
       <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 

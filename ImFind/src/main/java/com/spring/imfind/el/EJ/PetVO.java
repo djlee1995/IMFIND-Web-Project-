@@ -13,7 +13,7 @@ public class PetVO {
 	private String Pet_Or_File; // QR파일
 	private String Pet_Up_File; // UP파일
 	private String Pet_Name; // 애완동물 이름
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String Pet_LostDate; //동물 분실 날짜
 	private String Pet_Loc; // 동물 분실 위치
 	private String Id; // 회원 ID

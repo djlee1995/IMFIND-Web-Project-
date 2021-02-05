@@ -202,7 +202,43 @@ public class MJController {
 	public String petupdatepage() {
 		return "el/MJ/updatepet";
 	}
+	
+	@RequestMapping("/petupdate.do")
+	public String petupdate_data(PetVO vo) {
+		System.out.println("업데이트 vo " + vo);
+		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
+		String content = vo.getPet_Content();
+		Matcher match = pattern.matcher(content);
+		String Lost_Up_File = null;
+		String uploadPath = "C:\\Project\\WebProject\\upload\\";
+		// String uploadPath = "/Users/hongmac/Documents/upload/";
 
+		if (match.find()) {
+			Lost_Up_File = match.group(0);
+			vo.setPet_Up_File(Lost_Up_File); // 이미지 태그 Lost_Up_File에 삽입
+
+		}
+		// Lost_Content부분에 있는 태그들 자르기
+		if (vo.getPet_Up_File() == null) {
+			System.out.println("Lost_Up_File" + Lost_Up_File);
+			String noimg = "0";
+			System.out.println(noimg);
+			vo.setPet_Up_File(noimg);
+
+		}
+		// Lost_Content부분에 있는 태그들 자르기
+		vo.setPet_Content(vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", ""));
+		String replace1 = vo.getPet_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\s[a-zA-Z]*=[^>]*)?(\\\\s)*(/)?>", "");
+		String replace2 = replace1.replaceAll("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>", "");
+		// String replace4 = boardvo.getLost_Item().replaceAll("있음,", ""); // name
+		vo.setPet_Content(replace2);
+
+		// boardvo.setLost_Item(replace4);
+
+		itemService.petupdate_data(vo);
+
+		return "redirect:/pet";
+	}
 	@RequestMapping(value = "/petdeletepage", produces = "application/json;charset=UTF-8")
 	public String petdeletepage(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
 		itemService.petdelete_data(Pet_PostNum);

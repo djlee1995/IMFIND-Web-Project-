@@ -214,9 +214,13 @@
     margin: 0px; 
    }
    .site-btn.register-btn {
-     width: 221px;
+     width: 145px;
      height: 46px;
-     margin-left: 130px;
+     border-radius: 3px;
+    
+   }
+   .buttons{
+   	display: flex;
    }
 </style>
 
@@ -311,7 +315,11 @@
                             <input type="hidden" name="join_date"/>
                             <input type="hidden" name="account_holder" value="<%=vo.getId()%>">
                        <!--      <input type="hidden" name="join_date"/> -->
-                            <button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
+                       <div></div>
+                       <div class="buttons"><button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
+                            <button style="margin-left: 13px;" type="button" class="site-btn register-btn" onclick="history.back();" value="취소">취소하기</button>
+                     </div>
+                              
                         </form>
                         
                     </div>

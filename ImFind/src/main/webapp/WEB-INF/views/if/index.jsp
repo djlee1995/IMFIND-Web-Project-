@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/if/css/style.css?after">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script> --%>
 
 <style>
 .fh5co-nav .top-menu {
@@ -459,8 +459,19 @@
 		src="${pageContext.request.contextPath}/resources/if/js/police.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
-	<%-- <script
-		src="${pageContext.request.contextPath}/resources/if/js/main.js"></script> --%>
+
+      
+      <!-- jQuery Easing -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+   <!-- Waypoints -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+   <!-- Flexslider -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+   <!-- Magnific Popup -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+   <!-- Main -->
+   <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
 
 
 

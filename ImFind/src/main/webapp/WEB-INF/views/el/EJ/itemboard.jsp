@@ -119,7 +119,6 @@
           margin: 0 auto;
           padding: 0;
       }
-
       </style>
       <script>
       var id = '${loginUser}';
@@ -127,47 +126,8 @@
    </head>
 <body>
 <!-- 헤더시작 -->
+	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
 
-<header>
-   <div class="fh5co-nav" role="navigation">
-      <div class="top-menu">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-xs-2">
-                  <div id="fh5co-logo" ><a href="./">ImFind<span>.</span></a></div>
-               </div>
-               <div class="col-xs-10 text-right menu-1">
-                  <ul>
-                     <li class="active"><a href="index.if">if</a></li>
-                     <li><a href="./">ELSE</a></li>
-                      <li class="has-dropdown">
-                        <a href="./itemboard">분실물 등록<i class="fas fa-sort-down"></i></a>
-                        <ul class="dropdown">
-                           <li><a href="./itemboard">물건</a></li>
-                           <li><a href="./petboard">동물</a></li>
-                        </ul>
-                     </li>
-                     <li class="has-dropdown">
-                        <a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
-                        <ul class="dropdown">
-                           <li><a href="./item">물건</a></li>
-                           <li><a href="#">동물</a></li>
-                        </ul>
-                     </li>
-                     <c:if test="${loginUser} eq null">
-                        <li class="btn-cta"><a href="./login"><span>Login</span></a></li> 
-                        <li class="btn-cta"><a href="./register"><span >회원가입</span></a></li> 
-                     </c:if>
-                        <li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
-                        <li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li>                
-                  </ul>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</header>
-<!-- 헤더 끝 -->
 <section style="height:150vh;">
    <!-- 분실물 등록 게시판 은지 -->
    <div class="container">
@@ -279,7 +239,7 @@
        <!-- 아임포트 시작-->
       <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
       <!-- 아임포트 끝-->
->
+
    <!-- jQuery Easing -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
    <!-- Waypoints -->

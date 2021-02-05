@@ -287,7 +287,9 @@ section{
          </div>
       </div>
    </section>
-
+<script>
+	var id='<%=(String)session.getAttribute("loginUser")%>'
+</script>
    
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    

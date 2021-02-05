@@ -53,9 +53,9 @@ function info() {
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
-			console.log($.trim(data[0].pet_Up_File))
+			console.log(data[0].id)
 			if($.trim(loginUser)==(data[0].id)){
-				$('#petupdate').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th>');
+				$('#output').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th>');
 			}
 			if($.trim(data[0].pet_Up_File) == '0'){
 				 pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
