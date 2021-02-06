@@ -55,27 +55,16 @@ function info() {
 		success: function(data){
 			console.log(data[0].id)
 			if($.trim(loginUser)==(data[0].id)){
-				$('#output').html('<th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th>');
+				$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
 			}
 			if($.trim(data[0].pet_Up_File) == '0'){
 				 pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
-	        	 $('#file').html('<img src="./resources/el/images/no_img.png"/>');
+	        	 //$('#file').html('<img src="./resources/el/images/no_img.png"/>');
 			}
 			else{
 				pet_Up_File = data[0].pet_Up_File;
-				 $('#file').html(data[0].pet_Up_File);
+				 //$('#file').html(data[0].pet_Up_File);
 			}
-				formattedDate = getChangeDateString(data[0].pet_Re_Date)
-				loc=data[0].pet_Loc
-				$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
-				$('#pet').text(data[0].pet_Name);
-				$('#title').html(data[0].pet_Title+'<div id="like-con"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></div>');
-				$('#content').html(data[0].pet_Content);
-				$('#pay').text(data[0].pet_Pay);
-				$('#loc').text(data[0].pet_Loc);
-				$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
-				$('#id').text(data[0].id);
-				
 				
 				// 최근 본 게시글
 				let flag = false;
@@ -112,6 +101,17 @@ function info() {
 						sessionStorage.setItem("test", JSON.stringify(oldBKInfo));
 					}
 				}
+				formattedDate = getChangeDateString(data[0].pet_Re_Date)
+				loc=data[0].pet_Loc
+				$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
+				$('#pet').text(data[0].pet_Name);
+				$('#title').html(data[0].pet_Title+'<div id="like-con"><a href="javascript:like_func();" class="like-btn"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></a></div>');
+				$('#content-body-text').html(data[0].pet_Content);
+				$('#file').html(pet_Up_File);
+				$('#pay').text(data[0].pet_Pay);
+				$('#loc').text(data[0].pet_Loc);
+				$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
+				$('#id').text(data[0].id);
 		},
 
 		error : function() {
@@ -123,10 +123,10 @@ function img(){
 	 $.ajax({
 		    url: "./likeChk",
 		    //type : 'POST',
-		     
 		      async:false,
 		      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		      //dataType:'json',
+		      
 		    success: function(data) {
 		    	console.log(data)
 		    	if(data.length==0){
@@ -134,7 +134,7 @@ function img(){
 			    	$('#like_cnt').text("0");
 	    			
 		    	}else{
-		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
+		    		 $("#like_img").attr("src", "./resources/el/images/like1.png");
 	    			 $.ajax({
 	    				    url: "./pet_likeCount",
 	    				    //type : 'POST',
@@ -144,9 +144,13 @@ function img(){
 	    				      //dataType:'json',
 	    				    success: function(data) {
 	    				    	console.log(data)
-	    				    	
 	    				    	$('#like_cnt').text(data);
-	    				    
+	    				    	
+	    				    	//좋아요 버튼 색 변경
+	    				    	$("#like-con").attr("style", "background:white");
+	    				    	$("#like_img").attr("style", "color:gray");
+	    				    	$("#like_cnt").attr("style", "color:gray");
+
 	    				    },
 	    				    error: function(request, status, error){
 	    				      alert("좋아요 에러");
@@ -167,20 +171,20 @@ function img(){
 		    				      //dataType:'json',
 		    				    success: function(data) {
 		    				    	console.log(data)
-		    				    	
 		    				    	$('#like_cnt').text(data);
-		    				    
+		    				    	
+		    				    	//좋아요 버튼 색 변경
+		    				    	$("#like-con").attr("style", "background:dodgerblue");
+		    				    	$("#like_img").attr("style", "color:white");
+		    				    	$("#like_cnt").attr("style", "color:white");
 		    				    },
 		    				    error: function(request, status, error){
 		    				      alert("좋아요 에러1313");
 		    				    }
 		    				  });
-
 		    		 }
-		    		
 		    	 });
 		    	}
-		    
 		    },
 		    error: function(request, status, error){
 		      alert("좋아요 에러");
@@ -199,7 +203,6 @@ function like_func(){
 	    success: function(data) {
 	    	console.log(data)
 	    	if(data.length==0){
-   		
    			 $.ajax({
 				    url: "./pet_likeplus",
 				  //type : 'POST',
@@ -227,7 +230,6 @@ function like_func(){
 				    success: function(data) {
 				    	img();
 				    	//$("#like_img").attr("src", "./resources/el/images/like2.png");
-
 				    },
 				    error: function(request, status, error){
 					      alert("좋아요 에러5");

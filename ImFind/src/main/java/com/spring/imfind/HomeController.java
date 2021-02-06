@@ -36,7 +36,7 @@ public class HomeController {
 
    @RequestMapping(value = "home.do", method = RequestMethod.GET)
    public ModelAndView home(ModelAndView modelAndView) throws Exception { 
-      
+   try {
       List<BoardVO> list = boardService.gethighsetLostPay();
       List<PetVO> list2 = boardService.gethighsetPetPay();
       //lost_pay_rank
@@ -56,12 +56,18 @@ public class HomeController {
       //pet_like_rank
       List<PetVO> petRank = itemService.pet_like_rank();
       
-      modelAndView.addObject("petvo", list2);
-      modelAndView.addObject("boardvo", list);
-      modelAndView.addObject("lost_pay_rank", list3);
-      modelAndView.addObject("pet_pay_rank", list4);
-      modelAndView.addObject("lost_like_rank", lostRank);
-      modelAndView.addObject("pet_like_rank", petRank);
+      
+    	  modelAndView.addObject("petvo", list2);
+    	  modelAndView.addObject("boardvo", list);
+    	  modelAndView.addObject("lost_pay_rank", list3);
+    	  modelAndView.addObject("pet_pay_rank", list4);
+    	  modelAndView.addObject("lost_like_rank", lostRank);
+    	  modelAndView.addObject("pet_like_rank", petRank);
+      }
+      catch(Exception e){
+          modelAndView.setViewName("exception");
+          return modelAndView;
+      }
       
       modelAndView.setViewName("home2");
       

@@ -361,7 +361,7 @@
             </div>
                
               <div class="nextBtn-1"> 
-               <input type="button" id="nextBtn"  class="button_big" value="다음단계로"/>
+               <input type="button" id="nextBtn"  class="button_big" value="다음단계로" onclick="registerPage();"/>
        		  </div>	 
         </form>
     	</div>    
@@ -370,11 +370,27 @@
 
 
 <!-- ======================================================================================================================================== -->
-
+	<script>
+	function registerPage(){
+		var chk1 = $('#check_1').is(":checked");
+		var chk2 = $('#check_2').is(":checked");
+		
+		if(!chk1) {
+			alert("이용약관에 동의해주세요.")
+			return false;
+		}
+		if(!chk2) {
+			alert("개인정보수집 약관에 동의해주세요.")
+			return false;
+		}
+		
+		$(location).attr('href','./register');
+	}
+	</script>
     <!-- Mypage Form Section End -->
      
     <!--마이페이지 js 시작-연수 -->
-    <script src="${pageContext.request.contextPath}/resources/el/js/cluse.js"></script>
+<%--     <script src="${pageContext.request.contextPath}/resources/el/js/cluse.js"></script> --%>
     <!--마이페이지 js 끝-연수 -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- DataTables -->

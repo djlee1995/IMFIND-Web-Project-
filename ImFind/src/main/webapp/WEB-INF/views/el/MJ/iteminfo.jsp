@@ -46,7 +46,7 @@
 	    text-align: start;
 	    padding-top: 11px;
 	    font-family: 'Noto Sans KR', sans-serif !important;
-	    font-weight: 200 !important;
+	    font-weight: 600 !important;
 	    color: black;
 	    margin-bottom: 9px;
       }
@@ -273,6 +273,79 @@
 		display:flex;
 	    align-items:center;
 	}
+	
+	
+     .storage-con{
+         overflow: hidden;
+         position: fixed;
+      	 border : 1px solid black;
+      	 width: 100px;
+      	 margin-left: 100px;
+      
+      	 border: 1px solid #e5e5e5;
+      	 border-radius: 4px;
+    	 margin-top: 76px;
+    	 padding: 3px 3px;
+      }
+      #storage {
+      	 display: flex;
+      	 flex-direction: column-reverse;
+      	 justify-content: center;
+    	 align-items: center;
+    	 margin-top:10px;
+      } 
+      #storage > a:nth-child(1) > div > img{
+      	width:50%;
+      }
+      .menu-set{
+      	display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    flex-direction: column;
+      }
+      .historybox > a img {
+         width: 90px !important;
+         height : 90px;
+         object-fit:cover;
+         border-radius: 4px;
+      }
+       .storage-board-title > p{
+      	 font-size : 11px;
+      	 margin-bottom:0;
+      	 overflow:hidden;
+      	 width : 92px;
+      	 white-space:nowrap;
+      	 text-overflow:ellipsis;
+      	 max-height: 16px;
+      }
+	  .storage-title{
+	  	border-bottom: 1px solid #e5e5e5;
+	  }
+	  .storage-title > p {
+	  	margin-bottom:0;
+	  	text-align:center;
+	  }
+	  .historybox{
+	  	margin-top : 5px;
+	  }
+	  .gototop{
+	    position:unset;
+	    bottom: 20px;
+	    right: 20px;
+	    z-index: 999;
+	    opacity: 0;
+	    visibility: hidden;
+	    -webkit-transition: 0.5s;
+	    -o-transition: 0.5s;
+	    transition: 0.5s;
+	  }
+	  .gototop a{
+	  	width: 92px;
+    	height: 22px !important;
+	  }
+  	  .gototop a i{
+    	height: 23px !important;
+  	  }
     </style> 
 </head>
 <body>
@@ -284,12 +357,32 @@
     
     <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
     <!-- Header End -->
+	   
    <section>
-   
-   <div class="menu">
-         <i class="fas fa-home fa-1x"></i>
-         <a href="./item"><span style="font-size : 1.5rem;">목록으로</span></a>
-   </div>
+
+	   <div class="storage-con">
+		   <div class="storage-title"><p>메뉴</p></div>
+	       <div id="storage">
+	       		<a href="./item">
+	       			<div class="menu-set">
+	    	   			<img src="./resources/home/images/list.png" alt="" />
+		       			<p>목록으로</p>
+		       		</div>
+	       		</a>
+	       		<a href="./">
+		       		<div class="menu-set">
+		       			<img src="./resources/home/images/home.png" alt="" />
+		       			<p>홈으로</p>
+		       		</div>
+	       		</a>
+	       </div>
+	       <div class="storage-title">
+	   			<div class="gototop js-top">
+					<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+				</div>
+	       </div>
+	   </div>
+	
    
    <div id="output"></div>   
    <div class="container iteminfo">
@@ -318,9 +411,6 @@
                <div id="loc"></div>
             </div>
              <div class="like-group">
-	           	<div class="like-con">
-	           		<a href="javascript:like_func();" class="like-btn"><i class="far fa-thumbs-up"></i> <p>올리기</p></a>
-	           	</div>
 	           	<div class="like-con">
 	           		<a class="like-btn" href="#comm"><i class="far fa-comment-dots"></i> <p>연락하기</p></a>
 	           	</div>

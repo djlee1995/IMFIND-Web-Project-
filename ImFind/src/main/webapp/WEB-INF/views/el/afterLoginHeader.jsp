@@ -64,7 +64,7 @@
 							<c:choose>
 								    <c:when test="${user eq null}">
 										<li class="btn-cta"><a href="./login"><span>Login</span></a></li> 
-										<li class="btn-cta"><a href="./register"><span >회원가입</span></a></li> 
+										<li class="btn-cta"><a href="./clause"><span >회원가입</span></a></li> 
 								    </c:when>
 								    <c:when test="${user eq 'admin'}">
 										<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 

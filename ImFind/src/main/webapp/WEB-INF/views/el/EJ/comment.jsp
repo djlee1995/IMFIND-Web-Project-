@@ -110,7 +110,8 @@
          font-size: 13px;
          color: gray;
       }
-      input[name *= "re_content"]{
+      input[name *= "re_content"],
+      .replyupdate_form{
       	width:100%;
       	height:100px;
       	overflow: auto;
@@ -172,6 +173,11 @@
 	.re_content{
 		margin-left: 40px;
 	}
+    ._12xcxtl{
+    	border-top: 1px solid #DDDDDD !important;
+    	margin: 8px 0;
+    	margin-bottom: 25px;
+    }
     </style>  
 
 </head> 
@@ -179,6 +185,7 @@
 
          <form name="commentInsertForm" id="comment-form" method="post" enctype="multipart/form-data">
               <div class="comtitle"><h3>댓  글</h3>
+              <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>   
               <input type="hidden" name="Lost_PostNum" value="<%= request.getParameter("lost_PostNum") %>"/></div>
               <div class="cominput">
                  <input type="hidden" name="Id" value="${loginUser}"/>

@@ -169,7 +169,7 @@
          <div class="item6">
             <h6>분실 위치</h6>
             <!-- 지도 불러오기  -->
-            <div class="container-fluid map">
+            <div class="container-fluid map" style="width: 1000px;">
                <div id="Loc1" style="margin: -15px 10px 10px 100px;">
                   <!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
                   <div id="Loc2">
@@ -189,7 +189,7 @@
          <!-- 필수입력사항 -->
          <div class="item7">
             <h6>제 목(*)</h6>
-            <div class="item7_box"><input type="text" class="title" name="Lost_Title" placeholder="제목을 입력하세요" required></div>
+            <div class="item7_box"><input type="text" class="lost_title" name="Lost_Title" placeholder="제목을 입력하세요" required></div>
          </div>      
          <!--  필수입력사항 --> 
          <div class="item8"><h6>내 용</h6></div>

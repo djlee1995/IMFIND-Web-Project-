@@ -88,9 +88,7 @@ function info() {
 					console.log(data)
 
 					if ($.trim(loginUser) == (data[0].id)) {
-						$('#output')
-								.html(
-										'<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
+						$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
 					}
 
 					if (data[0].lost_Up_File == '0') {
@@ -113,8 +111,7 @@ function info() {
 						console.log(test)
 						// ShowStorage();
 					} else {
-						var oldBKInfo = JSON.parse(sessionStorage
-								.getItem("test"));
+						var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
 						// now let's check if the stored value is an array
 						for (let i = 0; i < oldBKInfo.length; i++) {
 							console.log(oldBKInfo[i].postnum)
@@ -140,7 +137,7 @@ function info() {
 					formattedDate = getChangeDateString(data[0].lost_Re_Date)
 					loc = data[0].lost_Loc;
 					$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
-					$('#title').html(data[0].lost_Title+ '<div id="like-con"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></div>');
+					$('#title').html(data[0].lost_Title+ '<div id="like-con"><a href="javascript:like_func();" class="like-btn"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></a></div>');
 					$('#content-body-text').html(data[0].lost_Content);
 					/* $('#file').html(data[0].lost_Up_File); */
 					$('#file').html(lost_up_file);
@@ -189,6 +186,11 @@ function img() {
 										console.log(data)
 
 										$('#like_cnt').text(data);
+										
+										//좋아요 버튼 색 변경
+			    				    	$("#like-con").attr("style", "background:white");
+			    				    	$("#like_img").attr("style", "color:gray");
+			    				    	$("#like_cnt").attr("style", "color:gray");
 
 									},
 									error : function(request, status, error) {
@@ -222,10 +224,12 @@ function img() {
 																console
 																		.log(data)
 
-																$('#like_cnt')
-																		.text(
-																				data);
-
+																$('#like_cnt').text(data);
+																
+									    				    	//좋아요 버튼 색 변경
+									    				    	$("#like-con").attr("style", "background:dodgerblue");
+									    				    	$("#like_img").attr("style", "color:white");
+									    				    	$("#like_cnt").attr("style", "color:white");
 															},
 															error : function(
 																	request,

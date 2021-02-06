@@ -205,4 +205,140 @@ div.container-police > #fh5co-blog > div.container{
 }
 div.like_rank_lost > div > a{
 	display:flex;
+	align-items: center;
+}
+._12xcxtl{
+	border-top: 1px solid #998B8B !important;
+	margin: 8px 0;
+	margin-right: 10px;
+}
+/* 랭킹 아이콘 */
+.best-icon{
+	position: absolute;
+    top: 91px;
+    left: 0px;
+}
+div.best-icon.2{
+    position: absolute;
+   	top: 249px;
+    left: 0px;
+}
+div.best-icon.pay{
+    position: absolute;
+   	top: 91px;
+    left: 0px;
+}
+div.best-icon.pay2{
+    position: absolute;
+   	top: 249px;
+    left: 0px;
+}
+/* 랭킹 아이콘 끝 */
+.best-icon.pay{
+	width:50px;
+}
+.best-icon.pay> img{
+	width:83%;
+}
+#like_rank > div > div.best-icon > img{
+	width:89%;	
+}
+.swiper-container.topRank{
+    width: 100%;
+    margin-left: 0 !important;
+    height: 728px !important;
+}
+.swiper-slide.topRank{
+	width:100% !important;
+	/* text-align:center;
+	display:flex; 내용을 중앙정렬 하기위해 flex 사용
+	align-items:center; 위아래 기준 중앙정렬
+	justify-content:center; 좌우 기준 중앙정렬 */
+}
+
+
+/* 마우스 휠 이벤트*/
+.icon-scroll,
+.icon-scroll:before {
+    position: absolute;
+    left: 90%;
+    top:369.2px;
+}
+.icon-scroll {
+    width: 30px;
+    height: 50px;
+    margin-left: -20px;
+    bottom: 10px;
+    margin-top: -35px;
+    border: 2px solid gray;
+    border-radius: 25px
+}
+@media (max-width: 767px) {
+    .icon-scroll {
+        position: relative
+    }
+}
+.icon-scroll:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: gray;
+    margin-left: -14px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+@keyframes scroll {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(26px)
+    }
+}
+
+/* swiper-slide css */
+.swiper-slide.topRank{
+	display: flex;
+	align-items: baseline;
+}
+/* swiper-slide-con */
+.swiper-slide-con{
+	width:501px;
+}
+
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.title,
+div.like_rank_lost > div.card-con > a > div.simpleinfo > div.title{
+	margin-bottom: 5px;
+}
+div.like_rank_lost > div.card-con > a > div.simpleinfo > div.subinfo > div.pay > span,
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.subinfo > div.pay > span,
+div.swiper-slide.topRank> div > div > div > div.card-con > a > div.simpleinfo > div.subinfo > div.date > span,
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.subinfo > div > div > span,
+#like_rank > div:nth-child(3) > div.rank-card-con > a > div.simpleinfo > div.subinfo > div.date > span
+{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    background: rgb(255, 255, 255) !important;
+/*     border: 1px solid black; */
+    border-radius: 12px !important;
+    color: rgb(34, 34, 34) !important;
+    padding: 5px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+
+}
+.stack-top{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.stack-top > button{
+	width : 150px;
+	height:30px;
 }

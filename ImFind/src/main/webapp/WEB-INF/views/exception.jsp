@@ -5,7 +5,9 @@
 <%@ page import="com.spring.imfind.el.EJ.BoardVO"%>
 <%@ page import="com.spring.imfind.el.EJ.PetVO"%>
 <%@ page import="com.spring.imfind.el.MJ.ItemVO"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.Date"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML>
@@ -36,6 +38,10 @@
     List<ItemVO> lostRank = (List<ItemVO>) request.getAttribute("lost_like_rank");
     //pet_like_rank
     List<PetVO> petRank = (List<PetVO>) request.getAttribute("pet_like_rank");
+    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format2= new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format4 = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <style>
@@ -207,6 +213,7 @@ section {
 section#first {
 	background: #FBF7F2;
 	padding-top: 28px;
+	height:90vh;
 }
 footer {
 	position: relative;
@@ -289,6 +296,11 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 	width: 1170pw;
 	padding: 0;
 }
+.container-police > #fh5co-blog,
+.section.lostpost,
+.section.petpost{
+	margin-top:25px;
+}
 .col-md-8.col-md-offset-2.text-center.fh5co-heading {
 	margin-bottom: 16px;
 }
@@ -298,13 +310,14 @@ div.container-fluid:nth-child(1)>div:nth-child(1) {
 .stack-top {
 	z-index: 9;
 	background: rgba(36, 49, 70, 0.76);
-	width: 100%;
-	height: 99%;
+	width: 98%;
+	height: 97%;
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	top: 4px;
+	top: 0;
 	left: 0;
+	border-radius:11px;
 }
 .cover:hover {
 	opacity: 0.6;
@@ -313,15 +326,6 @@ h3.lost-title>a {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1.5rem;
 }
-/*     .banner{
-       width: 100% ;
-       margin:0;
-       padding:0;
-    }
-    .slider-text{
-       heigth:40px;
-       min-height: 20vh;
-    } */
 .banner {
 	width: 100%;
 	margin-left: 0 !important;
@@ -407,11 +411,11 @@ div.container-left {
 	float: left;
 }
 div.container-right {
-	width: 45%;
+	width: 513px;
 	height: 700px;
 	float: right;
 	box-sizing: border-box;
-	margin-top: 3%;
+	margin-top: 8%;
 }
 .slider-box {
 	width: 100%
@@ -420,14 +424,8 @@ div.container-right {
 	width: 100%;
 	height: 100%;
 }
-.like_rank{
-	margin-top:30px;
-	height: 40%;
-    display: flex;
-    flex-direction: column;
-}
-.pay_rank{
-	align-items:center;
+.like_rank, .pay_rank{
+/* 	margin-top:30px; */
 	height: 40%;
     display: flex;
     flex-direction: column;
@@ -438,6 +436,10 @@ div.container-right {
 .photo > img{
 	width : 100% !important;
 	border-radius:11px;
+    height: 114px;
+    object-fit: cover;
+        border: 1px solid rgb(221, 221, 221) !important;
+    border-radius: 12px !important;
 }
 .title{
 	font-size:15px !important;
@@ -447,14 +449,37 @@ div.container-right {
 	width:220px;
 	height:200px;
 }
+.img-con{
+	padding-top:30px;
+}
+#like_rank > div > div > a > div.simpleinfo,
+div.pay_rank > div > div > a > div.simpleinfo{
+	margin-left:20px;
+	padding: auto 0;
+}
+/* .like_rank_lost{
+	border: 1px solid gray;
+    border-radius: 11px;
+} */
+.like_rank_lost{
+	display:flex;
+	z-index:10;
+	-webkit-box-direction: normal !important;
+    -webkit-box-orient: horizontal !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow: hidden !important;
+    border: 1px solid rgb(221, 221, 221) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px 12px 12px !important;
+    background:white;
+    margin-bottom: 16px;
+}
+	
+}
 </style>
 
 <script>
-var lostLikeTime = getChangeDateString('<%=lostRank.get(0).getLost_Date() %>'); 
-document.querySelector('#like_rank > div:nth-child(1) > div > a > div.simpleinfo > div.subinfo > div.date');
-var PetLikeTime = getChangeDateString('<%=petRank.get(0).getPet_LostDate() %>'); 
-var LostPayTime = getChangeDateString('<%=list3.get(0).getLost_Date() %>'); 
-var PetPayTime = getChangeDateString('<%=list4.get(0).getPet_LostDate() %>');
 function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
 }
@@ -473,112 +498,6 @@ function getXY (getUserLocation){
    } else {
         /* 위치정보 사용 불가능 */
    }
-}
-function pay_rank(){
-	 $.ajax({
-	      url : './lost_pay_rank.do',
-	      async : false,
-	      success : function(item){
-	    	  console.log(item[0])
-	    	  var output='';
-    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
-                                + item[0].lost_Up_File
-                                +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + moment(item[0].pet_Re_Date).format('YY-MM-DD') + '</span>' 
-                                    +'<span class="comment"><a href="">0 <i class="icon-speech-bubble"></i></a></span>'         
-                                    +'<h3 class="lost-title"><a href="#">' + item[0].lost_Title +'</a></h3>'
-                                    +'<p>'+ item[0].lost_Loc +'</p></div></div>';
-    		  $('#pay_rank').append(output);
-	     	 }    
-	   });
-	 $.ajax({
-	      url : './pet_pay_rank.do',
-	      async : false,
-	      success : function(item){
-	    	  console.log(item[0])
-	    	  var output='';
-    		  output += '<div class="cover stack-top"><button onclick="">클릭</button></div><div class="fh5co-blog">'
-                                + item[0].pet_Up_File
-                                +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + moment(item[0].pet_Re_Date).format('YY-MM-DD') + '</span>'  
-                                    +'<span class="comment"><a href="">0<i class="icon-speech-bubble"></i></a></span>'         
-                                    +'<h3 class="lost-title"><a href="#">' + item[0].pet_Title +'</a></h3>'
-                                    +'<p>'+ item[0].pet_Loc +'</p></div></div>';
-    		  $('#pay_rank').append(output);
-	     	 }    
-	   });
-}
-function getListNearMe(item){
-   $.ajax({
-      url : './getNearXY',
-      data : {'x' : item.x, 'y' : item.y},
-      async : false,
-      success : function(data){
-         const parentNode = document.querySelector(".swiper-wrapper.first");
-            data.police.forEach(function(item){
-            const colNode = document.createElement('div');
-            colNode.className = 'swiper-slide';
-            colNode.innerHTML = '<div class="cover stack-top"><button onclick="doPopupopen('+item.x+','+item.y+','+item.code+');">클릭</button></div><div class="fh5co-blog">'
-                                +'<img class="img-responsive" src="'+ item.photo + '" alt="">'
-                                +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + moment(item.lost_date).format('YY-MM-DD') + '</span>'       
-                                    +'<h3 class="lost-title"><a href="#">' + item.item +'</a></h3>'
-                                    +'<p>'+ item.depplace +'</p>'
-                                          +'<p style="margin-bottom : 0;">' + item.info + '</p>'
-                                 +'</div></div>';
-            parentNode.appendChild(colNode);  
-            
-         });   
-            // 물건 swiper-slide
-            data.item.forEach(function(item){
-               const parentNode = document.querySelector(".swiper-wrapper.lost");
-               const colNode = document.createElement('div');
-               colNode.className = 'swiper-slide';
-               if(item.lost_Up_File == '0'){
-                  lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-               }
-               else{
-                  lost_up_file = item.lost_Up_File
-               }
-               colNode.innerHTML = '<a href="./iteminfo?lost_PostNum='+ item.lost_PostNum +'">'+ '<div class="fh5co-blog lost">'
-	                                + lost_up_file
-	                                +'<div class="blog-text">'
-                                    +'<span class="posted_on">' + moment(item.Lost_Date).format('YY-MM-DD') + '</span>' 
-                                    +'<span class="comment">' + item.commentTotalCnt +' <i class="icon-speech-bubble"></i></span>'         
-                                    +'<h3>' + item.lost_Title + '</h3>'
-                                    +'<p class="pLoc">'+ item.lost_Loc +'</p>'
-                                 	+'</div>'  + '</a>';
-               parentNode.appendChild(colNode);
-            });
-            // 동물 swiper-slide
-            data.pet.forEach(function(item){
-            	
-            	console.log(item)
-                const parentNode = document.querySelector(".swiper-wrapper.pet");
-                const colNode = document.createElement('div');
-                colNode.className = 'swiper-slide';
-                if(item.pet_Up_File == '0'){
-                   lost_up_file = '<img src="./resources/el/images/no_img.png"/>';
-                }
-                else{
-                   lost_up_file = item.pet_Up_File
-                }
-                colNode.innerHTML = '<a href="./iteminfo?lost_PostNum='+ item.pet_PostNum +'">'+ '<div class="fh5co-blog lost">'
- 	                                + lost_up_file
- 	                                +'<div class="blog-text">'
-                                     +'<span class="posted_on">' + moment(item.pet_LostDate).format('YY-MM-DD') + '</span>'
-                                     +'<span class="comment">' + item.commentTotalCnt +' <i class="icon-speech-bubble"></i></span>'         
-                                     +'<h3>' + item.pet_Title + '</h3>'
-                                     
-                                     +'<p class="pLoc">'+ item.pet_Loc +'</p>'
-                                  	+'</div>'  + '</a>';
-                parentNode.appendChild(colNode);
-             });
-      },
-      error : function(data){
-         alert('실패')
-      }            
-   });
 }
 function getUserLocation(coords){
     //ajax 시작
@@ -713,13 +632,23 @@ document.addEventListener('DOMContentLoaded', function(){
       slidesPerView: 1,
       direction : 'horizontal',
       loop : true,
-/*       spaceBetween: 10, */
-/*       observer: true, */
-      
       pagination : {
          el: '.swiper-pagination.siren2',
          clickable: true,
       },
+    }); 
+    // 랭크 swiper 초기화 시키기
+    var swiperSiren = new Swiper('.swiper-container.topRank',{
+       
+      slidesPerView: 1,
+      direction : 'horizontal',
+      mousewheel: true,
+      loop:true,
+      pagination : {
+          type: 'bullets',
+          clickable: true,
+       },
+  
     }); 
     
     var result = getXY(getUserLocation);
@@ -737,6 +666,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	<root>
 	<div class="page"></div>
 	<section id="first">
+			
 			<div class="container">
 				<div class="container-left">
 				<div id="fh5co-hero" class="js-fullheight">
@@ -765,80 +695,40 @@ document.addEventListener('DOMContentLoaded', function(){
 					</div>
 				</div>
 				<div class="container-right">
-					<div class="like-rank-title"><h2>많은 사람들이 찾기를 바라고 있어요!</h2></div>
-					<div id="like_rank" class="like_rank"> 
-						<div class="like_rank_lost" style="float:left;width:100%;height:87%;">
-							<div class="rank-card-con">
-								<a href="./iteminfo?lost_PostNum=3222">
-									<div class="photo">
-										<%=lostRank.get(0).getLost_Up_File() %>
+					<div class="icon-scroll"></div>
+					<div class="swiper-container topRank">
+						<div class="swiper-wrapper topRank">
+							<div class="swiper-slide topRank">
+								<div class="swiper-slide-con">
+									<div id="like_rank" class="like_rank"> 
+									<div class="like-rank-title">
+										<h2>많은 사람들이 찾기를 바라고 있어요!</h2>
+										<p>가장 많은 올리기를 받은 분실물 입니다.</p>
 									</div>
-									<div class="simpleinfo">
-										<div class="title"><%=lostRank.get(0).getLost_Title() %></div>
-										<div class="subinfo">
-											<div class="pay"><%=lostRank.get(0).getLost_Pay() %>원</div>
-											<div class="date"><%=lostRank.get(0).getLost_Date() %></div>
-										</div>
-										<div class="loc"><%=lostRank.get(0).getLost_Loc() %></div>
+									
 									</div>
-								</a>
-							</div>
-						</div>
-						<div class="like_rank_lost" style="clear:right;float:right;width:100%;height:87%;">
-							<div class="rank-card-con">
-								<a href="./iteminfo?lost_PostNum=3222">
-									<div class="photo">
-										<%=petRank.get(0).getPet_Up_File() %>
-									</div>
-									<div class="simpleinfo">
-										<div class="title"><%=petRank.get(0).getPet_Title() %></div>
-										<div class="subinfo">
-											<div class="pay"><%=petRank.get(0).getPet_Pay() %>원</div>
-											<div class="date"><%=petRank.get(0).getPet_LostDate() %></div>
-										</div>
-										<div class="loc"><%=petRank.get(0).getPet_Loc() %></div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="pay_rank">
-						<div class="pay_rank-title"><h2>간절하게 찾고 있어요!</h2></div>
-						<div class="like_rank_lost" style="float:left;width:100%;height:87%;">
-							<div class="card-con">
-									<a href="./iteminfo?lost_PostNum=3222">
-										<div class="photo">
-											<%=list3.get(0).getLost_Up_File() %>
-										</div>
-										<div class="simpleinfo">
-											<div class="title"><%=list3.get(0).getLost_Title() %></div>
-											<div class="subinfo">
-												<div class="pay"><%=list3.get(0).getLost_Pay() %>원</div>
-												<div class="date"><%=list3.get(0).getLost_Date() %></div>
-											</div>
-											<div class="loc"><%=list3.get(0).getLost_Loc() %></div>
-										</div>
-									</a>
 								</div>
-						</div>
-						<div class="like_rank_lost" style="clear:right;float:right;width:100%;height:87%;">
-								<div class="card-con">
-								<a href="./iteminfo?lost_PostNum=3222">
-									<div class="photo">
-										<%=list4.get(0).getPet_Up_File() %>
-									</div>
-									<div class="simpleinfo">
-										<div class="title"><%=list4.get(0).getPet_Title() %></div>
-										<div class="subinfo">
-											<div class="pay"><%=list4.get(0).getPet_Pay() %>원</div>
-											<div class="date"><%=list4.get(0).getPet_LostDate() %></div>
-										</div>
-										<div class="loc"><%=list4.get(0).getPet_Loc() %></div>
-									</div>
-								</a>
+								<!-- end like_rank -->
 							</div>
+							<!-- slide 1 -->
+							<div class="swiper-slide topRank"> 
+								<div class="swiper-slide-con">
+									<div class="pay_rank">
+										<div class="pay_rank-title">
+											<div class="best-icon pay ">
+												<img src="./resources/home/images/cash3.png" alt="" /> 
+											</div>
+											<h2>간절하게 찾고 있어요!</h2>
+											<p>가장 많은 사례금이 달린 분실물 입니다.</p>
+										</div>
+									
+									 </div>
+								 </div>
+							</div>
+							<!-- slide 2 -->
 						</div>
-					 </div> 
+						<!--  <div class="swiper-pagination topRank" style="top:59%;"></div> -->
+					</div>
 				</div>
 			</div>
 	</section>

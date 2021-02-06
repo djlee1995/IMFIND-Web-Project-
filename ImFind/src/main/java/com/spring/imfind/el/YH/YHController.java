@@ -57,6 +57,8 @@ public class YHController {
 	@RequestMapping("el/afterLoginHeader")
 	public String afterLoginHeader() { return "el/afterLoginHeader"; }
 	
+	@RequestMapping("/clause")
+	public String clause() { return "el/YS/clause"; }
 	//
 	@RequestMapping("/register")
 	public String register() { return "el/register"; }
@@ -311,4 +313,3 @@ public class YHController {
 
 	 
 }
-

@@ -129,6 +129,7 @@
       #p_textbox{
          width: 181px;
          height: 34px;
+         font-size : 1.5rem
       }
       .container-fluid {
           /* border: 1px solid black; */
@@ -229,7 +230,7 @@
          <div class="item6">
             <h6>분실 위치</h6>
             <!-- 지도 불러오기  -->
-            <div class="container-fluid map">
+            <div class="container-fluid map" style="width: 1000px;">
                <div id="Loc1" style="margin: -15px 10px 10px 100px;">
                   <!-- Javascript가 필요없이 data-toggle에 collapse href에 대상 id을 설정합니다. -->
                   <div id="Loc2">
@@ -294,7 +295,7 @@
                 </div>
             </div>
          </div>
-         <!--  qysrskjdfhlakjsdfdhlaksjdfdhlkasjdfhlaksjdfhlaksjdfhlaksjdfhlasiudfhwieufhlsijdfhlaksdjfh -->
+      
          <div class="btn">
             <button type="submit">확인</button>
             <a href="index">취소</a>

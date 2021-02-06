@@ -161,7 +161,7 @@ select * from petpost where paycode is null and replace(pet_loc,' ','') like #{p
 </update>  
 <select id="lost_pay_rank" resultType="ItemVO">
 SELECT *
-  FROM ( SELECT l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount lost_pay,l.lost_re_date lost_date
+  FROM ( SELECT l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount lost_pay,l.lost_re_date lost_date, l.id
            FROM lostpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.lost_postnum desc
         )
@@ -170,7 +170,7 @@ WHERE rownum=1
 </select>
 <select id="pet_pay_rank" resultType="PetVO">
 SELECT *
-  FROM ( SELECT l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount pet_pay,l.pet_re_date pet_lostdate
+  FROM ( SELECT l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount pet_pay,l.pet_re_date pet_lostdate, l.id
            FROM petpost l, pay p  where l.paycode = p.paycode
          ORDER BY p.pay_amount desc,l.pet_postnum desc
         )
