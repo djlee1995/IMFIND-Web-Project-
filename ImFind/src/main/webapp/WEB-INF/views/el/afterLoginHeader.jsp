@@ -26,7 +26,11 @@
 	    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
 		height : 73px !important;
 	}
+	
 </style>
+
+<!-- 로그인 이동 모달창 -->
+<!-- 로그인 이동 모달창 끝 -->
 
 <nav class="fh5co-nav" role="navigation">
 	<div class="top-menu">
@@ -40,6 +44,7 @@
 						<li class="has-dropdown">
 							<a href="#">습득물 조회 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
+								<!-- Button to trigger modal -->
 								<li><a href="index.if">경찰청</a></li>
 								<li><a href="etc_index.if">etc</a></li>
 								<li><a href="select.if">지역으로 찾기</a></li>
@@ -49,15 +54,34 @@
 						<li class="has-dropdown">
 							<a href="#">분실물 등록 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<li><a href="./itemboard">물건</a></li>
-								<li><a href="./petboard">동물</a></li>
+								<c:set var="user" value='${loginUser}'/>
+									<c:choose>
+										    <c:when test="${user eq null}">
+												<li><a href="./itemboard" onclick="return confirmWindow()">물건</a></li>
+												<li><a href="./petboard" onclick="return confirmWindow()" id="btn-confirm">동물</a></li>
+										    </c:when>
+										    <c:otherwise>
+												<li><a href="./itemboard">물건</a></li>
+												<li><a href="./petboard">동물</a></li>		
+										    </c:otherwise>
+									</c:choose>
 							</ul>
 						</li>
 						<li class="has-dropdown">
 							<a href="./item">분실물 조회 <i class="fas fa-sort-down"></i></a>
 							<ul class="dropdown">
-								<li><a href="./item">물건</a></li>
-								<li><a href="./pet">동물</a></li>
+								<c:set var="user" value='${loginUser}'/>
+									<c:choose>
+										    <c:when test="${user eq null}">
+												<li><a href="./item" onclick="return confirmWindow();">물건</a></li>
+												<li><a href="./pet" onclick="return confirmWindow();">동물</a></li>
+										    </c:when>
+										    <c:otherwise>
+												<li><a href="./item">물건</a></li>
+												<li><a href="./pet">동물</a></li>		
+										    </c:otherwise>
+									</c:choose>
+								
 							</ul>
 						</li>
 						<c:set var="user" value='${loginUser}'/>
@@ -81,3 +105,8 @@
 		</div>
 	</div>
 </nav>
+<script>
+function confirmWindow(){
+	confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까');
+}
+</script>

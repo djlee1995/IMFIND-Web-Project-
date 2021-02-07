@@ -448,7 +448,7 @@ function enterkey() {
 		   var postnum = arr[i].postnum;
 		   
 		   storage.innerHTML += '<div class="historybox">' 
-								   + '<a href = "./iteminfo?lost_PostNum='+postnum+'&getId='+id+'">'+img+'</a>'
+								   + '<a href = "./' +postnum+'">'+img+'</a>'
 								   + '<div class="storage-board-title"><p>' + title +'</p></div>'
 								   + '</div>'
 		   

@@ -55,7 +55,7 @@ $('document').ready(function() {
          option += '<option value="' + kind[idx] +'">' + kind[idx] + '</option>';
      }
      if( option ) {
-         option = '<option value="">분실물 종류</option>' + option;
+         option = '<option value="">모든 분실물</option>' + option;
          $me.html(option);
      }
  });

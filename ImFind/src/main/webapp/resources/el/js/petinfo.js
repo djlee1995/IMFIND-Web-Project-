@@ -71,7 +71,9 @@ function info() {
 				const bookmark = {
 					lost_up_file : pet_Up_File,
 					lost_Title : data[0].pet_Title,
-					postnum : Pet_PostNum
+					postnum : 'petinfo?Pet_PostNum=' + Pet_PostNum + '&getId='+ data[0].id,
+					pk : Pet_PostNum
+					
 				}
 
 				if (sessionStorage.getItem('test') == null) {
@@ -86,7 +88,7 @@ function info() {
 					for (let i = 0; i < oldBKInfo.length; i++) {
 						console.log(oldBKInfo[i].postnum)
 
-						if (oldBKInfo[i].postnum == Pet_PostNum) {
+						if (oldBKInfo[i].pk == Pet_PostNum) {
 							//alert('중복입니다')
 							flag = true;
 							break;

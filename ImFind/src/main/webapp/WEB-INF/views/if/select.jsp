@@ -337,6 +337,13 @@
 	display: flex;
 	margin-top: 45px;
 }
+#Progress_Loading
+{
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ background: #ffffff;
+}
 </style>
 </head>
 <body>
@@ -410,6 +417,7 @@
 					</ul>
 				</div>
 				<div class="input-loc-con">
+				
 					<div class="">
 						<div class="input-loc-title">위치</div>
 						<div class="datadiv">
@@ -424,14 +432,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="movie">
-				<a href="./chart">chart</a>
-					<iframe width="450" height="315"
-						src="https://www.youtube.com/embed/3XYyHq2JBn4" frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen></iframe>
-					</table>
-				</div>
+				
+				<div class="movie" id="container" style="margin-top:40px;"></div>
 
 				<div align="center" class="police"></div>
 				<div class="tableif"></div>
@@ -469,6 +471,8 @@
 	<!--End Modal-->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=clusterer,services"></script>
 	<script
@@ -477,6 +481,7 @@
 		src="${pageContext.request.contextPath}/resources/if/js/area.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/if/js/bootstrap.min.js"></script>
+
       
       <!-- jQuery Easing -->
    <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
@@ -489,6 +494,5 @@
    <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
    <!-- Main -->
    <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
-
 </body>
 </html>

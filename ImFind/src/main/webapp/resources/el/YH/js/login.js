@@ -250,7 +250,7 @@ function sendEmailForPW(e){
 		contentType : 'application/json',
 		
 		success : function(data){
-			alert(data.code);
+			//alert(data.code);
 			if(data.res == "ok"){
 				//db 정보와 일치하면 세션에 인증코드, 아이디 저장
 				sessionStorage.setItem("code", data.code)
@@ -337,7 +337,7 @@ function clickHandler(e){
 				data : {"email" : sessionStorage.getItem("email"),
 						"id" : sessionStorage.getItem("findID")},
 				success : function(){
-					alert('ok');
+					//alert('ok');
 					alert('회원님의 이메일로 아이디가 전송되었습니다.');
 				},
 				error : function(){
@@ -354,19 +354,19 @@ function clickHandler(e){
 	var userInputCode = document.querySelector('#code-pw');
 		// 코드 일치 
 		if(userInputCode.value == sessionStorage.getItem('code')){ 
-			alert('일치');
+			//alert('일치');
 			$.ajax({
 				url : "./sendUserPW",
 				type : "POST",
 				data : {"email" : sessionStorage.getItem("email"),
 						"id" : sessionStorage.getItem("findID")},
 				success : function(data){
-					alert('쿼리 결과 ' + data);
+					//alert('쿼리 결과 ' + data);
 					if(data == 'ok'){
 						alert('회원님의 이메일로 임시 비밀번호가 전송되었습니다.');
 					}
 					else{
-						alert('db 오류요')
+						//alert('db 오류요')
 					}
 				},
 				error : function(){

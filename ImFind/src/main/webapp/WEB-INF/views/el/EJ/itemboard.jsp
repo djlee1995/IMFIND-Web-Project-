@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@
       }
       .top-menu{
          box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
-         height : 88px !important;
+         height : 73px !important;
       }
       div.container-fluid:nth-child(1) > div:nth-child(1) {
           display: flex;
@@ -96,7 +96,7 @@
       }
       .note-toolbar {
           position: relative;
-          height: 84px;
+          height: 54px;
       }
       .note-Font > div:nth-child(1) > button:nth-child(1){
          margin-left:2px;
@@ -119,6 +119,32 @@
           margin: 0 auto;
           padding: 0;
       }
+      #fh5co-logo{
+     	margin-top: 10px !important;
+      }
+      .item3{
+      	justify-content: flex-start !important;
+      }
+      .item3 > label,
+      .item3 > input{
+      	margin-left : 22px !important;
+      }
+      #Loc2{
+   	    position: relative !important;
+	    left: -93px !important;
+	  }
+	  #datepicker{
+	  	margin-left:33px !important;
+	  }
+	  .container-map > h3 {
+	  	margin-left: 3px !important;
+	  }
+	  .note-btn{
+	  	margin-top:20px !important;
+	  }
+	  .note-btn-group > button{
+	  	height: 39px !important;
+	  }
       </style>
       <script>
       var id = '${loginUser}';
@@ -126,7 +152,55 @@
    </head>
 <body>
 <!-- 헤더시작 -->
-	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+<%-- 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> --%>
+<header>
+   <div class="fh5co-nav" role="navigation">
+      <div class="top-menu">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-xs-2">
+                  <div id="fh5co-logo" ><a href="./">ImFind<span>.</span></a></div>
+               </div>
+               <div class="col-xs-10 text-right menu-1">
+                  <ul>
+                    <li class="has-dropdown">
+							<a href="#">습득물 조회 <i class="fas fa-sort-down"></i></a>
+							<ul class="dropdown">
+								<!-- Button to trigger modal -->
+								<li><a href="index.if">경찰청</a></li>
+								<li><a href="etc_index.if">etc</a></li>
+								<li><a href="select.if">지역으로 찾기</a></li>
+								<li> <a href="#" onclick="window.open('https://www.handphone.or.kr/','','height=800px, width=800px')">핸드폰찾기</a></li>
+							</ul>
+					  </li>
+                      <li class="has-dropdown">
+                        <a href="">분실물 등록<i class="fas fa-sort-down"></i></a>
+                        <ul class="dropdown">
+                           <li><a href="./itemboard">물건</a></li>
+                           <li><a href="./petboard">동물</a></li>
+                        </ul>
+                     </li>
+                     <li class="has-dropdown">
+                        <a href="">분실물 조회 <i class="fas fa-sort-down"></i></a>
+                        <ul class="dropdown">
+                           <li><a href="./item">물건</a></li>
+                           <li><a href="./pet">동물</a></li>
+                        </ul>
+                     </li>
+                     <c:if test="${loginUser} eq null">
+                        <li class="btn-cta"><a href="./login"><span>Login</span></a></li> 
+                        <li class="btn-cta"><a href="./register"><span >회원가입</span></a></li> 
+                     </c:if>
+                        <li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
+                        <li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li>                
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+<!-- 헤더 끝 -->
 
 <section style="height:150vh;">
    <!-- 분실물 등록 게시판 은지 -->
@@ -164,7 +238,7 @@
          <!-- 필수입력사항 -->
          <div class="item5">
             <h6>분실 날짜(*)</h6>
-            <input id="datepicker" type="text" name="Lost_Date" placeholder="날짜를 선택해주세요." required>
+            <input id="datepicker" type="text" name="Lost_Date" placeholder="날짜를 선택해주세요." required autocomplete="off">
          </div>
          <div class="item6">
             <h6>분실 위치</h6>
@@ -189,7 +263,7 @@
          <!-- 필수입력사항 -->
          <div class="item7">
             <h6>제 목(*)</h6>
-            <div class="item7_box"><input type="text" class="lost_title" name="Lost_Title" placeholder="제목을 입력하세요" required></div>
+            <div class="item7_box"><input type="text" class="lost_title" name="Lost_Title" placeholder="제목을 입력하세요" required  required autocomplete="off"></div>
          </div>      
          <!--  필수입력사항 --> 
          <div class="item8"><h6>내 용</h6></div>
@@ -235,21 +309,21 @@
 </section>
       <!--게시글 등록 js 시작-은지 -->
       <script src="${pageContext.request.contextPath}/resources/el/js/itemboard.js"></script>
-      <!--게시글 등록 js 끝-은지 -->
+    <!--게시글 등록 js 끝-은지 -->
        <!-- 아임포트 시작-->
       <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> 
       <!-- 아임포트 끝-->
-
-   <!-- jQuery Easing -->
-   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
-   <!-- Waypoints -->
-   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
-   <!-- Flexslider -->
-   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
-   <!-- Magnific Popup -->
-   <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
-   <!-- Main -->
-   <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+      <!-- jQuery Easing -->
+      <script src="${pageContext.request.contextPath}/resources/home/js/jquery.easing.1.3.js"></script>
+      <!-- Waypoints -->
+      <script src="${pageContext.request.contextPath}/resources/home/js/jquery.waypoints.min.js"></script>
+      <!-- Flexslider -->
+      <script src="${pageContext.request.contextPath}/resources/home/js/jquery.flexslider-min.js"></script>
+      <!-- Magnific Popup -->
+      <script src="${pageContext.request.contextPath}/resources/home/js/jquery.magnific-popup.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/home/js/magnific-popup-options.js"></script>
+      <!-- Main -->
+      <script src="${pageContext.request.contextPath}/resources/home/js/main.js"></script>
+      
 </body>
 </html>

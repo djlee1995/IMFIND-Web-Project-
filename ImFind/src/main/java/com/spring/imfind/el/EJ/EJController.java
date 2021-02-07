@@ -44,7 +44,8 @@ public class EJController {
 		System.out.println("match=" + match);
 		String Lost_Up_File = null;
 		//String uploadPath = "/Users/hongmac/Documents/upload/"; 
-	    String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+	    //String uploadPath = "C:\\JavaTPC\\WebProject\\upload\\";
+	    String uploadPath = "C:\\Project\\WebProject\\upload\\";
 
 
 		if(match.find()){ 
@@ -62,9 +63,9 @@ public class EJController {
 	        }
 
         //Lost_Content부분에 있는 태그들 자르기
-        boardvo.setLost_Content(boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z])(\\s[a-zA-Z]=[^>])?(\\s)(/)?>", ""));
-        String replace1 = boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z])(\\s[a-zA-Z]=[^>])?(\\s)(/)?>", "");
-        String replace2 = replace1.replaceAll("<img[^>]src=[\"']?([^>\"']+)[\"']?[^>]>", "");
+        boardvo.setLost_Content(boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\\\\\s[a-zA-Z]*=[^>]*)?(\\\\\\\\s)*(/)?>", ""));
+        String replace1 = boardvo.getLost_Content().replaceAll("<(/)?([a-zA-Z]*)(\\\\\\\\s[a-zA-Z]*=[^>]*)?(\\\\\\\\s)*(/)?>", "");
+        String replace2 = replace1.replaceAll("<img[^>]*src=[\\\"']?([^>\\\"']+)[\\\"']?[^>]*>", "");
         boardvo.setLost_Content(replace2);
         
         if (boardvo.getLost_Pay() == null ) {

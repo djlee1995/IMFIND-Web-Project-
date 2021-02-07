@@ -77,7 +77,7 @@
       }
       .top-menu{
          box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
-         height : 88px !important;
+         height : 73px !important;
       }
       div.container-fluid:nth-child(1) > div:nth-child(1) {
           display: flex;
@@ -126,6 +126,12 @@
       body > section > div > form > div.item2 > label:nth-child(3){
           margin-right: 22px;
       }
+      .item3{
+      	justify-content: flex-start !important;
+      }
+      .item3 > label{
+      	margin-left : 22px !important;
+      }
       #p_textbox{
          width: 181px;
          height: 34px;
@@ -137,6 +143,19 @@
           margin: 0 auto;
           padding: 0;
       }
+      #fh5co-logo{
+     	margin-top: 10px !important;
+      }
+      #Loc2{
+   	    position: relative !important;
+	    left: -93px !important;
+	  }
+	  #datepicker{
+	  	margin-left:37px !important;
+	  }
+	  .btn-fullscreen{
+	  	margin-top:20px;
+	  }
       </style>
       <script>
       var id = '${loginUser}';

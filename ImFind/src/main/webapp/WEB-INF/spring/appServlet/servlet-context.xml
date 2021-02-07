@@ -62,6 +62,8 @@
 			<mapping path="/comment_insert"></mapping>
 			<mapping path="/socket"></mapping>
 			<mapping path="/chat"></mapping>
+			<mapping path="/item"></mapping>
+			<mapping path="/pet"></mapping>
 			<beans:ref bean="AuthInterceptor"/>
 		</interceptor>
 		
@@ -79,5 +81,3 @@
 			</websocket:handshake-interceptors>
 		</websocket:handlers>
 	</beans:beans>
-	
-	

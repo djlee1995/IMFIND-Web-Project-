@@ -1,120 +1,178 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js" ></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<div id="container" style="width: 1000px; height: 700px; margin: 0 auto"></div>
+<div id="container" style="width: 300px; height: 450px; margin: 0 auto"></div>
 <script>
-$(document).ready(function() {  
-   var kind =["°¡¹æ","±Í±İ¼Ó","µµ¼­¿ëÇ°","¼­·ù","¼îÇÎ¹é","½ºÆ÷Ã÷¿ëÇ°","¾Ç±â","À¯°¡Áõ±Ç","ÀÇ·ù","ÀÚµ¿Â÷","ÀüÀÚ±â±â","Áõ¸í¼­","Áö°©","Ä«µå","ÄÄÇ»ÅÍ","Çö±İ","ÈŞ´ëÆù","±âÅ¸¹°Ç°"];
-   Highcharts.chart('browser_graph', {
-	    chart: {
-	        plotBackgroundColor: null,
-	        plotBorderWidth: null,
-	        plotShadow: false,
-	        type: 'pie'
-	    },
-	    title: {
-	        text: ''
-	    },
-	    tooltip: {
-	        pointFormat: '<b>{point.percentage:.1f}%</b>'
-	    },
-	    accessibility: {
-	        point: {
-	            valueSuffix: '%'
-	        }
-	    },
-	    plotOptions: {
-	        pie: {
-	            allowPointSelect: true,
-	            cursor: 'pointer',
-	            dataLabels: {
-	                enabled: true,
-	                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-	            },
-	            size:220
-	        }
-	    },
-	    series: [{
-	        colorByPoint: true,
-	        colors:['#7cb5ec', '#e5ec7c','#90ed7d','#f15c80','#8085e9','#ff8d00'],
-	        data: [
-	            {
-	                name: 'Chrome',
-	                y: ${chrome.chrome},
-	                sliced: false,
-	                selected: false
-	            }, {
-	                name: 'Whale',
-	                y: ${whale.whale}
-	            }, {
-	                name: 'Firefox',
-	                y: ${firefox.firefox}
-	            }, {
-	                name: 'Edge',
-	                y: ${edge.edge}
-	            }, {
-	                name: 'Opera',
-	                y: ${opera.opera}
-	            }, {
-	                name: '±âÅ¸',
-	                y: ${other.other}
-	            }
-	        ]
-	    }]
-	});
- 
-   var series= [{
-     	name: 'ºĞ½Ç¹°',
-       data: lost_data
-   }
-];     
-  
-   var lost_data=[];
-
-   $.ajax({
-       url :'chartcount.if',
-       //type : 'POST',
-       data : {'kind': kind},
-       async:false,
-       contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-       //dataType:'json',
-       success: function(data){
-     	lost_data=data;
-     	
-          },
-          
-       error : function() {
-
-          alert("ajaxÅë½Å ½ÇÆĞ2")
-
-       }
- });
-   console.log(lost_data)
+$(document).ready(function() {
+	function chart() {
+		var sum=0;
+		var lost_data=[];
+		var kind =["ì§€ê°‘","ì¹´ë“œ","íœ´ëŒ€í°","í˜„ê¸ˆ","ê·€ê¸ˆì†","ê°€ë°©"];
+		var alldata;
+		$.ajax({
+		       url :'chartcount.if',
+		       //type : 'POST',
+		       data : {'kind': kind},
+		       async:false,
+		       contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		       //dataType:'json',
+		       success: function(data){
+		     	lost_data=data;
+		     	
+		    		for (var i=0; i<lost_data.length; i++){
+		    			sum +=lost_data[i]
+		    		}
+		    		alldata =sum
+		     	
+		          },
+		          
+		       error : function() {
+		          alert("ajaxí†µì‹  ì‹¤íŒ¨2")
+		       }
+		 });
+		
+		var chart = {
+		       plotBackgroundColor: null,
+		       plotBorderWidth: null,
+		       plotShadow: false
+		   };
+		   var title = {
+		      text: 'ë¶„ì‹¤ë¬¼ í†µê³„'   
+		   };      
+		   var tooltip = {
+		      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		   };
+		   var plotOptions = {
+		      pie: {
+		         allowPointSelect: true,
+		         cursor: 'pointer',
+		         dataLabels: {
+		            enabled: true,
+		            format: '<b>{point.name}%</b>: {point.percentage:.1f} %',
+		            style: {
+		               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		            }
+		         }
+		      }
+		   };
+		   var series= [{
+		      type: 'pie',
+		      name: 'ìŠµë“ë¬¼ í¼ì„¼íŠ¸',
+		      data: [
+		         ['ì§€ê°‘',   Math.round(((lost_data[0]/alldata)*100)*100)/100],
+		         ['ì¹´ë“œ',       Math.round(((lost_data[1]/alldata)*100)*100)/100],
+		         ['íœ´ëŒ€í°',  Math.round(((lost_data[2]/alldata)*100)*100)/100],
+		         ['í˜„ê¸ˆ',    Math.round(((lost_data[3]/alldata)*100)*100)/100],
+		         ['ê·€ê¸ˆì†',     Math.round(((lost_data[4]/alldata)*100)*100)/100],
+		         ['ê°€ë°©',   Math.round(((lost_data[5]/alldata)*100)*100)/100]
+		      ]
+		   }];     
+		      
+		   var json = {};   
+		   json.chart = chart; 
+		   json.title = title;     
+		   json.tooltip = tooltip;  
+		   json.series = series;
+		   json.plotOptions = plotOptions;
+		   $('#container').highcharts(json);  
+		}); 
+	}
+	
    
-      
-   var json = {};   
-   json.chart = chart; 
-   json.title = title;   
-  // json.subtitle = subtitle; 
-   json.tooltip = tooltip;
-   json.xAxis = xAxis;
-   json.yAxis = yAxis;  
-   json.series = series;
-   json.plotOptions = plotOptions;
-   json.legend = legend;
-   json.credits = credits;
-   $('#container').highcharts(json);
-  
-});
+  /*  var chart = {
+		      type: 'bar'
+		   };
+		   var title = {
+		      text: 'ë¶„ì‹¤ë¬¼ í’ˆëª© ë³„ í†µê³„ ê·¸ë˜í”„'   
+		   };
+		   
+		   var xAxis = {	  
+		      categories: kind,
+		      title: {
+		         text: null
+		      }
+		   };
+		   var yAxis = {
+		      min: 0,
+		      title: {
+		         text: 'ë¶„ì‹¤ë¬¼ ê°¯ìˆ˜',
+		         align: 'high'
+		      },
+		      labels: {
+		         overflow: 'justify'
+		      }
+		   };
+		   var tooltip = {
+		      valueSuffix: ' millions'
+		   };
+		   var plotOptions = {
+		      bar: {
+		         dataLabels: {
+		            enabled: true
+		         }
+		      }
+		   };
+		   var legend = {
+		      layout: 'vertical',
+		      align: 'right',
+		      verticalAlign: 'top',
+		      x: -40,
+		      y: 100,
+		      floating: true,
+		      borderWidth: 1,
+		      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+		      shadow: true
+		   };
+		   var credits = {
+		      enabled: false
+		   };
+		   var lost_data=[];
+		   $.ajax({
+		       url :'chartcount.if',
+		       //type : 'POST',
+		       data : {'kind': kind},
+		       async:false,
+		       contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		       //dataType:'json',
+		       success: function(data){
+		     	lost_data=data;
+		     	
+		          },
+		          
+		       error : function() {
+		          alert("ajaxí†µì‹  ì‹¤íŒ¨2")
+		       }
+		 });
+		   console.log(lost_data)
+		   var series= [{
+		          	name: 'ë¶„ì‹¤ë¬¼',
+		            data: lost_data
+		        }
+		   ];     
+		      
+		   var json = {};   
+		   json.chart = chart; 
+		   json.title = title;   
+		  // json.subtitle = subtitle; 
+		   json.tooltip = tooltip;
+		   json.xAxis = xAxis;
+		   json.yAxis = yAxis;  
+		   json.series = series;
+		   json.plotOptions = plotOptions;
+		   json.legend = legend;
+		   json.credits = credits;
+		   $('#container').highcharts(json);
+		  
+		}); */
 </script>
-<div id="browser_graph"></div>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

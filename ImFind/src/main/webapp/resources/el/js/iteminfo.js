@@ -101,7 +101,8 @@ function info() {
 					const bookmark = {
 						lost_up_file : lost_up_file,
 						lost_Title : data[0].lost_Title,
-						postnum : lost_PostNum
+						postnum : 'iteminfo?lost_PostNum=' + lost_PostNum + '&getId='+ data[0].id,
+						pk : lost_PostNum
 					}
 
 					if (sessionStorage.getItem('test') == null) {
@@ -116,7 +117,7 @@ function info() {
 						for (let i = 0; i < oldBKInfo.length; i++) {
 							console.log(oldBKInfo[i].postnum)
 
-							if (oldBKInfo[i].postnum == lost_PostNum) {
+							if (oldBKInfo[i].pk == lost_PostNum) {
 								//alert('중복입니다')
 								flag = true;
 								break;

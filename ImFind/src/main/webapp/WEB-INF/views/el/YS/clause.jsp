@@ -121,7 +121,7 @@
     
      <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
     
-<div class="col-lg-6 offset-lg-3" style=" padding-top: 8%;margin-left: 35%; position: relative; ">
+<div class="col-lg-6 offset-lg-3" style=" padding-top: 8%;margin-left: 30%; position: relative; ">
 <article id="content" class="cols-d">
     <div>
         <h1>IMFIND 이용약관</h1>
@@ -305,7 +305,7 @@
 
 회사는 개인정보취급방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다.
 
-- 본 방침은 : 2021 년 02 월 26 일 부터 시행됩니다.
+- 본 방침은 : 2021 년 02 월 07 일 부터 시행됩니다.
 
 
 [수집하는 개인정보 항목]

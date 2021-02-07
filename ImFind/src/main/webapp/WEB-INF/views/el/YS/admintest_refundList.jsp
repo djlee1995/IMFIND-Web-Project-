@@ -156,7 +156,7 @@
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">관리자페이지</a></li>
 								<li class="breadcrumb-item"><a href="#">결제관리</a></li>
-								<li class="breadcrumb-item active">환분거래 리스트</li>
+								<li class="breadcrumb-item active">환불거래 리스트</li>
 							</ol>
 						</div>
 					</div>
@@ -247,47 +247,53 @@
 			refundList();
 
 		});
-
 		function refundList() {
 			$('#output').empty();
 			var form = '<thead><tr><th>회원ID</th><th>주문번호</th><th>결제금액</th><th>결제상태</th><th>결제승인시각</th><th>환불버튼</th></tr></thead><tbody>';
 			$('#output').append(form);
-			$("#output").DataTable({
-				paging : true,
-				"pageLength" : 10,
-				pagingType : "simple_numbers",
-				"search": {
-				    "caseInsensitive": false
-				  },
-
-				"ajax" : {
-					"url" : "/imfind/adminrefund2",
-					"type" : "POST",
-					"dataSrc" : function(res) {
-						var data = res.data;
-						console.log(data)
-						return data;
-					}
-				},
-				"columns" : [ {
-					"data" : "id"
-				}, {
-					"data" : "payCode"
-				}, {
-					"data" : "pay_Amount"
-				}, {
-					"data" : "pay_State"
-				}, {
-					"data" : "pay_Date"
-				}, {
-					"defaultContent" :"<button type='button' id='cancelBtn_s' class='btn btn-outline-primary' onclick='cancels();'>환불완료</button>"
-		       		}
-
-				]
-
-			});
-
+			$.ajax({
+	            url : "/imfind/adminrefund",
+	            type : "post",
+	            //datatype: "json",
+	            contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+	            success : function(data){
+	            	$.each(data, function(index, item){
+	            	console.log(item)
+	            	var output='';
+	                output += '<tr>'; 
+	                output += '<td>' + item.id+ '</td>';
+	                output += '<td>' + item.payCode+ '</td>';
+	                output += '<td>' + item.pay_Amount + '</td>';
+	                output += '<td>' + item.pay_Date + '</td>';
+	                output += '<td>' + item.pay_State + '</td>';
+	                output += '<td><button type="button" id="cancelBtn" class="btn btn-outline-primary" onclick="cancelPay('+"'"+item.payCode+"'"+');">환불승인</button></td>';
+	                output += '</tr>'
+	                $('#output').append(output);
+	                });
+	            }
+	            
+	         });
 		};
+		function cancelPay(paycode){
+				var paycode=paycode
+				console.log(paycode)
+		         jQuery.ajax({
+		            url : "/imfind/adminpaycancel",
+		            type : "post",
+		            //datatype: "json",
+		            contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+		            data : {
+		               "merchant_uid" : paycode // 주문번호
+		            }
+		         }).done(function(result){ // 환불 성공시 로직
+		            alert("환불 성공 : " + result);
+		         
+		     
+		            refundList();
+		         }).fail(function(error){ // 환불 실패시 로직
+		            alert("환불 실패 : " + error);
+		         });
+		   }
 	</script>
 </body>
 </html>
