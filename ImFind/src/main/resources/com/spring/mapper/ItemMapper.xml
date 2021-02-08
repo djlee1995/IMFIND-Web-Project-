@@ -170,8 +170,8 @@
 		{CALL
 		BEGIN
 		delete from petpost where pet_postnum = #{Pet_PostNum};
-		DELETE FROM re_comment where pet_postnum = #{Pet_PostNum};
-		DELETE FROM reply where pet_postnum = #{Pet_PostNum};
+		DELETE FROM pet_comment where lost_postnum = #{Pet_PostNum};
+		DELETE FROM pet_reply where pet_postnum = #{Pet_PostNum};
 		DELETE FROM liketo where pet_postnum = #{Pet_PostNum};
 		END
 		}

@@ -36,19 +36,19 @@
       .infoText{
          padding-left: 10px;
          margin-left:18px;
-      	 height: 100%;
+          height: 100%;
       }
       .container.iteminfo{
          padding-left:0;
       }
       .head > p{
         font-size: 2.2rem;
-	    text-align: start;
-	    padding-top: 11px;
-	    font-family: 'Noto Sans KR', sans-serif !important;
-	    font-weight: 600 !important;
-	    color: black;
-	    margin-bottom: 9px;
+       text-align: start;
+       padding-top: 11px;
+       font-family: 'Noto Sans KR', sans-serif !important;
+       font-weight: 600 !important;
+       color: black;
+       margin-bottom: 9px;
       }
       .head > div > label{
          padding : 0;
@@ -60,17 +60,20 @@
          border-bottom : 1px solid rgb(238, 238, 238);
          border-top : 1px solid rgb(238, 238, 238);
          display: flex;
-		 flex-wrap: wrap;
-		 padding : 12px 0 10px 0;
+       flex-wrap: wrap;
+       padding : 12px 0 10px 0;
       }
-      .infoBody > div { 
-      	width:76%;
+      .infoBody > div.col-set-2 { 
+         width:76%;
+      }
+      .infoBody > div.col-set{
+         width:23%;
       }
       .container.detailInfo{
          padding-left : 0;
       }
       div#loc{
-      	height: auto;
+         height: auto;
       }
       /* section 가로 크기 */
       @media(min-width: 1900px){
@@ -99,19 +102,19 @@
    
          #file{
             height: 100%;
-    		width: 38%;
+          width: 38%;
          }   
          #file img{
             width:100%;
             height: 100%;
             border-radius: 11px;
-    		object-fit: cover;
+          object-fit: cover;
          }
          .infoText{
             display: flex;
             flex-direction:column;
             width:59%;
-         	height: 100%;
+            height: 100%;
             margin:0;
             margin-left: 21px;
          }
@@ -139,36 +142,36 @@
             width:100%;
          }
          .like-con{
-         	width:50%;
-         	height:56px;
+            width:50%;
+            height:56px;
          }
          .like-btn{
-         	border: none;
-		    width: 99%;
-		    height: 48px;
-		    border-radius: 3px;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
+            border: none;
+          width: 99%;
+          height: 48px;
+          border-radius: 3px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
          }
          .like-btn > p { 
-         	margin : 0;
+            margin : 0;
          }
          .like-group{
-         	display:flex;
-		    justify-content: center;
-		    align-items: center;
-		    margin-top: 12px;
+            display:flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 12px;
          }
          ._12xcxtl{
-         	border-top: 1px solid #DDDDDD !important;
-         	margin: 8px 0;
+            border-top: 1px solid #DDDDDD !important;
+            margin: 8px 0;
          }
          p#title{
-         	display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 0;
+            display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 0;
          }
       }
       @media(max-width: 500px){
@@ -191,17 +194,17 @@
          margin-bottom : 0;
          width : 40px;
       }
-	  #id{
-		margin-right: 47px;
-	  }
+     #id{
+      margin-right: 47px;
+     }
       #id, 
       #lost_Re_Date{
-      	font-size:14px;
-      	font-weight:100;
+         font-size:14px;
+         font-weight:100;
       }
       .fa-user,
       .fa-calendar-alt{
-      	font-size:14px;
+         font-size:14px;
       }
       
       div.infoBody > label{
@@ -244,62 +247,62 @@
       div#file > img{
          width:100% !important;
       }
-	  icon-con > div > label{
-	  	margin-bottom:0;
-	  }
+     icon-con > div > label{
+        margin-bottom:0;
+     }
       .menu{
-      	display : flex;
-      	flex-direction : column;
+         display : flex;
+         flex-direction : column;
       }
-	 #like_img{
-	 	font-size: 17px;
-		color: gray;
-		margin-right:9px;
-		margin-bottom:2px;
-	 }
-	 #like-con {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border: 1px solid rgb(238, 238, 238);
-		padding: 0 10px;
-		border-radius: 7px;
-		height: 31px;
-	}
-	 #like-con > span{
-	 	font-size:2rem;
-	 }
-	.icon-con{
-		display:flex;
-	    align-items:center;
-	}
-	     .storage-con{
+    #like_img{
+       font-size: 17px;
+      color: gray;
+      margin-right:9px;
+      margin-bottom:2px;
+    }
+    #like-con {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgb(238, 238, 238);
+      padding: 0 10px;
+      border-radius: 7px;
+      height: 31px;
+   }
+    #like-con > span{
+       font-size:2rem;
+    }
+   .icon-con{
+      display:flex;
+       align-items:center;
+   }
+        .storage-con{
          overflow: hidden;
          position: fixed;
-      	 border : 1px solid black;
-      	 width: 100px;
-      	 margin-left: 100px;
+          border : 1px solid black;
+          width: 100px;
+          margin-left: 100px;
       
-      	 border: 1px solid #e5e5e5;
-      	 border-radius: 4px;
-    	 margin-top: 76px;
-    	 padding: 3px 3px;
+          border: 1px solid #e5e5e5;
+          border-radius: 4px;
+        margin-top: 76px;
+        padding: 3px 3px;
       }
       #storage {
-      	 display: flex;
-      	 flex-direction: column-reverse;
-      	 justify-content: center;
-    	 align-items: center;
-    	 margin-top:10px;
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: center;
+        align-items: center;
+        margin-top:10px;
       } 
       #storage > a:nth-child(1) > div > img{
-      	width:50%;
+         width:50%;
       }
       .menu-set{
-      	display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    flex-direction: column;
+         display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
       }
       .historybox > a img {
          width: 90px !important;
@@ -308,131 +311,147 @@
          border-radius: 4px;
       }
        .storage-board-title > p{
-      	 font-size : 11px;
-      	 margin-bottom:0;
-      	 overflow:hidden;
-      	 width : 92px;
-      	 white-space:nowrap;
-      	 text-overflow:ellipsis;
-      	 max-height: 16px;
+          font-size : 11px;
+          margin-bottom:0;
+          overflow:hidden;
+          width : 92px;
+          white-space:nowrap;
+          text-overflow:ellipsis;
+          max-height: 16px;
       }
-	  .storage-title{
-	  	border-bottom: 1px solid #e5e5e5;
-	  }
-	  .storage-title > p {
-	  	margin-bottom:0;
-	  	text-align:center;
-	  }
-	  .historybox{
-	  	margin-top : 5px;
-	  }
-	  .gototop{
-	    position:unset;
-	    bottom: 20px;
-	    right: 20px;
-	    z-index: 999;
-	    opacity: 0;
-	    visibility: hidden;
-	    -webkit-transition: 0.5s;
-	    -o-transition: 0.5s;
-	    transition: 0.5s;
-	  }
-	  .gototop a{
-	  	width: 92px;
-    	height: 22px !important;
-	  }
-  	  .gototop a i{
-    	height: 23px !important;
-  	  }
-  	  div.container.detailInfo > div.container-map > h3{
-  	  	margin-left:5px !important;
-  	  }
+     .storage-title{
+        border-bottom: 1px solid #e5e5e5;
+     }
+     .storage-title > p {
+        margin-bottom:0;
+        text-align:center;
+     }
+     .historybox{
+        margin-top : 5px;
+     }
+     .gototop{
+       position:unset;
+       bottom: 20px;
+       right: 20px;
+       z-index: 999;
+       opacity: 0;
+       visibility: hidden;
+       -webkit-transition: 0.5s;
+       -o-transition: 0.5s;
+       transition: 0.5s;
+     }
+     .gototop a{
+        width: 92px;
+       height: 22px !important;
+     }
+       .gototop a i{
+       height: 23px !important;
+       }
+       div.container.detailInfo > div.container-map > h3{
+          margin-left:5px !important;
+       }
+       .col-set, 
+       .col-set-2{
+          display:flex;
+          flex-direction: column;
+       }
+       .col-set-2 > div,
+       .col-set > label{
+          margin-bottom:7px;
+       }
     </style> 
 </head>
 <body>
-	  <%
-	      String id = (String)session.getAttribute("loginUser");
-	      
-	  %>
+     <%
+         String id = (String)session.getAttribute("loginUser");
+         
+     %>
 
     <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>      
 
     <!-- Header End -->
    <section>
    
-	   <div class="storage-con">
-		   <div class="storage-title"><p>메뉴</p></div>
-	       <div id="storage">
-	       		<a href="./pet">
-	       			<div class="menu-set">
-	    	   			<img src="./resources/home/images/list.png" alt="" />
-		       			<p>목록으로</p>
-		       		</div>
-	       		</a>
-	       		<a href="./">
-		       		<div class="menu-set">
-		       			<img src="./resources/home/images/home.png" alt="" />
-		       			<p>홈으로</p>
-		       		</div>
-	       		</a>
-	       </div>
-	       <div class="storage-title">
-	   			<div class="gototop js-top">
-					<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-				</div>
-	       </div>
-	   </div>
+      <div class="storage-con">
+         <div class="storage-title"><p>메뉴</p></div>
+          <div id="storage">
+                <a href="./pet">
+                   <div class="menu-set">
+                      <img src="./resources/home/images/list.png" alt="" />
+                      <p>목록으로</p>
+                   </div>
+                </a>
+                <a href="./">
+                   <div class="menu-set">
+                      <img src="./resources/home/images/home.png" alt="" />
+                      <p>홈으로</p>
+                   </div>
+                </a>
+          </div>
+          <div class="storage-title">
+               <div class="gototop js-top">
+               <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+            </div>
+          </div>
+      </div>
    
-   <div id="output"></div>	
+   <div id="output"></div>   
    <div class="container iteminfo">
-   		<div id="file">
-   		</div>
-   		<div class="infoText">
+<!--          <div id="update"></div> -->
+         <div id="file">
+         </div>
+         <div class="infoText">
             <div class="head">
                <p id="title">
                </p>
-			   <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
+            <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
                <div class="icon-con">
-	               	<div>
-	                  <label for="id"><i class="fas fa-user"></i></label>
-	                   <span id="id" class="getId"></span>      
-	               	</div>
-	                <span id="lost_Re_Date"></span>
+                     <div>
+                     <label for="id"><i class="fas fa-user"></i></label>
+                      <span id="id" class="getId"></span>      
+                     </div>
+                   <span id="lost_Re_Date"></span>
                </div>
             </div>       
             <div class="infoBody">
+            <div class="col-set">
+               <label for="pet">반려동물 이름</label>
                <label for="pay" style="margin-right: 53px;">사례금</label>
-               <div id="pay"></div>
                <label for="lostdate">분실 날짜</label>
-               <div id="lostdate"></div>
                <label for="loc">분실 위치</label>
+            </div>
+            <div class="col-set-2">
+               <div id="pet"></div>
+               <div id="pay"></div>
+               <div id="lostdate"></div>
                <div id="loc"></div>
             </div>
+            </div>
              <div class="like-group">
-	           	<div class="like-con">
-	           		<a class="like-btn" href="#comm"><i class="far fa-comment-dots"></i> <p>연락하기</p></a>
-	           	</div>
+                 <div class="like-con">
+                    <a class="like-btn" href="#comm"><i class="far fa-comment-dots"></i> <p>연락하기</p></a>
+                 </div>
              </div>      
          </div>
    </div>
    
    <div class="container detailInfo">
-   		<div id="content">
+         <div id="content">
             <div id="content-body">
-	               <h3 style="font-size: 24px; font-family: 'Noto Sans KR', sans-serif">분실정보</h3>
-	               <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
-	               <p id="content-body-text"></p>
+                  <h3 style="font-size: 24px; font-family: 'Noto Sans KR', sans-serif">분실정보</h3>
+                  <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
+                  <p id="content-body-text"></p>
             </div>
-   		</div>
+         </div>
          <div class="container-map">
              <h3 style="margin-left:20px; font-size:24px; font-family:'Noto Sans KR', sans-serif !important;">분실위치</h3>
              <div class="_12xcxtl" style="margin-top: 11px; width: 32px;"></div>        
-          	<div id="map" style="width:799px; height:340px; margin:16px 5px 0 15px;"></div>
+             <div id="map" style="width:799px; height:340px; margin:16px 5px 0 15px;"></div>
          </div>
    </div>
    
    <div class="container commentBox">
-		<jsp:include page="../EJ/pet_comment.jsp" flush="true" />
+      <jsp:include page="../EJ/pet_comment.jsp" flush="true" />
    </div>
 </section>
 
@@ -442,9 +461,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js" ></script> 
 
 <script>
-	var Pet_PostNum =<%=request.getParameter("Pet_PostNum") %>
-	console.log(Pet_PostNum)
-	var loginUser='<%=(String)session.getAttribute("loginUser")%>'
+   var Pet_PostNum =<%=request.getParameter("Pet_PostNum") %>
+   console.log(Pet_PostNum)
+   var loginUser='<%=(String)session.getAttribute("loginUser")%>'
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e9646f261380e768a278eb16f4f6768&libraries=services"></script>

@@ -18,8 +18,7 @@ $(document).ready(function() {
       lang : "ko-KR",
       placeholder: '내용을 입력해주세요',
       callbacks: {
-         //onImageUpload : function(files){
-            //sendFile(files[0]);
+      
           onImageUpload: function(files, editor, welEditable) {
              for (var i = files.length - 1; i >= 0; i--) {
                      sendFile(files[i], this);
@@ -410,7 +409,6 @@ function pay(){
                      alert("결제성공!");   
 
                      document.querySelector('input[name="PayCode"]').value = result.PayCode;
-                     alert(document.querySelector('input[name="PayCode"]').value)
 
                      
                      addboard();//전송

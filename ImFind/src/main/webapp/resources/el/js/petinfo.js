@@ -52,7 +52,7 @@ function info() {
 		//dataType:'json',
 		success: function(data){
 			if($.trim(loginUser)==(data[0].id)){
-				$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
+				$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th></div>');
 			}
 			if($.trim(data[0].pet_Up_File) == '0'){
 				 pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
