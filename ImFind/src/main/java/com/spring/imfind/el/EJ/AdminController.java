@@ -121,7 +121,6 @@ public class AdminController {
       int res = obj.cancelPayment(token, merchant_uid);
       if (res == 1){
          //PayVO payVO = new PayVO();
-         
          return "Success";
       }else {
          return "Failure";

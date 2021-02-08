@@ -57,8 +57,8 @@
 								<c:set var="user" value='${loginUser}'/>
 									<c:choose>
 										    <c:when test="${user eq null}">
-												<li><a href="./itemboard" onclick="return confirmWindow()">물건</a></li>
-												<li><a href="./petboard" onclick="return confirmWindow()" id="btn-confirm">동물</a></li>
+												<li><a href="./itemboard" onclick="return confirmWindow">물건</a></li>
+												<li><a href="./petboard" onclick="return confirmWindow" id="btn-confirm">동물</a></li>
 										    </c:when>
 										    <c:otherwise>
 												<li><a href="./itemboard">물건</a></li>
@@ -73,8 +73,8 @@
 								<c:set var="user" value='${loginUser}'/>
 									<c:choose>
 										    <c:when test="${user eq null}">
-												<li><a href="./item" onclick="return confirmWindow();">물건</a></li>
-												<li><a href="./pet" onclick="return confirmWindow();">동물</a></li>
+												<li><a href="./item" onclick="return confirmWindow">물건</a></li>
+												<li><a href="./pet" onclick="return confirmWindow">동물</a></li>
 										    </c:when>
 										    <c:otherwise>
 												<li><a href="./item">물건</a></li>

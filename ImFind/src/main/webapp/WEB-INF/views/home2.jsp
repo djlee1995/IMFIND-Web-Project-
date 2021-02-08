@@ -38,13 +38,10 @@
     List<ItemVO> lostRank = (List<ItemVO>) request.getAttribute("lost_like_rank");
     //pet_like_rank
     List<PetVO> petRank = (List<PetVO>) request.getAttribute("pet_like_rank");
-
     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat format2= new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat format3 = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat format4 = new SimpleDateFormat("yyyy-MM-dd");
-
-
 %>
 
 <style>
@@ -329,7 +326,6 @@ h3.lost-title>a {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 1.5rem;
 }
-
 .banner {
 	width: 100%;
 	margin-left: 0 !important;
@@ -434,7 +430,6 @@ div.container-right {
     display: flex;
     flex-direction: column;
 }
-
 .photo{
 	width: 120px !important;
 }
@@ -465,7 +460,6 @@ div.pay_rank > div > div > a > div.simpleinfo{
 /* .like_rank_lost{
 	border: 1px solid gray;
     border-radius: 11px;
-
 } */
 .like_rank_lost{
 	display:flex;
@@ -481,14 +475,11 @@ div.pay_rank > div > div > a > div.simpleinfo{
     background:white;
     margin-bottom: 16px;
 }
-
 	
 }
 </style>
 
 <script>
-
-
 function doPopupopen(x,y,code) { 
        openWin = window.open("./police?x="+x+"&y="+y+"&code="+code+"", "");
 }
@@ -1000,7 +991,7 @@ document.addEventListener('DOMContentLoaded', function(){
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 							<h2>반려동물을 찾아주세요</h2>
-							<p>사용자의 현재 위치에서 분실신고된 반려동물입니다.</p>
+							<p>최근 분실 신고된 반려동물입니다.</p>
 						</div>
 					</div>
 					<div class="row swiper-container pet">

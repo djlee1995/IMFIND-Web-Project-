@@ -88,11 +88,17 @@
            justify-content: space-between;
            margin-bottom: -21px;
         }
+	    div.commentInfo > span:nth-child(1){
+	    	margin-bottom: 7px;
+	    	font-weigth:200;
+	    }
         div.commentInfo > span:nth-child(2){
         	font-weight:100;
         	font-size:12px;
         }
-        
+	    .recom-id{
+	    	margin-bottom: 7px;
+	    }
         /* YH */
         .cominput{
            border : 1px solid rgb(238, 238, 238);
@@ -159,6 +165,7 @@
 	    font-weight: 300;
 	    width: 86%;
     	word-break: initial;
+    	padding-bottom:13px;
     	/* border-bottom:  1px solid rgb(238, 238, 238);  */
 	}
 	.btn-con{
@@ -177,6 +184,14 @@
     	border-top: 1px solid #DDDDDD !important;
     	margin: 8px 0;
     	margin-bottom: 25px;
+    }
+    .content.update{
+    	width:100%;
+    }
+    .content.update > input{
+    	width: 100%;
+	    height: 100px;
+	    overflow: auto;
     }
     </style>  
 

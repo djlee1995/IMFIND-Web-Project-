@@ -54,7 +54,6 @@ public class EmailSend {
 	    sendMail.setSubject("[ Imfind 아이디 찾기 결과]");
         sendMail.setText(new StringBuffer().append("<h3>회원님의 아이디</h3>")
                 .append("회원님의 아이디는 [ <b>" + id + "<b> ] 입니다. <br>")
-                .append("<a target='http://localhost:8080/imfind/login'>Imfind 로그인 화면 이동 </a>")
                 .toString());
         sendMail.setFrom("szexdr@naver.com", "ImFind");
         sendMail.setTo(email);

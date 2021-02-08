@@ -135,6 +135,10 @@
 	    width: 60px;
 	    
 	}
+	.con{
+		position : relative;
+     	top: -114px;
+	}
 	
 	
 </style>
@@ -146,63 +150,64 @@
 	</script>
 	
  	 <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> 
- 	 <div id="deltitle"> 
- 	 	<div class="deltitle1">
- 	 		<h1>회원탈퇴</h1>
- 	 	</div>
- 	 	<div class="deltitle1">
- 	 		<h5 style="margin-top: 41px;">회원탈퇴를 하기전 아래 유의사항을 꼭 확인해 주시기 바랍니다.</h5>
- 	 	</div>
- 	 </div>     
-	
-	 <div class="notice">
-		<ol>
-			<li id="delcontent1">
-				<p>탈퇴 시 사용하고 계시는 [ ${loginUser} ] 아이디는 재사용 및 복구가 불가능합니다.</p>
-				<p>탈퇴 시 해당 아이디는 즉시 탈퇴 처리 되며, 탈퇴한 아이디는 본인과 타인 모두 <span class="color_point">재사용 및 복구가 불가</span> 하오니 신중하게 선택하시기 바랍니다.</p>
-			</li>
-			<li>
-				<p>탈퇴 시 회원정보는 <span class="color_point">모두 삭제되며,</span> 삭제된 데이터는 복구되지 않습니다.</p>
-			</li>
-			<li id="delcontent2">
-				<p>탈퇴 후에도 게시판에 등록한 게시물은 그대로 남아 있습니다.</p>
-				<p>imfind 홈페이지에 올린 게시글 및 댓글은 탈퇴 시 자동 삭제되지 않고 그대로 남아 있으므로, 삭제를 원하는 게시글이 있다면 반드시 탈퇴 전</p>
-				<p>삭제하시기 바랍니다.</p>
-			</li>
-		</ol>
-		<div class="agree_check" >
-		   <input type="radio" id="radio_y" name="radio" value="Y">
-		   <label for="radio_y" class="marginr10">동의합니다.</label>
-		   <input type="radio" id="radio_n" name="radio" value="N" checked="">
-		   <label for="radio_n">동의하지 않습니다.</label>
+ 	 <div class="con">
+	 	 <div id="deltitle"> 
+	 	 	<div class="deltitle1">
+	 	 		<h1>회원탈퇴</h1>
+	 	 	</div>
+	 	 	<div class="deltitle1">
+	 	 		<h5 style="margin-top: 41px;">회원탈퇴를 하기전 아래 유의사항을 꼭 확인해 주시기 바랍니다.</h5>
+	 	 	</div>
+	 	 </div>     
+		
+		 <div class="notice">
+			<ol>
+				<li id="delcontent1">
+					<p>탈퇴 시 사용하고 계시는 [ ${loginUser} ] 아이디는 재사용 및 복구가 불가능합니다.</p>
+					<p>탈퇴 시 해당 아이디는 즉시 탈퇴 처리 되며, 탈퇴한 아이디는 본인과 타인 모두 <span class="color_point">재사용 및 복구가 불가</span> 하오니 신중하게 선택하시기 바랍니다.</p>
+				</li>
+				<li>
+					<p>탈퇴 시 회원정보는 <span class="color_point">모두 삭제되며,</span> 삭제된 데이터는 복구되지 않습니다.</p>
+				</li>
+				<li id="delcontent2">
+					<p>탈퇴 후에도 게시판에 등록한 게시물은 그대로 남아 있습니다.</p>
+					<p>imfind 홈페이지에 올린 게시글 및 댓글은 탈퇴 시 자동 삭제되지 않고 그대로 남아 있으므로, 삭제를 원하는 게시글이 있다면 반드시 탈퇴 전</p>
+					<p>삭제하시기 바랍니다.</p>
+				</li>
+			</ol>
+			<div class="agree_check" >
+			   <input type="radio" id="radio_y" name="radio" value="Y">
+			   <label for="radio_y" class="marginr10">동의합니다.</label>
+			   <input type="radio" id="radio_n" name="radio" value="N" checked="">
+			   <label for="radio_n">동의하지 않습니다.</label>
+			</div>
+		 </div>
+		
+		<div class="pwchktitle" >
+			<h5>회원탈퇴를 위해 비밀번호를 입력해주세요.</h5>
 		</div>
-	 </div>
-	
-	<div class="pwchktitle" >
-		<h5>회원탈퇴를 위해 비밀번호를 입력해주세요.</h5>
+		<div class="pwchk">
+			<div class="pwbox"> 
+				<input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required style="width: 200px; height: 35px;">
+			</div>
+			<div class="pwok">
+			<button type="button" class="btn btn-block btn-secondary" onclick="return chkEqualpw()" style="width: 50px; height: 35px; font-family: 'Noto Sans KR', sans-serif;">확인</button>
+			</div>
+		</div>
+		
+		<div class="button_area">
+			<div class="del_suc">
+				<button class="btn btn-block btn-secondary" title="탈퇴하기" onclick="return deleteMember()" style="width: 86px;  font-family: 'Noto Sans KR', sans-serif;">
+					<span>탈퇴하기</span>
+				</button>
+			</div>
+			<div class="del_cancel">	
+				<button class="btn btn-block bg-gradient-secondary" title="취소" onclick="javascript:location.href='/home.do'" style="width: 86px;">
+					<span>취소</span>
+				</button>
+			</div>									
+		</div>
 	</div>
-	<div class="pwchk">
-		<div class="pwbox"> 
-			<input type="password" id="pass" placeholder="비밀번호를 입력해주세요" name="pw" autocomplete="false" required style="width: 200px; height: 35px;">
-		</div>
-		<div class="pwok">
-		<button type="button" class="btn btn-block btn-secondary" onclick="return chkEqualpw()" style="width: 50px; height: 35px; font-family: 'Noto Sans KR', sans-serif;">확인</button>
-		</div>
-	</div>
-	
-	<div class="button_area">
-		<div class="del_suc">
-			<button class="btn btn-block btn-secondary" title="탈퇴하기" onclick="return deleteMember()" style="width: 86px;  font-family: 'Noto Sans KR', sans-serif;">
-				<span>탈퇴하기</span>
-			</button>
-		</div>
-		<div class="del_cancel">	
-			<button class="btn btn-block bg-gradient-secondary" title="취소" onclick="javascript:location.href='/home.do'" style="width: 86px;">
-				<span>취소</span>
-			</button>
-		</div>									
-	</div>
-	
 	<script>
 	
 	 

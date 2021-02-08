@@ -115,7 +115,7 @@
        width: 93%;
        padding-left: 20px;
        padding-right: 15px;
-       margin-right : 9px;
+       margin-right : 10px;
    }
    .col-lg-5{
       padding-top: 35px !important;

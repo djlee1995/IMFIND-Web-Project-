@@ -24,7 +24,7 @@
     
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/newstyle.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/newstyle.css?after" type="text/css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
@@ -42,6 +42,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
      
      <style>
+		/* 매너평가 모달창 css 수정 */
+		/* 버튼 css 수정 */
+		.profile-con{
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    margin-top:22px;
+		}
      </style>
     
 </head>
@@ -72,9 +80,11 @@
   
   <div class="mypg_content">
 	   <div class="bg-light border-right" id="sidebar-wrapper" style=" width:200px; margin-top:150px;">
-	      <div class="col" style="padding-top: 10px; padding-left: 60px;"><h4> ${kakaoLoginUser}  ${loginUser}   님 </h4></div>
-	      <div class="col" style="PADDING-LEFT: 50PX; padding-top: 5px;"><h5> 나의 매너점수</h5></div>
-	      <div class="col" ID=show_Grade_Rating> 
+	   	  <div class="profile-con">
+		      <div class="profile-col" ><h4> ${kakaoLoginUser}  ${loginUser}   님 </h4></div>
+		      <div class="profile-col" ><h5> 나의 매너점수</h5></div>
+		      <div class="profile-col" ID=show_Grade_Rating> 
+
 	      	 <div class="grade" style="padding-bottom: 25px;">  	
 	           <div class="showGrade">
 	                <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
@@ -109,7 +119,8 @@
 	                  </svg>    
 	             </div>    
 	          </div>
-	      </div>   
+   	   	  </div>
+      </div>   
 	     
 	      <div class="list-group list-group-flush">   
 	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
@@ -154,8 +165,8 @@
    <div class="modal fade" role="dialog" id="dialog">
      <div class="modal-dialog">
        <!-- Modal content-->
-       <div class="modal-content">
-            <div class="modal-header">
+       <div class="modal-content" style="margin: 0 auto">
+            <div class="modal-header" style="display: flex; justify-content:center; align-items:center;">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
              <!--  <h6 class="modal-title">거래 완료 전 파인더님의 평점을 입력해 주세요.</h6> -->
             </div>

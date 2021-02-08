@@ -46,7 +46,7 @@
 	    text-align: start;
 	    padding-top: 11px;
 	    font-family: 'Noto Sans KR', sans-serif !important;
-	    font-weight: 200 !important;
+	    font-weight: 600 !important;
 	    color: black;
 	    margin-bottom: 9px;
       }
