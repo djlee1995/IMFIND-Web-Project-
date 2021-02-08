@@ -355,7 +355,7 @@
             
             if(e.target.id == 'pass'){
                // 테스트를 위해 주석처리함.
-               //chkPW(); 
+               chkPW(); 
             }
             if(e.target.id == 'pass2'){
                 chkEqualpw();
