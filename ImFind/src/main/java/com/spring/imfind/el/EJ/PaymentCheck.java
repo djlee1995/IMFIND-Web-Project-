@@ -25,11 +25,10 @@ public class PaymentCheck {
 	public static final String KEY = "7141568998201928";
 	public static final String SECRET = "RqLPsZQc9jmKWcHS3XTeUa7vF1d0KtxCTjsmjiztBWdy8VrbSlpNvxibzvbkZJWT2pfmHOPjL3STYj5R";
 
-	
 	// 접근을 위한 access token 생성 후 반환
 	public String getImportToken() {
-		String result="";
-		
+		String result = "";
+
 		HttpClient client = HttpClientBuilder.create().build(); // 클라이언트 생성
 		HttpPost post = new HttpPost(IMPORT_TOKEN_URL); // post 메소드 URL생성
 		Map<String, String> m = new HashMap<String, String>();
@@ -40,39 +39,35 @@ public class PaymentCheck {
 			HttpResponse res = client.execute(post); // 클라이언트로 결과 전송
 			ObjectMapper mapper = new ObjectMapper();
 			String body = EntityUtils.toString(res.getEntity());
-			System.out.println("body=" + body);
 			JsonNode rootNode = mapper.readTree(body);
-			System.out.println("rootNode" + rootNode);
 			JsonNode resNode = rootNode.get("response");
-			System.out.println("resNode=" + resNode);
-			
+
 			result = resNode.get("access_token").asText();
-			System.out.println("result=" + result);
 		} catch (Exception e) {
 			e.printStackTrace();
-		} return result;
+		}
+		return result;
 	}
-	
-	private List<NameValuePair>
-	convertParameter(Map<String,String> paramMap){
+
+	private List<NameValuePair> convertParameter(Map<String, String> paramMap) {
 		List<NameValuePair> paramList = new ArrayList<NameValuePair>();
-	    Set<Entry<String,String>> entries = paramMap.entrySet();
-		
-		for(Entry<String,String> entry : entries) {
-			paramList.add(new BasicNameValuePair(entry.getKey(),entry.getValue()));
+		Set<Entry<String, String>> entries = paramMap.entrySet();
+
+		for (Entry<String, String> entry : entries) {
+			paramList.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 		}
 		return paramList;
 	}
-	
+
 	// 결제취소
-	public int cancelPayment(String token, String mid) { // mid 주문번호. 
+	public int cancelPayment(String token, String mid) { // mid 주문번호.
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost(IMPORT_CANCEL_URL);
 		Map<String, String> map = new HashMap<String, String>();
-		post.setHeader("Authorization", token); // 권한부여 
-		map.put("merchant_uid", mid); // 주문번호 
+		post.setHeader("Authorization", token); // 권한부여
+		map.put("merchant_uid", mid); // 주문번호
 		String asd = "";
-		
+
 		try {
 			post.setEntity(new UrlEncodedFormEntity(convertParameter(map)));
 			HttpResponse res = client.execute(post);
@@ -83,13 +78,10 @@ public class PaymentCheck {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(asd.equals("null")) {
-			System.out.println("환불실패"); 
+		if (asd.equals("null")) {
 			return -1;
 		} else {
-			System.out.println("환불성공");
 			return 1;
 		}
 	}
 }
-

@@ -1,4 +1,5 @@
 package com.spring.imfind.el.MJ;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -16,29 +17,27 @@ public class ModifyController {
 	@Autowired
 	private ModifyService modifyService;
 	HttpSession session;
+
 	@RequestMapping("/modify")
-	public ModelAndView modify(ModelAndView modelandview, HttpServletRequest request) {	
+	public ModelAndView modify(ModelAndView modelandview, HttpServletRequest request) {
 		session = request.getSession();
-		String id = (String)session.getAttribute("loginUser");
+		String id = (String) session.getAttribute("loginUser");
 		MemberVO vo = modifyService.getMember(id);
 		modelandview.setViewName("./el/MJ/modify");
 		modelandview.addObject("membervo", vo);
 		return modelandview;
-	}	     
-	@RequestMapping(value="modify.do", produces="application/json; charset=UTF-8")
-		public String myinfo_update(LoginDTO dto) {
-		System.out.println("di");
-			Map<String, String> result = new HashMap<String, String>();
-			System.out.println(dto.toString());
-				dto.setAccount_holder(dto.getName());
-				int res = modifyService.updateMember(dto);
-				System.out.println(res);
-				if(res == 1) {
-					return "el/YS/mypage";
-				}
-				else {
-					return "register";
-				}
+	}
+
+	@RequestMapping(value = "modify.do", produces = "application/json; charset=UTF-8")
+	public String myinfo_update(LoginDTO dto) {
+		Map<String, String> result = new HashMap<String, String>();
+		dto.setAccount_holder(dto.getName());
+		int res = modifyService.updateMember(dto);
+		if (res == 1) {
+			return "el/YS/mypage";
+		} else {
+			return "register";
+		}
 	}
 
 }

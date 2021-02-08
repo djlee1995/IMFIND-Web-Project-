@@ -53,8 +53,6 @@ function loginValidate(loginBoxElem){
 	    		"pw": pw.value},  
 	    type: "POST",     
 		success : function(data){
-			alert(data)
-			//console.log(data);
 			if(data == 'unpass'){
 
 				id.setAttribute("style", " border: 1px solid red;");
@@ -119,7 +117,6 @@ function loginSubmit(e){
 	var pw = loginBoxElem.elements[1];		
 	
 	var flag = loginBoxNotNullCheck(id, pw);
-	//console.log(flag);
 	
 	if(flag){
 		loginValidate(loginBoxElem);
@@ -132,7 +129,6 @@ function kakaoLogin(){
 		url : "./el/getKakaoAuthUrl",
 		type : "POST",
 		success : function(data){
-			console.log(data);
 			location.href = data;
 		}
 	});

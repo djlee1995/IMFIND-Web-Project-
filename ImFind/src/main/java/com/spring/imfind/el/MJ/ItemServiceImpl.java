@@ -12,8 +12,7 @@ import com.spring.mapper.MJ.ItemMapper;
 
 @Service
 
-public class ItemServiceImpl implements ItemService{
-
+public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -69,6 +68,7 @@ public class ItemServiceImpl implements ItemService{
 		List<IndexLostPostDTO> List = mapper.getItembyDate();
 		return List;
 	}
+
 	@Override
 	public List<IndexLostPostDTO> getPetItembyDate() {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
@@ -189,31 +189,35 @@ public class ItemServiceImpl implements ItemService{
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		return mapper.pet_likeCount(Pet_PostNum);
 	}
-	//사례금 랭크
+
+	// 사례금 랭크
 	@Override
 	public List<ItemVO> lost_pay_rank(ItemVO vo) {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		return mapper.lost_pay_rank(vo);
 	}
-	//사례금 랭크(pet)
+
+	// 사례금 랭크(pet)
 	@Override
 	public List<PetVO> pet_pay_rank(PetVO vo) {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
-		
+
 		return mapper.pet_pay_rank(vo);
 	}
-	//좋아요 랭크
+
+	// 좋아요 랭크
 	@Override
 	public List<ItemVO> lost_like_rank() {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
 		int lost_PostNum = mapper.lost_like_rank();
 		return mapper.getdata_info(lost_PostNum);
 	}
-	//좋아요 랭크(pet)
+
+	// 좋아요 랭크(pet)
 	@Override
 	public List<PetVO> pet_like_rank() {
 		ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
-		int Pet_PostNum = mapper.pet_like_rank();	
+		int Pet_PostNum = mapper.pet_like_rank();
 		return mapper.getpetdata_info(Pet_PostNum);
 	}
 

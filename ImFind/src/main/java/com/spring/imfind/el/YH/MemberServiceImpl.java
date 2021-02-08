@@ -8,27 +8,25 @@ import org.springframework.stereotype.Service;
 import com.spring.mapper.YH.MemberMapper;
 
 @Service("memberService")
-public class MemberServiceImpl implements MemberService{
-	
+public class MemberServiceImpl implements MemberService {
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public int loginCheck(String id, String pw) {
-		
+
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		int count = memberMapper.loginCheck(id, pw);
-		System.out.println("count => " + count);
-		
+
 		int state = 0;
-		
-		if(count == 1) {
+
+		if (count == 1) {
 			state = 1;
-		}
-		else {
+		} else {
 			state = -1;
 		}
-		
+
 		return state;
 	}
 
@@ -41,28 +39,26 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int CheckID(String id) {
-		
+
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		int count = memberMapper.checkID(id);
 		int state = 0;
-		
-		if(count == 0) {
+
+		if (count == 0) {
 			state = 1;
-		}
-		else {
+		} else {
 			state = -1;
 		}
-		
+
 		return state;
 	}
 
 	@Override
 	public int insertMember(LoginDTO vo) {
-			
+
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		Integer state = memberMapper.insertMember(vo);
-		System.out.println(state);
-		System.out.println(vo.toString());
+
 		return 0;
 	}
 
@@ -72,6 +68,7 @@ public class MemberServiceImpl implements MemberService{
 		String state = memberMapper.findID(name, email);
 		return state;
 	}
+
 	@Override
 	public LoginDTO findPW(String id, String email) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
@@ -84,7 +81,6 @@ public class MemberServiceImpl implements MemberService{
 		int state = -1;
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		state = memberMapper.alterTempPW(id, pw);
-		System.out.println("stat�Դϴ� " + state);
 		return state;
 	}
 
@@ -94,22 +90,22 @@ public class MemberServiceImpl implements MemberService{
 		LoginDTO loginDto = memberMapper.getLoginDTO(id);
 		return loginDto;
 	}
-	  //MJ Email chk
-	   @Override
-	   public int CheckEmail(String email) {
-	      
-	      MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-	      int count = memberMapper.checkEmail(email);
-	      int state = 0;
-	      
-	      if(count == 0) {
-	         state = 1;
-	      }
-	      else {
-	         state = -1;
-	      }
-	      
-	      return state;
-	   }
+
+	// MJ Email chk
+	@Override
+	public int CheckEmail(String email) {
+
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int count = memberMapper.checkEmail(email);
+		int state = 0;
+
+		if (count == 0) {
+			state = 1;
+		} else {
+			state = -1;
+		}
+
+		return state;
+	}
 
 }

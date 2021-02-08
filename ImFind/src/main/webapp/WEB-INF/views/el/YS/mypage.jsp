@@ -57,10 +57,7 @@
 <body>
    <script>
       var user = '${loginUser}';
-        
-  /*     $('#memberModifyBtn').click(function(){
-           $(location).attr("href", "/imfind/modify");
-      }); */
+
    </script>
    
    

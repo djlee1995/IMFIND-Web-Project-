@@ -217,7 +217,6 @@
       div.infoBody > span{
          margin-right : 170px;
       }
-      /* background: #f7f9fa; */
       #content-body {
          border: .2px solid rgba;
          margin-top: 26px;

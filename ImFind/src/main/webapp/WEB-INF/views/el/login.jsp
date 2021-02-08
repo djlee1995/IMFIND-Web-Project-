@@ -46,7 +46,6 @@
 	
     <!-- 유희 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/YH/css/login.css?after" type="text/css">
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/home/css_YH.css?after" type="text/css"> --%>
 </head>
  <!-- 모든 페이지에 적용되는 head 설정 끝-->
  
@@ -88,10 +87,7 @@
 	display: flex;
 	justify-centent: center;
 }
-/* .kakabtn{
-	display : flex;
-	justify-content : center;
-} */
+
 .top-menu{
     box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
 	height : 88px !important;
@@ -130,7 +126,6 @@ div.container-fluid:nth-child(1) > div:nth-child(1) {
 
 
 .login-form h2, .group-input id {
-	/* font-family: "Space Mono", Arial, serif; */
 	font-family: 'Noto Sans KR', sans-serif;
 }	
 
@@ -256,8 +251,6 @@ div.container-fluid:nth-child(1) > div:nth-child(1) {
                               <div class="gi-more">
                                   <label for="save-pass" style="padding-left: 0px;">
                                      <a href="./register" class="or-login" style="color: black; font-size: 1rem; font-weight: 400;">회원가입</a>
-                                     <!--  <input type="checkbox" id="savePass" name="savePass">  -->
-                                    <!--   <span class="checkmark"></span> -->
                                   </label>
                                   <!-- 아이디, 비밀번호 찾기 -->
                                 <!--   <span class="forget-pass">Forget your ID / Password</span> -->
@@ -274,9 +267,7 @@ div.container-fluid:nth-child(1) > div:nth-child(1) {
 	                          </div>
                           </div>
                       </form>
-                      <!-- <div class="switch-login">
-                          <a href="./register" class="or-login">회원가입</a>
-                      </div> -->
+                   
                   </div>
               </div>
           </div>

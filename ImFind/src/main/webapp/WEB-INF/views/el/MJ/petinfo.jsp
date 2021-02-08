@@ -385,7 +385,6 @@
    
    <div id="output"></div>	
    <div class="container iteminfo">
-<!--    		<div id="update"></div> -->
    		<div id="file">
    		</div>
    		<div class="infoText">

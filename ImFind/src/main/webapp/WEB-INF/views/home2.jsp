@@ -14,7 +14,6 @@
 <html>
 <!-- Header Section Begin -->
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css"> --%>
 <!-- Header End -->
 
 <!-- swiper 플러그인 -->
@@ -457,10 +456,7 @@ div.pay_rank > div > div > a > div.simpleinfo{
 	margin-left:20px;
 	padding: auto 0;
 }
-/* .like_rank_lost{
-	border: 1px solid gray;
-    border-radius: 11px;
-} */
+
 .like_rank_lost{
 	display:flex;
 	z-index:10;
@@ -496,7 +492,7 @@ function getXY (getUserLocation){
         });
         
    } else {
-        /* 위치정보 사용 불가능 */
+     
    }
 }
 function pay_rank(){
@@ -646,17 +642,13 @@ function getChangeDateString(originalDate) {
 		if (fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4'
 				|| fromNowTrim == '5' || fromNowTrim == '6') {
 			return fromNowTrim + '일전';
-			// $('#lost_Re_Date').text(fromNow +'일전');
 		} else {
 			return moment(originalDate).format('YYYY-MM-DD');
-			// $('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));
 		}
 	} else if (fromNow == 'a day ago') {
 		return '어제';
-		// $('#lost_Re_Date').text('어제');
 	} else if (fromNow.includes('hours')) {
 		return fromNowTrim + '시간 전';
-		// $('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 	}
 }
 document.addEventListener('DOMContentLoaded', function(){
@@ -671,11 +663,7 @@ document.addEventListener('DOMContentLoaded', function(){
       observer: true,
       autoplay : {
          delay : 2500,
-      },
-/*       pagination : {
-         el: '.swiper-pagination.first',
-         type: 'progressbar',
-      }, */
+      },    
     
       navigation : {
          nextEl: '.arrow-next',

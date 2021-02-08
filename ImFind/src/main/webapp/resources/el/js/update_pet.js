@@ -16,7 +16,6 @@ $("#petdatepicker").datepicker({
       
       success: function(data){
 
-         console.log(data[0])
       if(data[0].pet_Name=="없음"){
     	$("input:radio[name='Pet_Name']:radio[value='"+data[0].pet_Name+"']").prop('checked', true); 
       }
@@ -62,7 +61,6 @@ $("#petdatepicker").datepicker({
     	});
     	
     	function sendFile(file, el) {
-    		 console.log()
     	       var form_data = new FormData();
     	       form_data.append('file', file);
     	   
@@ -76,7 +74,6 @@ $("#petdatepicker").datepicker({
     	         processData: false,
     	         success: function(url) {
     	        	 	var decodeURL = decodeURIComponent(url, 'utf-8');
-    	        	 	console.log(decodeURL)
     	        		 $(el).summernote('editor.insertImage', url);
     	         }
     	       });
@@ -257,9 +254,7 @@ function displayCenterInfo(result, status) {
       for (var i = 0; i < result.length; i++) {
          // 행정동의 region_type 값은 'H' 이므로
          if (result[i].region_type === 'H') {
-            //infoDiv.innerHTML = result[i].address_name;
             infoDiv.innerHTML = result[i].address_name;
-            //console.log(result[i])
             break;
          }
       }
@@ -272,7 +267,6 @@ function displayCenterInfo(result, status) {
 function enter(){
    if(event.keyCode==13){
       var Lost_Loc=$('#petcenterAddr2').val();
-       console.log(Lost_Loc)
 
        // 장소 검색 객체를 생성합니다
        var ps = new kakao.maps.services.Places();
@@ -297,7 +291,6 @@ function enter(){
 //위치검색 눌렀을때 위치검색 
  $("#Loc2Btn").click(function(){
     var Lost_Loc=$('#petcenterAddr2').val();
-    console.log(Lost_Loc)
       
        // 장소 검색 객체를 생성합니다
        var ps = new kakao.maps.services.Places();

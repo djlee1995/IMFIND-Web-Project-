@@ -14,7 +14,6 @@
 <html>
 <!-- Header Section Begin -->
 <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/home/css/css_YH.css?after" type="text/css"> --%>
 <!-- Header End -->
 
 <!-- swiper 플러그인 -->

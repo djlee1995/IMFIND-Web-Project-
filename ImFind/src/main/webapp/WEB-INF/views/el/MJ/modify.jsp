@@ -306,15 +306,9 @@
                                   <input type="tel" id="phone" name="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"  value= "<%=vo.getContact()%>" required><br><br>
                            <small>형식: 010-1234-5678</small><br><br>
                             </div>
-                           <!--  <div class="group-input label">
-                                <label for="policy">개인정보 제공동의 *</label>
-                            </div>
-                            <div class="group-input" >
-                                <div class="site-btn policy" ><div>동의하기</div></div>
-                            </div> -->
+                           
                             <input type="hidden" name="join_date"/>
                             <input type="hidden" name="account_holder" value="<%=vo.getId()%>">
-                       <!--      <input type="hidden" name="join_date"/> -->
                        <div></div>
                        <div class="buttons"><button type="submit" class="site-btn register-btn" value="수정">수정하기</button>
                             <button style="margin-left: 13px;" type="button" class="site-btn register-btn" onclick="history.back();" value="취소">취소하기</button>
@@ -372,7 +366,6 @@
             if(e.target.id == 'name'){
                getName(e);
             }
-            //event.target.style.background = 'rgb(255, 255, 255)';
       });
    });
     </script>   

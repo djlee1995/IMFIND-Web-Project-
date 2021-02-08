@@ -41,15 +41,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
 
 <style>
-/*
-	.notice {
-		width: 1100px;
-		height: 200px;
-		resize: none;
-		margin: auto 0;
-		
-	}
-*/	
+
 	#noticetext {
 		resize: none;
 		margin: auto 0;
@@ -240,7 +232,6 @@
 						}
 					}
 					else {
-						//window.location.href = "./";
 						alert("탈퇴하기 버튼을 눌러주세요!")
 					}
 		

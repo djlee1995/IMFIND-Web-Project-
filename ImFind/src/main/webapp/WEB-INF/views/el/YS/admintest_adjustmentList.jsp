@@ -58,7 +58,6 @@
 	 
      $('#output').empty();
     
-   //  var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>결제관리</h1>'
      var form ='<thead><tr>'
      		+'<th>글번호</th>'
      		+'<th>파인더</th>'
@@ -72,7 +71,6 @@
      		+'<th>정산날짜</th>'
      		+'</tr></thead><tbody>';
     
-    // $('#output').append(title);
      $('#output').append(form);
     
      $.ajax({
@@ -115,30 +113,13 @@
               output += '<td>' + adjustment_date + '</td>';
               
               output += '</tr>'
-              //console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
               $('#output').append(output); //추가
            }); //each 끝 
            }, //success 끝
            error:function(){
                 alert("ajax통신 실패!!!");
        },// error 끝.
-          /* complete : function(){ //등록글이 없으면, 페이지네이션이 계산할 tr카운팅수가 없으므로 무조건 수행 해도 상관 없다.
-				// myfunction();  //위에 each가 반복문으로 계속 돌아 가니까 한번 돌때 마다. 카운팅하기때문이 주의!!!  그래서 밖으로 나옴. 페이지네이셔 호출! 
-			     $('.dataTables_empty').remove()	
-        	  var tfoot ='</tbody><tfoot><tr>'
-        		  +'<th>글번호</th>'
-           		+'<th>파인더</th>'
-           		+'<th>거래상태</th>'
-           		+'<th>거래완료일</th>'
-           		+'<th>정산 금액</th>'
-           		+'<th>정산 계좌</th>'
-           		+'<th>은행</th>'
-           		+'<th>계좌주</th>'
-           		+'<th>정산 상태</th>'
-           		+'<th>정산날짜</th>'
-        	  +'</tr></tfoot>';
-        	  $('#output').append( tfoot );
-			}, */
+         
           
      });// ajax 끝
  };
@@ -168,28 +149,7 @@
   };
  </script>
 </head>
-<%-- 
- <script>
-      var user = '${loginUser}';
-   </script>
-   <!-- Page Preloder -->
-   <div id="preloder">
-      <div class="loader"></div>
-   </div>
 
-
-   <%
-      if (session.getAttribute("loginUser") == null && session.getAttribute("kakaoLoginUser") == null) {
-   %>
-   <jsp:include page="${request.contextPath}/el/header"></jsp:include>
-   <%
-      } else {
-   %>
-   <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
-   <%
-      }
-   %> --%>
-   
 <body class="hold-transition sidebar-mini layout-boxed">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -319,31 +279,7 @@
               <div class="card-body">
                 <table id="output" class="table table-bordered table-hover">
                   <!-- <table id="output" class="table table-bordered table-hover"> -->
-             	<!--   <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>payCode</th>
-                    <th>pay_Amount</th>
-                    <th>pay_State</th>
-                    <th>pay_Date</th>                    
-                  </tr>
-                  </thead>
-                  <tbody></tbody>-->
-                  <!-- <tbody></tbody>                  
-                  <tbody id="output"> 
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>contact</th>
-                    <th>email</th>
-                    <th>account_Num</th>
-                    <th>bank</th>
-                    <th>account_holder</th>
-                    <th>join_date</th>
-                  </tr>
-                  </tfoot> -->
+             	
                 </table>
            
                 
@@ -351,10 +287,6 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-<!-- </div> -->
-
-
-
 
 
 <!-- 붙일 테이블 가져옴 끝. -->
@@ -392,38 +324,12 @@
 <script src="${pageContext.request.contextPath}/resources/el/Admin_dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.request.contextPath}/resources/el/Admin_dist/js/demo.js"></script>
- </body>
-<!-- 원글에 있던 (아래) -->
-    <!-- Js Plugins -->
-   <%--  <script src="${pageContext.request.contextPath}/resources/el/js/jquery-3.3.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.countdown.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.nice-select.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.zoom.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.dd.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/jquery.slicknav.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/owl.carousel.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/el/js/main.js"></script>
-     --%>
-    <!-- jQuery -->
-  <!--   <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-    <!-- DataTables -->
-   <!--  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script> -->
-    
-<%--    <script src="${pageContext.request.contextPath}/resources/el/YH/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/el/YH/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/el/YH/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/el/YH/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script> --%>
-   
-    
-     <!-- Header Section Begin -->
-     <%--  <jsp:include page="${request.contextPath}/NewFooter_JS"></jsp:include> --%>
-    <!-- Header End -->
-   
-
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+ </body>
+
+
+
 
 
 

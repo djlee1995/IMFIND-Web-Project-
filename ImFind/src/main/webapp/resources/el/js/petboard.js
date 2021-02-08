@@ -29,7 +29,6 @@ $(document).ready(function() {
    });
    
    function sendFile(file, el) {
-       console.log()
           var form_data = new FormData();
           form_data.append('file', file);
       
@@ -43,7 +42,6 @@ $(document).ready(function() {
             processData: false,
             success: function(url) {
                   var decodeURL = decodeURIComponent(url, 'utf-8');
-                  console.log(decodeURL)
                   $(el).summernote('editor.insertImage', url);
             }
           });
@@ -211,9 +209,7 @@ function displayCenterInfo(result, status) {
       for (var i = 0; i < result.length; i++) {
          // 행정동의 region_type 값은 'H' 이므로
          if (result[i].region_type === 'H') {
-            //infoDiv.innerHTML = result[i].address_name;
             infoDiv.innerHTML = result[i].address_name;
-            //console.log(result[i])
             break;
          }
       }
@@ -226,7 +222,6 @@ function displayCenterInfo(result, status) {
 function enter(){
    if(event.keyCode==13){
       var Lost_Loc=$('#centerAddr2').val();
-       console.log(Lost_Loc)
 
        // 장소 검색 객체를 생성합니다
        var ps = new kakao.maps.services.Places();
@@ -251,7 +246,6 @@ function enter(){
 //위치검색 눌렀을때 위치검색 
  $("#Loc2Btn").click(function(){
     var Lost_Loc=$('#centerAddr2').val();
-    console.log(Lost_Loc)
       
        // 장소 검색 객체를 생성합니다
        var ps = new kakao.maps.services.Places();
@@ -360,7 +354,6 @@ function pay(){
          petpay = petpay.replaceAll("," , "");
          
       }   
-   console.log(petpay)
 
    // ajax 로 회원정보를 받아온뒤, 이름, 연락처, 주소 추출하여
    $.ajax({
@@ -390,7 +383,6 @@ function pay(){
             buyer_tel : data[0].contact,
             }, 
             function(rsp){ 
-               console.log(rsp.merchant_uid)
                if (rsp.success){ // 결제 성공
                   var msg = '결제가 완료되었습니다.';
                   var result = 
@@ -402,9 +394,7 @@ function pay(){
                      "Pay_Date" : getFormatDate(new Date()),//결제승인시각
                      "Id" : id
                   }// result
-                  console.log(result)
-                  console.log(rsp.paid_at);
-                  console.log(result.id);
+                 
          
                   // 서버로 결제테이블 정보 전송
                   $.ajax({

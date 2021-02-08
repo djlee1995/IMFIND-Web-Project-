@@ -4,8 +4,6 @@
 
 <mapper namespace="com.spring.mapper.LostMapper">
 
-	<!-- <select id="getMembers" resultType="EmpVO"> SELECT * FROM emp order 
-		by deptno </select> -->
 	<select id="police" resultType="PoliceVO">
 		SELECT * FROM p_place
 	</select>

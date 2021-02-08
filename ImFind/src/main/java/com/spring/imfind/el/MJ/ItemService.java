@@ -29,6 +29,7 @@ public interface ItemService {
 
 	// YH
 	public List<IndexLostPostDTO> getItembyDate();
+
 	public List<IndexLostPostDTO> getPetItembyDate();
 
 	// PET
@@ -61,6 +62,5 @@ public interface ItemService {
 
 	// 좋아요 랭크(pet)
 	public List<PetVO> pet_like_rank();
-
 
 }

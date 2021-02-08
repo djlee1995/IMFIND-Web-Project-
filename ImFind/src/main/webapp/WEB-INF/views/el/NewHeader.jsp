@@ -8,14 +8,12 @@
 
 <style>
 	.container-fluid{
-/* 		border: 1px solid black; */
 		width: 75vw;
 		margin: 0 auto;
 		padding: 0;
 	}
 	@media(min-width: 1900px){
 		.container-fluid.main-nav{
-/* 			border: 1px solid black; */
 			width: 62vw;
 			margin: 0 auto;
 			padding: 0;

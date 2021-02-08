@@ -14,7 +14,7 @@ function chkPW(e){
 		  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 		  return false;
 		 }else {
-			console.log("통과");	 
+			 console.log("통과");	 
 		 }
 	}
 	function getTime(){
@@ -78,7 +78,6 @@ function chkPW(e){
 	    }    
 	}
 	function getName(e){
-		console.log(e.target.value)
 		const account_holder = document.querySelector('input[name="account_holder"]');
 		account_holder.innerText = e.target.value;
 		account_holder.value = e.target.value;

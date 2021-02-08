@@ -54,7 +54,6 @@ public class MJController {
 	public List<ItemVO> likeChk() {
 
 		List<ItemVO> list = itemService.likeChk();
-		System.out.println(list);
 		return list;
 	}
 
@@ -70,7 +69,6 @@ public class MJController {
 	@ResponseBody
 	@RequestMapping(value = "/likeplus", produces = "application/json;charset=UTF-8")
 	public int likeplus(@RequestParam(value = "lost_PostNum") int lost_PostNum, @RequestParam(value = "id") String id) {
-		System.out.println("체크2");
 		int res = itemService.like_plus(lost_PostNum, id);
 		return res;
 	}
@@ -79,7 +77,6 @@ public class MJController {
 	@RequestMapping(value = "/likecancel", produces = "application/json;charset=UTF-8")
 	public int likecancel(@RequestParam(value = "lost_PostNum") int lost_PostNum,
 			@RequestParam(value = "id") String id) {
-		System.out.println("체크2");
 		int res = itemService.like_cancel(lost_PostNum, id);
 		return res;
 	}
@@ -90,7 +87,6 @@ public class MJController {
 	public List<ItemVO> pet_likeChk() {
 
 		List<ItemVO> list = itemService.likeChk();
-		System.out.println(list);
 		return list;
 	}
 
@@ -107,7 +103,6 @@ public class MJController {
 	@RequestMapping(value = "/pet_likeplus", produces = "application/json;charset=UTF-8")
 	public int pet_likeplus(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,
 			@RequestParam(value = "id") String id) {
-		System.out.println("체크2");
 		int res = itemService.pet_like_plus(Pet_PostNum, id);
 		return res;
 	}
@@ -116,7 +111,6 @@ public class MJController {
 	@RequestMapping(value = "/pet_likecancel", produces = "application/json;charset=UTF-8")
 	public int pet_likecancel(@RequestParam(value = "Pet_PostNum") int Pet_PostNum,
 			@RequestParam(value = "id") String id) {
-		System.out.println("체크2");
 		int res = itemService.pet_like_cancel(Pet_PostNum, id);
 		return res;
 	}
@@ -132,7 +126,6 @@ public class MJController {
 	@RequestMapping(value = "/search.do", produces = "application/json;charset=UTF-8")
 	public List<ItemVO> list(@RequestParam(value = "lost_Title") String lost_Title) {
 		List<ItemVO> list = itemService.getItemservice(lost_Title);
-		System.out.println("list" + list);
 		return list;
 	}
 
@@ -152,7 +145,6 @@ public class MJController {
 
 	@RequestMapping("/update.do")
 	public String update_data(ItemVO vo) {
-		System.out.println("업데이트 vo " + vo);
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
 		String content = vo.getLost_Content();
 		Matcher match = pattern.matcher(content);
@@ -167,9 +159,7 @@ public class MJController {
 		}
 		// Lost_Content부분에 있는 태그들 자르기
 		if (vo.getLost_Up_File() == null) {
-			System.out.println("Lost_Up_File" + Lost_Up_File);
 			String noimg = "0";
-			System.out.println(noimg);
 			vo.setLost_Up_File(noimg);
 
 		}
@@ -202,10 +192,9 @@ public class MJController {
 	public String petupdatepage() {
 		return "el/MJ/updatepet";
 	}
-	
+
 	@RequestMapping("/petupdate.do")
 	public String petupdate_data(PetVO vo) {
-		System.out.println("업데이트 vo " + vo);
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); // 이미지태그 자르기
 		String content = vo.getPet_Content();
 		Matcher match = pattern.matcher(content);
@@ -220,9 +209,7 @@ public class MJController {
 		}
 		// Lost_Content부분에 있는 태그들 자르기
 		if (vo.getPet_Up_File() == null) {
-			System.out.println("Lost_Up_File" + Lost_Up_File);
 			String noimg = "0";
-			System.out.println(noimg);
 			vo.setPet_Up_File(noimg);
 
 		}
@@ -239,6 +226,7 @@ public class MJController {
 
 		return "redirect:/pet";
 	}
+
 	@RequestMapping(value = "/petdeletepage", produces = "application/json;charset=UTF-8")
 	public String petdeletepage(@RequestParam(value = "Pet_PostNum") int Pet_PostNum) {
 		itemService.petdelete_data(Pet_PostNum);
@@ -256,7 +244,6 @@ public class MJController {
 	@RequestMapping(value = "/petsearch.do", produces = "application/json;charset=UTF-8")
 	public List<PetVO> petlist(@RequestParam(value = "Pet_Title") String Pet_Title) {
 		List<PetVO> list = itemService.getPetservice(Pet_Title);
-		System.out.println("list" + list);
 		return list;
 	}
 
@@ -306,4 +293,3 @@ public class MJController {
 		return list;
 	}
 }
-

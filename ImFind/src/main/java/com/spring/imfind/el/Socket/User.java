@@ -11,6 +11,5 @@ public class User {
 	public void setLoginUser(String loginUser) {
 		this.loginUser = loginUser;
 	}
-	
-	
+
 }

@@ -139,11 +139,9 @@
 		display: flex;
 	    justify-content: space-between;
 	    width: 100%;
-	   /*  border-bottom:  1px solid rgb(238, 238, 238); */
 	    padding-bottom: 13px;
 	}
 	.btn-con{
-/* 	    border-bottom:  1px solid rgb(238, 238, 238); */
 	    padding-bottom: 13px;
 	}
 	.com-txt{
@@ -166,7 +164,6 @@
 	    width: 86%;
     	word-break: initial;
     	padding-bottom:13px;
-    	/* border-bottom:  1px solid rgb(238, 238, 238);  */
 	}
 	.btn-con{
 		display: flex;
@@ -210,11 +207,8 @@
                  
                      <div class="com_btn">
                          <button type="reset" class="button2">취소</button>
-                        <!-- <button type="button" name="commentInsertBtn" class="button1" onclick="insertBtnClick()">등록</button> -->
                         <button type="button" class="button1" name="commentInsertBtn" >등록</button>
                         
-                        <!-- <button type="button" class="button2">
-                        <i class="fas fa-images fa-lg" ></i></button> -->
                         
                         <input type="checkbox" id="Secret_Com" name="Secret_Com"><i class="fas fa-unlock"></i>
                      </div>

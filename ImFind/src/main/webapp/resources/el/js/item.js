@@ -46,7 +46,6 @@ jQuery(document).ready(function(){
        si = "";
     }
     sigudong=si
-    console.log(lost_Loc)
   });
   //시군구 변경시 행정동 옵션추가
   jQuery('#sigugun').change(function(){
@@ -66,7 +65,6 @@ jQuery(document).ready(function(){
        
     }
     sigudong=si+gu
-    console.log(lost_Loc)
   });
   jQuery('#dong').change(function(){
     var sido = jQuery('#sido option:selected').val();
@@ -80,7 +78,6 @@ jQuery(document).ready(function(){
     }
    
     sigudong=si+gu+dong
-    console.log(lost_Loc)
   });
 
 });
@@ -118,7 +115,6 @@ function selectBtn() {
  					}
  	              formattedDate = getChangeDateString(item.lost_Re_Date)
  		       if(item.lost_Pay != 0 ){
- 				  console.log(item)
  				  output += '<div class="card-con">';
  				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
  				  output +=       '<div class="photo">' + lost_up_file +'</div>'
@@ -318,7 +314,6 @@ function fn_option(code, name){
 					}
 	              formattedDate = getChangeDateString(item.lost_Re_Date)
 		              
-				  console.log(item)
 				  output += '<div class="card-con">';
 				  output +=     '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
 				  output +=       '<div class="photo">' + lost_up_file +'</div>'
@@ -375,7 +370,6 @@ function enterkey() {
 					}
 	              formattedDate = getChangeDateString(item.lost_Re_Date)
 		              
-				  console.log(item)
 				  output += '<div class="card-con">';
 				  output +=    '<a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'&getId='+item.id+'">';
 				  output +=       '<div class="photo">' + lost_up_file +'</div>'
@@ -405,27 +399,24 @@ function enterkey() {
   function getChangeDateString(originalDate){
 
 	var fromNow = moment(originalDate).startOf('day').fromNow();
-	//console.log(fromNow)
+	
 	var fromNowTrim = fromNow.substr(0, 2).trim();
-	//console.log(fromNowTrim)
+	
 	
 	if(fromNow.includes('days')){
 		if(fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4' || fromNowTrim == '5' || fromNowTrim == '6'  ){
 			return fromNowTrim + '일전';
-			//$('#lost_Re_Date').text(fromNow +'일전');			
+				
 		}
 		else{
 			return moment(originalDate).format('YYYY-MM-DD');
-			//$('#lost_Re_Date').text(moment(originalDate).format('YYYY-MM-DD'));			
 		}
 	}
 	else if(fromNow == 'a day ago'){
 		return '어제';
-		//$('#lost_Re_Date').text('어제');	
 	}
 	else if(fromNow.includes('hours')){
 		return fromNowTrim + '시간 전';
-		//$('#lost_Re_Date').text(fromNowTrim + ' 시간 전')
 		}
 }
 
@@ -438,7 +429,6 @@ function enterkey() {
 	   arr = JSON.parse(sessionStorage.getItem('test'));
 	   console.log(arr)
 	   storage.innerHTML = ""; 
-	   //storage.innerHTML += '<div class="list">';
 		  
 	   var i;
 	   for(i = 0; i < arr.length; i++) { 
@@ -453,5 +443,4 @@ function enterkey() {
 								   + '</div>'
 		   
 	   }
-//storage.innerHTML += '</div>';
 }

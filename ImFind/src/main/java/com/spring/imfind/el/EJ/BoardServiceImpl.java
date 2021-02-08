@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
             sqlSession.getMapper(BoardMapper.class);
       int res = boardMapper.itemInsert(boardvo);
       
-      System.out.println(boardvo.toString());
+     
       
       return res;
    }
@@ -244,7 +244,6 @@ public List<PetVO> gethighsetPetPay() throws Exception {
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 	    BoardVO vo = boardMapper.getPostNum(boardvo);
-	    System.out.println("게시글 번호 : " + vo.getLost_PostNum());
 		return vo;
 	}
 
@@ -261,14 +260,13 @@ public List<PetVO> gethighsetPetPay() throws Exception {
 		BoardMapper boardMapper =
 				sqlSession.getMapper(BoardMapper.class);
 		PetVO vo = boardMapper.getPetPostNum(boardvo);
-	    System.out.println("게시글 번호 : " + vo.getPet_PostNum());
 		return vo;
 	}
 	@Override
 	public List<ComVO> getCommentList(String id) {
 		BoardMapper boardMapper=sqlSession.getMapper(BoardMapper.class);
 		List<ComVO> commentList = boardMapper.getCommentList(id);
-		//System.out.println(elseList2.toString());
+		
 		
 		return commentList;
 	}
@@ -276,7 +274,6 @@ public List<PetVO> gethighsetPetPay() throws Exception {
 	public List<ComVO> getPetCommentList(String id) {
 		BoardMapper boardMapper=sqlSession.getMapper(BoardMapper.class);
 		List<ComVO> commentList = boardMapper.getPetCommentList(id);
-		//System.out.println(elseList2.toString());
 		
 		return commentList;
 	}

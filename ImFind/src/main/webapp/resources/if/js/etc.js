@@ -153,7 +153,6 @@ function etc() {
 						var place ='<br><p style="font-size: x-large; font-weight:bold;"><a href=/imfind/s_lostlist.if class=s_lostlist_data id='+data[0].tel+'>'+img+data[0].depplace+img+'</a></p> <p style="font-size: larger;">'+data[0].addr+'&nbsp;&nbsp;<img style="cursor:pointer;" width=30px; height=30px; src="./resources/if/images/direct.png" onclick=window.open('+link+')><br>'+data[0].tel+'</p>';
 						$('.police').append(place);
 						$.each(data, function(index,item){
-							console.log(data[0])
 							var output = '<div align="center" class="output">';
 							output +='<img width="150px"; height="150px"; src="./resources/el/images/no_img.png">';
 							output +='<p><a href=/imfind/s_info.if class=s_info_data id='+item.code+'>'+item.item +'</a></p></div>';

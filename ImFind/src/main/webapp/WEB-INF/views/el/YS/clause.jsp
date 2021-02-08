@@ -390,7 +390,6 @@
     <!-- Mypage Form Section End -->
      
     <!--마이페이지 js 시작-연수 -->
-<%--     <script src="${pageContext.request.contextPath}/resources/el/js/cluse.js"></script> --%>
     <!--마이페이지 js 끝-연수 -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- DataTables -->

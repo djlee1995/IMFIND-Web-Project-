@@ -266,10 +266,8 @@ section{
 		      	<div class="input-con pay">
 					<div class="input-loc-title">사례금</div>
 					<div class="input-loc pay">
-						<!-- <i class="fas fa-hands-helping" style="color:gray;"></i> -->
 						<input type="checkbox" id="payChk" class="bb"/>
 						<label for="payChk" class="bb" >사례금</label>
-						<!-- <input type="checkbox" id="payChk"> -->
 					</div>
 				</div>
 				<div class="bt">

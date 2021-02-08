@@ -36,12 +36,12 @@ $(document).ready(function(){
 
 
 $('[name=commentInsertBtn]').click(function(){//댓글 등록 버튼 클릭시
-   console.log('진입')
+  
       
    if($('#Secret_Com').is(":checked") == true){
       $('#Secret_Com').val('y');
       var insertData = $('[name=commentInsertForm]').serialize();
-      alert('y');
+      
          
       commentInsert(insertData);
       return true;
@@ -51,27 +51,21 @@ $('[name=commentInsertBtn]').click(function(){//댓글 등록 버튼 클릭시
       $('#Secret_Com').val('n');
    
       var insertData = $('[name=commentInsertForm]').serialize();
-      alert('n');
          
       commentInsert(insertData);
       return true;
    }
-       //alert('insert 진입 before');
-   console.log("insertData" + insertData);   
 
 });
 //댓글 등록
 function commentInsert(insertData){
-   //alert('insert 진입');
-   console.log(insertData);
-   //console.log(secret_com)
+  
    $.ajax({
       url : '/imfind/pet_comment_insert',
       type : 'POST',
       data : insertData,
       success : function(data){
          if(data == 1){
-            alert("댓글이 등록되었습니다pet");
             commentList(); //댓글 작성 후 댓글 목록 reload
             $('[name=Com_Content]').val('');
          } else{
@@ -129,7 +123,6 @@ function commentDelete(com_Num){
       dataType : 'json',
       contentType : 'application/x-www-form-urlencoded;charset=utf-8',
       success : function(data){
-    	  console.log(data)
          
             commentList(); //댓글 삭제후 목록 출력
       },
@@ -153,14 +146,13 @@ function reply(com_Num) {
 function replyinsert(com_Num) {
 
    var insertdata='re_content='+$('[name=re_content'+com_Num+']').val()+'&com_num='+com_Num+''+'&pet_postnum='+Pet_PostNum+'';
-   console.log(insertdata)
    $.ajax({
       url : '/imfind/pet_reply_insert',
       type : 'POST',
       data : insertdata,
       success : function(data){
          if(data == 1){
-            //alert("댓글이 등록되었습니다");
+            
             replyList(); //댓글 작성 후 댓글 목록 reload
             $('[name=re_content'+com_Num+']').val('');
          } else{
@@ -177,10 +169,8 @@ function replyList() {
 	      url : '/imfind/pet_replylist',
 	      type : 'POST',
 	      success : function(data){
-	         console.log(id)
 	         $('.re_content').empty();
 	       $.each(data, function(key, value){
-	    	   console.log(value.id)
 	    	   if(value.id==id){
     		    var a='';
                 a+='<div class="recom-id">&#8627; '+value.id+'</div>';
@@ -214,7 +204,6 @@ function replyupdate_form(re_num,re_content) {
 		$('#replyList'+re_num).html(b)
 }
 function replyupdate(re_num) {
-	   console.log(re_num)
 	   var re_content = $('#replyupdate_form'+re_num).val();
 	   $.ajax({
 	      url : '/imfind/pet_reply_update',
@@ -230,7 +219,6 @@ function replyupdate(re_num) {
 	   });
 }   
 function replydelete(re_num) {
-   console.log(re_num)
    $.ajax({
       url : '/imfind/pet_reply_delete',
       type : 'POST',

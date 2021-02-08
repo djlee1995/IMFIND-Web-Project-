@@ -13,7 +13,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public int createChatRoom(ChatDTO dto) {
 		ChatMapper chatMapper = sqlSession.getMapper(ChatMapper.class);
@@ -23,7 +23,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public ChatDTO chkRoomExist(int postnum, String sender, String receiver) {
-		
+
 		ChatMapper chatMapper = sqlSession.getMapper(ChatMapper.class);
 		ChatDTO dto = chatMapper.chkRoomExist(postnum, sender, receiver);
 		return dto;
@@ -37,4 +37,3 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 }
-

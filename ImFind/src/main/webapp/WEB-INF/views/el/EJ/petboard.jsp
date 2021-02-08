@@ -138,7 +138,6 @@
          font-size : 1.5rem
       }
       .container-fluid {
-          /* border: 1px solid black; */
           width: 75vw;
           margin: 0 auto;
           padding: 0;
@@ -308,7 +307,6 @@
                      
                      <div class="modal-footer">
                         <a href="javascript:void(0);" onClick="return pay();" >확인</a>&nbsp;&nbsp;
-                     <!-- <button type="button" class="btn btn-primary" onclick="return pay()">확인</button> -->
                         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
                      </div>
                 </div>

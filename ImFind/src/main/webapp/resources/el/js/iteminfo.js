@@ -1,13 +1,11 @@
 var loc;
 var arr = [];
 
-$(document)
-		.ready(
-				function() {
+$(document).ready(
+	function() {
 					info();
 					img();
 					// like_func();
-					console.log(lost_PostNum)
 
 					var mapContainer = document.getElementById('map'), // 지도를
 					// 표시할
@@ -21,7 +19,6 @@ $(document)
 
 					var map = new kakao.maps.Map(mapContainer, mapOption);
 
-					console.log(loc)
 					// 주소-좌표 변환 객체를 생성합니다
 					var geocoder = new kakao.maps.services.Geocoder();
 
@@ -85,7 +82,6 @@ function info() {
 				contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 				// dataType:'json',
 				success : function(data) {
-					console.log(data)
 
 					if ($.trim(loginUser) == (data[0].id)) {
 						$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
@@ -109,16 +105,12 @@ function info() {
 						arr.push(bookmark)
 						sessionStorage.setItem('test', JSON.stringify(arr))
 						let test = sessionStorage.getItem('test')
-						console.log(test)
-						// ShowStorage();
 					} else {
 						var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
-						// now let's check if the stored value is an array
 						for (let i = 0; i < oldBKInfo.length; i++) {
 							console.log(oldBKInfo[i].postnum)
 
 							if (oldBKInfo[i].pk == lost_PostNum) {
-								//alert('중복입니다')
 								flag = true;
 								break;
 							}
@@ -134,7 +126,6 @@ function info() {
 						}
 
 					}
-					console.log(data)
 					formattedDate = getChangeDateString(data[0].lost_Re_Date)
 					loc = data[0].lost_Loc;
 					$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
@@ -184,7 +175,6 @@ function img() {
 									contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 									// dataType:'json',
 									success : function(data) {
-										console.log(data)
 
 										$('#like_cnt').text(data);
 										
@@ -222,8 +212,7 @@ function img() {
 															// dataType:'json',
 															success : function(
 																	data) {
-																console
-																		.log(data)
+																
 
 																$('#like_cnt').text(data);
 																

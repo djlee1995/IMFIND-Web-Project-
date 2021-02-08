@@ -23,7 +23,6 @@ public class YSController {
 	@RequestMapping("/mypage")
 	public String mypage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("loginUser"));
 		return "el/YS/mypage";
 	}
 
@@ -33,10 +32,8 @@ public class YSController {
 
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
-		System.out.println("session id1 : " + id);
 
 		List<ElVO> list = elService.getElsedata(id);
-		System.out.println("list" + list);
 		return list;
 	}
 
@@ -45,9 +42,7 @@ public class YSController {
 	public List<ElVO> getPetElsedata(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
-		System.out.println("session id1 : " + id);
 		List<ElVO> listpet = elService.getPetElsedata(id);
-		System.out.println("list" + listpet);
 		return listpet;
 	}
 
@@ -56,9 +51,7 @@ public class YSController {
 	public List<ElVO> getElsePaydata(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginUser");
-		System.out.println("session id2 : " + id);
 		List<ElVO> list2 = elService.getElsePaydata(id);
-		System.out.println("list2" + list2);
 		return list2;
 	}
 
@@ -67,17 +60,14 @@ public class YSController {
 	public List<ElVO> getElseWhoReplied(String params) {
 
 		List<ElVO> list3 = elService.getElseWhoReplied(params);
-		System.out.println("list3" + list3);
 		return list3;
 	}
 
 	@RequestMapping(value = "/getElseWhoRepliedPet", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<ElVO> getElseWhoRepliedPet(String params) {
-		System.out.println("getElseWhoRepliedPet " + params);
 
 		List<ElVO> list3 = elService.getElseWhoRepliedPet(params);
-		System.out.println("list3" + list3);
 		return list3;
 	}
 
@@ -87,12 +77,6 @@ public class YSController {
 	public Map<String, Object> insertGrade(@RequestBody HashMap<String, String> map) {
 
 		ElVO elvo = new ElVO();
-
-		System.out.println("inserGrade in");
-		System.out.println(elvo.toString());
-		System.out.println(map.get("F_Id"));
-		System.out.println("grade " + map.get("grade"));
-		System.out.println("lost_num " + map.get("Lost_PostNum"));
 
 		elvo.setF_Id(map.get("F_Id"));
 
@@ -108,12 +92,10 @@ public class YSController {
 
 				elvo.setDeal_State("completed");
 				int res2 = elService.updatePay_Grade(elvo);
-				System.out.println("update 상태 " + res2);
 
 				retVal.put("res", "OK");
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			retVal.put("res", "FAIL");
 			retVal.put("message", "Failure");
 		}
@@ -126,12 +108,6 @@ public class YSController {
 	public Map<String, Object> insertGradePet(@RequestBody HashMap<String, String> map) {
 
 		ElVO elvo = new ElVO();
-
-		System.out.println("inserGrade in");
-
-		System.out.println(map.get("F_Id"));
-		System.out.println("grade " + map.get("grade"));
-		System.out.println("Pet_PostNum " + map.get("Pet_PostNum"));
 
 		elvo.setF_Id(map.get("F_Id"));
 		elvo.setGrade(Integer.parseInt(map.get("grade")));
@@ -146,12 +122,10 @@ public class YSController {
 
 				elvo.setDeal_State("completed");
 				int res2 = elService.updatePay_GradePet(elvo);
-				System.out.println("update 상태 " + res2);
 
 				retVal.put("res", "OK");
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 			retVal.put("res", "FAIL");
 			retVal.put("message", "Failure");
 		}
@@ -176,8 +150,9 @@ public class YSController {
 		}
 		return avg;
 	}
-	 @RequestMapping("/admintest") public String afterLoginHeader() {
-	     return "el/YS/admintest";
-	     }
-}
 
+	@RequestMapping("/admintest")
+	public String afterLoginHeader() {
+		return "el/YS/admintest";
+	}
+}

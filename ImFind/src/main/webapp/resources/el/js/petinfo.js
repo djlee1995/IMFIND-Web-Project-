@@ -1,7 +1,6 @@
 var loc;
 var arr = [];
 $(document).ready(function() {
-	console.log(loginUser)
 
 	info();
 	img();
@@ -13,7 +12,6 @@ $(document).ready(function() {
         level: 3 // 지도의 확대 레벨
     };  
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-console.log(loc)
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 // 주소로 좌표를 검색합니다
@@ -53,7 +51,6 @@ function info() {
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
-			console.log(data[0].id)
 			if($.trim(loginUser)==(data[0].id)){
 				$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
 			}
@@ -80,16 +77,13 @@ function info() {
 					arr.push(bookmark)
 					sessionStorage.setItem('test', JSON.stringify(arr))
 					let test = sessionStorage.getItem('test')
-					console.log(test)
-					// ShowStorage();
+					
 				} else {
 					var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
-					// now let's check if the stored value is an array
 					for (let i = 0; i < oldBKInfo.length; i++) {
-						console.log(oldBKInfo[i].postnum)
 
 						if (oldBKInfo[i].pk == Pet_PostNum) {
-							//alert('중복입니다')
+							
 							flag = true;
 							break;
 						}
@@ -130,7 +124,6 @@ function img(){
 		      //dataType:'json',
 		      
 		    success: function(data) {
-		    	console.log(data)
 		    	if(data.length==0){
 		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
 			    	$('#like_cnt').text("0");
@@ -145,7 +138,6 @@ function img(){
 	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 	    				      //dataType:'json',
 	    				    success: function(data) {
-	    				    	console.log(data)
 	    				    	$('#like_cnt').text(data);
 	    				    	
 	    				    	//좋아요 버튼 색 변경
@@ -172,7 +164,6 @@ function img(){
 		    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		    				      //dataType:'json',
 		    				    success: function(data) {
-		    				    	console.log(data)
 		    				    	$('#like_cnt').text(data);
 		    				    	
 		    				    	//좋아요 버튼 색 변경
@@ -203,7 +194,6 @@ function like_func(){
 	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 	      //dataType:'json',
 	    success: function(data) {
-	    	console.log(data)
 	    	if(data.length==0){
    			 $.ajax({
 				    url: "./pet_likeplus",
@@ -213,7 +203,6 @@ function like_func(){
 				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 				      //dataType:'json',
 				    success: function(data) {
-				    	//$("#like_img").attr("src", "./resources/el/images/like2.png");
 				    	img();
 				    	
 				    },

@@ -118,7 +118,6 @@ $(document).ready(function() {
 	    	         map.setCenter(coords);
 	    	     } 
 	    	 });
-	    	 console.log(allData)
 	    	 $(document).ajaxStart(function() {
 
 	    		 $('#Progress_Loading').show();
@@ -132,7 +131,6 @@ $(document).ready(function() {
 	    		async:false,  
 	    		contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 	    		success : function(data){
-	    			console.log(data)
 	    			$('.manual').empty();
 	    			$('.movie').empty();
 	    			$('.police').empty();

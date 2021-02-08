@@ -56,7 +56,6 @@
                    output += '<td width = "80px">' + item.account_holder + '</td>';
                    output += '<td width = "80px">' + item.join_date + '</td>';
                    output += '</tr>'
-                  // console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
                    $('#output').append(output); //추가
 
             }); //each 끝 
@@ -81,12 +80,10 @@
          contentType : 'application/x-www-form-urlencoded:charset=utf-8',
          success : function(data){
             $.each(data, function(index, item){
-               //console.log(item)
                var output='';
                output += '<tr>'; 
                    output += '<td width = "80px">' + item.id + '</td>';
                    output += '<td width = "80px">' + item.payCode + '</td>';
-                   //output += '<td width = "80px">' + item.pay_Way + '</td>';
                    output += '<td width = "80px">' + item.pay_Amount + '</td>';
                    if (item.pay_State == 'paid'){
                       output += '<td width = "80px">결제완료</td>';
@@ -98,9 +95,7 @@
                       output += '<td width = "80px">환불완료</td>';
                    }
                       output += '<td width = "120px">' + item.pay_Date + '</td>';
-                      //output += '<td width = "120px">' + item.cancel_Date + '</td>';
                    output += '</tr>'
-                   //console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
                    $('#output').append(output); //추가
             }); //each 끝 
             }, //success 끝
@@ -113,7 +108,6 @@
    function paidList(){
        $('#output').empty();
        
-       //var pay_State = $("input[name=paymenu]:checked").val();
        
        
        var title ='<h1 style="margin-top:0px; margin-left:200px; width:500px;>결제관리</h1>'
@@ -126,12 +120,10 @@
          contentType : 'application/x-www-form-urlencoded:charset=utf-8',
          success : function(data){
             $.each(data, function(index, item){
-               //console.log(item)
                var output='';
                output += '<tr>';
                    output += '<td width = "80px">' + item.id + '</td>';
                    output += '<td width = "80px">' + item.payCode + '</td>';
-                   //output += '<td width = "80px">' + item.pay_Way + '</td>';
                    output += '<td width = "80px">' + item.pay_Amount + '</td>';
                    output += '<td width = "80px">결제완료</td>';
                    output += '<td width = "120px">' + item.pay_Date + '</td>';
@@ -159,12 +151,10 @@
          contentType : 'application/x-www-form-urlencoded:charset=utf-8',
          success : function(data){
             $.each(data, function(index, item){
-               //console.log(item)
                var output='';
                output += '<tr>';
                    output += '<td width = "80px">' + item.id + '</td>';
                    output += '<td width = "80px">' + item.payCode + '</td>';
-                  // output += '<td width = "80px">' + item.pay_Way + '</td>';
                    output += '<td width = "80px">' + item.pay_Amount + '</td>';
                    if (item.pay_State == 'refund'){
                       output += '<td width = "80px">환불요청</td>';
@@ -179,7 +169,6 @@
                      output += '<td width = "120px">' + item.cancel_Date + '</td>';
                    }
                    output += '</tr>'
-                  // console.log("output:" + output); //F12 개발자도구에서 볼수 있음 (dom 구조로 확인가능) 동적인 내용은 소스보기에서 볼수 없음
                    $('#output').append(output); //추가
             }); //each 끝 
             }, //success 끝
@@ -222,7 +211,6 @@
    document.addEventListener('DOMContentLoaded', function(){
       const tableElem = document.querySelector('#output');
       tableElem.addEventListener('click', function(){
-         //console.log(event.target);
          cancelPay(event);
       })
    })

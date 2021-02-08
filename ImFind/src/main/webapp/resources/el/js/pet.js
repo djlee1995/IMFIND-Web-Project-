@@ -48,7 +48,6 @@ jQuery(document).ready(
 					si = "";
 				}
 				sigudong = si
-				console.log(sigudong)
 			});
 			// 시군구 변경시 행정동 옵션추가
 			jQuery('#petsigugun').change(
@@ -68,7 +67,6 @@ jQuery(document).ready(
 							gu = "";
 						}
 						sigudong = si + gu
-						console.log(sigudong)
 					});
 					jQuery('#petdong').change(
 							function() {
@@ -81,14 +79,12 @@ jQuery(document).ready(
 									dong = "";
 								}
 								sigudong = si + gu + dong
-								console.log('시구동입니다 : ' + sigudong)
 							});
 				});
 
 
 
 function selectBtn() {
-	console.log(sigudong);
 	if (sigudong == '' && $('#payChk').is(":checked") == false) {
 
 		listdata();
@@ -170,7 +166,6 @@ function selectBtn() {
 			contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 			// dataType:'json',
 			success : function(data) {
-				console.log(data)
 				$('.card-wrapper').empty();
 				var output = '';
 
@@ -232,7 +227,6 @@ function listdata() {
 			var output = '';
 
 			$.each(data, function(index, item) {
-					console.log(item)
 					if (item.pet_Up_File == '0') {
 						pet_Up_File = '<img src="./resources/el/images/no_img.png"/>';
 					} else {
@@ -412,9 +406,7 @@ function enterkey() {
 function getChangeDateString(originalDate) {
 
 	var fromNow = moment(originalDate).startOf('day').fromNow();
-	console.log(fromNow)
 	var fromNowTrim = fromNow.substr(0, 2).trim();
-	console.log(fromNowTrim)
 
 	if (fromNow.includes('days')) {
 		if (fromNowTrim == '2' || fromNowTrim == '3' || fromNowTrim == '4'
@@ -440,9 +432,7 @@ function ShowStorage() {
 	   
 	   arr = sessionStorage
 	   arr = JSON.parse(sessionStorage.getItem('test'));
-	   console.log(arr)
 	   storage.innerHTML = ""; 
-	   //storage.innerHTML += '<div class="list">';
 		  
 	   var i;
 	   for(i = 0; i < arr.length; i++) { 

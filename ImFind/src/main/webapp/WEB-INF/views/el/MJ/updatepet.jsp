@@ -122,25 +122,8 @@
           margin-left: 0;
           margin-right: 5px;
       }
-     /*  body > section > div > form > div.item2 > label:nth-child(2) > input[type=radio],
-      body > section > div > form > div.item2 > label:nth-child(3) > input[type=radio]{
-         margin-left: 24px;
-         margin-right:5px;
-      }
-      .item2 > label:nth-child(3){
-         margin-right : 10px;
-      }
-      body > section > div > form > div.item2 > label:nth-child(2),
-      body > section > div > form > div.item2 > label:nth-child(3){
-          margin-right: 22px;
-      }
-      #p_textbox{
-         width: 181px;
-         height: 34px;
-         font-size : 1.5rem
-      } */
+    
       .container-fluid {
-          /* border: 1px solid black; */
           width: 75vw;
           margin: 0 auto;
           padding: 0;

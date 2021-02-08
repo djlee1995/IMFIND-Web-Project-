@@ -14,9 +14,6 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-<%--      <!-- Header Section Begin -->
-      <jsp:include page="${request.contextPath}/NewHeader_CSS"></jsp:include>
-    <!-- Header End --> --%>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css">
@@ -360,7 +357,6 @@
             if(e.target.id == 'name'){
                getName(e);
             }
-            //event.target.style.background = 'rgb(255, 255, 255)';
             
             if(e.target.id == 'email'){ // 추가 1.28 민정
                 chkEmail(e);
