@@ -49,6 +49,7 @@ function getItemList(){
       contentType:'application/x-www-form-urlencoded;charset=utf-8',
       success:function(data){
         $.each(data, function(index, item){   
+         console.log(item)
          var output=' ' ;         
              output += '<tr>';            
              output += '<td class="mypage-line">'+item.lost_PostNum +'</td>';//번호//id 부여하고 경고발생
@@ -63,7 +64,7 @@ function getItemList(){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar btn btn-block bg-gradient-danger" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
      
@@ -100,6 +101,7 @@ function getPetList(){
       contentType:'application/x-www-form-urlencoded;charset=utf-8',
       success:function(data){
         $.each(data, function(index, item){   
+          console.log(item)
          var output=' ' ;
             output += '<tr>';            
             output += '<td class="mypage-line">'+item.pet_PostNum +'</td>';//번호//id 부여하고 경고발생
@@ -107,13 +109,13 @@ function getPetList(){
             output += '<td class="mypage-line">'+item.pet_Pay+'</td>';//사례금
             output += '<td class="mypage-line">'+ moment(item.pet_LostDate).format('YY-MM-DD')+'</td>';//등록날짜          
             output += '<td class="mypage-line"><button type="button" id="updateBtn" class="btn btn-block bg-gradient-secondary">수정</button></td>';                
-            output += '<td class="mypage-line"><button type="button" id="deleteBtn" class="btn btn-block bg-gradient-danger">삭제<</button></td>';    
+            output += '<td class="mypage-line"><button type="button" id="deleteBtn" class="btn btn-block bg-gradient-danger">삭제</button></td>';    
             
             if(item.deal_State=='completed'){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
         
@@ -193,15 +195,15 @@ function getPayList(){
            var output=' ' ;
               output += '<tr>';            
               output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ moment(item.pay_Date).format('YY-MM-DD')+'&nbsp;'+'</td>';//결제일자
-              output += '<td class="mypage-line">'+item.pay_Amount+'</td>';//결제금액(사례금액)    
-             '<td class="mypage-line"><input type="hidden" class="payCode" value="'+ item.payCode +'"></td>';//결제코드 
+              output += '<td class="mypage-line">'+item.pay_Amount;//결제금액(사례금액)    
+              output += '<input type="hidden" class="payCode" value="'+ item.payCode +'"></td>';//결제코드 
              output += '<td class="mypage-line">카카오페이</td>';//결제방법
              output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+item.pay_State+'</td>';//결제상태        
              
              if (item.pay_State == 'paid') {
                 output += '<td class="mypage-line">결제완료</td>';
                 output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn" >환불요청</button></td>';    
-             } 
+             }  
              if (item.pay_State == 'refund') {
                 output += '<td class="mypage-line">환불접수</td>';
                 output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn2" >환불접수중</button></td>'; 
@@ -237,6 +239,7 @@ function getPetCommentList(){
       contentType:'application/x-www-form-urlencoded;charset=utf-8',
       success:function(data){
         $.each(data, function(index, item){   
+        	console.log(item)
         
          var output=' ' ;
             output += '<tr>';            
@@ -264,11 +267,13 @@ function getPetCommentList(){
 }
 //환불 신청
 document.addEventListener('click', function(event){
+     console.log(event.target)
      
    if(event.target.id == 'refundBtn'){
       alert("환불신청 후 취소가 불가합니다.");
        
-   var paycode = event.target.parentElement.parentElement.childNodes[2].firstChild.value;
+   var paycode = event.target.parentElement.parentElement.childNodes[1].lastElementChild.value;
+      console.log(paycode)
    var params =  {'Id' : user, 'PayCode' : paycode};
        
    $.ajax({
@@ -323,6 +328,7 @@ document.addEventListener('click', function(event){
 
 //환불신청후 버튼 이벤트
 document.addEventListener('click', function(event){
+   console.log(event.target)
    if(event.target.id == 'refundBtn2'){
      alert("접수중입니다");
    }
@@ -337,11 +343,14 @@ function myfunction (){
    pageCount=Math.ceil(rowsCount/rowsPerPage),
    numbers=$('#numbers_mypage_post1');  
        
-   
+   console.log('row 개수 : ' + rowsCount);
+   console.log('pageCount IFELSE0107 ='+ pageCount);
+   console.log('rowsPerPage IFELSE0107 ='+ rowsPerPage);
    
    /* 페이지네이션 li 생성 반복문*/
    for(var i=1; i <= pageCount; i++){
        
+      console.log('페이징 번호 : ' + i);
       numbers.append('<li><a href="">' + i + '</a></li>');
        
     }
@@ -363,6 +372,7 @@ function myfunction (){
        numbers.find('li a').removeClass('active');
        $(this).find('a').addClass('active');
        var index = $(this).index()+1;
+       console.log('index ='+ index ); 
        displayRows(index);
     });
 };
@@ -378,6 +388,7 @@ function myfunction (){
        /* 페이지네이션 li 생성 반복문*/
       for(var i=1; i <= pageCount; i++){
           
+          console.log('페이징 번호 : ' + i);
           numbers.append('<li><a href="">' + i + '</a></li>');
           
       }
@@ -397,6 +408,7 @@ function myfunction (){
           numbers.find('li a').removeClass('active');
           $(this).find('a').addClass('active');
           var index = $(this).index()+1;
+          console.log('index ='+ index ); 
           displayRows(index);
        });
 };
@@ -495,7 +507,7 @@ document.addEventListener('click', function(e){
       alert(1111)
       grade_insert_btn();
    }
-   if(e.target.className == 'btnWhoGetStar-pet btn btn-default btn-block'){
+   if(e.target.className == 'btnWhoGetStar-pet btn btn-block bg-gradient-danger'){
 	   lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
 	   getElseWhoRepliedPet(lostPostNum);
    }
@@ -513,6 +525,7 @@ document.addEventListener('click', function(e){
      
      userScore.change(function(){
         var userScoreNum = $(this).val();
+        console.log('userScoreNum:'+userScoreNum);
         
          $('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
          $('.make_star svg:nth-child(-n+'+ userScoreNum + ')').css({color:'#F05522'});
@@ -520,6 +533,7 @@ document.addEventListener('click', function(e){
                  
       $('.make_star svg').click(function(){
           targetNum = $(this).index()+1 ;
+          console.log('targetNum:'+ targetNum);
           $('.make_star svg').css({color:'#000'});//찍고 나서 블랙으로 다시 초기화 그래야 작은 단위로 내려올수 있어
           $('.make_star svg:nth-child(-n+'+ targetNum + ')').css({color:'#F05522'});
        });      
@@ -529,6 +543,7 @@ document.addEventListener('click', function(e){
 function grade_insert_btn (){         
    
      params = $('#output_WhoReplied input[name="finder"]:checked').val();
+     console.log('checkboxValue;)===>'+params);
      
      var str = "";
      str += params + "님을 선택하셨습니다." ;
@@ -547,6 +562,7 @@ function grade_insert_btn (){
          contentType : 'application/json',
          datatype:'json',
          success:function(retVal){
+        	 console.log("retVal " + retVal.res)
             if(retVal.res=="OK"){
             	window.location.href='./mypage'
           }
@@ -579,6 +595,7 @@ function grade_insert_btnPet (){
          contentType : 'application/json',
          datatype:'json',
          success:function(retVal){
+        	 console.log("retVal " + retVal.res)
             if(retVal.res=="OK"){
             	window.location.href='./mypage'
           }
@@ -623,7 +640,7 @@ function getMoeny(){
 	        	  
 	        	  $.each(data, function(index, item){   
 	        		  alert('총신 성공')
-	        		 
+	        		  console.log(item)
 	        		  
 	        		  var adjustment_state;
 	        		  var adjustment_date;

@@ -1,11 +1,13 @@
 var loc;
 var arr = [];
 
-$(document).ready(
-	function() {
+$(document)
+		.ready(
+				function() {
 					info();
 					img();
 					// like_func();
+					console.log(lost_PostNum)
 
 					var mapContainer = document.getElementById('map'), // 지도를
 					// 표시할
@@ -19,6 +21,7 @@ $(document).ready(
 
 					var map = new kakao.maps.Map(mapContainer, mapOption);
 
+					console.log(loc)
 					// 주소-좌표 변환 객체를 생성합니다
 					var geocoder = new kakao.maps.services.Geocoder();
 
@@ -70,6 +73,51 @@ $(document).ready(
 							});
 
 				});
+
+function insertIntoHistory(data, lost_PostNum){
+	
+	let flag = false;
+	// 최근 본 게시글
+	const bookmark = {
+		lost_up_file : lost_up_file,
+		lost_Title : data.lost_Title,
+		postnum : 'iteminfo?lost_PostNum=' + lost_PostNum + '&getId='+ data.id,
+		pk : lost_PostNum
+	}
+
+	if (sessionStorage.getItem('test') == null) {
+		arr.push(bookmark)
+		sessionStorage.setItem('test', JSON.stringify(arr))
+		let test = sessionStorage.getItem('test')
+		console.log(test)
+		// ShowStorage();
+	} else {
+		var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
+		// now let's check if the stored value is an array
+		for (let i = 0; i < oldBKInfo.length; i++) {
+			console.log(oldBKInfo[i].pk)
+
+			if (oldBKInfo[i].pk == lost_PostNum) {
+				flag = true;
+				break;
+			}
+		}
+		if (flag == false) {
+			
+			if(oldBKInfo.length == 4){
+				oldBKInfo.shift();
+			}
+			if (!(oldBKInfo instanceof Array))
+				oldBKInfo = [ oldBKInfo ]; // if not, create
+			// one
+			oldBKInfo.push(bookmark); // push a new student
+			// inside of it
+			sessionStorage.setItem("test", JSON
+					.stringify(oldBKInfo));
+		}
+	}
+}
+
 function info() {
 	$
 			.ajax({
@@ -82,6 +130,7 @@ function info() {
 				contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 				// dataType:'json',
 				success : function(data) {
+					console.log(data)
 
 					if ($.trim(loginUser) == (data[0].id)) {
 						$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="updateBtn" value="수정"><input type="button" class="deleteBtn" value="삭제"></th></div>');
@@ -92,40 +141,11 @@ function info() {
 					} else {
 						lost_up_file = data[0].lost_Up_File;
 					}
-					let flag = false;
-					// 최근 본 게시글
-					const bookmark = {
-						lost_up_file : lost_up_file,
-						lost_Title : data[0].lost_Title,
-						postnum : 'iteminfo?lost_PostNum=' + lost_PostNum + '&getId='+ data[0].id,
-						pk : lost_PostNum
-					}
-
-					if (sessionStorage.getItem('test') == null) {
-						arr.push(bookmark)
-						sessionStorage.setItem('test', JSON.stringify(arr))
-						let test = sessionStorage.getItem('test')
-					} else {
-						var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
-						for (let i = 0; i < oldBKInfo.length; i++) {
-							console.log(oldBKInfo[i].postnum)
-
-							if (oldBKInfo[i].pk == lost_PostNum) {
-								flag = true;
-								break;
-							}
-						}
-						if (flag == false) {
-							if (!(oldBKInfo instanceof Array))
-								oldBKInfo = [ oldBKInfo ]; // if not, create
-							// one
-							oldBKInfo.push(bookmark); // push a new student
-							// inside of it
-							sessionStorage.setItem("test", JSON
-									.stringify(oldBKInfo));
-						}
-
-					}
+					
+					// 최근 본 게시물 저장
+					insertIntoHistory(data[0], lost_PostNum);
+					
+					console.log(data)
 					formattedDate = getChangeDateString(data[0].lost_Re_Date)
 					loc = data[0].lost_Loc;
 					$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
@@ -175,6 +195,7 @@ function img() {
 									contentType : 'application/x-www-form-urlencoded;charset=utf-8',
 									// dataType:'json',
 									success : function(data) {
+										console.log(data)
 
 										$('#like_cnt').text(data);
 										
@@ -212,7 +233,8 @@ function img() {
 															// dataType:'json',
 															success : function(
 																	data) {
-																
+																console
+																		.log(data)
 
 																$('#like_cnt').text(data);
 																

@@ -44,6 +44,10 @@
       .notosanskr * { 
          font-family: 'Noto Sans KR', sans-serif;
       }
+      .container{
+     	position: relative;
+    	top: -42px;
+      }
       form, h6{
          font-family: 'Noto Sans KR', sans-serif;
       }
@@ -96,7 +100,7 @@
       }
       .note-toolbar {
           position: relative;
-          height: 54px;
+          height: 112px;
       }
       .note-Font > div:nth-child(1) > button:nth-child(1){
          margin-left:2px;
@@ -131,7 +135,7 @@
       }
       #Loc2{
    	    position: relative !important;
-	    left: -93px !important;
+	    left: -43px !important;
 	  }
 	  #datepicker{
 	  	margin-left:33px !important;
@@ -144,6 +148,18 @@
 	  }
 	  .note-btn-group > button{
 	  	height: 39px !important;
+	  }
+	  .modal-footer{
+	  	display: flex;
+    	justify-content: center;
+	  }
+	  .modal-footer > button, 
+	  .modal-footer > a{
+	  	margin : 0;
+	  }
+	  .modal-footer > button{
+		border : none;
+		background: none;
 	  }
       </style>
       <script>
@@ -295,7 +311,7 @@
                      </div>
                      <div class="modal-footer">
                         <a href="javascript:void(0);" onClick="return pay();" >확인</a>&nbsp;&nbsp;
-                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                        <button type="button" class="" data-dismiss="modal">취소</button>
                      </div>
                 </div>
             </div>

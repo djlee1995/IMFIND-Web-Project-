@@ -1,6 +1,7 @@
 var loc;
 var arr = [];
 $(document).ready(function() {
+	console.log(loginUser)
 
 	info();
 	img();
@@ -12,6 +13,7 @@ $(document).ready(function() {
         level: 3 // 지도의 확대 레벨
     };  
 var map = new kakao.maps.Map(mapContainer, mapOption); 
+console.log(loc)
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 // 주소로 좌표를 검색합니다
@@ -42,6 +44,51 @@ $('.petdeleteBtn').click(function(){
 });
 
 });
+
+// 최근 본 게시물 함수
+function insertIntoHistory(data, Pet_PostNum){
+	
+	// 최근 본 게시글
+	let flag = false;
+	const bookmark = {
+		lost_up_file : pet_Up_File,
+		lost_Title : data.pet_Title,
+		postnum : 'petinfo?Pet_PostNum=' + Pet_PostNum + '&getId='+ data.id,
+		pk : Pet_PostNum
+	}
+
+	if (sessionStorage.getItem('test') == null) {
+		arr.push(bookmark)
+		sessionStorage.setItem('test', JSON.stringify(arr))
+		let test = sessionStorage.getItem('test')
+		console.log(test)
+		// ShowStorage();
+	} else {
+		var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
+		// now let's check if the stored value is an array
+		for (let i = 0; i < oldBKInfo.length; i++) {
+
+			if (oldBKInfo[i].pk == Pet_PostNum) {
+				flag = true;
+				break;
+			}
+		}
+		if (flag == false) {
+			
+			if(oldBKInfo.length == 4){
+				oldBKInfo.shift();
+			}
+			
+			if (!(oldBKInfo instanceof Array))
+				oldBKInfo = [ oldBKInfo ]; // if not, create
+											// one
+			oldBKInfo.push(bookmark); // push a new student
+										// inside of it
+			sessionStorage.setItem("test", JSON.stringify(oldBKInfo));
+		}
+	}
+}
+
 function info() {
 	$.ajax({
 		url :'petdatainfo.do',
@@ -51,6 +98,7 @@ function info() {
 		contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		//dataType:'json',
 		success: function(data){
+			console.log(data[0].id)
 			if($.trim(loginUser)==(data[0].id)){
 				$('#output').html('<div class="container-btn"><th colspan="5"><input type="button" class="petupdateBtn" value="수정"><input type="button" class="petdeleteBtn" value="삭제"></th></div>');
 			}
@@ -62,52 +110,21 @@ function info() {
 				pet_Up_File = data[0].pet_Up_File;
 				 //$('#file').html(data[0].pet_Up_File);
 			}
-				
-				// 최근 본 게시글
-				let flag = false;
-				const bookmark = {
-					lost_up_file : pet_Up_File,
-					lost_Title : data[0].pet_Title,
-					postnum : 'petinfo?Pet_PostNum=' + Pet_PostNum + '&getId='+ data[0].id,
-					pk : Pet_PostNum
-					
-				}
-
-				if (sessionStorage.getItem('test') == null) {
-					arr.push(bookmark)
-					sessionStorage.setItem('test', JSON.stringify(arr))
-					let test = sessionStorage.getItem('test')
-					
-				} else {
-					var oldBKInfo = JSON.parse(sessionStorage.getItem("test"));
-					for (let i = 0; i < oldBKInfo.length; i++) {
-
-						if (oldBKInfo[i].pk == Pet_PostNum) {
-							
-							flag = true;
-							break;
-						}
-					}
-					if (flag == false) {
-						if (!(oldBKInfo instanceof Array))
-							oldBKInfo = [ oldBKInfo ]; // if not, create
-														// one
-						oldBKInfo.push(bookmark); // push a new student
-													// inside of it
-						sessionStorage.setItem("test", JSON.stringify(oldBKInfo));
-					}
-				}
-				formattedDate = getChangeDateString(data[0].pet_Re_Date)
-				loc=data[0].pet_Loc
-				$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
-				$('#pet').text(data[0].pet_Name);
-				$('#title').html(data[0].pet_Title+'<div id="like-con"><a href="javascript:like_func();" class="like-btn"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></a></div>');
-				$('#content-body-text').html(data[0].pet_Content);
-				$('#file').html(pet_Up_File);
-				$('#pay').text(data[0].pet_Pay);
-				$('#loc').text(data[0].pet_Loc);
-				$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
-				$('#id').text(data[0].id);
+			
+			// 최근 본 게시물 저장
+			insertIntoHistory(data[0], Pet_PostNum);
+	
+			formattedDate = getChangeDateString(data[0].pet_Re_Date)
+			loc=data[0].pet_Loc
+			$('#lost_Re_Date').html('<i class="far fa-calendar-alt"></i> ' + formattedDate);
+			$('#pet').text(data[0].pet_Name);
+			$('#title').html(data[0].pet_Title+'<div id="like-con"><a href="javascript:like_func();" class="like-btn"><i id="like_img" class="far fa-thumbs-up"></i><span id="like_cnt"></span></a></div>');
+			$('#content-body-text').html(data[0].pet_Content);
+			$('#file').html(pet_Up_File);
+			$('#pay').text(data[0].pet_Pay);
+			$('#loc').text(data[0].pet_Loc);
+			$('#lostdate').text(moment(data[0].pet_LostDate).format('YYYY-MM-DD'));
+			$('#id').text(data[0].id);
 		},
 
 		error : function() {
@@ -124,6 +141,7 @@ function img(){
 		      //dataType:'json',
 		      
 		    success: function(data) {
+		    	console.log(data)
 		    	if(data.length==0){
 		    		$("#like_img").attr("src", "./resources/el/images/like1.png");
 			    	$('#like_cnt').text("0");
@@ -138,6 +156,7 @@ function img(){
 	    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 	    				      //dataType:'json',
 	    				    success: function(data) {
+	    				    	console.log(data)
 	    				    	$('#like_cnt').text(data);
 	    				    	
 	    				    	//좋아요 버튼 색 변경
@@ -164,6 +183,7 @@ function img(){
 		    				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 		    				      //dataType:'json',
 		    				    success: function(data) {
+		    				    	console.log(data)
 		    				    	$('#like_cnt').text(data);
 		    				    	
 		    				    	//좋아요 버튼 색 변경
@@ -194,6 +214,7 @@ function like_func(){
 	      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 	      //dataType:'json',
 	    success: function(data) {
+	    	console.log(data)
 	    	if(data.length==0){
    			 $.ajax({
 				    url: "./pet_likeplus",
@@ -203,6 +224,7 @@ function like_func(){
 				      contentType: 'application/x-www-form-urlencoded;charset=utf-8',
 				      //dataType:'json',
 				    success: function(data) {
+				    	//$("#like_img").attr("src", "./resources/el/images/like2.png");
 				    	img();
 				    	
 				    },

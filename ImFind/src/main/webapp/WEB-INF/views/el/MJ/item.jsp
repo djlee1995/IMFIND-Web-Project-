@@ -120,13 +120,13 @@ section{
          .searchbar,
          .selectBox,
          .cardLlst{
-            width: 64vw;
+            width: 72vw;
             margin: 0 auto;
          }
          .card-wrapper{
             display:flex;
             flex-wrap:wrap;
-            padding: 0 61px;
+            padding: 0 67px;
          }
          .card-con{
             width: 180px;

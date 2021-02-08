@@ -15,8 +15,17 @@
    <style> 
         .comtitle {
            margin : 7px 0 -10px 0px;
+        }	
+        .content > input {
+        	width: 799px;
+        	min-height: 50px;
         }
-        
+        .content > button { 
+        	border : none;
+        	background : none;
+        	font-size: 13px;
+    		color: gray;
+        }
         .comtitle > h3 {
            font-family:'Noto Sans KR', sans-serif !important;
            font-size : 20px;

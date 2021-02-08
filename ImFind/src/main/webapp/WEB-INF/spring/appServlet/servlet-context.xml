@@ -58,6 +58,8 @@
 		<interceptor>
 			<mapping path="/itemboard"></mapping>
 			<mapping path="/petboard"></mapping>
+			<mapping path="/iteminfo"></mapping>
+			<mapping path="/petinfo"></mapping>
 			<mapping path="/mypage"></mapping>
 			<mapping path="/comment_insert"></mapping>
 			<mapping path="/socket"></mapping>
@@ -81,3 +83,5 @@
 			</websocket:handshake-interceptors>
 		</websocket:handlers>
 	</beans:beans>
+	
+	

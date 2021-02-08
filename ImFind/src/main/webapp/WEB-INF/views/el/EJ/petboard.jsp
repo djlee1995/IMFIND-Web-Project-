@@ -45,6 +45,10 @@
       .notosanskr * { 
          font-family: 'Noto Sans KR', sans-serif;
       }
+      .container{
+     	position: relative;
+    	top: -42px;
+      }
       form, h6{
          font-family: 'Noto Sans KR', sans-serif;
       }
@@ -147,13 +151,25 @@
       }
       #Loc2{
    	    position: relative !important;
-	    left: -93px !important;
+	    left: -43px !important;
 	  }
 	  #datepicker{
 	  	margin-left:37px !important;
 	  }
 	  .btn-fullscreen{
 	  	margin-top:20px;
+	  }
+  	  .modal-footer{
+	  	display: flex;
+    	justify-content: center;
+	  }
+	  .modal-footer > button, 
+	  .modal-footer > a{
+	  	margin : 0;
+	  }
+	  .modal-footer > button{
+		border : none;
+		background: none;
 	  }
       </style>
       <script>

@@ -102,7 +102,6 @@ function commentUpdateForm(com_Num, com_Content) {
 	a += '<button type="button" onclick="commentUpdate(' + com_Num
 			+ ');"><i class="fas fa-cut"></i>수정</button> ';
 	a += '<button type="button" onclick="commentList();">취소</button>';
-	a += '<button type="button" onclick="reply();">댓글</button>';
 	a += '</div>';
 	$('#commentContent' + com_Num).html(a);
 }
