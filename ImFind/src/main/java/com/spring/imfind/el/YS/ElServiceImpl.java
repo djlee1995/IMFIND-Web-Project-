@@ -101,4 +101,15 @@ public class ElServiceImpl implements ElService {
 		return list;
 	}
 
+	@Override
+	public List<ElVO> getlike(String id) {
+		ElMapper elMapper = sqlSession.getMapper(ElMapper.class);
+		List<ElVO> List1 = elMapper.getlike_lost(id);
+		List<ElVO> List2 = elMapper.getlike_pet(id);
+		List<ElVO> List = new ArrayList<>();
+		List.addAll(List1);
+		List.addAll(List2);
+		return List;
+	}
+
 }

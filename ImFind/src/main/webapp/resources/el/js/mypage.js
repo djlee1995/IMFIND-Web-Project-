@@ -64,7 +64,7 @@ function getItemList(){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar btn btn-block bg-gradient-danger" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar" Zclass="btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
      
@@ -115,7 +115,7 @@ function getPetList(){
                 output +='<td class="mypage-line">거래확정</td>';
              }  
              else{
-            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-block bg-gradient-danger"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
+            	 output += '<td class="mypage-line"><button type="button" class="btnWhoGetStar-pet btn btn-default btn-block"  data-toggle="modal" data-target="#dialog">거래완료</button></td>'; 
              }
              output += '</tr>';
         
@@ -195,15 +195,15 @@ function getPayList(){
            var output=' ' ;
               output += '<tr>';            
               output += '<td class="mypage-line">'+'&nbsp;'+'&nbsp;'+ moment(item.pay_Date).format('YY-MM-DD')+'&nbsp;'+'</td>';//결제일자
-              output += '<td class="mypage-line">'+item.pay_Amount;//결제금액(사례금액)    
-              output += '<input type="hidden" class="payCode" value="'+ item.payCode +'"></td>';//결제코드 
+              output += '<td class="mypage-line">'+item.pay_Amount+'</td>';//결제금액(사례금액)    
+             '<td class="mypage-line"><input type="hidden" class="payCode" value="'+ item.payCode +'"></td>';//결제코드 
              output += '<td class="mypage-line">카카오페이</td>';//결제방법
              output += '<td class="mypage-line"><input type="hidden" class="payState" value="'+item.pay_State+'</td>';//결제상태        
              
              if (item.pay_State == 'paid') {
                 output += '<td class="mypage-line">결제완료</td>';
                 output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn" >환불요청</button></td>';    
-             }  
+             } 
              if (item.pay_State == 'refund') {
                 output += '<td class="mypage-line">환불접수</td>';
                 output += '<td class="mypage-line"><button type="button" class="btn btn-block bg-gradient-danger" id="refundBtn2" >환불접수중</button></td>'; 
@@ -333,6 +333,7 @@ document.addEventListener('click', function(event){
      alert("접수중입니다");
    }
 });
+
 
 var params;
 function myfunction (){             
@@ -507,7 +508,7 @@ document.addEventListener('click', function(e){
       alert(1111)
       grade_insert_btn();
    }
-   if(e.target.className == 'btnWhoGetStar-pet btn btn-block bg-gradient-danger'){
+   if(e.target.className == 'btnWhoGetStar-pet btn btn-default btn-block'){
 	   lostPostNum = e.target.parentElement.parentElement.childNodes[0].innerText;
 	   getElseWhoRepliedPet(lostPostNum);
    }
@@ -549,9 +550,9 @@ function grade_insert_btn (){
      str += params + "님을 선택하셨습니다." ;
      $('#finder_name').append(str);
      
-     alert('params ' + params);   
-     alert('targetNum ' + targetNum)
-     alert('user ' + user);
+//     alert('params ' + params);   
+//     alert('targetNum ' + targetNum)
+//     alert('user ' + user);
    
      data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Lost_PostNum" : lostPostNum};                         
      // 서버로 전송
@@ -582,9 +583,9 @@ function grade_insert_btnPet (){
      alert('동물 모달')
      params = $('#output_WhoReplied input[name="finder"]:checked').val();
      
-     alert('params ' + params);   
-     alert('targetNum ' + targetNum)
-     alert('user ' + user);
+//     alert('params ' + params);   
+//     alert('targetNum ' + targetNum)
+//     alert('user ' + user);
    
      data = {"F_Id" : params, "grade" : targetNum, "Id" : user, "Pet_PostNum" : lostPostNum};                         
      // 서버로 전송
@@ -612,7 +613,7 @@ function grade_insert_btnPet (){
 };  
 
 function getMoeny(){
-	  alert('정산내역')
+
 	  $('#output').empty(); 
 	  $('#mypgform').empty();
 	  
@@ -626,6 +627,7 @@ function getMoeny(){
 	         contentType : 'application/json',
 	         datatype:'json',
 	         success:function(data){
+
 	        	  var output = '<tr style="text-align: center;">'
 	        		  			+'<td>글번호</td>'
 	        		  			+'<td>거래자</td>'
@@ -639,14 +641,13 @@ function getMoeny(){
         		  			+'</td>'
 	        	  
 	        	  $.each(data, function(index, item){   
-	        		  alert('총신 성공')
 	        		  console.log(item)
 	        		  
 	        		  var adjustment_state;
 	        		  var adjustment_date;
 	        		  
 	        		  if(item.lost_PostNum == null){
-	        			  postnum = item.pat_PostNum
+	        			  postnum = item.pet_PostNum
 	        			  href = './petinfo?Pet_PostNum='
 	        		  }
 	        		  else{
@@ -676,8 +677,8 @@ function getMoeny(){
 	                     output += '<td class="mypage-line">'+ adjustment_date +'</td>';// 정산날짜
 
 	                     output += '</tr>';
-	                     $('#output').append(output);
 	                 });
+	        	  $('#output').append(output);
 	         },
 	         error:function(){
 	            alert("ajax통신 실패!!!");                
@@ -686,4 +687,44 @@ function getMoeny(){
 	     //기본이벤트 제거 
 	     event.preventDefault();
 
+}
+function getLiketo() {
+		$('#output').empty(); 
+	    $('#mypgform').empty();
+	   // $('#input-grade').attr('id', 'input-grade-pet')
+	    
+	  //  var title= '<h4 style="font-weight: 300; padding-left: 9px;">분실동물 게시판 > 분실동물 작성글 </h4>'
+	    var form = '<tr style="text-align: center;"><td>글번호</td><td>제목</td>';
+	   // $('#mypgform').append(title); 
+	    $('#output').append(form);
+	    
+	    $.ajax({
+	      url:'/imfind/getLiketo',
+	      type:'POST',
+	      contentType:'application/x-www-form-urlencoded;charset=utf-8',
+	      success:function(data){
+	        $.each(data, function(index, item){   
+	          console.log(item)
+	         var output='';
+	            output += '<tr>';            
+	            if(item.lost_PostNum==0){
+	                output +='<td class="mypage-line">'+item.pet_PostNum+'</td>';
+	                output +='<td class="mypage-line"><a href="./petinfo?Pet_PostNum='+item.pet_PostNum+'">'+item.pet_Title+'</a></td>';
+	                
+	             }  
+	             else{
+	            	 output +='<td class="mypage-line">'+item.lost_PostNum+'</td>';
+	            	 output +='<td class="mypage-line"><a href="./iteminfo?lost_PostNum='+item.lost_PostNum+'">'+item.lost_Title+'</a></td>';	
+	            	 }
+	             output += '</tr>';
+	        
+	            $('#output').append(output);
+	           
+	        });
+	      },
+	       error:function(){
+	          alert("ajax통신 실패1pet!!");         
+	       },   
+	   });  
+	
 }

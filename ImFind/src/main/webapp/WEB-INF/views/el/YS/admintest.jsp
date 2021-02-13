@@ -97,20 +97,20 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./admintest_payList"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#"
+									class="nav-link" onclick="payList();"> <i class="far fa-circle nav-icon"></i>
 										<p>결제상태 리스트</p>
 								</a></li>
-								<li class="nav-item"><a href="./admintest_paidList"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#"
+									class="nav-link" onclick="paidList();"> <i class="far fa-circle nav-icon"></i>
 										<p>결제완료 리스트</p>
 								</a></li>
-								<li class="nav-item"><a href="./admintest_refundList"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#"
+									class="nav-link" onclick="refundList();"> <i class="far fa-circle nav-icon"></i>
 										<p>환불거래 리스트</p>
 								</a></li>
-								<li class="nav-item"><a href="./admintest_cancelList"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#"
+									class="nav-link" onclick="cancelList();"> <i class="far fa-circle nav-icon"></i>
 										<p>환불완료 리스트</p>
 								</a></li>
 							</ul></li>
@@ -123,11 +123,11 @@
 								</p>
 						</a>
 						<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./admintest_adjustmentList2"
+								<li class="nav-item"><a href="javascript:adjustmentList();"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>미정산 리스트</p>
 								</a></li>
-								<li class="nav-item"><a href="./admintest_adjustmentList"
+								<li class="nav-item"><a href="javascript:adjustmentList2();"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>정산완료 리스트</p>
 								</a></li>
@@ -150,8 +150,8 @@
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">관리자페이지</a></li>
-								<li class="breadcrumb-item"><a href="#">회원관리</a></li>
+								<li class="breadcrumb-item">관리자페이지</li>
+								<li class="breadcrumb-item" id="title2">회원관리</li>
 							</ol>
 						</div>
 					</div>
@@ -167,7 +167,7 @@
 							<!-- Default box -->
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">회원 관리</h3>
+									<h3 class="card-title" id="title1">회원 관리</h3>
 								</div>
 								<div class="card-tools">
 
@@ -175,19 +175,11 @@
 									<div class="card-body">
 										<table id="output" class="table table-bordered table-hover">
 											<!-- <table id="output" class="table table-bordered table-hover"> -->
-											<thead>
-												<tr>
-													<th>id</th>
-													<th>name</th>
-													<th>contact</th>
-													<th>email</th>
-													<th>account_Num</th>
-													<th>bank</th>
-													<th>account_holder</th>
-													<th>join_date</th>
-												</tr>
-											</thead>
-				
+											
+										</table>
+										<table id="output2" class="table table-bordered table-hover">
+											<!-- <table id="output" class="table table-bordered table-hover"> -->
+											
 										</table>
 
 
@@ -224,10 +216,14 @@
 
 
 
-
+	
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/el/Admin_plugins/jquery/jquery.min.js"></script>
+		<script
+		src="${pageContext.request.contextPath}/resources/el/js/admin.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	
 	<!-- Bootstrap 4 -->
 	<script
 		src="${pageContext.request.contextPath}/resources/el/Admin_plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -247,91 +243,7 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/el/Admin_dist/js/demo.js"></script>
 
-	<script>
-		$(function() {
-			$('#output').empty();
-			memberList();
-		});
-
-		function memberList() {
-
-			var form = '<thead><tr><th>회원ID</th><th>이름</th><th>연락처</th><th>email</th><th>계좌번호</th><th>은행명</th><th>예금주</th><th>가입일</th></tr></thead><tbody>';
-			$('#output').append(form);
-
-			$("#output").DataTable({
-				paging : true,
-				"pageLength": 10,
-				pagingType : "simple_numbers",
-				"search": {
-				    "caseInsensitive": false
-				  },
-				"ajax" : {
-					"url" : "/imfind/adminmember2",
-					"type" : "POST",
-					"dataSrc" : function(res) {
-						console.log(res)
-						var data = res.data;
-						return data;
-					}
-				},
-				"columns" : [ {
-					"data" : "id"
-				}, {
-					"data" : "name"
-				}, {
-					"data" : "contact"
-				}, {
-					"data" : "email"
-				}, {
-					"data" : "account_Num"
-				}, {
-					"data" : "bank"
-				}, {
-					"data" : "account_holder"
-				}, {
-					"data" : "join_date"
-				}, ]
-
-			});
-
-		};
-
-		function payList() {
-
-			$("#output").DataTable({
-				paging : true,
-				"pageLength": 10,
-				pagingType : "simple_numbers",
-				"search": {
-				    "caseInsensitive": false
-				  },
-				"ajax" : {
-					"url" : "/imfind/adminpay2",
-					"type" : "POST",
-					"dataSrc" : function(res) {
-						console.log("결제리스트" + res)
-						var data = res.data;
-						return data;
-					}
-				},
-				"columns" : [ {
-					"data" : "id"
-				}, {
-					"data" : "payCode"
-				}, {
-					"data" : "pay_Amount"
-				}, {
-					"data" : "pay_State"
-				}, {
-					"data" : "pay_Date"
-				},
-
-				]
-
-			});
-
-		};
-	</script>
+	
 </body>
 </html>
 

@@ -435,9 +435,9 @@ div.container-right {
 .photo > img{
 	width : 100% !important;
 	border-radius:11px;
-    height: 114px;
+    max-height: 114px;
     object-fit: cover;
-        border: 1px solid rgb(221, 221, 221) !important;
+    border: 1px solid rgb(221, 221, 221) !important;
     border-radius: 12px !important;
 }
 .title{

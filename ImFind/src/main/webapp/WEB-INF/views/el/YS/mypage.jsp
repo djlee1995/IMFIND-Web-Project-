@@ -24,7 +24,7 @@
     
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/bootstrap.min.css" type="text/css"> 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/newstyle.css?after" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/YS_css/newstyle.css" type="text/css">
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/el/css/themify-icons.css" type="text/css">
@@ -42,14 +42,55 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
      
      <style>
-		/* 매너평가 모달창 css 수정 */
-		/* 버튼 css 수정 */
-		.profile-con{
-		    display: flex;
-		    flex-direction: column;
-		    align-items: center;
-		    margin-top:22px;
-		}
+     .star-con{
+   	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    margin-top:22px;
+ 	    margin-bottom: 22px; 
+     }
+     div.star-con > .col{
+     	max-width:max-content;
+     }
+     .btnWhoGetStar,
+     .btnWhoGetStar-pet{
+     	margin-bottom: 0;
+	    font-weight: 400;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    -ms-touch-action: manipulation;
+	    touch-action: manipulation;
+	    cursor: pointer;
+	    background-image: none;
+	    background-color: #6c757d;
+	    color:white;
+	    border: 1px solid transparent;
+	    padding: 6px 12px;
+	    font-size: 14px;
+	    line-height: 1.42857143;
+	    border-radius: 4px;
+     }
+     .container-fluid{
+   	    display: flex;
+    	flex-direction: column;
+     }
+     .container-fluid > h5, 
+     .container-fluid > div{
+      	margin : 0;
+      	padding : 0;
+      }
+     .modal-dialog{
+     	display:flex;
+     	justify-content:center;
+     }
+     #input-grade{
+     	margin:0 auto;
+     }
+     #sidebar-wrapper{
+   	    position: relative;
+    	top: 153px;
+     }
      </style>
     
 </head>
@@ -57,7 +98,10 @@
 <body>
    <script>
       var user = '${loginUser}';
-
+        
+  /*     $('#memberModifyBtn').click(function(){
+           $(location).attr("href", "/imfind/modify");
+      }); */
    </script>
    
    
@@ -76,13 +120,12 @@
    </div> 
   
   <div class="mypg_content">
-	   <div class="bg-light border-right" id="sidebar-wrapper" style=" width:200px; margin-top:150px;">
-	   	  <div class="profile-con">
-		      <div class="profile-col" ><h4> ${kakaoLoginUser}  ${loginUser}   님 </h4></div>
-		      <div class="profile-col" ><h5> 나의 매너점수</h5></div>
-		      <div class="profile-col" ID=show_Grade_Rating> 
-
-	      	 <div class="grade" style="padding-bottom: 25px;">  	
+	   <div class="bg-light border-right" id="sidebar-wrapper" style=" width:200px;">
+	   <div class="star-con">
+	      <div class="col" ><h4> ${kakaoLoginUser}  ${loginUser}   님 </h4></div>
+	      <div class="col" ><h5> 나의 매너점수</h5></div>
+	      <div class="col" ID="show_Grade_Rating"> 
+	      	 <div class="grade" >  	
 	           <div class="showGrade">
 	                <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"
 	                 width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img"
@@ -116,8 +159,8 @@
 	                  </svg>    
 	             </div>    
 	          </div>
-   	   	  </div>
-      </div>   
+	      </div>   
+	   </div>
 	     
 	      <div class="list-group list-group-flush">   
 	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
@@ -162,8 +205,8 @@
    <div class="modal fade" role="dialog" id="dialog">
      <div class="modal-dialog">
        <!-- Modal content-->
-       <div class="modal-content" style="margin: 0 auto">
-            <div class="modal-header" style="display: flex; justify-content:center; align-items:center;">
+       <div class="modal-content">
+            <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
              <!--  <h6 class="modal-title">거래 완료 전 파인더님의 평점을 입력해 주세요.</h6> -->
             </div>
@@ -179,9 +222,9 @@
                   </div>
                 
                  <hr>
-                <div class="container-fluid" style="height: 155px; width: 400px;">
+                <div class="container-fluid" style="height: 155px; width: 100%;">
                    <h5>누구의 매너를 평가하시겠어요?</h5>
-                    <div class="container" id="output_WhoReplied" style="width: 430px; margin-left: 118px;"></div>
+                    <div class="container" id="output_WhoReplied" style="width: 100%;"></div>
 	                  <div class="make_star">
 	                     <div class="rating" data-rate="3">
 	                        <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false"  width="1.8em" height="1.8em" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
@@ -208,7 +251,7 @@
                  </div>    <!-- 202101240429_test -->
                 
                 <div class="modal-footer">
-                   <button type="button" class="btn btn-block bg-gradient-danger" id="input-grade" style="width: 150px; margin-right: 83px;">매너 평가 완료</button> 
+                   <button type="button" class="btn btn-block bg-gradient-danger" id="input-grade" style="width: 150px;">매너 평가 완료</button> 
                    
                  <!--   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                 </div>

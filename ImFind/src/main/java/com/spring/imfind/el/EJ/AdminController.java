@@ -145,40 +145,9 @@ public class AdminController {
 
 		return cancelList;
 	}
-
-	// admintest_payList
-	@RequestMapping("/admintest_payList")
-	public String admintest_payList() {
-		return "el/YS/admintest_payList";
+	@RequestMapping("/admintest")
+	public String afterLoginHeader() {
+		return "el/YS/admintest";
 	}
-
-	// ./admintest_paidList
-	@RequestMapping("/admintest_paidList")
-	public String admintest_paidList() {
-		return "el/YS/admintest_paidList";
-	}
-
-	// "./admintest_refundList"
-	@RequestMapping("/admintest_refundList")
-	public String admintest_refundList() {
-		return "el/YS/admintest_refundList";
-	}
-
-	// ./admintest_adjustmentList
-	@RequestMapping("/admintest_adjustmentList")
-	public String admintest_adjustmentList() {
-		return "el/YS/admintest_adjustmentList";
-	}
-
-	// ./admintest_adjustmentList
-	@RequestMapping("/admintest_adjustmentList2")
-	public String admintest_adjustmentList2() {
-		return "el/YS/admintest_adjustmentList2";
-	}
-
-	@RequestMapping("/admintest_cancelList")
-	public String admintest_cancelList() {
-		return "el/YS/admintest_cancelList";
-	}
-
+	
 }

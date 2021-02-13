@@ -1,5 +1,6 @@
 package com.spring.imfind.el.Money;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,25 @@ public class MoneyController {
 
 	// 관리자페이지 정산
 	@RequestMapping("/getAdjustmentList")
-	public @ResponseBody List<PayDTO> getAdjustmentList() {
+	@ResponseBody
+	public HashMap<String, Object> getAdjustmentList() {
 
 		List<PayDTO> dto = moneyService.getAdjustmentList();
-
-		return dto;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("data", dto);
+		return map;
 	}
 
-	// 관리자페이지 정산
-	@RequestMapping("/getAdjustmentList2")
-	public @ResponseBody List<PayDTO> getAdjustmentList2() {
+		// 관리자페이지 정산
+		@RequestMapping("/getAdjustmentList2")
+		@ResponseBody
+		public HashMap<String, Object> getAdjustmentList2() {
 
-		List<PayDTO> dto = moneyService.getAdjustmentList2();
-		return dto;
-	}
+			List<PayDTO> dto = moneyService.getAdjustmentList2();
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("data", dto);
+			return map;
+		}
 
 	// 정산 처리
 	@RequestMapping("/giveMoney")

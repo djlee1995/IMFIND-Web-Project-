@@ -27,4 +27,7 @@ public interface ElMapper {
 
 	// YS 1.28일
 	List<ElVO> getStarGrade(String F_Id);
+	//내가 좋아요한 글
+	List<ElVO> getlike_lost(String id);
+	List<ElVO> getlike_pet(String id);
 }

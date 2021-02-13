@@ -14,5 +14,7 @@ public interface ElService {
 	
 	// 연수 1.28
 	List<ElVO> getStarGrade(String F_Id); 
+	//내가 좋아요 한 글
+	public List<ElVO> getlike(String id);
 
 }

@@ -151,8 +151,15 @@ public class YSController {
 		return avg;
 	}
 
-	@RequestMapping("/admintest")
-	public String afterLoginHeader() {
-		return "el/YS/admintest";
+	
+
+	@RequestMapping(value = "/getLiketo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<ElVO> getLiketo(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("loginUser");
+
+		List<ElVO> list = elService.getlike(id);
+		return list;
 	}
 }
