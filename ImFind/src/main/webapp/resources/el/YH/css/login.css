@@ -1,0 +1,204 @@
+.modal_overlay, 
+.modal_overlay-1,
+.modal_overlay-2,
+.modal_overlay-3{
+	display : flex;
+	justify-content : center;
+	align-items: center;
+	position: fixed;
+	left : 0;
+	right : 0;
+	top : 0;
+	bottom : 0;
+	z-index : 100;
+	height : 100vh;
+	background : rgba(0, 0, 0, 0.6); 
+}
+.modal_box{
+	width : 30vw;
+	height : 60vh;
+	padding : 1em;
+	border-radius : 0.2em;
+	background : white;
+	padding: 16px 0;
+}
+.modal_box-1{
+	z-index : 200;
+	width : 18vw;
+	height : 24vh;
+	padding : 1em;
+	border-radius : 0.2em;
+	background : white;
+	padding: 16px 0;
+}
+.hidden{
+	display : none;
+}
+.forget-pass:hover{
+	cursor : pointer;
+}
+.modal_box > .container{
+	height : 100%;
+	display : flex;
+	flex-direction : column;
+}
+.modal_box > .container section{
+	flex-basis : 90%;
+	padding : auto 5px;
+	font-size : 14px;
+}
+.modal_box > .container header{
+	align-self : center;
+}
+.find-id > .group-input.label{
+	display : flex;
+	flex-direction : column;
+	width : 22%;
+	margin-right: 11px;
+    margin-left: 19px;
+    margin-top: 6px;
+}
+.find-id > .group-input.input{
+	display : flex;
+	flex-direction : column;
+	width : 62%;
+}
+.find-id > .group-input input, label{
+	margin-bottom: 9px;
+}
+.find-id > .group-input input{
+	border : 1px solid #ebebeb;
+}
+.find-id{
+	display : flex;
+	width: 100%;
+	margin-top : 9px;
+	flex-wrap : wrap;
+}
+.find-btn-container{
+	margin : 0 auto;
+	display : flex;
+	
+}
+.find-btn{
+	background : #ebebeb;
+	border : none;
+	color : gray;
+	padding : 5px;
+	margin : 0 3px;
+	display : block;
+	font-size : 11px;
+}
+.find-btn:hover{
+	background : #537EFF;
+	color : #ebebeb;
+	cursor : pointer;
+}
+.input-code-id{
+	display : none;
+}
+.input-code-pw{
+	display : none;
+}
+.timer{
+    align-self: flex-end;
+}
+input#code-id::placeholder,
+input#code-pw::placeholder{
+	font-size : 10px;
+	color : red;
+}
+.input-code-pw{
+	display : none;
+}
+/*
+.give-me{
+	border-radius: 2rem;
+	border : 1px solid #81d4fa;
+	width : 80%;
+	/*height : 7vh;*/
+	margin-bottom : 13px;
+	text-align: center; 
+    padding: 14px;
+    margin-top: 40px;
+}
+.give-me:hover{
+	background : #81d4fa;
+	cursor : pointer;
+}
+*/
+.give-me.name, .give-me.email{
+	height : 4vh;
+}
+.container-1{
+   z-index : 300;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background : white;
+}
+.fas.fa-times{
+	font-size: 1rem;
+}
+.fas.fa-times:hover,
+.fas.fa-chevron-left:hover{
+	color : #537EFF;
+	cursor : pointer;
+}
+
+.fas-con.1{
+	margin-right : 6px;
+	align-self: flex-end;
+}
+.modal-header{
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    border : none;
+    padding-left: 14px;
+}
+span[name="head"]{
+	margin : 0 98px;
+}
+span[name="head-pw"]{
+	margin : 0 91px;
+}
+.link-tag{
+    margin-left: 145px;
+    font-size: 1rem;
+    cursor : pointer;
+    text-decoration : underline;
+    color : #537EFF;
+}
+.register-login-section.spad{
+	padding-top : 90px;
+}
+
+.loginBtn {
+	display: flex;
+	justify-content: center;
+}
+
+.find-btn-container > .find-btn.id {
+	width: 90px;
+	height: 30px;
+	margin-top:10px;
+}
+
+.find-btn-container > .find-btn.pw {
+	width: 90px;
+	height: 30px;
+}
+
+.link-tag.find-id {
+	margin-left: 153px;
+	margin-top: 4px;
+	width: 90px;
+}
+
+.find-id {
+	margin-top: 36px;
+}

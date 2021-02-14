@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.EJ.AdminMapper">
+
+	<select id="getMemberList"
+		resultType="com.spring.imfind.el.EJ.MemberVO">
+		SELECT * FROM MEMBER ORDER BY Join_Date desc
+	</select>
+
+	<select id="getPayList"
+		resultType="com.spring.imfind.el.EJ.PayVO">
+		SELECT * FROM PAY ORDER BY Pay_Date desc
+	</select>
+
+	<select id="getPaidList"
+		resultType="com.spring.imfind.el.EJ.PayVO">
+		SELECT * FROM PAY WHERE Pay_State = 'paid'
+	</select>
+
+	<select id="getRefundList"
+		resultType="com.spring.imfind.el.EJ.PayVO">
+		SELECT * FROM PAY WHERE Pay_State = 'refund' ORDER BY Pay_State desc
+	</select>
+
+	<update id="updatePaystate" parameterType="PayVO">
+		update Pay set Pay_State = #{Pay_State}, Cancel_Date =
+		TO_DATE(sysdate,'yy-MM-dd HH24:mi') where Id=#{Id} AND
+		PayCode=#{PayCode}
+	</update>
+
+	<select id="getCancleList"
+		resultType="com.spring.imfind.el.EJ.PayVO">
+		SELECT * FROM PAY WHERE Pay_State = 'cancel' ORDER BY Pay_State desc
+	</select>
+
+</mapper>

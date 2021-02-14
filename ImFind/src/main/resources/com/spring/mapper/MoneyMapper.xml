@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.YH.MoneyMapper">
+
+	<select id="getMoneyList" parameterType="String"
+		resultType="PayDTO">
+		SELECT * FROM lostpost lost
+		INNER JOIN pay ON lost.lost_postnum = pay.lost_postnum
+		INNER JOIN member ON pay.f_id = member.id
+		WHERE pay.f_id = #{id} AND deal_state='completed'
+	</select>
+
+	<select id="getAdjustmentList" resultType="PayDTO">
+		select * from pay p ,member m where p.f_id = m.id and deal_state =
+		'completed' and adjustment_state = 'finished'
+	</select>
+	<select id="getAdjustmentList2" resultType="PayDTO">
+		SELECT * FROM pay p ,member m where p.f_id = m.id and deal_state =
+		'completed' and pay_state not in ('cancel')and adjustment_state is
+		null
+	</select>
+
+	<update id="giveMoney" parameterType="PayDTO">
+		UPDATE pay
+		SET ADJUSTMENT_STATE = 'finished',
+		ADJUSTMENT_DATE = sysdate
+		WHERE f_id = #{F_ID} And lost_postNum = #{Lost_PostNum}
+	</update>
+	<update id="giveMoneyPet" parameterType="PayDTO">
+		UPDATE pay
+		SET ADJUSTMENT_STATE = 'finished',
+		ADJUSTMENT_DATE = sysdate
+		WHERE f_id = #{F_ID} And Pet_PostNum = #{pet_PostNum}
+	</update>
+
+</mapper>

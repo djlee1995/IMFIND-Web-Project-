@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.LostMapper">
+
+	<select id="police" resultType="PoliceVO">
+		SELECT * FROM p_place
+	</select>
+	<select id="p_select_place" resultType="PoliceVO">
+		SELECT * FROM p_place
+		where
+		city=#{city} and gu=#{gu}
+	</select>
+	<select id="s_select_place" resultType="EtcVO">
+		SELECT * FROM s_place
+		where
+		city=#{city} and gu=#{gu}
+	</select>
+	<select id="p_lostlist" resultType="PoliceVO">
+		select
+		l.code,l.lost_date,l.kind,l.item,l.info,p.placeid,p.depplace,p.addr,p.tel,l.photo,p.x,p.y
+		from p_lost l, p_place p
+		where
+		p.placeid=l.placeid and
+		p.placeid=#{placeid}
+	</select>
+	<select id="p_info" resultType="PoliceVO">
+		select * from p_lost l,p_place p
+		where
+		p.placeid=l.placeid and code=#{code}
+	</select>
+	<select id="p_select" resultType="PoliceVO">
+		select * from p_lost l, p_place
+		p
+		where
+		p.placeid=l.placeid and p.city like '%' ||#{city} || '%' and
+		p.gu like '%' ||#{gu} || '%'
+		and l.kind like '%' ||#{kind} || '%'
+	</select>
+	<select id="s_select" resultType="EtcVO">
+		select * from s_lost l, s_place
+		p
+		where
+		p.tel=l.tel
+		and
+		p.city like '%' ||#{city} || '%' and p.gu like '%'
+		||#{gu} || '%'
+		and l.kind like '%' ||#{kind} || '%'
+	</select>
+	<select id="etc" resultType="EtcVO">
+		SELECT * FROM s_place
+	</select>
+	<select id="s_lostlist" resultType="EtcVO">
+		select l.photo, l.state,
+		l.code,l.lost_date,l.kind,l.item,l.info,p.depplace,p.addr,p.tel,p.x,p.y
+		from s_lost l, s_place p where p.tel=l.tel and p.tel=#{tel}
+	</select>
+	<select id="s_info" resultType="EtcVO">
+		select * from s_lost l, s_place p
+		where p.tel=l.tel and code=#{code}
+	</select>
+	<select id="chartcount" resultType="int">
+		select count(*) from p_lost
+		where kind like '%' || #{kind} || '%'
+	</select>
+	<select id="chartcount2" resultType="int">
+		select count(*) from s_lost
+		where kind like '%' || #{kind} || '%'
+	</select>
+
+	<!-- 유희 날짜순 수정완료 -->
+	<select id="getSimpleList" resultType="PoliceVO">
+
+		SELECT code,lost_date, item, info, photo, addr, tel, x, y, depplace
+		FROM (select * from p_lost, p_place where p_lost.placeid =
+		p_place.placeid order by p_lost.lost_date desc),
+		(SELECT #{x} v_x, #{y}
+		v_y, 110979.309 r_x, 88907.949 r_y, 1500.000 v_z FROM
+		dual )
+		WHERE SQRT(
+		POWER((v_x - x) * r_x, 2) + POWER((v_y - y) * r_y,
+		2)) <![CDATA[ <= v_z and rownum < 50 ]]>
+		AND x BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
+		AND y BETWEEN v_y -
+		v_z / r_y AND v_y + v_z / r_y
+
+	</select>
+
+</mapper>

@@ -1,0 +1,344 @@
+.box {
+	/* border : 1px solid black; */
+	width: 50vw;
+	position: absolute;
+	left: 50%;
+	padding-top: 50px;
+}
+
+.fh5co-hero {
+	
+}
+
+.flexslider.js-fullheight {
+	width: 50vw;
+}
+
+.slides {
+	width: 200%;
+}
+
+@media screen and (max-width: 992px) {
+	.box {
+		width: 100vw;
+		left: 0;
+	}
+}
+
+.li-group {
+	padding-left: 50px;
+}
+
+.li-group>ul {
+	list-style: none;
+}
+
+.li-group>ul>li {
+	min-height: 40px !important;
+	border: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 48px 33px 0 0;
+	padding: 0 0 0 0;
+	border: 0;
+	float: left;
+	font-size: 2.3rem;
+}
+
+.li-group>ul>li:hover {
+	transform: scale(1.2);
+	tarnsition: transform 1s;
+}
+
+.li-group>ul>li>a {
+	color: black;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.flex-active-slide>div:nth-child(2)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>ul:nth-child(1)>li
+	{
+	background: white;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	left: 0;
+	z-index: 100;
+	/* padding-right : 35px; */
+	background: white;
+}
+
+aside {
+	padding-top: 6.76%;
+}
+
+.fh5co-nav #fh5co-logo {
+	font-size: 31px;
+}
+
+#fh5co-services {
+	margin-top: 195px !important;
+}
+
+.overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	width: 100%;
+	height: 0;
+	transition: .5s cubic-bezier(0.18, 0.85, 0.01, 1.21);
+}
+
+.services:hover .overlay {
+	height: 100%;
+}
+
+.title {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 74px;
+}
+
+.fh5co-nav ul li a {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weigth: bold;
+	font-size: 15px;
+	padding: 29px 15px;
+	color: rgba(0, 0, 0, 0.7);
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.top-menu {
+	box-shadow: 0 2px 4px 0 hsla(0, 0%, 80.8%, .5);
+	height: 73px !important;
+}
+
+div.container-fluid:nth-child(1)>div:nth-child(1) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 8px;
+	position: relative;
+	top: -15px;
+}
+.icon-speech-bubble{
+	margin-left:2px;
+}
+.posted_on{
+	margin-bottom:0;
+}
+.fh5co-blog .blog-text h3{
+	margin-bottom:5px;
+	font-size:16px;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+}
+
+p.pLoc{
+	margin-bottom:5px !important;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	
+}
+div.swiper-slide > div > div > p{
+	margin-bottom:5px !important;
+	overflow: hidden !important;
+	width: 160px !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+}
+div.fh5co-blog lost > #swiper-wrapper> div > div > div > h3{
+	font-size:1rem;
+}
+div.container-police > #fh5co-blog > div.container{
+	width:1170px;
+}
+.flexslider.js-fullheight.top{
+	width: 30vw;
+}
+#fh5co-hero > div > ul.slides > li > div > img{
+	width:512px;
+}
+#fh5co-hero,
+#fh5co-hero.flexslider,
+#fh5co-hero.flexslider.slider-text-bg,
+#fh5co-hero .flexslider .slider-text-bg,
+#fh5co-hero > div > ul.slides > li.flex-active-slide > div
+{
+	height: 640px !important;
+	background: none !important;
+}
+.flexslider{
+	background: none !important;
+}
+.slider-text-bg{
+	background: none !important;
+}
+.img-con{
+	width:100%;
+	overflow:hidden;
+    height: 453px;
+    overflow: hidden;
+    border-radius:11px;
+}
+.imgcrop{
+	padding: 15% 0;
+}
+.img-con > img{
+    position: relative;
+    top: -100px;
+}
+div.like_rank_lost > div > a{
+	display:flex;
+	align-items: center;
+}
+._12xcxtl{
+	border-top: 1px solid #998B8B !important;
+	margin: 8px 0;
+	margin-right: 10px;
+}
+/* 랭킹 아이콘 */
+.best-icon{
+	position: absolute;
+    top: 91px;
+    left: 0px;
+}
+div.best-icon.2{
+    position: absolute;
+   	top: 249px;
+    left: 0px;
+}
+div.best-icon.pay{
+    position: absolute;
+   	top: 91px;
+    left: 0px;
+}
+div.best-icon.pay2{
+    position: absolute;
+   	top: 249px;
+    left: 0px;
+}
+/* 랭킹 아이콘 끝 */
+.best-icon.pay{
+	width:50px;
+}
+.best-icon.pay> img{
+	width:83%;
+}
+#like_rank > div > div.best-icon > img{
+	width:89%;	
+}
+.swiper-container.topRank{
+    width: 100%;
+    margin-left: 0 !important;
+    height: 728px !important;
+}
+.swiper-slide.topRank{
+	width:100% !important;
+	/* text-align:center;
+	display:flex; 내용을 중앙정렬 하기위해 flex 사용
+	align-items:center; 위아래 기준 중앙정렬
+	justify-content:center; 좌우 기준 중앙정렬 */
+}
+
+
+/* 마우스 휠 이벤트*/
+.icon-scroll,
+.icon-scroll:before {
+    position: absolute;
+    left: 90%;
+    top:369.2px;
+}
+.icon-scroll {
+    width: 30px;
+    height: 50px;
+    margin-left: -20px;
+    bottom: 10px;
+    margin-top: -35px;
+    border: 2px solid gray;
+    border-radius: 25px
+}
+@media (max-width: 767px) {
+    .icon-scroll {
+        position: relative
+    }
+}
+.icon-scroll:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: gray;
+    margin-left: -14px;
+    top: 8px;
+    border-radius: 4px;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: scroll
+}
+@keyframes scroll {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(26px)
+    }
+}
+
+/* swiper-slide css */
+.swiper-slide.topRank{
+	display: flex;
+	align-items: baseline;
+}
+/* swiper-slide-con */
+.swiper-slide-con{
+	width:501px;
+}
+
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.title,
+div.like_rank_lost > div.card-con > a > div.simpleinfo > div.title{
+	margin-bottom: 5px;
+}
+div.like_rank_lost > div.card-con > a > div.simpleinfo > div.subinfo > div.pay > span,
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.subinfo > div.pay > span,
+div.swiper-slide.topRank> div > div > div > div.card-con > a > div.simpleinfo > div.subinfo > div.date > span,
+#like_rank > div > div.rank-card-con > a > div.simpleinfo > div.subinfo > div > div > span,
+#like_rank > div:nth-child(3) > div.rank-card-con > a > div.simpleinfo > div.subinfo > div.date > span
+{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    background: rgb(255, 255, 255) !important;
+/*     border: 1px solid black; */
+    border-radius: 12px !important;
+    color: rgb(34, 34, 34) !important;
+    padding: 5px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+
+}
+.stack-top{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.stack-top > button{
+	width : 150px;
+	height:30px;
+}

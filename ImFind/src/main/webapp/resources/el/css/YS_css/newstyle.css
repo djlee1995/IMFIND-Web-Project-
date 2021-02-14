@@ -1,0 +1,172 @@
+<<<<<<< HEAD
+@charset "UTF-8";
+
+.container {
+	width: 50vw;
+	margin: 0 auto;
+	/* padding-top : 100px; */
+}
+
+.containerBtn{
+    display: flex;
+    justify-content: row;
+    
+}
+/*
+.section-mypage-title {
+	border-bottom: 4px solid black;
+	width: 300px;
+	display: flex;
+	justify-content: column; 
+}
+*/
+.col-md-9 {
+	margin : auto 0;
+}
+
+div.table-container{
+	width : 44w;
+	/* margin: 0 auto; */
+}
+
+/*
+table#outout{
+	width : 80% !important;
+	font-size: 1.5rem !important;
+}
+*/
+td > button > a  { 
+	text-decoration:none !important;
+	color:white;
+	
+}
+
+/* .btn btn-default btn-block {
+	display: flex;
+	justify-content: row;
+	width: 20px;
+	height: 20px;
+	
+} */
+
+.main-sidebar sidebar-dark-primary elevation-4 {
+	margin: 200px !important;
+	
+}
+
+.mypagebox {
+	display: flex;
+		justify-content: row;
+	/* justify-content: center;
+	align-items: center; */
+}
+
+.col_1 {
+	display: flex;
+	justify-content: row;
+	justify-content: center;
+	align-items: center;
+}
+.mypage-section spad{
+	padding-top: 50px; 
+	width:800px; 
+	height: 50px;
+}	
+
+.mypg_content {
+	display: flex;
+	margin-left: 183px;
+}
+
+#mypgform {
+	margin-left: 45px;
+	margin-top: 10px;
+}
+
+.btn.btn-block.bg-gradient-secondary {
+    display: block;
+    width: 100%;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn.btn-block.bg-gradient-danger {
+	color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    box-shadow: none;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+
+tr {
+	text-align: center;
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+.modal-content {
+	width: 389px;
+	height: 450px;
+}
+
+.make_star {
+	margin-left: 91px;
+	margin-top: 35px;
+}
+
+.container-fluid > h5 {
+	margin-left: 77px;
+	margin-top: 3px;
+}
+
+.modal-footer {
+	margin: 0 auto;
+}
+
+#f-radio {
+	margin-top: 5px; 
+	margin-right: 10px;
+=======
+@charset "UTF-8";
+
+.container {
+	width: 50vw;
+	margin: 0 auto;
+	padding-top : 400px;
+}
+
+.containerBtn{
+    display: flex;
+    justify-content: row;
+}
+
+.section-mypage-title {
+	border-bottom: 4px solid black;
+	width: 200px;
+}
+
+.col-md-9 {
+	margin : auto 0;
+}
+
+div.table-container{
+	width : 73vw;
+	margin: 0 auto;
+}
+
+table#outout{
+	width : 80% !important;
+	font-size: 1.5rem !important;
+}
+
+a { 
+	text-decoration:none
+>>>>>>> main_dev
+}

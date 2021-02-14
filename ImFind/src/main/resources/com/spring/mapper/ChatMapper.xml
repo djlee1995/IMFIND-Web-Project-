@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.YH.ChatMapper">
+
+	<insert id="createChatRoom">
+		INSERT INTO CHAT_GROUP_ONE_TO_ONE
+		(
+		sender,
+		reciever,
+		group_id,
+		create_date,
+		lost_postnum
+		)
+		VALUES
+		(
+		#{sender},
+		#{reciever},
+		SEQ_CHAT_GROUP.NEXTVAL,
+		sysdate,
+		#{lost_postnum}
+		)
+
+	</insert>
+
+	<select id="chkRoomExist" resultType="ChatDTO">
+		SELECT * FROM chat_group_one_to_one
+		WHERE lost_postnum = #{postnum}
+		AND sender = #{sender}
+		AND reciever = #{reciever}
+	</select>
+
+	<select id="getBoardInfo" parameterType="ChatDTO"
+		resultType="BoardVO">
+		SELECT * FROM lostpost
+		WHERE lost_postnum = #{lost_postnum}
+	</select>
+
+</mapper>

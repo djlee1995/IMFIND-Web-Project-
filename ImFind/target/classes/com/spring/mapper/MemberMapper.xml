@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--유희 : 로그인과 회원가입에 필요한 mapper 입니다. -->
+
+<mapper namespace="com.spring.mapper.YH.MemberMapper">
+	
+	<select id="loginCheck" parameterType="map" resultType="int">
+		Select
+		count(*) from member where id = #{id} and pw = #{pw}
+	</select>
+
+	<select id="kakaoLoginCheck" parameterType="String"
+		resultType="int">
+		Select count(*) from member where id = #{id}
+	</select>
+
+	<select id="checkID" parameterType="String" resultType="int">
+		Select
+		count(*) from member where id = #{id}
+	</select>
+
+	<select id="findID" parameterType="String" resultType="String">
+		SELECT id
+		from member
+		where
+		name= #{name} and email = #{email}
+	</select>
+
+	<select id="getLoginDTO" resultType="LoginDTO">
+		SELECT * from member
+		WHERE id= #{id}
+	</select>
+
+	<select id="findPW" parameterType="String" resultType="LoginDTO">
+		SELECT pw,
+		id from member
+		where
+		id= #{id} and email = #{email}
+	</select>
+
+	<update id="alterTempPW" parameterType="String">
+		UPDATE member
+		SET pw = #{pw}
+		WHERE id = #{id}
+	</update>
+
+	<insert id="insertMember"
+		parameterType="com.spring.imfind.el.YH.LoginDTO">
+		INSERT INTO member
+		(
+		id,
+		pw,
+		name,
+		contact,
+		email,
+		account_num,
+		bank,
+		account_holder,
+		join_date
+		)
+		VALUES
+		(
+		#{id},
+		#{pw},
+		#{name},
+		#{contact},
+		#{email},
+		#{account_num},
+		#{bank},
+		#{account_holder},
+		sysdate
+		)
+	</insert>
+	<!-- MJ Email chk -->
+	<select resultType="int" parameterType="String" id="checkEmail">
+		Select count(*) from member where email = #{email}
+	</select>
+
+</mapper>

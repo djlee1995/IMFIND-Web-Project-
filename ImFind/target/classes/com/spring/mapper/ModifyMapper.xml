@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace="com.spring.mapper.MemberMapper는 MemberMapper인퍼페이스(MemberMapper.class)의 
+	이름을 사용한다. -->
+<mapper namespace="com.spring.mapper.MJ.ModifyMapper">
+	<select id="getMember" resultType="MemberVO">
+		SELECT * FROM member where id=#{id}
+	</select>
+	<update id="updateMember">
+		update member set pw = #{pw}, name=#{name},
+		contact=#{contact}, email=#{email}, account_num=#{account_num},
+		bank=#{bank}, account_holder=#{account_holder} where id= #{id}
+	</update>
+</mapper> 
