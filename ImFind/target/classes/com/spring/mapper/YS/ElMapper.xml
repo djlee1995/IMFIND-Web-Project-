@@ -82,10 +82,12 @@
 		resultType="ElVO">
 		SELECT grade from grade where F_Id= #{F_Id}
 	</select>
-	<select id="getlike_lost" resultType="ElVO">
-		select l.lost_postnum, p.lost_title from liketo l ,lostpost p  where l.lost_postnum = p.lost_postnum and l.id = #{id}
-	</select>
-	<select id="getlike_pet" resultType="ElVO">
-		select l.pet_postnum, p.pet_title from liketo l ,petpost p  where l.pet_postnum = p.pet_postnum and l.id = #{id}
-	</select>
+	
+	 <select id="getlike_lost" resultType="ElVO">
+      select l.lost_postnum, p.lost_title from liketo l ,lostpost p  where l.lost_postnum = p.lost_postnum and l.id = #{id}
+   </select>
+   <select id="getlike_pet" resultType="ElVO">
+      select l.pet_postnum, p.pet_title from liketo l ,petpost p  where l.pet_postnum = p.pet_postnum and l.id = #{id}
+   </select>
+	
 </mapper>

@@ -26,11 +26,15 @@
 	    box-shadow: 0 2px 4px 0 hsla(0,0%,80.8%,.5);
 		height : 73px !important;
 	}
-	
+
+	.fa-bell{
+		font-size: 2rem;
+	}
 </style>
 
 <!-- 로그인 이동 모달창 -->
 <!-- 로그인 이동 모달창 끝 -->
+<%@ include file="/WEB-INF/views/el/Socket/alarm.jsp" %>
 
 <nav class="fh5co-nav" role="navigation">
 	<div class="top-menu">
@@ -81,7 +85,6 @@
 												<li><a href="./pet">동물</a></li>		
 										    </c:otherwise>
 									</c:choose>
-								
 							</ul>
 						</li>
 						<c:set var="user" value='${loginUser}'/>
@@ -96,7 +99,12 @@
 								    </c:when>
 								    <c:otherwise>
 										<li class="btn-cta"><a href="./logout"><span>Logout</span></a></li> 
-										<li class="btn-cta"><a href="./mypage"><span >마이페이지</span></a></li> 		
+										<li class="btn-cta">
+											<a href="./mypage">
+												<span >마이페이지</span>
+												<i class="fas fa-exclamation-circle" style="display:none;"></i>
+											</a>
+										</li> 
 								    </c:otherwise>
 							</c:choose>
 					</ul>
@@ -105,6 +113,7 @@
 		</div>
 	</div>
 </nav>
+
 <script>
 function confirmWindow(){
 	confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까');

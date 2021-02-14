@@ -205,6 +205,8 @@
 
 </head> 
 <body>
+	    <!-- 알람 소켓  -->
+    	<%@ include file="/WEB-INF/views/el/Socket/alarm.jsp" %>
 
          <form name="commentInsertForm" id="comment-form" method="post" enctype="multipart/form-data">
               <div class="comtitle"><h3>댓  글</h3>

@@ -17,8 +17,10 @@
       
     <style>
        section{
-          position: relative;
-          top: 134px;
+            position: relative;
+		    top: 134px;
+		    width: 60vw;
+		    margin: 0 auto;
        }
           /* 인덱스 css 다시하기 */
           
@@ -31,7 +33,7 @@
       .container.commentBox{
          font-family: 'Noto Sans KR', sans-serif !important;
          width: 54vw;
-         margin: 0 auto;
+         margin: 0;
       }
       .infoText{
          padding-left: 10px;
@@ -230,7 +232,7 @@
       .container-btn{
          width: 54vw;
          margin: 0 auto;
-         padding-left: 722px;
+         padding-left: 689px;
       }
       .container-btn > input{
          border : none;
@@ -272,18 +274,17 @@
 		display:flex;
 	    align-items:center;
 	}
-	
-	
      .storage-con{
          overflow: hidden;
          position: fixed;
       	 border : 1px solid black;
       	 width: 100px;
-      	 margin-left: 100px;
-      
+      	 left : 1114px;
+      	 top : 257px;
+      	 /* margin-left: 100px; */
       	 border: 1px solid #e5e5e5;
       	 border-radius: 4px;
-    	 margin-top: 76px;
+    	 /* margin-top: 76px; */
     	 padding: 3px 3px;
       }
       #storage {
@@ -345,6 +346,9 @@
   	  .gototop a i{
     	height: 23px !important;
   	  }
+      div.container.detailInfo > div.container-map > h3{
+          margin-left:5px !important;
+       }
     </style> 
 </head>
 <body>
@@ -355,6 +359,7 @@
 	  %>
     
     <jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include>
+
     <!-- Header End -->
 	   
    <section>

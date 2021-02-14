@@ -98,15 +98,9 @@
 <body>
    <script>
       var user = '${loginUser}';
-        
-  /*     $('#memberModifyBtn').click(function(){
-           $(location).attr("href", "/imfind/modify");
-      }); */
+
    </script>
-   
-   
-   
-    <!-- Page Preloder -->
+     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -182,6 +176,11 @@
 		        <a href="javascript:getPayList();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">결제내역</a>
 		        <a href="javascript:getMoeny();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">정산내역</a>
 		        <a href="./delete" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px;">회원탈퇴</a>
+	        <div class="list-group-item list-group-item-action bg-light" style="border-top: 1px solid #DCDCDC; height: 42px;">
+	        	<h4 style="font-weight: 400;">알람</h4>
+	        </div>
+		        <a href="javascript:getLiketo();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">내가 누른 올리기</a>
+		        <a href="javascript:getAlarm();" class="list-group-item list-group-item-action bg-light" style="padding-left: 25px; padding-bottom: 0px;">내글에 달린 댓글</a>
 	        </div>
    		  </div> 
    

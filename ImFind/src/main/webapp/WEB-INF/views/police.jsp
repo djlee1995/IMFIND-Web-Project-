@@ -340,7 +340,7 @@
 </style>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/el/Socket/alarm.jsp" %>
 <nav class="fh5co-nav" role="navigation">
 	<div class="top-menu">
 		<div class="container-fluid main-nav">

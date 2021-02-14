@@ -150,16 +150,71 @@
 	  	height: 39px !important;
 	  }
 	  .modal-footer{
-	  	display: flex;
-    	justify-content: center;
+	    display: flex;
+	    justify-content: center;
+	    flex-direction: column;
+	    align-items: center;
 	  }
 	  .modal-footer > button, 
 	  .modal-footer > a{
 	  	margin : 0;
 	  }
-	  .modal-footer > button{
+	  .modal-footer > div.btn-set > button{
 		border : none;
 		background: none;
+	  }
+	  .modal-content{
+	  	height : 48vh !important;
+	  }
+	  .modal-product{
+	  	border-bottom: 1px solid #e5e5e5;
+   	 	height: 15%;
+	  }
+	  .modal-body > label > input{
+	  	margin-right:10px;
+	  }
+	  .chkNotice{
+	  	display : flex;
+	  	justify-content:center;
+	  }
+	  div.chkNotice > p:nth-child(1){
+	  	margin-right:5px !important;
+	  }
+	  div.chkNotice > p:nth-child(2){
+	  	margin-right:5px;
+	  	color:red;
+	  }
+	  .info-price-parent{
+	  	display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    width:50%;
+	    border: 0.1px solid gray;
+	  }
+	  .info-price-parent > div.price{
+	  	    width: 45%;
+    		text-align: end;
+	  }
+	  .info-total{
+	  	font-size: 2.5rem;
+	  }
+	  .modal-body{
+	  	display:flex;
+	  	flex-wrap:wrap;
+	  }
+	  .price-con{
+	  	width:50%;
+	  }
+	  .price-con > label > input{
+	  	margin-right:5px;
+	  }
+	  .modal-body > h7{
+	  	width:100%;
+	  	font-size: 1.5rem;
+	  	margin-bottom:11px;
+	  }	
+	  .dolor{
+	  	margin-left: 5px;
 	  }
       </style>
       <script>
@@ -168,7 +223,9 @@
    </head>
 <body>
 <!-- 헤더시작 -->
-<%-- 	<jsp:include page="${request.contextPath}/el/afterLoginHeader"></jsp:include> --%>
+<%@ include file="/WEB-INF/views/el/Socket/alarm.jsp" %>
+
+
 <header>
    <div class="fh5co-nav" role="navigation">
       <div class="top-menu">
@@ -299,19 +356,35 @@
                         <h4 class="modal-title" id="myModalLabel">사례금 결제하기</h4>
                      </div>
                      <div class="modal-body" id="lostpay">
-                        <h7>사례금선택</h7> <br>
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
-                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
-                        <label><input type="text" name="Lost_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
-                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern='\d*' placeholder="직접입력" disabled required></label>
+                        <h7>사례금선택</h7>
+                        <div class="price-con">
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="5000" >5,000원</label><br> 
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="10000"> 10,000원</label> <br>
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="15000"> 15,000원</label> <br>
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="20000"> 20,000원</label><br>
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=true" value="25000"> 25,000원</label>  <br>
+	                        <label><input type="radio" name="Lost_Pay" onClick="this.form.paybox.disabled=false" value=""> 직접입력</label> <br>
+	                        <label><input type="text" name="Lost_Pay" id="paybox" class="paybox" onkeyup="cmaComma(this);" onchange="cmaComma(this);" 
+	                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern='\d*' placeholder="직접입력" disabled required></label>
+                        </div>
+                       	<div class="info-price-parent">
+							<div class="info-total">결제금액</div>
+							<div class="price" id="price">0</div>
+							<div class="dolar">원</div>
+						</div>
                      </div>
                      <div class="modal-footer">
-                        <a href="javascript:void(0);" onClick="return pay();" >확인</a>&nbsp;&nbsp;
-                        <button type="button" class="" data-dismiss="modal">취소</button>
+	                     <div class="pay-confirm">
+	                     	<div class="chkNotice">
+	                     		<input type="radio" name="pay-clause"/> 
+                     			<p>[필수]</p> 
+                     			<p>결제한 사례금의 2주 거치기간 만료 후 자동 환불에 동의합니다.</p>
+	                     	</div>
+	                     </div>
+	                     <div class="btn-set">
+	                        <a href="javascript:void(0);" onClick="return pay();" >확인</a>&nbsp;&nbsp;
+	                        <button type="button" class="" data-dismiss="modal">취소</button>
+	                     </div>
                      </div>
                 </div>
             </div>

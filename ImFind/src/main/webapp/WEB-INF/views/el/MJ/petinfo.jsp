@@ -17,8 +17,10 @@
       
     <style>
        section{
-          position: relative;
-          top: 134px;
+		position: relative;
+	    top: 134px;
+	    width: 60vw;
+	    margin: 0 auto;
        }
           /* 인덱스 css 다시하기 */
           
@@ -31,7 +33,7 @@
       .container.commentBox{
          font-family: 'Noto Sans KR', sans-serif !important;
          width: 54vw;
-         margin: 0 auto;
+         margin: 0;
       }
       .infoText{
          padding-left: 10px;
@@ -60,8 +62,8 @@
          border-bottom : 1px solid rgb(238, 238, 238);
          border-top : 1px solid rgb(238, 238, 238);
          display: flex;
-       flex-wrap: wrap;
-       padding : 12px 0 10px 0;
+         flex-wrap: wrap;
+         padding : 12px 0 10px 0;
       }
       .infoBody > div.col-set-2 { 
          width:76%;
@@ -89,7 +91,7 @@
       .container.detailInfo,
       .container.commentBox{
             width: 100vw;
-            margin: 0 auto;
+            margin: 0;
          }
       }
       
@@ -146,13 +148,13 @@
             height:56px;
          }
          .like-btn{
-            border: none;
-          width: 99%;
-          height: 48px;
-          border-radius: 3px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+              border: none;
+	          width: 99%;
+	          height: 48px;
+	          border-radius: 3px;
+	          display: flex;
+	          justify-content: center;
+	          align-items: center;
          }
          .like-btn > p { 
             margin : 0;
@@ -168,10 +170,10 @@
             margin: 8px 0;
          }
          p#title{
-            display: flex;
-         justify-content: space-between;
-         align-items: center;
-         margin-bottom: 0;
+             display: flex;
+	         justify-content: space-between;
+	         align-items: center;
+	         margin-bottom: 0;
          }
       }
       @media(max-width: 500px){
@@ -234,7 +236,7 @@
       .container-btn{
          width: 54vw;
          margin: 0 auto;
-         padding-left: 722px;
+         padding-left: 689px;
       }
       .container-btn > input{
          border : none;
@@ -276,17 +278,18 @@
       display:flex;
        align-items:center;
    }
-        .storage-con{
-         overflow: hidden;
+    .storage-con{
+      	 overflow: hidden;
          position: fixed;
-          border : 1px solid black;
-          width: 100px;
-          margin-left: 100px;
-      
-          border: 1px solid #e5e5e5;
-          border-radius: 4px;
-        margin-top: 76px;
-        padding: 3px 3px;
+      	 border : 1px solid black;
+      	 width: 100px;
+      	 left : 1114px;
+      	 top : 257px;
+      	 /* margin-left: 100px; */
+      	 border: 1px solid #e5e5e5;
+      	 border-radius: 4px;
+    	 /* margin-top: 76px; */
+    	 padding: 3px 3px;
       }
       #storage {
           display: flex;

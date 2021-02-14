@@ -113,23 +113,22 @@ section{
       }
    }
    @media(min-width: 1200px){
-      .searchbar,
-      .selectBox,
-      .cardList{
-         width: 72vw;
-         margin: 0 auto;
-      }
-      .card-wrapper{
-         display:flex;
-         flex-wrap:wrap;
-         padding: 0 67px;
-      }
-      .card-con{
-         width: 180px;
-         height: 265px;
-         margin:7px;
-      }
-      
+         .searchbar,
+         .selectBox,
+         .cardList{
+            width: 60vw;
+            margin: 0 auto;
+         }
+         .card-wrapper{
+            display:flex;
+            flex-wrap:wrap;
+           /*  padding: 0 67px; */
+         }
+         .card-con{
+            width: 180px;
+            height: 265px;
+            margin:7px;
+         }
    }
    @media(max-width: 500px){
       .searchbar,
@@ -160,16 +159,17 @@ section{
    /* 요소 크기 */
    
     /* 은지 추가 */
-      .storage-con{
+     .storage-con{
          overflow: hidden;
          position: fixed;
       	 border : 1px solid black;
       	 width: 100px;
-      	 margin-left: 100px;
-      
+      	 left : 1114px;
+      	 top : 257px;
+      	 /* margin-left: 100px; */
       	 border: 1px solid #e5e5e5;
       	 border-radius: 4px;
-    	 margin-top: 76px;
+    	 /* margin-top: 76px; */
     	 padding: 3px 3px;
       }
       #storage {
@@ -230,11 +230,6 @@ section{
    
    <div class="container1 selectBox">
      </div>    
-      <div class="storage-con">
-		   <div class="storage-title"><p>최근 본 게시물</p></div>
-	       <div id="storage"></div>
-	   </div>
-	
       <div class="container1 searchbar2">
       	<label for="input-search" class="input-label">
 			<div class="input-con">
@@ -276,17 +271,24 @@ section{
       		</div>
       	 </div>
       </div>
-
-  <div class="container1 cardList">
-        <div class="card-wrapper">
-        
-        </div>
-      <div class="petcard-list-con">
-         <div>
-            <table id="petoutput" border="1" align="center"></table>
-         </div>
+      
+      <div class="middle-con">
+	      <div class="storage-con">
+			   <div class="storage-title"><p>최근 본 게시물</p></div>
+		       <div id="storage"></div>
+		  </div>
+		  <div class="container1 cardList">
+		        <div class="card-wrapper">
+		        
+		        </div>
+		      <div class="petcard-list-con">
+		         <div>
+		            <table id="petoutput" border="1" align="center"></table>
+		         </div>
+		      </div>
+		  </div>
       </div>
-  </div>
+
   
    </section>
    <script>var id='<%=(String)session.getAttribute("loginUser")%>'</script>
