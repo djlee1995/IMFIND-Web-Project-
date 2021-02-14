@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.MJ.ItemMapper">
+	<!-- 좋아요기능 -->
+	<insert id="like_plus">
+		<selectKey keyProperty="likeno" order="BEFORE"
+			resultType="int">
+			select nvl(max(likeno), 0)+1 from liketo
+		</selectKey>
+		insert into liketo (likeno,lost_postnum,id)
+		values(#{likeno},#{lost_PostNum},#{id})
+	</insert>
+
+	<delete id="like_cancel">
+		delete from liketo WHERE id=#{id} AND lost_postnum=#{lost_PostNum}
+	</delete>
+
+	<select id="likeChk" resultType="ElVO">
+		select * from liketo
+	</select>
+	<select id="likeCount" resultType="int">
+		select count(*) from liketo where lost_postnum=#{lost_postnum}
+	</select>
+	<!-- 좋아요기능(pet) -->
+	<insert id="pet_like_plus">
+		<selectKey keyProperty="likeno" order="BEFORE"
+			resultType="int">
+			select nvl(max(likeno), 0)+1 from liketo
+		</selectKey>
+		insert into liketo (likeno,pet_postnum,id)
+		values(#{likeno},#{Pet_PostNum},#{id})
+	</insert>
+
+	<delete id="pet_like_cancel">
+		delete from liketo WHERE id=#{id} AND Pet_PostNum=#{Pet_PostNum}
+	</delete>
+
+
+	<select id="pet_likeCount" resultType="int">
+		select count(*) from liketo where Pet_PostNum=#{Pet_PostNum}
+	</select>
+
+	<select id="getitem" resultType="ItemVO">
+
+		select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is
+		null ORDER BY lost_re_date desc
+
+
+	</select>
+	<select id="getitem2" resultType="ItemVO">
+
+		select * from lostpost l where
+		paycode is null ORDER BY lost_re_date desc
+
+	</select>
+
+
+	<select id="getItemservice" resultType="ItemVO">
+		select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and lost_title like '%' || #{keyword} || '%' ORDER BY
+		lost_re_date desc
+
+	</select>
+	<select id="getItemservice2" resultType="ItemVO">
+		select * from lostpost where paycode is null and lost_title like '%' ||
+		#{keyword} || '%' ORDER BY lost_re_date desc
+
+	</select>
+	<select id="getSido" resultType="ItemVO">
+
+		select * from lostpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and replace(lost_loc,' ','') like #{lost_Loc} || '%' ORDER BY
+		lost_re_date desc
+
+	</select>
+	<select id="getSido2" resultType="ItemVO">
+
+		select * from lostpost where paycode is null and replace(lost_loc,' ','')
+		like #{lost_Loc} || '%' ORDER BY lost_re_date desc
+
+	</select>
+	<select id="getdata_info" resultType="ItemVO">
+		SELECT * from lostpost where lost_postnum = #{lost_PostNum}
+
+	</select>
+	<update id="update_data">
+		update lostpost set
+		lost_title=#{Lost_Title},lost_Content=#{Lost_Content},lost_date=#{Lost_Date},lost_loc=#{Lost_Loc},lost_Up_File=#{Lost_Up_File},lost_item=#{Lost_Item}
+		where lost_postnum = #{lost_PostNum}
+
+
+	</update>
+	<delete id="delete_data">
+
+		{CALL
+		BEGIN
+		delete from lostpost where lost_postnum = #{lost_PostNum};
+		DELETE FROM re_comment WHERE lost_postnum = #{lost_PostNum};
+		DELETE FROM reply WHERE lost_postnum = #{lost_PostNum};
+		DELETE FROM liketo WHERE lost_postnum = #{lost_PostNum};
+		END
+		}
+
+	</delete>
+
+
+	<!-- 유희 -->
+	<select id="getItembyDate" resultType="IndexLostPostDTO">
+		SELECT
+		LOST_POSTNUM,
+		LOST_TITLE,
+		LOST_CONTENT,
+		LOST_UP_FILE,
+		LOST_PAY,
+		LOST_ITEM,
+		LOST_LOC,
+		LOST_DATE, ID,
+		(SELECT COUNT(*) AS cnt FROM re_comment WHERE lostpost.lost_postnum =
+		re_comment.lost_postnum) as CommentTotalCnt
+		FROM lostpost
+		WHERE <![CDATA[ rownum < 15 ]]>
+		ORDER BY lost_date
+	</select>
+	<!-- 유희 -->
+	<select id="getPetItembyDate" resultType="IndexLostPostDTO">
+		SELECT
+		PET_POSTNUM,
+		PET_TITLE,
+		PET_CONTENT,
+		PET_UP_FILE,
+		PET_PAY,
+		PET_LOC,
+		PET_LOSTDATE, ID,
+		(SELECT COUNT(*) AS cnt FROM pet_comment WHERE petpost.PET_POSTNUM =
+		pet_comment.lost_postnum) as CommentTotalCnt
+		FROM petpost
+		WHERE <![CDATA[ rownum < 15 ]]>
+		ORDER BY PET_LOSTDATE
+	</select>
+
+	<!-- PET -->
+	<select id="getPet" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null ORDER BY pet_re_date desc
+	</select>
+	<select id="getPetservice" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and pet_title like '%' || #{keyword} || '%' ORDER BY pet_re_date
+		desc
+	</select>
+	<select id="getPetSido" resultType="PetVO">
+		select * from petpost l,pay p where l.paycode=p.paycode and deal_state is
+		null and replace(pet_loc,' ','') like #{pet_Loc} || '%' ORDER BY
+		pet_re_date desc
+	</select>
+	<select id="getPet2" resultType="PetVO">
+		select * from petpost l where paycode is null ORDER BY pet_re_date desc
+	</select>
+	<select id="getPetservice2" resultType="PetVO">
+		select * from petpost where paycode is null and pet_title like '%' ||
+		#{keyword} || '%' ORDER BY pet_re_date desc
+	</select>
+	<select id="getPetSido2" resultType="PetVO">
+		select * from petpost where paycode is null and replace(pet_loc,' ','') like
+		#{pet_Loc} || '%' ORDER BY pet_re_date desc
+	</select>
+	<delete id="petdelete_data">
+
+		{CALL
+		BEGIN
+		delete from petpost where pet_postnum = #{Pet_PostNum};
+		DELETE FROM pet_comment where lost_postnum = #{Pet_PostNum};
+		DELETE FROM pet_reply where pet_postnum = #{Pet_PostNum};
+		DELETE FROM liketo where pet_postnum = #{Pet_PostNum};
+		END
+		}
+	</delete>
+	<select id="getpetdata_info" resultType="PetVO">
+		SELECT * from petpost where pet_postnum = #{Pet_PostNum}
+	</select>
+	<update id="petupdate_data">
+		update petpost set
+		pet_title=#{Pet_Title},pet_Content=#{Pet_Content},pet_lostdate=#{Pet_LostDate},pet_loc=#{Pet_Loc},pet_Up_File=#{Pet_Up_File},pet_name=#{Pet_Name}
+		where pet_postnum = #{Pet_PostNum}
+	</update>
+	<select id="lost_pay_rank" resultType="ItemVO">
+		SELECT *
+		FROM ( SELECT
+		l.lost_postnum,l.lost_title,l.lost_up_file,l.lost_loc,p.pay_amount
+		lost_pay,l.lost_re_date lost_date, l.id
+		FROM lostpost l, pay p where l.paycode = p.paycode
+		ORDER BY p.pay_amount desc,l.lost_postnum desc
+		)
+		WHERE rownum=1
+
+	</select>
+	<select id="pet_pay_rank" resultType="PetVO">
+		SELECT *
+		FROM ( SELECT
+		l.pet_postnum,l.pet_title,l.pet_up_file,l.pet_loc,p.pay_amount
+		pet_pay,l.pet_re_date pet_lostdate, l.id
+		FROM petpost l, pay p where l.paycode = p.paycode
+		ORDER BY p.pay_amount desc,l.pet_postnum desc
+		)
+		WHERE rownum=1
+
+	</select>
+	<select id="lost_like_rank" resultType="int">
+		SELECT lost_postnum
+		FROM ( select lost_postnum ,count(lost_postnum)as count from liketo group
+		by lost_postnum order by count desc
+		)
+		WHERE rownum=1
+
+	</select>
+	<select id="pet_like_rank" resultType="int">
+		SELECT pet_postnum
+		FROM ( select pet_postnum ,count(pet_postnum)as count from liketo group by
+		pet_postnum order by count desc
+		)
+		WHERE rownum=1
+
+	</select>
+
+</mapper>

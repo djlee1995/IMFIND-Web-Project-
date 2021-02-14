@@ -1,0 +1,307 @@
+.row1 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+#custom-search-input {
+	padding: 3px;
+	border: solid 1px #E4E4E4;
+	border-radius: 6px;
+	background-color: #fff;
+	margin: 0 auto;
+}
+
+#custom-search-input input {
+	border: 0;
+	box-shadow: none;
+	width: 400px;
+}
+
+#custom-search-input button {
+	margin: 2px 0 0 0;
+	background: none;
+	box-shadow: none;
+	border: 0;
+	color: #666666;
+	padding: 0 8px 0 10px;
+	border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover {
+	border: 0;
+	box-shadow: none;
+	border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search {
+	font-size: 23px;
+}
+
+.search-box {
+	margin: 0 auto;
+	display: block;
+	width: 340px;
+	border: none;
+	font-size: 16px;
+	color: #212529;
+	background-color: transparent;
+}
+
+.card-list-con {
+	position: relative;
+	overflow: auto;
+	margin-left: 11px;
+}
+
+.dropdown-select {
+	border: center;
+}
+
+#ajax-test-div {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	/*  중앙정렬  */
+	padding: 56px;
+}
+
+.single-latest-blog {
+	border: 1px solid gray;
+	width: 94;
+	height: 95;
+}
+
+.ajax-test-width {
+	width: 198px;
+}
+
+.blog {
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.pay {
+	font-size: 14x;
+	margin-left: 10px;
+}
+
+.petcontainer1 {
+	padding: 39px 0;
+}
+
+.petrow1 {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+#petcustom-search-input {
+	padding: 3px;
+	border: solid 1px #E4E4E4;
+	border-radius: 6px;
+	background-color: #fff;
+	margin: 0 auto;
+}
+
+#petcustom-search-input input {
+	border: 0;
+	box-shadow: none;
+	width: 400px;
+}
+
+#petcustom-search-input button {
+	margin: 2px 0 0 0;
+	background: none;
+	box-shadow: none;
+	border: 0;
+	color: #666666;
+	padding: 0 8px 0 10px;
+	border-left: solid 1px #ccc;
+}
+
+#petcustom-search-input button:hover {
+	border: 0;
+	box-shadow: none;
+	border-left: solid 1px #ccc;
+}
+
+#petcustom-search-input .glyphicon-search {
+	font-size: 23px;
+}
+
+@media ( min-width : 1200px) {
+	.container1.searchbar2 {
+		height: 70px;
+		width: 943px;
+		margin: 0 auto;
+		border-radius: 36px;
+		box-shadow: 0 2px 8px 0 hsl(0deg 0% 81%/ 50%);
+		display: flex;
+		position: relative;
+		top: -55px;
+	}
+	.input-label {
+		height: 70px;
+		width: 30%;
+		cursor: pointer !important;
+		display: block !important;
+		background-clip: padding-box !important;
+		border-right: 1px solid #e5e5e5 !important;
+		border-top-left-radius: 32px !important;
+		border-bottom-left-radius: 32px !important;
+		padding: 14px 32px !important;
+	}
+	.input-loc-con {
+		height: 70px;
+		width: 70%;;
+		cursor: pointer !important;
+		display: block !important;
+		background-clip: padding-box !important;
+		border-top-left-radius: 32px !important;
+		border-bottom-left-radius: 32px !important;
+		display: flex;
+		/* 	    -webkit-flex: 1 0 0% !important;
+	    -ms-flex: 1 0 0% !important;
+	    flex: 1 0 0% !important; */
+		/*  min-width: 0px !important; */
+		padding: 14px 32px !important;
+	}
+	.input-loc-con:hover {
+		border-right: 1px solid #e5e5e5 !important;
+		border-radius: 32px !important;
+		background: #FBF7F2;
+		border: none;
+		box-shadow: 0 2px 12px 0 hsl(0deg 0% 81%/ 50%);
+	}
+	.input-label:hover {
+		border-right: 1px solid #e5e5e5 !important;
+		border-radius: 32px !important;
+		background: #FBF7F2;
+		border: none;
+		box-shadow: 0 2px 12px 0 hsl(0deg 0% 81%/ 50%);
+	}
+	.input-label:active {
+		border-right: 1px solid #e5e5e5 !important;
+		border-radius: 32px !important;
+		background: #FBF7F2;
+		border: none;
+	}
+	.input-key, .input-loc-title {
+		font-size: 12px;
+		font-weight: 700;
+	}
+	#input-search {
+		border: none !important;
+		height: 30px;
+		background: inherit;
+		width: 178px;
+	}
+	#input-search::placeholder {
+		font-weight: 200;
+		font-style: italic;
+	}
+	.input-loc>.si {
+		display: flex;
+	}
+	.input-con.loc {
+		width: 67%;
+		padding-top: 0;
+		margin-left: 0;
+	}
+	.input-con.pay {
+		width: 20%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.con {
+		display: flex;
+		align-items: center;
+	}
+	/* 사례금 체크박스 */
+	input#payChk {
+		height: 0;
+		width: 0;
+		visibility: hidden;
+	}
+	label.bb {
+		cursor: pointer;
+		text-indent: -9999px;
+		width: 46px;
+		height: 28px;
+		background: grey;
+		display: block;
+		border-radius: 100px;
+		position: relative;
+	}
+	label.bb:after {
+		content: '';
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		width: 20px;
+		height: 19px;
+		background: #fff;
+		border-radius: 90px;
+		transition: 0.3s;
+	}
+	input.bb:checked+label.bb {
+		background: #bada55;
+	}
+	input.bb:checked+label.bb:after {
+		left: calc(100% - 5px);
+		transform: translateX(-100%);
+	}
+	label.bb:active:after {
+		width: 30px;
+	}
+	.input-loc.pay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.selectBtn {
+		display: inline-block;
+		padding: 6px 12px;
+		margin-bottom: 0;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.42857143;
+		text-align: center !important;
+		white-space: nowrap;
+		vertical-align: middle !important;
+		-ms-touch-action: manipulation;
+		touch-action: manipulation;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background-image: none;
+		border: 1px solid transparent;
+		border-radius: 23px !important;
+		width: 43px !important;
+		height: 43px !important;
+		padding: 6px 0px;
+		border-radius: 15px;
+		text-align: center;
+		font-size: 12px;
+		line-height: 1.42857;
+		background-color: #5cb85c;
+		border-color: #4cae4c;
+	}
+	.selectBtn.key {
+		position: relative;
+		top: -13px;
+		left: 13px;
+		width: 43px !important;
+		height: 43px !important;
+	}
+}

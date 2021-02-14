@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.YS.ElMapper">
+
+	<select id="getElsedata" parameterType="String"
+		resultType="ElVO">
+		SELECT * FROM lostpost lost
+		JOIN pay ON lost.lost_postnum = pay.lost_postnum
+		WHERE lost.id = #{id}
+	</select>
+	<select id="getElsedata2" parameterType="String"
+		resultType="ElVO">
+		select * from lostpost where id= #{id} and paycode is null
+	</select>
+	<select id="getPetElsedata" parameterType="String"
+		resultType="ElVO">
+		SELECT * FROM petpost lost
+		JOIN pay ON lost.pet_postnum = pay.pet_postnum
+		WHERE lost.id = #{id}
+	</select>
+	<select id="getPetElsedata2" parameterType="String"
+		resultType="ElVO">
+		select * from petpost where id= #{id} and paycode is null
+	</select>
+	<select id="getElsePaydata" parameterType="String"
+		resultType="ElVO">
+		SELECT * FROM Pay where id = #{id, jdbcType=VARCHAR}
+	</select>
+	<select id="getElseWhoReplied" parameterType="int"
+		resultType="ElVO">
+		SELECT distinct id FROM re_comment where Lost_PostNum = #{Lost_PostNum,
+		javaType=int}
+	</select>
+	<select id="getElseWhoRepliedPet" parameterType="int"
+		resultType="ElVO">
+		SELECT distinct id FROM pet_comment where Lost_PostNum = #{Lost_PostNum,
+		javaType=int}
+	</select>
+
+	<update id="updatePay_Grade" parameterType="ElVO">
+		UPDATE pay
+		SET Deal_State = #{Deal_State},
+		Deal_Date = sysdate,
+		ID = #{Id},
+		F_Id = #{F_Id},
+		Lost_PostNum = #{Lost_PostNum}
+		WHERE id = #{id} and Lost_PostNum = #{Lost_PostNum}
+	</update>
+	<update id="updatePay_GradePet" parameterType="ElVO">
+		UPDATE pay
+		SET Deal_State = #{Deal_State},
+		Deal_Date = sysdate,
+		ID = #{Id},
+		F_Id = #{F_Id},
+		Pet_PostNum = #{Pet_PostNum}
+		WHERE id = #{id} and Pet_PostNum = #{Pet_PostNum}
+	</update>
+	<insert id="insertGrade" parameterType="ElVO">
+		INSERT INTO Grade
+		(
+		F_Id,
+		grade,
+		ID,
+		Lost_PostNum,
+		Pet_PostNum ,
+		grade_date
+		)
+		VALUES
+		(
+		#{F_Id},
+		#{grade},
+		#{id},
+		#{Lost_PostNum},
+		#{Pet_PostNum},
+		sysdate
+		)
+	</insert>
+	<!-- 1.28 연수 -->
+	<select id="getStarGrade" parameterType="String"
+		resultType="ElVO">
+		SELECT grade from grade where F_Id= #{F_Id}
+	</select>
+	
+	 <select id="getlike_lost" resultType="ElVO">
+      select l.lost_postnum, p.lost_title from liketo l ,lostpost p  where l.lost_postnum = p.lost_postnum and l.id = #{id}
+   </select>
+   <select id="getlike_pet" resultType="ElVO">
+      select l.pet_postnum, p.pet_title from liketo l ,petpost p  where l.pet_postnum = p.pet_postnum and l.id = #{id}
+   </select>
+	
+</mapper>
