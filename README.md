@@ -22,12 +22,10 @@
 - 마이페이지 거래자 평가, 누적 평점 조회
 
 ## 개발환경
-![개발환경](https://user-images.githubusercontent.com/61870748/108684070-bc6e6500-7535-11eb-8870-c93eaff05e6d.jpg)
-<img src="https://user-images.githubusercontent.com/61870748/108684070-bc6e6500-7535-11eb-8870-c93eaff05e6d.jpg" width="40%">
+<img src="https://user-images.githubusercontent.com/61870748/108684070-bc6e6500-7535-11eb-8870-c93eaff05e6d.jpg" width="50%">
 
 ## 구조도
-![구조도](https://user-images.githubusercontent.com/61870748/108684090-c1331900-7535-11eb-9a70-db3fa254658a.jpg)
-<img src="https://user-images.githubusercontent.com/61870748/108684090-c1331900-7535-11eb-9a70-db3fa254658a.jpg" width="40%">
+<img src="https://user-images.githubusercontent.com/61870748/108684090-c1331900-7535-11eb-9a70-db3fa254658a.jpg" width="50%">
 
 
 ### 시연 영상 https://youtu.be/SciQOLxlJeA
