@@ -546,7 +546,6 @@ function getListNearMe(item){
                                     +'<span class="posted_on">' + moment(item.lost_date).format('YY-MM-DD') + '</span>'       
                                     +'<h3 class="lost-title"><a href="#">' + item.item +'</a></h3>'
                                     +'<p>'+ item.depplace +'</p>'
-                                          +'<p style="margin-bottom : 0;">' + item.info + '</p>'
                                  +'</div></div>';
             parentNode.appendChild(colNode);  
             
@@ -761,7 +760,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	<div class="page"></div>
 	<section id="first">
 			
-			<div class="container">
+			<div class="container" style="padding:0;">
 				<div class="container-left">
 				<div id="fh5co-hero" class="js-fullheight">
 						<div class="flexslider js-fullheight top">
