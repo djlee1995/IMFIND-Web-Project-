@@ -1,12 +1,17 @@
-# :computer: ImFind
+# :computer: ImFind v2.0
 
+[ImFind]
 프로젝트 기간 : 2020.12 ~ 2021.02
-
 프로젝트명 : IMFIND
-
 팀명 : 차자조
-
 팀원 : 김연수, 김민정, 이동준, 이유희, 홍은지
+
+[ImFind]
+프로젝트 기간 : 2020.02 ~
+프로젝트명 : IMFIND version 2
+팀원 : 이유희
+
+목표 : 코드 개선과 테스트 케이스 추가. 게시판 추가
 
 ## :pushpin: 개요
 
