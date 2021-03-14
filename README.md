@@ -1,6 +1,6 @@
 # :computer: ImFind v2.0
 
-[ImFind]<br/>
+[ImFind v1.0]<br/>
 프로젝트 기간 : 2020.12 ~ 2021.02 <br/>
 프로젝트명 : IMFIND<br/>
 팀명 : 차자조<br/>
