@@ -15,6 +15,8 @@
 # BlueJ files
 *.ctxt
 
+/Crawling_SourceCode/
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
