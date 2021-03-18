@@ -14,6 +14,10 @@
 		<org.springframework-version>5.2.3.RELEASE</org.springframework-version> 
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		
+		 <!-- JPA, 하이버네이트 버전 -->
+        <hibernate.version>4.3.10.Final</hibernate.version>
+
 	</properties>
 	
 	<!-- oracle (변경된 부분 : 2017.06.12 현재 ) -->
@@ -44,6 +48,19 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+		  <!-- 스프링 ORM -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <!-- JPA, 하이버네이트 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -283,6 +300,18 @@
 	        <scope>test</scope>
 	    </dependency>
 	 	<!-- Junit5 추가 끝 -->   
+	 	
+	 	<!-- lombok 추가 시작 -->
+	 	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+			 	
+	 	
+	 	<!--lombok 추가 끝  -->
 	    
 			
 	</dependencies>

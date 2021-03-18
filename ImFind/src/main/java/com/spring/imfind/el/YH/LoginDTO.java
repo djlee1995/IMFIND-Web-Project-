@@ -1,6 +1,7 @@
 
 package com.spring.imfind.el.YH;
 
+
 public class LoginDTO {
 	private String id;
 	private String pw;
@@ -13,6 +14,7 @@ public class LoginDTO {
 	private String name;
 	private String savePass;
 
+	
 	public String getSavePass() {
 		return savePass;
 	}

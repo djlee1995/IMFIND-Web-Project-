@@ -32,7 +32,6 @@
 	<!-- mapper 관련 인터페이스 (ex: MamberMapper.java)를 찾기 위한 패키지 경로 설정함 -->
 	<mybatis-spring:scan base-package="com.spring.mapper"/>	
 
-	
 	  <!-- naver mail  : smtp 사용가능하도록 설정확인 할것 -->
 	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	  	<property name ="host" value="smtp.naver.com"></property>
