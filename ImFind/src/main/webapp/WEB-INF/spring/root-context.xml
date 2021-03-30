@@ -2,14 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-<!-- Root Context: defines shared resources visible to all other web components -->
-<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@3.36.85.242:1521:xe"  />
 		<property name="username" value="imfind"  />
@@ -31,8 +33,47 @@
 	<!-- mybatis mapper 설정관련(사용 시 Namespace 탭에서 mybatis-spring 추가하기) -->
 	<!-- mapper 관련 인터페이스 (ex: MamberMapper.java)를 찾기 위한 패키지 경로 설정함 -->
 	<mybatis-spring:scan base-package="com.spring.mapper"/>	
-
 	
+	<!-- 트랜잭션 관리자 활성화 -->
+	<tx:annotation-driven/>
+	
+	<!-- Hibernate JPA 설정 -->
+	<!-- 같은 db에 hibernate jpa를 활용하기 위해 별도의 Data Source를 구성한다. -->
+	<bean id="dataSourceForJPA" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@3.36.85.242:1521:xe"  />
+		<property name="username" value="imfind"  />
+		<property name="password" value="123456"  />
+	</bean>
+	
+	<!-- 트랜잭션 관리자 등록 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	    <property name="dataSource" ref="dataSourceForJPA" />
+	</bean>
+		
+	<bean id="entityManagerFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	      <property name="dataSource" ref="dataSourceForJPA" />
+	      <!-- This makes /META-INF/persistence.xml is no longer necessary -->
+	      <property name="packagesToScan" value="com.spring.imfind" />
+	      <!-- JpaVendorAdapter implementation for Hibernate EntityManager.
+	           Exposes Hibernate's persistence provider and EntityManager extension interface -->
+	      <property name="jpaVendorAdapter">
+	         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	      </property>
+	      <property name="jpaProperties">
+	         <props>
+	            <!-- <prop key="hibernate.hbm2ddl.auto">validate</prop>	-->
+	            <prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+	            <prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>	<!-- http://stackoverflow.com/questions/30133544/very-slow-spring-boot-application-startup -->
+	         	<prop key="hibernate.show_sql">true</prop>
+	         	<prop key="hbm2ddl.auto">update</prop>
+	         	<prop key="hibernate.format_sql">true</prop>          
+	         </props>
+	      </property>
+   	</bean>
+	
+	
+
 	  <!-- naver mail  : smtp 사용가능하도록 설정확인 할것 -->
 	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	  	<property name ="host" value="smtp.naver.com"></property>

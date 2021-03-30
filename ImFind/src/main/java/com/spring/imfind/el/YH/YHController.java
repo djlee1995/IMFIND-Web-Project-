@@ -38,6 +38,8 @@ public class YHController {
 	public String NewFooter_JS() {
 		return "el/NewFooter_JS";
 	}
+	
+
 
 	@Autowired
 	JavaMailSender mailSender;
@@ -48,8 +50,8 @@ public class YHController {
 	@Autowired
 	AlarmService alarmService;
 
-	// 유희
-	@Autowired
+
+	//@Autowired
 	private MemberService memberService;
 
 	// header include -
@@ -117,7 +119,7 @@ public class YHController {
 	}
 
 	/*
-	 * 아이디 id, pw
+	 * �븘�씠�뵒 id, pw
 	 */
 	@RequestMapping("/loginCheck")
 	@ResponseBody
@@ -171,7 +173,7 @@ public class YHController {
 		return "redirect:/home.do";
 	}
 
-	// get 오픈뱅킹 인증 url
+	// get �삤�뵂諭낇궧 �씤利� url
 	@RequestMapping(value = "/getAuthorize")
 	public @ResponseBody String openBanking() {
 
@@ -181,7 +183,7 @@ public class YHController {
 		return reqUrl;
 	}
 
-	// 오픈 뱅킹 3-leggedget code
+	// �삤�뵂 諭낇궧 3-leggedget code
 	@RequestMapping(value = "/getOpenBankingToken")
 	public String getOpenBankingToken(String code, String access_token) throws Exception {
 
@@ -191,7 +193,7 @@ public class YHController {
 		return "forward:/register";
 	}
 
-	// 오픈 뱅킹 2 legged get code
+	// �삤�뵂 諭낇궧 2 legged get code
 	@RequestMapping(value = "/getToken")
 	public @ResponseBody String getToken(@RequestBody Map<String, String> map) throws Exception {
 
@@ -224,7 +226,7 @@ public class YHController {
 	}
 
 	@RequestMapping("/processJoin")
-	public String processJoin(LoginDTO vo) { // vo 이름 변경
+	public String processJoin(LoginDTO vo) { // vo �씠由� 蹂�寃�
 
 		vo.setAccount_holder(vo.getName());
 		memberService.insertMember(vo);
@@ -258,7 +260,7 @@ public class YHController {
 	public @ResponseBody Map<String, String> findPWAuth(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody Map<String, String> map) throws IOException, MessagingException {
 
-		LoginDTO vo = memberService.findPW(map.get("id"), map.get("email")); // vo 이름 변경
+		LoginDTO vo = memberService.findPW(map.get("id"), map.get("email")); // vo �씠由� 蹂�寃�
 
 		Map<String, String> resJson = new HashMap<String, String>();
 		if (vo != null) {
@@ -310,7 +312,7 @@ public class YHController {
 	}
 	
 	//alarm list
-   //알람리스트
+   //�븣�엺由ъ뒪�듃
    @RequestMapping(value = "/getAlarm", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
    @ResponseBody
    public List<AlarmDTO> getAlarm(HttpServletRequest request) {
