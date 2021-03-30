@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.mapper.YH.MemberMapper;
 
-@Service("memberService")
+//@Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
@@ -55,6 +55,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(LoginDTO vo) {
+		
+		System.out.println("ÇÒ·¼·ç¾ß!@#!@#!@#!@#!@#!@#!@#!@#!@#");
 
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		Integer state = memberMapper.insertMember(vo);

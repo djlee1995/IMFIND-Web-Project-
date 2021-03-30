@@ -50,8 +50,8 @@ public class YHController {
 	@Autowired
 	AlarmService alarmService;
 
-	// �쑀�씗
-	@Autowired
+
+	//@Autowired
 	private MemberService memberService;
 
 	// header include -

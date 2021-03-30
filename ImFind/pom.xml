@@ -16,8 +16,9 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		
 		 <!-- JPA, 하이버네이트 버전 -->
-        <hibernate.version>4.3.10.Final</hibernate.version>
-
+        <hibernate.version>5.4.21.Final</hibernate.version>
+        <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <junit.platform.version>1.5.2</junit.platform.version>
 	</properties>
 	
 	<!-- oracle (변경된 부분 : 2017.06.12 현재 ) -->
@@ -42,6 +43,16 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
+		<!-- spring test start -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- spring test end -->
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -54,13 +65,32 @@
             <artifactId>spring-orm</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+        
         <!-- JPA, 하이버네이트 -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-        
+        <dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>${hibernate.version}</version>
+		</dependency>
+		
+        <!-- JPA, 하이버네이트 끝 -->
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -138,13 +168,6 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- Test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>   
 		
 		<!-- MyBatis 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -286,19 +309,26 @@
 		</dependency>  
 		
 		<!-- junit5 추가 시작 -->
+  		<dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.vintage/junit-vintage-engine -->
 		<dependency>
-	        <groupId>org.junit.jupiter</groupId>
-	        <artifactId>junit-jupiter-engine</artifactId>
-	        <version>5.4.0</version>
-	        <scope>test</scope>
-	    </dependency>
-	    
-	      <dependency>
-	        <groupId>org.junit.vintage</groupId>
-	        <artifactId>junit-vintage-engine</artifactId>
-	        <version>5.4.0</version>
-	        <scope>test</scope>
-	    </dependency>
+		    <groupId>org.junit.vintage</groupId>
+		    <artifactId>junit-vintage-engine</artifactId>
+		    <version>${junit.jupiter.version}</version>
+		    <scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
+        </dependency>
 	 	<!-- Junit5 추가 끝 -->   
 	 	
 	 	<!-- lombok 추가 시작 -->
@@ -350,6 +380,14 @@
                 <configuration>
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
+            </plugin>
+             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>

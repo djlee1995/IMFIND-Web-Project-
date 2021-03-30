@@ -3,7 +3,7 @@ package com.spring.imfind.el.YH;
 
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public interface MemberService {
 
 	public int loginCheck(String id, String pw);
